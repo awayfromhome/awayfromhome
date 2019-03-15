@@ -3,7 +3,7 @@ const express = require('express');
 const app = express();
 const massive = require('massive');
 const { json } = require('body-parser');
-const controller = require('./controllers/controller');
+const con = require('./controllers/controller');
 
 app.use(json());
 
@@ -15,15 +15,16 @@ massive(process.env.CONNECTION_STRING)
 	})
 	.catch(err => console.log(err));
 
-//Hotel and toom endpoints
-app.get('/api/hotel', controller.get_hotel);
-app.get('/api/roomlist', controller.get_room);
+//Hotel and room endpoints
+app.get('/api/hotel', con.get_hotel_list);
+app.get('/api/roomlist', con.get_room_list);
 
 //Reservation endpoints
-app.get('/api/reservation', controller.get_reservation);
+app.get('/api/reservation', con.get_reservation_list);
 
 //Transaction endpoints
-app.post('./api/transaction', controller.new_transaction);
+app.post('./api/transaction', con.new_transaction);
+
 //User endpoints
 
 app.listen(process.env.EXPRESS_PORT, () => {
