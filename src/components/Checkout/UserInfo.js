@@ -1,9 +1,15 @@
-import React from 'react';
+import React from "react";
+import TextField from "@material-ui/core/TextField";
+import { withStyles } from "@material-ui/core/styles";
 
-export default function UserInfo() {
-	return (
-		<div>
-			<h1>UserInfo</h1>
-		</div>
-	);
-}
+const styles = theme => ({});
+
+const UserInfo = () => {
+  return (
+    <div>
+      <TextField />
+    </div>
+  );
+};
+
+export default withStyles(styles)(UserInfo);
