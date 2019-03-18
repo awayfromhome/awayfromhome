@@ -9,7 +9,8 @@ import Typography from '@material-ui/core/Typography';
 const styles = theme => ({
 	root: {
 		flexGrow: 1,
-		background: theme.palette.accent.main
+
+		width: '55vw'
 	},
 	barInfo: {
 		display: 'flex',
@@ -17,6 +18,9 @@ const styles = theme => ({
 	},
 	searchInfo: {
 		marginLeft: 10
+	},
+	appBar: {
+		borderRadius: 8
 	}
 });
 
@@ -24,19 +28,29 @@ const SearchInfo = props => {
 	const { classes } = props;
 	return (
 		<div className={classes.root}>
-			<AppBar position="static">
+			<AppBar className={classes.appBar} position="static">
 				<Toolbar>
 					<Typography
 						className={classes.barInfo}
 						variant="h6"
 						color="inherit">
-						<div>Dallas, Tx, United States|</div>
-						<div className={classes.searchInfo}>
-							03/18/2019 - 03/19/2019 |
+						<div>
+							{/* {props.city} {props.state} {props.address}{' '} */}
+							{/* {props.country} */}
+							Dallas, Tx, United States
 						</div>
-						<div className={classes.searchInfo}># of Guests |</div>
-						<div className={classes.searchInfo}>1 room |</div>
-						<div className={classes.searchInfo}>SearchInfo</div>
+						<div className={classes.searchInfo}>
+							{/* {props.date.checkIn} {props.date.checkOut} | */}
+							| 03/18/2019 - 03/19/2019
+						</div>
+						<div className={classes.searchInfo}>
+							{/* {' '}{props.guests} */}
+							| Guests: 2
+						</div>
+						<div className={classes.searchInfo}>
+							{/* {props.numRooms}| */}
+							| Rooms: 1
+						</div>
 					</Typography>
 				</Toolbar>
 			</AppBar>
