@@ -21,12 +21,10 @@ const styles = theme => ({
   },
   searchContainer: {
     display: "flex",
-    alignItems: "center",
-    textAlign: "center"
+    alignItems: "center"
   },
   textField: {
-    width: 530,
-    marginRight: 40
+    width: 470
   },
   paper: {
     width: "70vw",
@@ -34,15 +32,15 @@ const styles = theme => ({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    margin: "auto",
-    boxShadow: "none"
+    boxShadow: "none",
+    borderBottom: "5px solid #656D79"
   },
   buttonLabels: {
     width: 100
   },
   button: {
-    height: 50,
-    width: 50,
+    height: 30,
+    width: 30,
     borderRadius: 8,
     background: theme.palette.accent.main,
     display: "flex",
@@ -52,8 +50,7 @@ const styles = theme => ({
   },
   selectors: {
     display: "flex",
-    alignItems: "center",
-    width: 600
+    alignItems: "center"
   },
   rightSearchContainer: {
     width: "35vw"
@@ -63,7 +60,8 @@ const styles = theme => ({
     alignItems: "center"
   },
   leftSearchContainer: {
-    width: "35vw"
+    width: "35vw",
+    marginLeft: 200
   }
 });
 
