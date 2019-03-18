@@ -1,6 +1,8 @@
 import axios from "axios";
 
-let initialState = {};
+let initialState = {
+  name: "Dylan"
+};
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
