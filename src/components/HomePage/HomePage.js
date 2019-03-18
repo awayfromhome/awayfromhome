@@ -11,18 +11,34 @@ import DateRange from "@material-ui/icons/DateRange";
 import Add from "@material-ui/icons/Add";
 import Remove from "@material-ui/icons/Remove";
 import Paper from "@material-ui/core/Paper";
+import classNames from "classnames";
 
 const styles = theme => ({
   background: {
-    height: "70vh",
-    width: "70vw"
+    height: "50vh",
+    width: "70vw",
+    margin: "auto"
+  },
+  searchContainer: {
+    display: "flex",
+    alignItems: "center",
+    textAlign: "center"
+  },
+  textField: {
+    width: 530,
+    marginRight: 40
   },
   paper: {
-    width: 1000,
+    width: "70vw",
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    margin: "auto",
+    boxShadow: "none"
+  },
+  buttonLabels: {
+    width: 100
   },
   button: {
     height: 50,
@@ -31,11 +47,23 @@ const styles = theme => ({
     background: theme.palette.accent.main,
     display: "flex",
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    margin: 20
   },
   selectors: {
     display: "flex",
+    alignItems: "center",
+    width: 600
+  },
+  rightSearchContainer: {
+    width: "35vw"
+  },
+  counter: {
+    display: "flex",
     alignItems: "center"
+  },
+  leftSearchContainer: {
+    width: "35vw"
   }
 });
 
@@ -49,62 +77,84 @@ const HomePage = props => {
         alt="main"
       />
       <Paper className={classes.paper}>
-        <div>
-          <TextField
-            label="Destination"
-            margin="normal"
-            variant="outlined"
-            InputLabelProps={{
-              shrink: true
-            }}
-            className={classes.textField}
-            // autoFocus={true}
-          />
-          <MuiPickersUtilsProvider utils={DateFnsUtils}>
-            <DatePicker
+        <div className={classes.searchContainer}>
+          <div className={classes.leftSearchContainer}>
+            <TextField
+              label="Destination"
               margin="normal"
-              label="Check-In"
-              // value={selectedDate}
-              // onChange={this.handleDateChange}
               variant="outlined"
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <DateRange />
-                  </InputAdornment>
-                )
+              InputLabelProps={{
+                shrink: true
               }}
+              className={classes.textField}
+              autoFocus={true}
             />
-            <DatePicker
-              margin="normal"
-              label="Check-Out"
-              // value={selectedDate}
-              // onChange={this.handleDateChange}
-              variant="outlined"
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <DateRange />
-                  </InputAdornment>
-                )
-              }}
-            />
-          </MuiPickersUtilsProvider>
-        </div>
-        <div className={classes.selectors}>
-          <div className={classes.button}>
-            <Remove />
+            <div className={classes.selectors}>
+              <div className={classNames(classes.occupantDiv, classes.counter)}>
+                <div className={classes.button}>
+                  <Remove />
+                </div>
+                <TextField
+                  variant="outlined"
+                  label="Occupants"
+                  InputLabelProps={{
+                    shrink: true
+                  }}
+                  className={classes.buttonLabels}
+                />
+                <div className={classes.button}>
+                  <Add />
+                </div>
+              </div>
+              <div className={classNames(classes.RoomDiv, classes.counter)}>
+                <div className={classes.button}>
+                  <Remove />
+                </div>
+                <TextField
+                  variant="outlined"
+                  label="Rooms"
+                  InputLabelProps={{
+                    shrink: true
+                  }}
+                  className={classes.buttonLabels}
+                />
+                <div className={classes.button}>
+                  <Add />
+                </div>
+              </div>
+            </div>
           </div>
-          <TextField variant="outlined" />
-          <div className={classes.button}>
-            <Add />
-          </div>
-          <div className={classes.button}>
-            <Remove />
-          </div>
-          <TextField variant="outlined" />
-          <div className={classes.button}>
-            <Add />
+          <div className={classes.rightSearchContainer}>
+            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+              <DatePicker
+                margin="normal"
+                label="Check-In"
+                // value={selectedDate}
+                // onChange={this.handleDateChange}
+                variant="outlined"
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <DateRange />
+                    </InputAdornment>
+                  )
+                }}
+              />
+              <DatePicker
+                margin="normal"
+                label="Check-Out"
+                // value={selectedDate}
+                // onChange={this.handleDateChange}
+                variant="outlined"
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <DateRange />
+                    </InputAdornment>
+                  )
+                }}
+              />
+            </MuiPickersUtilsProvider>
           </div>
         </div>
       </Paper>
@@ -115,6 +165,3 @@ const HomePage = props => {
 const mapStateToProps = state => state;
 
 export default connect(mapStateToProps)(withStyles(styles)(HomePage));
-
-// https://images.unsplash.com/photo-1502920514313-52581002a659?ixlib=rb-1.2.1&auto=format&fit=crop&w=1047&q=80
-// use as background image
