@@ -14,7 +14,7 @@ const styles = theme => ({
 		marginTop: '17vh'
 	},
 	card: {
-		marginTop: '4vh',
+		marginTop: '15vh',
 		paddingTop: '40px',
 		display: 'flex',
 		flexDirection: 'column',
