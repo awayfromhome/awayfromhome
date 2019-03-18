@@ -1,9 +1,16 @@
-import React from 'react';
+import React from "react";
+import CreditInfo from "./CreditInfo";
+import UserInfo from "./UserInfo";
+import HotelInfo from "../List/HotelInfo";
+import RoomInfo from "../List/RoomInfo";
 
 export default function Checkout() {
-	return (
-		<div>
-			<h1>Checkout</h1>
-		</div>
-	);
+  return (
+    <div>
+      <CreditInfo />
+      <UserInfo />
+      <HotelInfo />
+      <RoomInfo />
+    </div>
+  );
 }
