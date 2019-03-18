@@ -35,19 +35,20 @@ const styles = theme => ({
     justifyContent: "space-evenly",
     flexDirection: "column",
     height: "50vh",
-    width: "6vw"
+    width: "4vw"
   },
   navwrapper: {
-    overflowX: "hidden",
+    // overflowX: "hidden",
     cursor: "pointer"
   },
   tags: {
     borderBottom: "1px solid #96BBBB",
     textAlign: "center",
-    position: "relative",
+    // position: "relative",
     textDecoration: "none",
     verticalAlign: "middle",
-    height: "6vh"
+    height: "6vh",
+    textTransform: "uppercase"
   }
 });
 
