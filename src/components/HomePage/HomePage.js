@@ -14,19 +14,24 @@ import Paper from "@material-ui/core/Paper";
 import classNames from "classnames";
 
 const styles = theme => ({
+  entireContainer: {
+    margin: "auto",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center"
+  },
   background: {
-    height: "50vh",
-    width: "70vw",
-    margin: "auto"
+    height: "60vh",
+    width: "100vw"
   },
   searchContainer: {
     display: "flex",
     alignItems: "center",
-    textAlign: "center"
+    width: "70vw"
   },
   textField: {
-    width: 530,
-    marginRight: 40
+    width: 470,
+    marginLeft: "5vw"
   },
   paper: {
     width: "70vw",
@@ -34,43 +39,50 @@ const styles = theme => ({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    margin: "auto",
-    boxShadow: "none"
+    boxShadow: "none",
+    borderBottom: "5px solid #656D79"
   },
   buttonLabels: {
     width: 100
   },
   button: {
-    height: 50,
-    width: 50,
+    height: 40,
+    width: 40,
     borderRadius: 8,
     background: theme.palette.accent.main,
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    margin: 20
+    margin: 15
   },
   selectors: {
     display: "flex",
     alignItems: "center",
-    width: 600
+    margin: "0 auto",
+    justifyContent: "center",
+    marginTop: 15,
+    marginLeft: 50
   },
   rightSearchContainer: {
-    width: "35vw"
+    width: "35vw",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-evenly"
   },
   counter: {
     display: "flex",
-    alignItems: "center"
+    alignItems: "center",
+    width: "12vw"
   },
   leftSearchContainer: {
-    width: "35vw"
+    width: "32vw"
   }
 });
 
 const HomePage = props => {
   const { classes } = props;
   return (
-    <div className={classes.background}>
+    <div className={classes.entireContainer}>
       <img
         className={classes.background}
         src="https://images.unsplash.com/photo-1502920514313-52581002a659?ixlib=rb-1.2.1&auto=format&fit=crop&w=1047&q=80"
@@ -127,6 +139,7 @@ const HomePage = props => {
           <div className={classes.rightSearchContainer}>
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
               <DatePicker
+                className={classes.datepicker}
                 margin="normal"
                 label="Check-In"
                 // value={selectedDate}
@@ -141,6 +154,7 @@ const HomePage = props => {
                 }}
               />
               <DatePicker
+                className={classes.datepicker}
                 margin="normal"
                 label="Check-Out"
                 // value={selectedDate}
@@ -155,6 +169,7 @@ const HomePage = props => {
                 }}
               />
             </MuiPickersUtilsProvider>
+            <button> Search </button>
           </div>
         </div>
       </Paper>
