@@ -2,14 +2,6 @@ import React from "react";
 import Card from "./Card";
 import { withStyles } from "@material-ui/core/styles";
 
-const Amenities = [
-  "Wireless Internet",
-  "Buisness Center",
-  "Airport Shuttle",
-  "Area Shuttle",
-  "Health/Fitness Center"
-];
-
 const styles = theme => ({
   root: {
     display: "flex",
@@ -18,22 +10,21 @@ const styles = theme => ({
 });
 
 const HotelInfo = props => {
-  const { classes } = props;
+  const { classes, info } = props;
   return (
-    <Card price="$100">
+    <Card price="$100" img={info.url}>
       <div className={classes.root}>
         <div>
-          <h1>Holday Inn Dallas Market Center</h1>
-          <h4>4500 Harry Hines Boulevard Dallas, Texas 75219 United States</h4>
-          <h4>Reservations 800 439 4745</h4>
-          <h4>Front Desk 1-214-2193333</h4>
+          <h1>{info.name}</h1>
+          <h4>{info.address}</h4>
+          <h4>Reservations: {info.reservation_num}</h4>
+          <h4>Front Desk: {info.front_desk_num}</h4>
           <h4>Distance</h4>
         </div>
         <ul>
-          {Amenities.map((e, i) => {
-            return <li>{e}</li>;
+          {info.amenities.map((e, i) => {
+            return <li key={i}>{e}</li>;
           })}
-          <li>Show more Amenities</li>
         </ul>
       </div>
     </Card>
