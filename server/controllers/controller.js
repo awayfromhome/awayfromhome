@@ -1,6 +1,7 @@
 const isWithinInterval = require("date-fns/isWithinInterval");
 const parseISO = require("date-fns/parseISO");
 const toDate = require("date-fns/toDate");
+
 module.exports = {
   get_hotel_list: (req, res) => {
     const db = req.app.get("db");
@@ -10,6 +11,7 @@ module.exports = {
   },
   get_room_list: (req, res) => {},
   //Brute force way :) Might come back and improve with putting it all in sql :(
+  //Eventually go back through and delete on a timer all the old reservations
   get_reservation_list: async (req, res) => {
     const db = req.app.get("db");
     const { room_id, start_date, end_date } = req.body;
@@ -31,12 +33,35 @@ module.exports = {
             }
           }));
         });
-      console.log("first", inRangeReservations);
+      // console.log("first", inRangeReservations);
       return inRangeReservations;
     });
     // console.log("second", final);
     let promisedFinal = await Promise.all(final);
-    res.status(200).json(promisedFinal);
+    let min = Number.MIN_VALUE;
+    let finalArr = promisedFinal.map((el, i) => {
+      let obj = {};
+      let innerObj = {};
+      el.map((e, i) => {
+        if (e) {
+          obj.room_name = e.room_id;
+          if (innerObj[e.date]) {
+            innerObj[e.date]++;
+          } else {
+            innerObj[e.date] = 1;
+          }
+        }
+        for (key in innerObj) {
+          if (innerObj[key] > min) {
+            min = innerObj[key];
+          }
+        }
+      });
+      obj.reservations = min;
+      return obj;
+    });
+    console.log(finalArr);
+    res.status(200).json(finalArr);
   },
   new_transaction: (req, res) => {},
   create_reservation: async (req, res) => {
