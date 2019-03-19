@@ -3,51 +3,57 @@ import { withStyles } from "@material-ui/core/styles";
 
 const styles = theme => ({
   navContainer: {
-    // height: "10vh",
-    // width: "90vw",
-    // margin: "auto",
-    // background: "#96BBBB",
-    // marginBottom: 5,
-    // display: "flex",
-    // justifyContent: "space-between",
-    // borderRadius: 8,
     position: "fixed",
     top: 0,
     left: 0,
     height: "100vh",
-    width: "4vw",
-    background: theme.palette.primary.main
+    width: "5vw",
+    background: "#4C525A",
+    zIndex: 4
   },
   logo: {
-    height: "10vh",
-    width: "3vw",
     textAlign: "center",
-    background: theme.palette.accent.main,
-    padding: 9,
-    paddingTop: 50
+    height: "12vh",
+    borderBottom: "1px solid #96BBBB",
+    color: "#fff",
+    lineHeight: "12vh",
+    background: theme.palette.secondary.main
   },
-  logoText: {
-    textAlign: "center",
-    paddingTop: "4vh"
+  navwrapper: {
+    overflowY: "hidden",
+    cursor: "pointer",
+    height: "55vh"
   },
   lists: {
     display: "flex",
     justifyContent: "space-evenly",
     flexDirection: "column",
-    height: "50vh",
-    width: "6vw"
-  },
-  navwrapper: {
-    overflowX: "hidden",
-    cursor: "pointer"
+    height: "55vh"
   },
   tags: {
     borderBottom: "1px solid #96BBBB",
     textAlign: "center",
-    position: "relative",
     textDecoration: "none",
-    verticalAlign: "middle",
-    height: "6vh"
+    textTransform: "uppercase",
+    fontSize: 13,
+    color: "#fff",
+    fontFamily: "Baloo",
+    height: "15vh",
+    margin: "0 auto",
+    width: "5vw",
+    lineHeight: 9.5,
+    background: `linear-gradient(to right,
+      #26292D,
+      #26292D 50%,
+      transparent 50%,
+      transparent)`,
+    backgroundPosition: "100% 0",
+    backgroundSize: "200% 100%",
+    transition: "all .3s ease-in",
+    "&:hover": {
+      color: " #fff",
+      backgroundPosition: "0 0"
+    }
   }
 });
 
@@ -55,9 +61,7 @@ const Nav = props => {
   const { classes } = props;
   return (
     <div className={classes.navContainer}>
-      <div className={classes.logo}>
-        <h1 className={classes.logoText}>Away From Home</h1>
-      </div>
+      <div className={classes.logo}>AFM</div>
       <div className={classes.navwrapper}>
         <nav className={classes.lists}>
           <a className={classes.tags}>Sign In</a>

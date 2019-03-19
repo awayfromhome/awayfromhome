@@ -1,17 +1,7 @@
 import React, { useState } from "react";
-import "date-fns";
 import { connect } from "react-redux";
-import TextField from "@material-ui/core/TextField";
 import { withStyles } from "@material-ui/core/styles";
-import PropTypes from "prop-types";
-import DateFnsUtils from "@date-io/date-fns";
-import { MuiPickersUtilsProvider, DatePicker } from "material-ui-pickers";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import DateRange from "@material-ui/icons/DateRange";
-import Add from "@material-ui/icons/Add";
-import Remove from "@material-ui/icons/Remove";
-import Paper from "@material-ui/core/Paper";
-import classNames from "classnames";
+import SearchBar from "./SearchBar";
 
 const styles = theme => ({
   entireContainer: {
@@ -20,62 +10,31 @@ const styles = theme => ({
     flexDirection: "column",
     alignItems: "center"
   },
+  imgContainer: {
+    position: "absolute",
+    zIndex: 3,
+    background: "rgba(0,0,0,0.60)",
+    top: "0vh",
+    height: "60vh",
+    width: "100%"
+  },
   background: {
     height: "60vh",
     width: "100vw"
   },
-  searchContainer: {
+  img: {
+    height: 500,
+    width: 500
+  },
+  sectionContainer: {
+    marginTop: 30
+  },
+  sections: {
     display: "flex",
-    alignItems: "center",
-    width: "70vw"
+    alignItems: "center"
   },
-  textField: {
-    width: 470,
-    marginLeft: "5vw"
-  },
-  paper: {
-    width: "70vw",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
-    boxShadow: "none",
-    borderBottom: "5px solid #656D79"
-  },
-  buttonLabels: {
-    width: 100
-  },
-  button: {
-    height: 40,
-    width: 40,
-    borderRadius: 8,
-    background: theme.palette.accent.main,
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    margin: 15
-  },
-  selectors: {
-    display: "flex",
-    alignItems: "center",
-    margin: "0 auto",
-    justifyContent: "center",
-    marginTop: 15,
-    marginLeft: 50
-  },
-  rightSearchContainer: {
-    width: "35vw",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-evenly"
-  },
-  counter: {
-    display: "flex",
-    alignItems: "center",
-    width: "12vw"
-  },
-  leftSearchContainer: {
-    width: "32vw"
+  paragraph: {
+    width: 500
   }
 });
 
@@ -83,96 +42,53 @@ const HomePage = props => {
   const { classes } = props;
   return (
     <div className={classes.entireContainer}>
+      <div className={classes.imgContainer} />
       <img
         className={classes.background}
-        src="https://images.unsplash.com/photo-1502920514313-52581002a659?ixlib=rb-1.2.1&auto=format&fit=crop&w=1047&q=80"
+        src="https://images.unsplash.com/photo-1496417263034-38ec4f0b665a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80"
         alt="main"
       />
-      <Paper className={classes.paper}>
-        <div className={classes.searchContainer}>
-          <div className={classes.leftSearchContainer}>
-            <TextField
-              label="Destination"
-              margin="normal"
-              variant="outlined"
-              InputLabelProps={{
-                shrink: true
-              }}
-              className={classes.textField}
-              autoFocus={true}
-            />
-            <div className={classes.selectors}>
-              <div className={classNames(classes.occupantDiv, classes.counter)}>
-                <div className={classes.button}>
-                  <Remove />
-                </div>
-                <TextField
-                  variant="outlined"
-                  label="Occupants"
-                  InputLabelProps={{
-                    shrink: true
-                  }}
-                  className={classes.buttonLabels}
-                />
-                <div className={classes.button}>
-                  <Add />
-                </div>
-              </div>
-              <div className={classNames(classes.RoomDiv, classes.counter)}>
-                <div className={classes.button}>
-                  <Remove />
-                </div>
-                <TextField
-                  variant="outlined"
-                  label="Rooms"
-                  InputLabelProps={{
-                    shrink: true
-                  }}
-                  className={classes.buttonLabels}
-                />
-                <div className={classes.button}>
-                  <Add />
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className={classes.rightSearchContainer}>
-            <MuiPickersUtilsProvider utils={DateFnsUtils}>
-              <DatePicker
-                className={classes.datepicker}
-                margin="normal"
-                label="Check-In"
-                // value={selectedDate}
-                // onChange={this.handleDateChange}
-                variant="outlined"
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <DateRange />
-                    </InputAdornment>
-                  )
-                }}
-              />
-              <DatePicker
-                className={classes.datepicker}
-                margin="normal"
-                label="Check-Out"
-                // value={selectedDate}
-                // onChange={this.handleDateChange}
-                variant="outlined"
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <DateRange />
-                    </InputAdornment>
-                  )
-                }}
-              />
-            </MuiPickersUtilsProvider>
-            <button> Search </button>
-          </div>
+      <SearchBar />
+      <div className={classes.sectionContainer}>
+        <div className={classes.sections}>
+          <img
+            className={classes.img}
+            src="https://images.unsplash.com/photo-1496417263034-38ec4f0b665a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80"
+            alt="main"
+          />
+          <p className={classes.paragraph}>
+            Lorem ipsum dolor sit amet, et tale consequat reprehendunt quo. Amet
+            dicunt nostrud ei duo, eu numquam referrentur qui. Liber perpetua in
+            qui, mutat brute laudem et mea. Te forensibus adolescens nec. Nam at
+            cetero epicuri, et dolores interesset est. Te vim assum aliquid
+            delicatissimi. Nibh gubergren at sit, ius utinam suavitate an, cu
+            ius illum propriae voluptua. Vix ea virtute quaeque tibique,
+            efficiantur delicatissimi mei an, ignota mentitum suavitate his eu.
+            Denique patrioque mediocritatem quo et, at vim quaeque percipit
+            forensibus. At unum summo nec, cu regione signiferumque sit, eum
+            aperiam appellantur ut.
+          </p>
         </div>
-      </Paper>
+        <div className={classes.sections}>
+          <p className={classes.paragraph}>
+            Lorem ipsum dolor sit amet, et tale consequat reprehendunt quo. Amet
+            dicunt nostrud ei duo, eu numquam referrentur qui. Liber perpetua in
+            qui, mutat brute laudem et mea. Te forensibus adolescens nec. Nam at
+            cetero epicuri, et dolores interesset est. Te vim assum aliquid
+            delicatissimi. Nibh gubergren at sit, ius utinam suavitate an, cu
+            ius illum propriae voluptua. Vix ea virtute quaeque tibique,
+            efficiantur delicatissimi mei an, ignota mentitum suavitate his eu.
+            Denique patrioque mediocritatem quo et, at vim quaeque percipit
+            forensibus. At unum summo nec, cu regione signiferumque sit, eum
+            aperiam appellantur ut.
+          </p>
+          <img
+            className={classes.img}
+            src="https://images.unsplash.com/photo-1496417263034-38ec4f0b665a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80"
+            alt="main"
+          />
+        </div>
+      </div>
     </div>
   );
 };
