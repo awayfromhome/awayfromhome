@@ -17,24 +17,26 @@ const styles = theme => ({
   searchContainer: {
     display: "flex",
     alignItems: "center",
-    width: "70vw"
+    width: "100%"
   },
   textField: {
-    width: 470,
-    marginLeft: "5vw"
+    width: "75%",
+    marginLeft: "13%"
   },
   paper: {
-    width: "70vw",
+    width: "93%",
+    marginLeft: "1%",
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
     boxShadow: "none",
     borderBottom: "5px solid #656D79",
-    paddingBottom: 20
+    paddingBottom: 20,
+    paddingTop: 20
   },
   buttonLabels: {
-    width: 100
+    width: "65%"
   },
   button: {
     height: 40,
@@ -44,18 +46,18 @@ const styles = theme => ({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    margin: 15
+    margin: "3%"
   },
   selectors: {
     display: "flex",
     alignItems: "center",
     margin: "0 auto",
     justifyContent: "center",
-    marginTop: 15,
-    marginLeft: 50
+    marginTop: "2%",
+    width: "100%"
   },
   rightSearchContainer: {
-    width: "35vw",
+    width: "60%",
     display: "flex",
     alignItems: "center",
     justifyContent: "space-evenly"
@@ -63,11 +65,15 @@ const styles = theme => ({
   counter: {
     display: "flex",
     alignItems: "center",
-    width: "12vw"
+    width: "39%"
   },
   leftSearchContainer: {
-    width: "32vw"
-  }
+    width: "60%"
+  },
+  datepicker: {
+    margin: "1%"
+  },
+  ["@media (min-width: 1203px) and (max-width: 1610px)"]: {}
 });
 
 const SearchBar = props => {
