@@ -2,12 +2,13 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 const massive = require("massive");
-const { json } = require("body-parser");
+const bodyParser = require("body-parser");
 const con = require("./controllers/controller");
 const stripe = require("stripe")("sk_test_Nv8iegkDSaolHLEsNJDRWmqf");
+const { createTransport } = require("nodemailer");
 
-app.use(json());
-app.use(require("body-parser").text());
+app.use(bodyParser.json());
+app.use(bodyParser.text());
 
 //Database connection
 massive(process.env.CONNECTION_STRING)
@@ -17,15 +18,31 @@ massive(process.env.CONNECTION_STRING)
   })
   .catch(err => console.log(err));
 
+//Before using gmail you must allow less secure apps access to the account aka don't use your primary gmail
+let transporter = createTransport({
+  service: "gmail",
+  auth: {
+    user: "stickly082@gmail.com", //gmail username
+    pass: "746655643082Leed" //gmail password
+  }
+});
+
+//POST handles stripe payment and nodemailer info to client
 app.post("/charge", async (req, res) => {
-  console.log("hit");
+  console.log(req.body);
   try {
     let { status } = await stripe.charges.create({
-      amount: 2000,
+      amount: 50000,
       currency: "usd",
-      desciption: "an example charge",
       source: req.body
     });
+    let message = {
+      from: "stickly082@gmail.com",
+      to: "csleedylan@gmail.com",
+      subject: "Test Message",
+      html: "<p>Hello there fellow human</p>"
+    };
+    transporter.sendMail(message);
     res.json({ status });
   } catch (err) {
     console.log(err);
