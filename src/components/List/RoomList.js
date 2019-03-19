@@ -51,7 +51,7 @@ const RoomList = props => {
 			})
 			.catch(err => console.log(err));
 	}, []);
-
+	
 	return (
 		<div className={classes.root}>
 			<div className={classes.searchInfo}>
