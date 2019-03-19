@@ -8,7 +8,8 @@ const styles = theme => ({
     margin: "auto",
     display: "flex",
     flexDirection: "column",
-    alignItems: "center"
+    alignItems: "center",
+    marginLeft: "7%"
   },
   imgContainer: {
     position: "absolute",
@@ -16,11 +17,11 @@ const styles = theme => ({
     background: "rgba(0,0,0,0.60)",
     top: "0vh",
     height: "60vh",
-    width: "100%"
+    width: "93%"
   },
   background: {
     height: "60vh",
-    width: "100vw"
+    width: "100%"
   },
   img: {
     height: 500,
@@ -32,13 +33,24 @@ const styles = theme => ({
   sections: {
     display: "flex",
     alignItems: "center",
-    margin: 20
+    marginLeft: "7%"
   },
   paragraph: {
     width: 500,
     margin: 25
+  },
+  ["@media (min-width: 1000px) and (max-width: 1809px)"]: {
+    background: {
+      height: "60vh"
+    },
+    imgContainer: {
+      height: "60vh"
+    }
   }
 });
+
+//1809
+// 1325
 
 const HomePage = props => {
   const { classes } = props;

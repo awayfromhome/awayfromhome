@@ -6,8 +6,8 @@ const styles = theme => ({
     position: "fixed",
     top: 0,
     left: 0,
-    height: "100vh",
-    width: "5vw",
+    height: "100%",
+    width: "7%",
     background: "#4C525A",
     zIndex: 4
   },
@@ -20,15 +20,10 @@ const styles = theme => ({
     background: theme.palette.secondary.main
   },
   navwrapper: {
-    overflowY: "hidden",
     cursor: "pointer",
-    height: "55vh"
-  },
-  lists: {
     display: "flex",
     justifyContent: "space-evenly",
-    flexDirection: "column",
-    height: "55vh"
+    flexDirection: "column"
   },
   tags: {
     borderBottom: "1px solid #96BBBB",
@@ -38,10 +33,7 @@ const styles = theme => ({
     fontSize: 13,
     color: "#fff",
     fontFamily: "Baloo",
-    height: "15vh",
-    margin: "0 auto",
-    width: "5vw",
-    lineHeight: 9.5,
+    lineHeight: 7.5,
     background: `linear-gradient(to right,
       #26292D,
       #26292D 50%,
@@ -63,12 +55,10 @@ const Nav = props => {
     <div className={classes.navContainer}>
       <div className={classes.logo}>AFM</div>
       <div className={classes.navwrapper}>
-        <nav className={classes.lists}>
-          <a className={classes.tags}>Sign In</a>
-          <a className={classes.tags}>Sign Up</a>
-          <a className={classes.tags}>Locations</a>
-          <a className={classes.tags}>Offers </a>
-        </nav>
+        <a className={classes.tags}>Sign In</a>
+        <a className={classes.tags}>Sign Up</a>
+        <a className={classes.tags}>Locations</a>
+        <a className={classes.tags}>Offers </a>
       </div>
     </div>
   );
