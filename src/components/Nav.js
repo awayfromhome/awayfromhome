@@ -8,7 +8,8 @@ const styles = theme => ({
     left: 0,
     height: "100vh",
     width: "5vw",
-    background: "#4C525A"
+    background: "#4C525A",
+    zIndex: 4
   },
   logo: {
     textAlign: "center",
@@ -42,16 +43,15 @@ const styles = theme => ({
     width: "5vw",
     lineHeight: 9.5,
     background: `linear-gradient(to right,
-      #CCFF33,
-      #CCFF33 50%,
+      #26292D,
+      #26292D 50%,
       transparent 50%,
       transparent)`,
     backgroundPosition: "100% 0",
     backgroundSize: "200% 100%",
     transition: "all .3s ease-in",
     "&:hover": {
-      color: " #006600",
-      borderBottom: "1px #006600 dotted",
+      color: " #fff",
       backgroundPosition: "0 0"
     }
   }
@@ -75,20 +75,3 @@ const Nav = props => {
 };
 
 export default withStyles(styles)(Nav);
-
-// position: "absolute"
-// "&:after": {
-//   position: "absolute",
-//   content: "''",
-//   top: 0,
-//   bottom: 0,
-//   left: 0,
-//   height: "100%",
-//   transformOrigin: "left",
-//   transition: "5s",
-//   zIndex: -1,
-//   background: "red"
-// },
-// "&:hover:after": {
-//   width: "100%"
-// }
