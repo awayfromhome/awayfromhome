@@ -56,9 +56,10 @@ app.get("/api/roomlist", con.get_room_list);
 
 //Reservation endpoints
 app.get("/api/reservation", con.get_reservation_list);
+app.post("/api/reservation", con.create_reservation);
 
 //Transaction endpoints
-app.post("./api/transaction", con.new_transaction);
+app.post("/api/transaction", con.new_transaction);
 
 //User endpoints
 
