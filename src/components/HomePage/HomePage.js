@@ -31,10 +31,12 @@ const styles = theme => ({
   },
   sections: {
     display: "flex",
-    alignItems: "center"
+    alignItems: "center",
+    margin: 20
   },
   paragraph: {
-    width: 500
+    width: 500,
+    margin: 25
   }
 });
 
