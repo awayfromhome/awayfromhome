@@ -1,11 +1,9 @@
 import React from "react";
-import CreditInfo from "./CreditInfo";
 import CheckoutInfo from "./CheckoutInfo";
 import UserInfo from "./UserInfo";
 import SearchInfo from "../Search/SearchInfo";
 import { withStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
-// import { Elements, StripeProvider } from "react-stripe-elements";
 
 const styles = theme => ({
   root: {
