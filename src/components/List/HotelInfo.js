@@ -1,6 +1,7 @@
 import React from "react";
 import Card from "./Card";
 import { withStyles } from "@material-ui/core/styles";
+import { withRouter } from "react-router-dom";
 
 const styles = theme => ({
   root: {
@@ -12,7 +13,12 @@ const styles = theme => ({
 const HotelInfo = props => {
   const { classes, info } = props;
   return (
-    <Card price="$100" img={info.url}>
+    <Card
+      price="$100"
+      img={info.url}
+      btnName="Select Hotel"
+      onClick={() => props.history.push("/room")}
+    >
       <div className={classes.root}>
         <div>
           <h1>{info.name}</h1>
@@ -31,4 +37,4 @@ const HotelInfo = props => {
   );
 };
 
-export default withStyles(styles)(HotelInfo);
+export default withRouter(withStyles(styles)(HotelInfo));

@@ -39,7 +39,9 @@ const Card = props => {
       <div className={classes.price}>
         <div>Selection</div>
         <div>{props.price}</div>
-        <button className={classes.btn}>Select Hotel</button>
+        <button className={classes.btn} onClick={() => props.onClick()}>
+          {props.btnName}
+        </button>
       </div>
     </div>
   );

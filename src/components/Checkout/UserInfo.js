@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import TextField from "@material-ui/core/TextField";
 import { withStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
@@ -27,6 +27,19 @@ const styles = theme => ({
 
 const UserInfo = props => {
   const { classes } = props;
+  const [state, setState] = useState({
+    firstName: "",
+    lastName: "",
+    number: "",
+    email: "",
+    address: "",
+    city: "",
+    postalCode: "",
+    country: ""
+  });
+  const handleChange = e => {
+    setState({ ...state, [e.target.name]: e.target.value });
+  };
   return (
     <Paper className={classes.background}>
       <div className={classes.root}>
@@ -37,15 +50,71 @@ const UserInfo = props => {
         </p>
         <p>* Indicates a required input field</p>
         <div className={classes.name}>
-          <TextField label="First Name*" margin="normal" variant="outlined" />
-          <TextField label="Last Name*" margin="normal" variant="outlined" />
+          <TextField
+            label="First Name*"
+            margin="normal"
+            variant="outlined"
+            name="firstName"
+            value={state.firstName}
+            onChange={e => handleChange(e)}
+          />
+          <TextField
+            label="Last Name*"
+            margin="normal"
+            variant="outlined"
+            name="lastName"
+            value={state.lastName}
+            onChange={e => handleChange(e)}
+          />
         </div>
-        <TextField label="Phone Number*" margin="normal" variant="outlined" />
-        <TextField label="Email Address*" margin="normal" variant="outlined" />
-        <TextField label="Address*" margin="normal" variant="outlined" />
-        <TextField label="City/Town*" margin="normal" variant="outlined" />
-        <TextField label="Postal Code*" margin="normal" variant="outlined" />
-        <TextField label="Country/Region*" margin="normal" variant="outlined" />
+        <TextField
+          label="Phone Number*"
+          margin="normal"
+          variant="outlined"
+          name="number"
+          value={state.number}
+          onChange={e => handleChange(e)}
+        />
+        <TextField
+          label="Email Address*"
+          margin="normal"
+          variant="outlined"
+          name="email"
+          value={state.email}
+          onChange={e => handleChange(e)}
+        />
+        <TextField
+          label="Address*"
+          margin="normal"
+          variant="outlined"
+          name="address"
+          value={state.address}
+          onChange={e => handleChange(e)}
+        />
+        <TextField
+          label="City/Town*"
+          margin="normal"
+          variant="outlined"
+          name="city"
+          value={state.city}
+          onChange={e => handleChange(e)}
+        />
+        <TextField
+          label="Postal Code*"
+          margin="normal"
+          variant="outlined"
+          name="postalCode"
+          value={state.postalCode}
+          onChange={e => handleChange(e)}
+        />
+        <TextField
+          label="Country/Region*"
+          margin="normal"
+          variant="outlined"
+          name="country"
+          value={state.country}
+          onChange={e => handleChange(e)}
+        />
         <StripeProvider apiKey="pk_test_g0IpuPbZCFN2PaAxLnEfDPng">
           <Elements>
             <CreditInfo />
