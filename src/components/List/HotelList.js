@@ -1,4 +1,4 @@
-import React, { useEffect, useState, Fragment } from "react";
+import React, { useEffect, useState} from "react";
 import axios from "axios";
 import SearchInfo from "../Search/SearchInfo";
 import HotelInfo from "../List/HotelInfo";
@@ -15,14 +15,13 @@ const styles = theme => ({
     marginTop: "17vh"
   },
   card: {
-    marginTop: "4vh",
+    marginTop: "2vh",
     paddingTop: "40px",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    justifyContent: "space-between",
     backgroundColor: "#f4f2ec",
-    height: "500px",
+    height: "1000px",
     width: "85%",
     borderRadius: 8
   }

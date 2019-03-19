@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import SearchInfo from '../Search/SearchInfo';
 import { withStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
 import RoomInfo from '../List/RoomInfo';
+import axios from 'axios';
 
 const styles = theme => ({
 	root: {
@@ -10,11 +14,18 @@ const styles = theme => ({
 		justifyContent: 'center',
 		alignItems: 'center'
 	},
+	rootTabs: {
+		flexGrow: 1,
+		marginTop: '10vh',
+		width: '50vw',
+		fontWeight: '700'
+	},
 	searchInfo: {
 		marginTop: '17vh'
 	},
 	card: {
-		marginTop: '15vh',
+		marginTop: '1.5vh',
+		
 		paddingTop: '40px',
 		display: 'flex',
 		flexDirection: 'column',
@@ -29,13 +40,41 @@ const styles = theme => ({
 
 const RoomList = props => {
 	const { classes } = props;
+
+	const [roomList, setRoomList] = useState([]);
+
+	useEffect(() => {
+		axios
+			.get(`/api/roomlist/${1}`)
+			.then(res => {
+				setRoomList(res.data);
+			})
+			.catch(err => console.log(err));
+	}, []);
+	
 	return (
 		<div className={classes.root}>
 			<div className={classes.searchInfo}>
 				<SearchInfo />
 			</div>
+			<div>
+				<Paper className={classes.rootTabs}>
+					<Tabs
+						//   value={value}
+						//   onChange={handleChange}
+						indicatorColor="primary"
+						textColor="primary"
+						centered
+						variant="fullWidth">
+						<Tab label="Standard" />
+						<Tab label="Deluxe" />
+					</Tabs>
+				</Paper>
+			</div>
 			<div className={classes.card}>
-				<RoomInfo />
+				{roomList.map((e, i) => {
+					return <RoomInfo key={i} info={e} />;
+				})}
 			</div>
 		</div>
 	);

@@ -9,7 +9,8 @@ const styles = theme => ({
     height: "21vh",
     overflow: "hidden",
     lineHeight: "3vh",
-    borderRadius: 8
+    borderRadius: 8,
+    marginTop: "4vh"
   },
   img: {
     width: "16vw",
