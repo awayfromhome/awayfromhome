@@ -9,7 +9,13 @@ module.exports = {
       res.status(200).json(list);
     });
   },
-  get_room_list: (req, res) => {},
+  get_room_list: (req, res) => {
+    const db = req.app.get('db')
+    const {id} = req.params
+    db.get_room_list(id).then(rooms => {
+      res.status(200).json(rooms)
+    })
+  },
   //Brute force way :) Might come back and improve with putting it all in sql :(
   //Eventually go back through and delete on a timer all the old reservations
   get_reservation_list: async (req, res) => {
