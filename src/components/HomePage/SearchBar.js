@@ -24,7 +24,6 @@ const styles = theme => ({
     marginLeft: "13%"
   },
   paper: {
-    width: "93%",
     marginLeft: "1%",
     display: "flex",
     flexDirection: "column",

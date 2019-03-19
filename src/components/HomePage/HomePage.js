@@ -9,7 +9,8 @@ const styles = theme => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    marginLeft: "7%"
+    marginLeft: "7%",
+    width: "93%"
   },
   imgContainer: {
     position: "absolute",
@@ -28,12 +29,14 @@ const styles = theme => ({
     width: 500
   },
   sectionContainer: {
-    marginTop: 30
+    marginTop: 30,
+    width: "80%",
+    margin: "auto"
   },
   sections: {
     display: "flex",
     alignItems: "center",
-    marginLeft: "7%"
+    marginLeft: "4%"
   },
   paragraph: {
     width: 500,
