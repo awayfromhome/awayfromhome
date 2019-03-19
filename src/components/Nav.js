@@ -3,52 +3,43 @@ import { withStyles } from "@material-ui/core/styles";
 
 const styles = theme => ({
   navContainer: {
-    // height: "10vh",
-    // width: "90vw",
-    // margin: "auto",
-    // background: "#96BBBB",
-    // marginBottom: 5,
-    // display: "flex",
-    // justifyContent: "space-between",
-    // borderRadius: 8,
     position: "fixed",
     top: 0,
     left: 0,
     height: "100vh",
-    width: "4vw",
-    background: theme.palette.primary.main
+    width: "5vw",
+    background: "#4C525A"
   },
   logo: {
     height: "10vh",
-    width: "3vw",
     textAlign: "center",
     background: theme.palette.accent.main,
-    padding: 9,
-    paddingTop: 50
-  },
-  logoText: {
-    textAlign: "center",
-    paddingTop: "4vh"
+    height: "15vh",
+    borderBottom: "1px solid #96BBBB",
+    paddingTop: "7.5vh",
+    color: "#fff"
   },
   lists: {
     display: "flex",
     justifyContent: "space-evenly",
     flexDirection: "column",
-    height: "50vh",
-    width: "4vw"
+    height: "50vh"
   },
   navwrapper: {
-    // overflowX: "hidden",
+    overflowX: "hidden",
     cursor: "pointer"
   },
   tags: {
     borderBottom: "1px solid #96BBBB",
     textAlign: "center",
-    // position: "relative",
+    position: "relative",
     textDecoration: "none",
     verticalAlign: "middle",
     height: "6vh",
-    textTransform: "uppercase"
+    textTransform: "uppercase",
+    fontSize: 13,
+    color: "#fff",
+    fontFamily: "Baloo"
   }
 });
 
@@ -56,9 +47,7 @@ const Nav = props => {
   const { classes } = props;
   return (
     <div className={classes.navContainer}>
-      <div className={classes.logo}>
-        <h1 className={classes.logoText}>Away From Home</h1>
-      </div>
+      <div className={classes.logo}>Away From Home</div>
       <div className={classes.navwrapper}>
         <nav className={classes.lists}>
           <a className={classes.tags}>Sign In</a>
