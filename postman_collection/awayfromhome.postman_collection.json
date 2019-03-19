@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "3eea03c0-3ca9-4fc0-bff5-d2a5e1954500",
+		"_postman_id": "fc182195-03d0-4ee9-b1c0-5ae36d7977f6",
 		"name": "awayfromhome",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -14,13 +14,24 @@
 						"id": "588d9711-5450-42d3-881e-b27dafd6ebd2",
 						"exec": [
 							"const responseJSON = pm.response.json();",
+							"const hotel = responseJSON[0];",
 							"",
 							"pm.test(\"Status code is 200\", () => {",
 							"    pm.response.to.have.status(200);",
 							"});",
 							"",
-							"pm.test(\"Data comes back in an array\", () => {",
+							"pm.test(\"Response is an array\", () => {",
 							"    pm.expect(Array.isArray(responseJSON)).to.eql(true);",
+							"});",
+							"",
+							"pm.test(\"Response has the correct data types\", () => {",
+							"    pm.expect(typeof hotel.hotel_id).to.eql(\"number\");",
+							"    pm.expect(typeof hotel.name).to.eql(\"string\");",
+							"    pm.expect(typeof hotel.address).to.eql(\"string\");",
+							"    pm.expect(typeof hotel.url).to.eql(\"string\");",
+							"    pm.expect(typeof hotel.reservation_num).to.eql(\"string\");",
+							"    pm.expect(typeof hotel.front_desk_num).to.eql(\"string\");",
+							"    pm.expect(Array.isArray(hotel.amenities)).to.eql(true);",
 							"});"
 						],
 						"type": "text/javascript"
@@ -47,6 +58,111 @@
 					]
 				},
 				"description": "GET - List of Hotels\n"
+			},
+			"response": []
+		},
+		{
+			"name": "POST - New Reservation",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "17defbd0-7844-4b28-bf7d-9f8b80916ad9",
+						"exec": [
+							"pm.test(\"Status code is 200\", () => {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"dates\": [\"2019-05-19\", \"2019-05-20\",\"2019-05-21\"],\n\t\"room_id\": 2\n}"
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/reservation",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"reservation"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET - Reservations by room_id & date",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "96e166b3-8923-4a0f-857e-b78808e7aaa1",
+						"exec": [
+							"const responseJSON = pm.response.json();",
+							"const reservation = responseJSON[0];",
+							"",
+							"pm.test(\"Status code is 200\", () => {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response is an array\", () => {",
+							"    pm.expect(Array.isArray(responseJSON)).to.eql(true);",
+							"});",
+							"",
+							"pm.test(\"Response has the correct data types\", () => {",
+							"    pm.expect(typeof reservation.room_name).to.eql(\"number\");",
+							"    pm.expect(typeof reservation.reservations).to.eql(\"number\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"room_id\": [1,2],\n\t\"start_date\": \"2019-08-05\",\n\t\"end_date\": \"2019-08-08\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/reservation",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"reservation"
+					]
+				}
 			},
 			"response": []
 		}

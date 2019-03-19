@@ -10,7 +10,7 @@ export default (
   <Switch>
     <Route path="/Checkout" component={Checkout} />
     <Route path="/RoomInfo/:id" component={Room} />
-    <Route path="/Room" component={RoomList} />
+    <Route path="/Room/:id" component={RoomList} />
     <Route path="/Hotel" component={HotelList} />
     <Route exact path="/" component={HomePage} />
   </Switch>
