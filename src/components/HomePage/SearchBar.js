@@ -1,5 +1,8 @@
 import React, { useState } from "react";
+import axios from "axios";
+import { useInput } from "../../hooks/input-hook";
 import "date-fns";
+import { addDays } from "date-fns";
 import { connect } from "react-redux";
 import TextField from "@material-ui/core/TextField";
 import { withStyles } from "@material-ui/core/styles";
@@ -118,6 +121,65 @@ const styles = theme => ({
 
 const SearchBar = props => {
   const { classes } = props;
+  const {
+    value: destination,
+    setValue: setDestination,
+    bind: bindDestination,
+    reset: resetDestination
+  } = useInput("");
+  const {
+    value: occupants,
+    setValue: setOccupants,
+    bind: bindOccupants,
+    reset: resetOccupants
+  } = useInput(0);
+  const {
+    value: rooms,
+    setValue: setRooms,
+    bind: bindRooms,
+    reset: resetRooms
+  } = useInput(0);
+  const {
+    value: checkIn,
+    set: setCheckIn,
+    bind: bindCheckIn,
+    reset: resetCheckIn
+  } = useInput(new Date());
+  const {
+    value: checkOut,
+    set: setCheckOut,
+    bind: bindCheckOut,
+    reset: resetCheckOut
+  } = useInput(addDays(new Date(), 1));
+
+  const handleSubtractOccupants = () => {
+    if (occupants <= 0) {
+      setOccupants(0);
+    } else {
+      setOccupants(+occupants - 1);
+    }
+  };
+
+  const handleSubtractRooms = () => {
+    if (rooms <= 0) {
+      setRooms(0);
+    } else {
+      setRooms(+rooms - 1);
+    }
+  };
+
+  const handleAddOccupants = () => {
+    setOccupants(+occupants + 1);
+  };
+
+  const handleAddRooms = () => {
+    setRooms(+rooms + 1);
+  };
+
+  const handleSubmit = () => {
+    axios.get("/api/hotel");
+  };
+
   return (
     <div>
       <Paper className={classes.paper}>
@@ -131,12 +193,15 @@ const SearchBar = props => {
                 shrink: true
               }}
               className={classes.textField}
-              autoFocus={true}
+              {...bindDestination}
             />
 
             <div className={classes.selectors}>
               <div className={classNames(classes.occupantDiv, classes.counter)}>
-                <div className={classes.button}>
+                <div
+                  className={classes.button}
+                  onClick={() => handleSubtractOccupants()}
+                >
                   <Remove />
                 </div>
                 <TextField
@@ -145,14 +210,20 @@ const SearchBar = props => {
                   InputLabelProps={{
                     shrink: true
                   }}
-                  className={classes.buttonLabels}
+                  {...bindOccupants}
                 />
-                <div className={classes.button}>
+                <div
+                  className={classes.button}
+                  onClick={() => handleAddOccupants()}
+                >
                   <Add />
                 </div>
               </div>
               <div className={classNames(classes.RoomDiv, classes.counter)}>
-                <div className={classes.button}>
+                <div
+                  className={classes.button}
+                  onClick={() => handleSubtractRooms()}
+                >
                   <Remove />
                 </div>
                 <TextField
@@ -161,50 +232,50 @@ const SearchBar = props => {
                   InputLabelProps={{
                     shrink: true
                   }}
-                  className={classes.buttonLabels}
+                  {...bindRooms}
                 />
-                <div className={classes.button}>
+                <div
+                  className={classes.button}
+                  onClick={() => handleAddRooms()}
+                >
                   <Add />
                 </div>
               </div>
             </div>
           </div>
           <div className={classes.rightSearchContainer}>
-            <div className={classes.calendars}>
-              <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                <DatePicker
-                  className={classes.datepicker}
-                  margin="normal"
-                  label="Check-In"
-                  // value={selectedDate}
-                  // onChange={this.handleDateChange}
-                  variant="outlined"
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <DateRange />
-                      </InputAdornment>
-                    )
-                  }}
-                />
-                <DatePicker
-                  className={classes.datepicker}
-                  margin="normal"
-                  label="Check-Out"
-                  // value={selectedDate}
-                  // onChange={this.handleDateChange}
-                  variant="outlined"
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <DateRange />
-                      </InputAdornment>
-                    )
-                  }}
-                />
-              </MuiPickersUtilsProvider>
-            </div>
-            <button className={classes.searchButton}> Search </button>
+
+            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+              <DatePicker
+                className={classes.datepicker}
+                margin="normal"
+                label="Check-In"
+                {...bindCheckIn}
+                variant="outlined"
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <DateRange />
+                    </InputAdornment>
+                  )
+                }}
+              />
+              <DatePicker
+                className={classes.datepicker}
+                margin="normal"
+                label="Check-Out"
+                {...bindCheckOut}
+                variant="outlined"
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <DateRange />
+                    </InputAdornment>
+                  )
+                }}
+              />
+            </MuiPickersUtilsProvider>
+            <button onClick={() => handleSubmit()}>Search</button>
           </div>
         </div>
       </Paper>
