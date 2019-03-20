@@ -59,7 +59,8 @@ const styles = theme => ({
     },
     entireMobileMenu: {
       height: "10vh",
-      background: theme.palette.tertiary.main
+      background: theme.palette.tertiary.main,
+      width: "100%"
     },
     hiddenMenus: {
       display: "flex",
