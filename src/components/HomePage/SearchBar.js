@@ -26,7 +26,13 @@ const styles = theme => ({
   },
   textField: {
     width: "75%",
-    marginLeft: "13%"
+    marginLeft: "13%",
+    MuiOutlinedInput: {
+      input: {
+        margin: "5%",
+        padding: 5
+      }
+    }
   },
   paper: {
     marginLeft: "1%",
@@ -43,8 +49,8 @@ const styles = theme => ({
     width: "65%"
   },
   button: {
-    height: 40,
-    width: 40,
+    height: 30,
+    width: 30,
     borderRadius: 8,
     background: theme.palette.accent.main,
     display: "flex",
@@ -62,6 +68,7 @@ const styles = theme => ({
   },
   rightSearchContainer: {
     width: "60%",
+    marginRight: "10%",
     display: "flex",
     alignItems: "center",
     justifyContent: "space-evenly"
@@ -69,16 +76,20 @@ const styles = theme => ({
   counter: {
     display: "flex",
     alignItems: "center",
-    width: "39%"
+    width: "37%",
+    margin: "1%"
   },
   leftSearchContainer: {
     width: "60%"
   },
   datepicker: {
-    margin: "1%"
+    margin: "3%"
   },
   calendars: {
     display: "flex"
+  },
+  searchButton: {
+    marginLeft: "5%"
   },
   [theme.breakpoints.down("749")]: {
     searchContainer: {
@@ -98,11 +109,9 @@ const styles = theme => ({
       margin: "1%",
       width: "100%"
     },
-    button: {
-      margin: 10
-    },
     rightSearchContainer: {
       marginTop: "5%",
+      marginRight: 0,
       width: "100%",
       flexDirection: "column"
     },
@@ -246,37 +255,44 @@ const SearchBar = props => {
             </div>
           </div>
           <div className={classes.rightSearchContainer}>
-            <MuiPickersUtilsProvider utils={DateFnsUtils}>
-              <DatePicker
-                className={classes.datepicker}
-                margin="normal"
-                label="Check-In"
-                {...bindCheckIn}
-                variant="outlined"
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <DateRange />
-                    </InputAdornment>
-                  )
-                }}
-              />
-              <DatePicker
-                className={classes.datepicker}
-                margin="normal"
-                label="Check-Out"
-                {...bindCheckOut}
-                variant="outlined"
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <DateRange />
-                    </InputAdornment>
-                  )
-                }}
-              />
-            </MuiPickersUtilsProvider>
-            <button onClick={() => handleSubmit()}>Search</button>
+            <div className={classes.calendars}>
+              <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                <DatePicker
+                  className={classes.datepicker}
+                  margin="normal"
+                  label="Check-In"
+                  {...bindCheckIn}
+                  variant="outlined"
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <DateRange />
+                      </InputAdornment>
+                    )
+                  }}
+                />
+                <DatePicker
+                  className={classes.datepicker}
+                  margin="normal"
+                  label="Check-Out"
+                  {...bindCheckOut}
+                  variant="outlined"
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <DateRange />
+                      </InputAdornment>
+                    )
+                  }}
+                />
+              </MuiPickersUtilsProvider>
+            </div>
+            <button
+              className={classes.searchButton}
+              onClick={() => handleSubmit()}
+            >
+              Search
+            </button>
           </div>
         </div>
       </Paper>
