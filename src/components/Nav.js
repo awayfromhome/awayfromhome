@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { withStyles } from "@material-ui/core/styles";
 
 const styles = theme => ({
@@ -10,6 +10,12 @@ const styles = theme => ({
     width: "7%",
     background: "#4C525A",
     zIndex: 4
+  },
+  hamburgerMenu: {
+    display: "none"
+  },
+  hiddenMenus: {
+    display: "none"
   },
   logo: {
     textAlign: "center",
@@ -46,19 +52,69 @@ const styles = theme => ({
       color: " #fff",
       backgroundPosition: "0 0"
     }
+  },
+  [theme.breakpoints.down("749")]: {
+    navContainer: {
+      display: "none"
+    },
+    entireMobileMenu: {
+      height: "10vh",
+      background: theme.palette.tertiary.main,
+      width: "100%"
+    },
+    hiddenMenus: {
+      display: "flex",
+      zIndex: 4,
+      flexDirection: "column",
+      marginTop: "3%"
+    },
+    hamburgerMenu: {
+      display: "flex",
+      zIndex: 10,
+      width: 50,
+      height: 50,
+      paddingLeft: "10%",
+      paddingTop: "4%"
+    },
+    hiddenMenutags: {
+      zIndex: 4,
+      padding: "5%",
+      paddingLeft: "10%",
+      background: "#8A95A5"
+    }
   }
 });
 
 const Nav = props => {
+  const [hiddenMenu, setHiddenMenu] = useState("true");
+  console.log(hiddenMenu);
+
   const { classes } = props;
   return (
-    <div className={classes.navContainer}>
-      <div className={classes.logo}>AFM</div>
-      <div className={classes.navwrapper}>
-        <a className={classes.tags}>Sign In</a>
-        <a className={classes.tags}>Sign Up</a>
-        <a className={classes.tags}>Locations</a>
-        <a className={classes.tags}>Offers </a>
+    <div className={classes.entireMobileMenu}>
+      <div className={classes.entireMobileMenu}>
+        <img
+          src="https://cdn4.iconfinder.com/data/icons/circles-1/32/364-01-512.png"
+          onClick={() => setHiddenMenu(!hiddenMenu)}
+          className={classes.hamburgerMenu}
+        />
+        {hiddenMenu ? null : (
+          <div className={classes.hiddenMenus}>
+            <a className={classes.hiddenMenutags}>Sign In</a>
+            <a className={classes.hiddenMenutags}>Sign Up</a>
+            <a className={classes.hiddenMenutags}>Locations</a>
+            <a className={classes.hiddenMenutags}>Offers </a>
+          </div>
+        )}
+      </div>
+      <div className={classes.navContainer}>
+        <div className={classes.logo}>AFM</div>
+        <div className={classes.navwrapper}>
+          <a className={classes.tags}>Sign In</a>
+          <a className={classes.tags}>Sign Up</a>
+          <a className={classes.tags}>Locations</a>
+          <a className={classes.tags}>Offers </a>
+        </div>
       </div>
     </div>
   );

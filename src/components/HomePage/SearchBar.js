@@ -20,14 +20,14 @@ const styles = theme => ({
   searchContainer: {
     display: "flex",
     alignItems: "center",
-    width: "100%"
+    width: "100%",
+    marginBottom: "2%"
   },
   textField: {
     width: "75%",
     marginLeft: "13%"
   },
   paper: {
-    width: "93%",
     marginLeft: "1%",
     display: "flex",
     flexDirection: "column",
@@ -56,7 +56,7 @@ const styles = theme => ({
     alignItems: "center",
     margin: "0 auto",
     justifyContent: "center",
-    marginTop: "2%",
+    marginTop: "4%",
     width: "100%"
   },
   rightSearchContainer: {
@@ -75,6 +75,46 @@ const styles = theme => ({
   },
   datepicker: {
     margin: "1%"
+  },
+  calendars: {
+    display: "flex"
+  },
+  [theme.breakpoints.down("749")]: {
+    searchContainer: {
+      flexDirection: "column"
+    },
+    textField: {
+      width: "80%",
+      marginLeft: "10%"
+    },
+    leftSearchContainer: {
+      width: "auto"
+    },
+    counter: {
+      width: "100%"
+    },
+    counter: {
+      margin: "1%",
+      width: "100%"
+    },
+    button: {
+      margin: 10
+    },
+    rightSearchContainer: {
+      marginTop: "5%",
+      width: "100%",
+      flexDirection: "column"
+    },
+    calendars: {
+      width: "90%"
+    },
+    selectors: {
+      width: "80%",
+      marginTop: "5%"
+    },
+    searchButton: {
+      marginTop: "5%"
+    }
   },
   ["@media (min-width: 1203px) and (max-width: 1610px)"]: {}
 });
@@ -204,6 +244,7 @@ const SearchBar = props => {
             </div>
           </div>
           <div className={classes.rightSearchContainer}>
+
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
               <DatePicker
                 className={classes.datepicker}
@@ -245,3 +286,5 @@ const SearchBar = props => {
 const mapStateToProps = state => state;
 
 export default connect(mapStateToProps)(withStyles(styles)(SearchBar));
+
+// added new div around calendars and a classname
