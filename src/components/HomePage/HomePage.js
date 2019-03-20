@@ -59,7 +59,8 @@ const styles = theme => ({
     },
     imgContainer: {
       width: "100%",
-      height: "40vh"
+      height: "40vh",
+      marginTop: "10vh"
     },
     sections: {
       flexDirection: "column"
@@ -77,9 +78,6 @@ const styles = theme => ({
     }
   }
 });
-
-//1809
-// 1325
 
 const HomePage = props => {
   const { classes } = props;
