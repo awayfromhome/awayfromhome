@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import SearchInfo from "../Search/SearchInfo";
 import HotelInfo from "../List/HotelInfo";
@@ -12,17 +12,17 @@ const styles = theme => ({
     alignItems: "center"
   },
   searchInfo: {
-    marginTop: "17vh"
+    marginTop: "5%"
   },
   card: {
-    marginTop: "2vh",
-    paddingTop: "40px",
+    marginTop: "1%",
+    paddingTop: "3%",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    backgroundColor: "#f4f2ec",
-    height: "1000px",
-    width: "85%",
+    backgroundColor: theme.palette.primary.second,
+    height: "100%",
+    width: "100%",
     borderRadius: 8
   }
 });
