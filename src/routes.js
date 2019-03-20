@@ -9,9 +9,9 @@ import Checkout from "./components/Checkout/Checkout";
 export default (
   <Switch>
     <Route path="/Checkout" component={Checkout} />
-    <Route path="/RoomInfo/:id" component={Room} />
-    <Route path="/Room/:id" component={RoomList} />
-    <Route path="/Hotel" component={HotelList} />
+    <Route path="/Room/:id" component={Room} />
+    <Route path="/Roomlist/:id" component={RoomList} />
+    <Route path="/Hotellist" component={HotelList} />
     <Route exact path="/" component={HomePage} />
   </Switch>
 );
