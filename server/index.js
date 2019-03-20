@@ -51,7 +51,7 @@ app.post("/charge", async (req, res) => {
 });
 
 //Hotel and room endpoints
-app.get("/api/hotel", con.get_hotel_list);
+app.post("/api/hotel", con.get_hotel_list);
 app.get("/api/roomlist/:id", con.get_room_list);
 
 //Reservation endpoints

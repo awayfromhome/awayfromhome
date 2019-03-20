@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import SearchInfo from "../Search/SearchInfo";
 import HotelInfo from "../List/HotelInfo";
+import { connect } from "react-redux";
 import { withStyles } from "@material-ui/core/styles";
 
 const styles = theme => ({
@@ -33,13 +34,8 @@ const HotelList = props => {
   const [hotelList, setHotelList] = useState([]);
 
   useEffect(() => {
-    axios
-      .get("/api/hotel")
-      .then(res => {
-        setHotelList(res.data);
-      })
-      .catch(err => console.log(err));
-  }, []);
+    setHotelList(props.hotelList);
+  }, [props.hotelList]);
 
   return (
     <div className={classes.root}>
@@ -54,4 +50,12 @@ const HotelList = props => {
     </div>
   );
 };
-export default withStyles(styles)(HotelList);
+
+const mapStateToProps = state => {
+  console.log("redux", state);
+  return {
+    hotelList: state.hotelList
+  };
+};
+
+export default connect(mapStateToProps)(withStyles(styles)(HotelList));

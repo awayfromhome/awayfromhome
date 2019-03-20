@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import axios from "axios";
 import { useInput } from "../../hooks/input-hook";
 import "date-fns";
@@ -6,7 +6,6 @@ import { addDays } from "date-fns";
 import { connect } from "react-redux";
 import TextField from "@material-ui/core/TextField";
 import { withStyles } from "@material-ui/core/styles";
-import PropTypes from "prop-types";
 import DateFnsUtils from "@date-io/date-fns";
 import { MuiPickersUtilsProvider, DatePicker } from "material-ui-pickers";
 import InputAdornment from "@material-ui/core/InputAdornment";
@@ -15,6 +14,8 @@ import Add from "@material-ui/icons/Add";
 import Remove from "@material-ui/icons/Remove";
 import Paper from "@material-ui/core/Paper";
 import classNames from "classnames";
+import { getHotelList } from "../../ducks/reducer";
+import { withRouter } from "react-router-dom";
 
 const styles = theme => ({
   searchContainer: {
@@ -135,7 +136,7 @@ const SearchBar = props => {
     setValue: setDestination,
     bind: bindDestination,
     reset: resetDestination
-  } = useInput("");
+  } = useInput("Dallas");
   const {
     value: occupants,
     setValue: setOccupants,
@@ -186,7 +187,8 @@ const SearchBar = props => {
   };
 
   const handleSubmit = () => {
-    axios.get("/api/hotel");
+    props.getHotelList({ destination, occupants, rooms, checkIn, checkOut });
+    props.history.push("/hotel");
   };
 
   return (
@@ -300,6 +302,9 @@ const SearchBar = props => {
 
 const mapStateToProps = state => state;
 
-export default connect(mapStateToProps)(withStyles(styles)(SearchBar));
-
-// added new div around calendars and a classname
+export default withRouter(
+  connect(
+    mapStateToProps,
+    { getHotelList }
+  )(withStyles(styles)(SearchBar))
+);
