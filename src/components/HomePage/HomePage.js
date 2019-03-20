@@ -25,12 +25,13 @@ const styles = theme => ({
     width: "100%"
   },
   img: {
-    height: 500,
-    width: 500
+    height: "40%",
+    width: "30%",
+    margin: "auto"
   },
   sectionContainer: {
-    marginTop: 30,
-    width: "80%",
+    marginTop: "5%",
+    width: "70%",
     margin: "auto"
   },
   sections: {
@@ -39,8 +40,8 @@ const styles = theme => ({
     marginLeft: "4%"
   },
   paragraph: {
-    width: 500,
-    margin: 25
+    width: "60%",
+    margin: "auto"
   },
   ["@media (min-width: 1000px) and (max-width: 1809px)"]: {
     background: {
@@ -48,6 +49,31 @@ const styles = theme => ({
     },
     imgContainer: {
       height: "60vh"
+    }
+  },
+  [theme.breakpoints.down("749")]: {
+    entireContainer: {
+      flexDirection: "column",
+      width: "100%",
+      marginLeft: 0
+    },
+    imgContainer: {
+      width: "100%",
+      height: "40vh"
+    },
+    sections: {
+      flexDirection: "column"
+    },
+    background: {
+      height: "40vh",
+      width: "100%"
+    },
+    img: {
+      width: "90%",
+      height: "90%"
+    },
+    paragraph: {
+      width: "90%"
     }
   }
 });

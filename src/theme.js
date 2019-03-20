@@ -6,6 +6,11 @@ const theme = createMuiTheme({
       input: {
         textAlign: "left"
       }
+    },
+    MuiOutlinedInput: {
+      input: {
+        margin: 10
+      }
     }
   },
   palette: {

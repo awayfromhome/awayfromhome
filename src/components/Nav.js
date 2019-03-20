@@ -46,6 +46,11 @@ const styles = theme => ({
       color: " #fff",
       backgroundPosition: "0 0"
     }
+  },
+  [theme.breakpoints.down("749")]: {
+    navContainer: {
+      display: "none"
+    }
   }
 });
 
