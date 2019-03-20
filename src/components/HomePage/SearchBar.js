@@ -127,7 +127,7 @@ const SearchBar = props => {
     setValue: setDestination,
     bind: bindDestination,
     reset: resetDestination
-  } = useInput("");
+  } = useInput("Dallas");
   const {
     value: occupants,
     setValue: setOccupants,

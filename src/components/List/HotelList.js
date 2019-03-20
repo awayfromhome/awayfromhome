@@ -34,9 +34,7 @@ const HotelList = props => {
   const [hotelList, setHotelList] = useState([]);
 
   useEffect(() => {
-    console.log("hit");
     setHotelList(props.hotelList);
-    console.log(hotelList);
   }, [props.hotelList]);
 
   return (

@@ -4,7 +4,7 @@ let initialState = {
   hotelList: []
 };
 
-const GET_HOTEL_LIST = "GET_HOTEL_LIST";
+export const GET_HOTEL_LIST = "GET_HOTEL_LIST";
 
 export const getHotelList = value => {
   return {
