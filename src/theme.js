@@ -28,7 +28,10 @@ const theme = createMuiTheme({
       main: "#9BA2FF"
     }
   },
-  typography: { useNextVariants: true }
+  typography: {
+    useNextVariants: true,
+    fontFamily: ["Questrial", "Mukta", "Cairo", "sans-serif"]
+  }
 });
 
 export default theme;

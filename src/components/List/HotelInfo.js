@@ -28,10 +28,10 @@ const HotelInfo = props => {
   console.log(info);
   return (
     <Card
-      price="$100"
+      price="100"
       img={info.url}
       btnName="Select Hotel"
-      onClick={() => props.history.push(`/room/${info.hotel_id}`)}
+      onClick={() => props.history.push(`/roomlist/${info.hotel_id}`)}
     >
       <div className={classes.insideInfo}>
         <div className={classes.hotelInfo}>

@@ -15,7 +15,8 @@ const styles = theme => ({
     height: 165
   },
   info: {
-    width: "55%"
+    width: "55%",
+    fontFamily: theme.typography.fontFamily[2]
   },
   price: {
     width: "23%",
@@ -31,7 +32,31 @@ const styles = theme => ({
     background: theme.palette.accent.main
   },
   rate_fromtext: {
-    textTransform: "uppercase"
+    textTransform: "uppercase",
+    fontFamily: theme.typography.fontFamily[0],
+    fontSize: 12
+  },
+  rate: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center"
+  },
+  priceDisplay: {
+    fontSize: 35,
+    paddingBottom: "20%",
+    fontWeight: 550,
+    width: "100%",
+    height: "0.8em",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  usd: {
+    fontWeight: 400,
+    fontSize: 12,
+    marginLeft: "10%",
+    height: "100%",
+    marginBottom: "auto"
   }
 });
 
@@ -46,7 +71,10 @@ const Card = props => {
         <div className={classes.insidePriceDiv}>
           <div className={classes.rate}>
             <span className={classes.rate_fromtext}>FROM</span>
-            <div>{props.price}</div>
+            <div className={classes.priceDisplay}>
+              {props.price}
+              <span className={classes.usd}>USD</span>
+            </div>
           </div>
           <div className={classes.selectBtnDiv}>
             <button
