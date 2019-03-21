@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import SearchInfo from '../Search/SearchInfo';
 import { withStyles } from '@material-ui/core/styles';
-import axios from 'axios';
+
 
 const styles = theme => ({
 	root: {
@@ -62,7 +62,8 @@ const styles = theme => ({
 });
 
 const Room = props => {
-	const { classes } = props;
+	const { classes, info } = props;
+	console.log('info for room', info);
 
 	// const [roomInfo, setRoomInfo] = useState([]);
 
@@ -102,7 +103,11 @@ const Room = props => {
 								<h1>Sup! here is some pricing stuff</h1>
 							</div>
 							<div>
-								<button>Select Rate!</button>
+								<button
+									onClick={() =>
+										props.history.push(`/checkout`)}>
+									Select rate
+								</button>
 							</div>
 						</div>
 					</div>
