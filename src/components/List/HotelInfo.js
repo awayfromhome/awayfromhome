@@ -1,9 +1,10 @@
-import React from "react";
-import Card from "./Card";
-import { withStyles } from "@material-ui/core/styles";
-import { withRouter } from "react-router-dom";
+import React from 'react';
+import Card from './Card';
+import { withStyles } from '@material-ui/core/styles';
+import { withRouter } from 'react-router-dom';
 
 const styles = theme => ({
+
   hotelInfo: {
     width: "50%",
     margin: "auto",

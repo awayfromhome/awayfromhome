@@ -1,6 +1,7 @@
 import { createMuiTheme } from "@material-ui/core/styles";
 
 const theme = createMuiTheme({
+
   overrides: {
     MuiInputBase: {
       input: {
@@ -28,10 +29,12 @@ const theme = createMuiTheme({
       main: "#9BA2FF"
     }
   },
+
   typography: {
     useNextVariants: true,
     fontFamily: ["Questrial", "Mukta", "Cairo", "sans-serif"]
   }
+
 });
 
 export default theme;

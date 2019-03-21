@@ -25,7 +25,7 @@ const styles = theme => ({
 	},
 	card: {
 		marginTop: '1.5vh',
-		
+
 		paddingTop: '40px',
 		display: 'flex',
 		flexDirection: 'column',
@@ -39,9 +39,11 @@ const styles = theme => ({
 });
 
 const RoomList = props => {
-	const { classes } = props;
-
+	const { classes, info } = props;
+	console.log('info room list', info);
 	const [roomList, setRoomList] = useState([]);
+	const [standard, setStandard] = useState(true);
+	const [deluxe, setDeluxe] = useState(false);
 
 	useEffect(() => {
 		axios
@@ -51,7 +53,17 @@ const RoomList = props => {
 			})
 			.catch(err => console.log(err));
 	}, []);
-	
+
+	const handleRoomSelect = name => {
+		if (name === 'Standard') {
+			setStandard(true);
+			setDeluxe(false);
+		} else if (name === 'Deluxe') {
+			setDeluxe(true);
+			setStandard(false);
+		}
+	};
+
 	return (
 		<div className={classes.root}>
 			<div className={classes.searchInfo}>
@@ -60,20 +72,42 @@ const RoomList = props => {
 			<div>
 				<Paper className={classes.rootTabs}>
 					<Tabs
-						//   value={value}
-						//   onChange={handleChange}
+						value={false}
 						indicatorColor="primary"
 						textColor="primary"
 						centered
 						variant="fullWidth">
-						<Tab label="Standard" />
-						<Tab label="Deluxe" />
+						<Tab
+							label="Standard"
+							onClick={() => handleRoomSelect('Standard')}
+						/>
+						<Tab
+							label="Deluxe"
+							onClick={() => handleRoomSelect('Deluxe')}
+						/>
 					</Tabs>
 				</Paper>
 			</div>
 			<div className={classes.card}>
 				{roomList.map((e, i) => {
-					return <RoomInfo key={i} info={e} />;
+					console.log('roomlist', e);
+					if (standard) {
+						if (e.name === 'Standard') {
+							return (
+								<div>
+									<RoomInfo key={i} info={e} />;
+								</div>
+							);
+						}
+					} else {
+						if (e.name === 'Deluxe') {
+							return (
+								<div>
+									<RoomInfo key={i} info={e} />;
+								</div>
+							);
+						}
+					}
 				})}
 			</div>
 		</div>
