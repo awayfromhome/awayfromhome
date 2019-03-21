@@ -6,286 +6,764 @@
 	},
 	"item": [
 		{
-			"name": "GET - Reservations by room_id & date",
-			"event": [
+			"name": "Authorization",
+			"item": [
 				{
-					"listen": "test",
-					"script": {
-						"id": "96e166b3-8923-4a0f-857e-b78808e7aaa1",
-						"exec": [
-							"const responseJSON = pm.response.json();",
-							"const reservation = responseJSON[0];",
-							"",
-							"pm.test(\"Status code is 200\", () => {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							"",
-							"pm.test(\"Response is an array\", () => {",
-							"    pm.expect(Array.isArray(responseJSON)).to.eql(true);",
-							"});",
-							"",
-							"pm.test(\"Response has the correct data types\", () => {",
-							"    pm.expect(typeof reservation.room_name).to.eql(\"number\");",
-							"    pm.expect(typeof reservation.reservations).to.eql(\"number\");",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"room_id\": [1,2],\n\t\"start_date\": \"2019-08-05\",\n\t\"end_date\": \"2019-08-08\"\n}"
-				},
-				"url": {
-					"raw": "http://localhost:4000/api/reservation",
-					"protocol": "http",
-					"host": [
-						"localhost"
+					"name": "POST - Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "69e0195c-5746-472f-9661-f51da6ee69a2",
+								"exec": [
+									"const responseJSON = pm.response.json();",
+									"",
+									"pm.test(\"Status code is 200\", () => {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response has correct typing\", () => {",
+									"    pm.expect(typeof responseJSON.users_id).to.eql(\"number\");",
+									"    pm.expect(typeof responseJSON.username).to.eql(\"string\");",
+									"    pm.expect(typeof responseJSON.hash).to.eql(\"string\");",
+									"});",
+									"",
+									"pm.test(\"Username does not exist\", () => {",
+									"    pm.response.to.have.status(401);",
+									"    pm.expect(responseJSON).to.eql(\"Username not found. Please register as a new user.\");",
+									"});",
+									"",
+									"pm.test(\"Password is incorrect\", () => {",
+									"    pm.response.to.have.status(403);",
+									"    pm.expect(responseJSON).to.eql(\"Incorrect password\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
 					],
-					"port": "4000",
-					"path": [
-						"api",
-						"reservation"
-					]
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"dylan\",\n\t\"password\": \"123456\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:4000/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"auth",
+								"login"
+							]
+						},
+						"description": "This endpoint will check to see if passed username exists and the passed password associated is correct. If so, it will log the user in. "
+					},
+					"response": []
+				},
+				{
+					"name": "POST - Register",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ba3fba2a-8abf-4164-a2d1-51629f3594c1",
+								"exec": [
+									"const responseJSON = pm.response.json();",
+									"",
+									"pm.test(\"Status code is 200\", () => {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response has correct typing\", () => {",
+									"    pm.expect(typeof responseJSON.users_id).to.eql(\"number\");",
+									"    pm.expect(typeof responseJSON.username).to.eql(\"string\");",
+									"    pm.expect(typeof responseJSON.hash).to.eql(\"string\");",
+									"});",
+									"",
+									"pm.test(\"Username already exists\", () => {",
+									"    pm.response.to.have.status(409);",
+									"    pm.expect(responseJSON).to.eql(\"There is already an account associated with this username. Please log in.\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"dylanlee08244\",\n\t\"password\": \"123456\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:4000/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"auth",
+								"register"
+							]
+						},
+						"description": "This endppint will check if the passed username already exists. If it does not it will register a new user in the database and log the user in. "
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "POST - Get all Hotels",
-			"event": [
+			"name": "Hotel",
+			"item": [
 				{
-					"listen": "test",
-					"script": {
-						"id": "588d9711-5450-42d3-881e-b27dafd6ebd2",
-						"exec": [
-							"const responseJSON = pm.response.json();",
-							"const hotel = responseJSON[0];",
-							"",
-							"pm.test(\"Status code is 200\", () => {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							"",
-							"pm.test(\"Response is an array\", () => {",
-							"    pm.expect(Array.isArray(responseJSON)).to.eql(true);",
-							"});",
-							"",
-							"pm.test(\"Response has the correct data types\", () => {",
-							"    pm.expect(typeof hotel.hotel_id).to.eql(\"number\");",
-							"    pm.expect(typeof hotel.name).to.eql(\"string\");",
-							"    pm.expect(typeof hotel.address).to.eql(\"string\");",
-							"    pm.expect(typeof hotel.url).to.eql(\"string\");",
-							"    pm.expect(typeof hotel.reservation_num).to.eql(\"string\");",
-							"    pm.expect(typeof hotel.front_desk_num).to.eql(\"string\");",
-							"    pm.expect(Array.isArray(hotel.amenities)).to.eql(true);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "http://localhost:4000/api/hotel",
-					"protocol": "http",
-					"host": [
-						"localhost"
+					"name": "POST - Get all Hotels",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "588d9711-5450-42d3-881e-b27dafd6ebd2",
+								"exec": [
+									"const responseJSON = pm.response.json();",
+									"const hotel = responseJSON[0];",
+									"",
+									"pm.test(\"Status code is 200\", () => {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response is an array\", () => {",
+									"    pm.expect(Array.isArray(responseJSON)).to.eql(true);",
+									"});",
+									"",
+									"pm.test(\"Response has the correct data types\", () => {",
+									"    pm.expect(typeof hotel.hotel_id).to.eql(\"number\");",
+									"    pm.expect(typeof hotel.name).to.eql(\"string\");",
+									"    pm.expect(typeof hotel.address).to.eql(\"string\");",
+									"    pm.expect(typeof hotel.url).to.eql(\"string\");",
+									"    pm.expect(typeof hotel.reservation_num).to.eql(\"string\");",
+									"    pm.expect(typeof hotel.front_desk_num).to.eql(\"string\");",
+									"    pm.expect(Array.isArray(hotel.amenities)).to.eql(true);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
 					],
-					"port": "4000",
-					"path": [
-						"api",
-						"hotel"
-					]
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/hotel",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"hotel"
+							]
+						},
+						"description": "This endpoint will get the full list of hotels based upon query parameters of \"location, # of occupants, # of rooms, date of reservation\". \n"
+					},
+					"response": []
 				},
-				"description": "GET - List of Hotels\n"
-			},
-			"response": []
+				{
+					"name": "POST - Create Hotel",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "06ba83da-e3d9-470c-96e8-4bbc195977cf",
+								"exec": [
+									"const reponseJSON = pm.response.json();",
+									"",
+									"pm.test(\"Status code is 200\", () => {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/hotel",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"hotel"
+							]
+						},
+						"description": "This endpoint will create a new hotel in the database based upon the inputted information. "
+					},
+					"response": []
+				},
+				{
+					"name": "PUT - Update Hotel",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "19250396-0933-40c6-83ea-60777ffc876a",
+								"exec": [
+									"const responseJSON = pm.response.json();",
+									"",
+									"pm.test(\"Status code is 200\", () => {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/hotel",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"hotel"
+							]
+						},
+						"description": "This endpoint will locate an existing hotel in the database by hotel_id and will update it with any passed in information. "
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE - Delete Hotel",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d11dc6ea-b03d-4fc3-b8b2-1406834eb031",
+								"exec": [
+									"const responseJSON = pm.response.json();",
+									"",
+									"pm.test(\"Status code is 200\", () => {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/hotel",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"hotel"
+							]
+						},
+						"description": "This endpoint will find a hotel in the database using hotel_id and delete from the database. "
+					},
+					"response": []
+				}
+			]
 		},
 		{
-			"name": "POST - New Reservation",
-			"event": [
+			"name": "Room",
+			"item": [
 				{
-					"listen": "test",
-					"script": {
-						"id": "17defbd0-7844-4b28-bf7d-9f8b80916ad9",
-						"exec": [
-							"pm.test(\"Status code is 200\", () => {",
-							"    pm.response.to.have.status(200);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"dates\": [\"2019-05-19\", \"2019-05-20\",\"2019-05-21\"],\n\t\"room_id\": 2\n}"
-				},
-				"url": {
-					"raw": "http://localhost:4000/api/reservation",
-					"protocol": "http",
-					"host": [
-						"localhost"
+					"name": "GET - Rooms",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "324d48cb-1dba-4001-b0fd-9bb301fbf7a1",
+								"exec": [
+									"const responseJSON = pm.response.json();",
+									"",
+									"pm.test(\"Status code is 200\", () => {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
 					],
-					"port": "4000",
-					"path": [
-						"api",
-						"reservation"
-					]
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/room",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"room"
+							]
+						},
+						"description": "This endpoint will get the list of rooms based upon the passed in hotel_id. "
+					},
+					"response": []
+				},
+				{
+					"name": "POST - Create Room ",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "bb1860ba-52d1-4337-aa5a-67b7fb6373a5",
+								"exec": [
+									"const responseJSON = pm.response.json();",
+									"",
+									"pm.test(\"Status code is 200\", () => {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/room",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"room"
+							]
+						},
+						"description": "This endpoint will create a new room in the database based upon the information passed in and it will linked to a hotel_id."
+					},
+					"response": []
+				},
+				{
+					"name": "PUT - Update Room",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a2d1d2bf-8f16-4baa-ab31-a2a190be2633",
+								"exec": [
+									"const responseJSON = pm.response.json();",
+									"",
+									"pm.test(\"Status code is 200\", () => {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/room",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"room"
+							]
+						},
+						"description": "This endpoint will update a room in the database, found by the inputted room_id."
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE - Delete room",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "50115b4e-daa0-4ce8-91eb-0236fd7a4972",
+								"exec": [
+									"const responseJSON = pm.response.json();",
+									"",
+									"pm.test(\"Status code is 200\", () => {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/room",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"room"
+							]
+						},
+						"description": "This endpoint will delete a room in the database based upon room_id. "
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "POST - Login",
-			"event": [
+			"name": "Reservation",
+			"item": [
 				{
-					"listen": "test",
-					"script": {
-						"id": "69e0195c-5746-472f-9661-f51da6ee69a2",
-						"exec": [
-							"const responseJSON = pm.response.json();",
-							"",
-							"pm.test(\"Status code is 200\", () => {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							"",
-							"pm.test(\"Response has correct typing\", () => {",
-							"    pm.expect(typeof responseJSON.users_id).to.eql(\"number\");",
-							"    pm.expect(typeof responseJSON.username).to.eql(\"string\");",
-							"    pm.expect(typeof responseJSON.hash).to.eql(\"string\");",
-							"});",
-							"",
-							"pm.test(\"Username does not exist\", () => {",
-							"    pm.response.to.have.status(401);",
-							"    pm.expect(responseJSON).to.eql(\"Username not found. Please register as a new user.\");",
-							"});",
-							"",
-							"pm.test(\"Password is incorrect\", () => {",
-							"    pm.response.to.have.status(403);",
-							"    pm.expect(responseJSON).to.eql(\"Incorrect password\");",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"username\": \"dylan\",\n\t\"password\": \"123456\"\n}"
-				},
-				"url": {
-					"raw": "http://localhost:4000/auth/login",
-					"protocol": "http",
-					"host": [
-						"localhost"
+					"name": "GET - Reservations by room_id & date",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "96e166b3-8923-4a0f-857e-b78808e7aaa1",
+								"exec": [
+									"const responseJSON = pm.response.json();",
+									"const reservation = responseJSON[0];",
+									"",
+									"pm.test(\"Status code is 200\", () => {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response is an array\", () => {",
+									"    pm.expect(Array.isArray(responseJSON)).to.eql(true);",
+									"});",
+									"",
+									"pm.test(\"Response has the correct data types\", () => {",
+									"    pm.expect(typeof reservation.room_name).to.eql(\"number\");",
+									"    pm.expect(typeof reservation.reservations).to.eql(\"number\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
 					],
-					"port": "4000",
-					"path": [
-						"auth",
-						"login"
-					]
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"room_id\": [1,2],\n\t\"start_date\": \"2019-08-05\",\n\t\"end_date\": \"2019-08-08\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/reservation",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"reservation"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST - New Reservation",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "17defbd0-7844-4b28-bf7d-9f8b80916ad9",
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"dates\": [\"2019-05-19\", \"2019-05-20\",\"2019-05-21\"],\n\t\"room_id\": 2\n}"
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/reservation",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"reservation"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT - Update Reservation",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1345647f-f0a7-4658-b03c-da49543bdd56",
+								"exec": [
+									"const responseJSON = pm.response.json();",
+									"",
+									"pm.test(\"Status code is 200\", () => {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/reservation",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"reservation"
+							]
+						},
+						"description": "This endpoint will update a reservation by reservation_id."
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE - Delete Reservation",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d0e2c29e-e7f3-4bda-b7df-2610cd930bf1",
+								"exec": [
+									"const responseJSON = pm.response.json();",
+									"",
+									"pm.test(\"Status code is 200\", () => {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/reservation",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"reservation"
+							]
+						},
+						"description": "This endpoint will delete a reservation. "
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "POST - Register",
-			"event": [
+			"name": "Misc",
+			"item": [
 				{
-					"listen": "test",
-					"script": {
-						"id": "ba3fba2a-8abf-4164-a2d1-51629f3594c1",
-						"exec": [
-							"const responseJSON = pm.response.json();",
-							"",
-							"pm.test(\"Status code is 200\", () => {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							"",
-							"pm.test(\"Response has correct typing\", () => {",
-							"    pm.expect(typeof responseJSON.users_id).to.eql(\"number\");",
-							"    pm.expect(typeof responseJSON.username).to.eql(\"string\");",
-							"    pm.expect(typeof responseJSON.hash).to.eql(\"string\");",
-							"});",
-							"",
-							"pm.test(\"Username already exists\", () => {",
-							"    pm.response.to.have.status(409);",
-							"    pm.expect(responseJSON).to.eql(\"There is already an account associated with this username. Please log in.\");",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"username\": \"dylanlee08244\",\n\t\"password\": \"123456\"\n}"
-				},
-				"url": {
-					"raw": "http://localhost:4000/auth/register",
-					"protocol": "http",
-					"host": [
-						"localhost"
+					"name": "POST - Create Charge",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "41aaf8ae-ccb9-4596-8378-2416773d1525",
+								"exec": [
+									"const responseJSON = pm.response.json();",
+									"",
+									"pm.test(\"Status code is 200\", () => {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
 					],
-					"port": "4000",
-					"path": [
-						"auth",
-						"register"
-					]
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/charge",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"charge"
+							]
+						},
+						"description": "This endpoint is used to hit the stripe API and create a new charge as well as to send an email to the user to let them know about the inccured charge. "
+					},
+					"response": []
+				},
+				{
+					"name": "POST - Create Transaction",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4437bda5-b2fb-4c8d-bf89-8a4f7623860e",
+								"exec": [
+									"const responseJSON = pm.response.json();",
+									"",
+									"pm.test(\"Status code is 200\", () => {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/transaction",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"transaction"
+							]
+						},
+						"description": "This endpoint will create a record of a created reservation that will be stored for a period of 30 days for user information and in the case that a refund is required. "
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		}
 	]
 }
