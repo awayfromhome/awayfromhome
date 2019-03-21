@@ -188,7 +188,7 @@ const SearchBar = props => {
 
   const handleSubmit = () => {
     props.getHotelList({ destination, occupants, rooms, checkIn, checkOut });
-    props.history.push("/hotel");
+    props.history.push("/Hotellist");
   };
 
   return (
