@@ -41,7 +41,8 @@ const styles = theme => ({
   },
   amenitiesList: {
     width: "50%",
-    margin: "auto"
+    margin: "auto",
+    height: "100%"
   },
   eachAmenities: {
     listStyleType: "square"
@@ -58,7 +59,8 @@ const styles = theme => ({
     amenities: {
       paddingRight: 0,
       height: "100%",
-      width: "100%"
+      width: "100%",
+      fontSize: 12
     }
   }
 });
