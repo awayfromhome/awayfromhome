@@ -1,9 +1,16 @@
+DROP TABLE users; 
 DROP TABLE reservation;
 DROP TABLE room_type;
 DROP TABLE hotel; 
 DROP TABLE transactions;
 
 SET timezone = 'America/Chicago';
+
+CREATE TABLE users (
+  users_id SERIAL PRIMARY KEY,
+  username VARCHAR(64),
+  hash VARCHAR(75)
+);
 
 CREATE TABLE hotel (
 	hotel_id SERIAL PRIMARY KEY,
@@ -50,7 +57,6 @@ VALUES (5, 'Standard', 1),
     (5, 'Deluxe', 3),
     (5, 'Deluxe', 4);
 
-SET timezone = 'America/Chicago';
 INSERT INTO reservation (date, room_id)
 VALUES('2019-08-04', 1),
     ('2019-08-05', 1),
