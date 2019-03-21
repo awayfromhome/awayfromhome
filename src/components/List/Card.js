@@ -18,13 +18,20 @@ const styles = theme => ({
     width: "55%"
   },
   price: {
-    width: "30%"
-  },
-  btn: {
-    background: theme.palette.accent.main
+    width: "23%",
+    margin: "auto"
   },
   insidePriceDiv: {
-    margin: "auto"
+    height: "100%",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center"
+  },
+  selectBtn: {
+    background: theme.palette.accent.main
+  },
+  rate_fromtext: {
+    textTransform: "uppercase"
   }
 });
 
@@ -37,11 +44,18 @@ const Card = props => {
       <div className={classes.info}>{props.children}</div>
       <div className={classes.price}>
         <div className={classes.insidePriceDiv}>
-          <div>Selection</div>
-          <div>{props.price}</div>
-          <button className={classes.btn} onClick={() => props.onClick()}>
-            {props.btnName}
-          </button>
+          <div className={classes.rate}>
+            <span className={classes.rate_fromtext}>FROM</span>
+            <div>{props.price}</div>
+          </div>
+          <div className={classes.selectBtnDiv}>
+            <button
+              className={classes.selectBtn}
+              onClick={() => props.onClick()}
+            >
+              {props.btnName}
+            </button>
+          </div>
         </div>
       </div>
     </div>
