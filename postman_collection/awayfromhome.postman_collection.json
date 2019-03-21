@@ -6,7 +6,67 @@
 	},
 	"item": [
 		{
-			"name": "GET - All Hotels",
+			"name": "GET - Reservations by room_id & date",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "96e166b3-8923-4a0f-857e-b78808e7aaa1",
+						"exec": [
+							"const responseJSON = pm.response.json();",
+							"const reservation = responseJSON[0];",
+							"",
+							"pm.test(\"Status code is 200\", () => {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response is an array\", () => {",
+							"    pm.expect(Array.isArray(responseJSON)).to.eql(true);",
+							"});",
+							"",
+							"pm.test(\"Response has the correct data types\", () => {",
+							"    pm.expect(typeof reservation.room_name).to.eql(\"number\");",
+							"    pm.expect(typeof reservation.reservations).to.eql(\"number\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"room_id\": [1,2],\n\t\"start_date\": \"2019-08-05\",\n\t\"end_date\": \"2019-08-08\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/reservation",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"reservation"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST - Get all Hotels",
 			"event": [
 				{
 					"listen": "test",
@@ -39,7 +99,7 @@
 				}
 			],
 			"request": {
-				"method": "GET",
+				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
@@ -107,38 +167,41 @@
 			"response": []
 		},
 		{
-			"name": "GET - Reservations by room_id & date",
+			"name": "POST - Login",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "96e166b3-8923-4a0f-857e-b78808e7aaa1",
+						"id": "69e0195c-5746-472f-9661-f51da6ee69a2",
 						"exec": [
 							"const responseJSON = pm.response.json();",
-							"const reservation = responseJSON[0];",
 							"",
 							"pm.test(\"Status code is 200\", () => {",
 							"    pm.response.to.have.status(200);",
 							"});",
 							"",
-							"pm.test(\"Response is an array\", () => {",
-							"    pm.expect(Array.isArray(responseJSON)).to.eql(true);",
+							"pm.test(\"Response has correct typing\", () => {",
+							"    pm.expect(typeof responseJSON.users_id).to.eql(\"number\");",
+							"    pm.expect(typeof responseJSON.username).to.eql(\"string\");",
+							"    pm.expect(typeof responseJSON.hash).to.eql(\"string\");",
 							"});",
 							"",
-							"pm.test(\"Response has the correct data types\", () => {",
-							"    pm.expect(typeof reservation.room_name).to.eql(\"number\");",
-							"    pm.expect(typeof reservation.reservations).to.eql(\"number\");",
+							"pm.test(\"Username does not exist\", () => {",
+							"    pm.response.to.have.status(401);",
+							"    pm.expect(responseJSON).to.eql(\"Username not found. Please register as a new user.\");",
+							"});",
+							"",
+							"pm.test(\"Password is incorrect\", () => {",
+							"    pm.response.to.have.status(403);",
+							"    pm.expect(responseJSON).to.eql(\"Incorrect password\");",
 							"});"
 						],
 						"type": "text/javascript"
 					}
 				}
 			],
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
 			"request": {
-				"method": "GET",
+				"method": "POST",
 				"header": [
 					{
 						"key": "Content-Type",
@@ -149,18 +212,76 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"room_id\": [1,2],\n\t\"start_date\": \"2019-08-05\",\n\t\"end_date\": \"2019-08-08\"\n}"
+					"raw": "{\n\t\"username\": \"dylan\",\n\t\"password\": \"123456\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:4000/api/reservation",
+					"raw": "http://localhost:4000/auth/login",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "4000",
 					"path": [
-						"api",
-						"reservation"
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST - Register",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ba3fba2a-8abf-4164-a2d1-51629f3594c1",
+						"exec": [
+							"const responseJSON = pm.response.json();",
+							"",
+							"pm.test(\"Status code is 200\", () => {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response has correct typing\", () => {",
+							"    pm.expect(typeof responseJSON.users_id).to.eql(\"number\");",
+							"    pm.expect(typeof responseJSON.username).to.eql(\"string\");",
+							"    pm.expect(typeof responseJSON.hash).to.eql(\"string\");",
+							"});",
+							"",
+							"pm.test(\"Username already exists\", () => {",
+							"    pm.response.to.have.status(409);",
+							"    pm.expect(responseJSON).to.eql(\"There is already an account associated with this username. Please log in.\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\": \"dylanlee08244\",\n\t\"password\": \"123456\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:4000/auth/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"auth",
+						"register"
 					]
 				}
 			},
