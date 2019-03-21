@@ -13,7 +13,6 @@ const styles = theme => ({
     marginTop: "4vh"
   },
   img: {
-    height: "25vh",
     width: "25%"
   },
   info: {
@@ -36,7 +35,9 @@ const styles = theme => ({
     alignItems: "center"
   },
   selectBtn: {
-    background: theme.palette.accent.main
+    background: theme.palette.accent.main,
+    fontFamily: theme.typography.fontFamily[1],
+    textTransform: "uppercase"
   },
   rate_fromtext: {
     textTransform: "uppercase",
@@ -51,19 +52,33 @@ const styles = theme => ({
   priceDisplay: {
     fontSize: 35,
     paddingBottom: "20%",
-    fontWeight: 550,
+    fontWeight: 700,
     width: "100%",
     height: "0.8em",
     display: "flex",
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    fontFamily: theme.typography.fontFamily[1]
   },
   usd: {
+    fontFamily: theme.typography.fontFamily[0],
     fontWeight: 400,
     fontSize: 12,
     marginLeft: "10%",
     height: "100%",
     marginBottom: "auto"
+  },
+  ["@media (min-width: 750px) and (max-width: 1200px)"]: {
+    root: {
+      width: "80%",
+      height: "17vh"
+    },
+    img: {
+      width: "35%"
+    },
+    info: {
+      width: "65%"
+    }
   }
 });
 
@@ -72,7 +87,6 @@ const Card = props => {
   return (
     <div className={classes.root}>
       <img src={props.img} alt="hotel" className={classes.img} />
-
       <div className={classes.info}>{props.children}</div>
       <div className={classes.price}>
         <div className={classes.insidePriceDiv}>

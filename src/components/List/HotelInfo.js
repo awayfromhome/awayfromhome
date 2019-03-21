@@ -5,9 +5,10 @@ import { withRouter } from "react-router-dom";
 
 const styles = theme => ({
   hotelInfo: {
-    width: "80%",
+    width: "50%",
     margin: "auto",
-    paddingLeft: "5%"
+    paddingLeft: "5%",
+    height: "100%"
   },
   hotelname: {
     marginBottom: "auto",
@@ -19,15 +20,13 @@ const styles = theme => ({
   hotelavatar: {
     borderRadius: "50%",
     border: "1px solid black",
-    width: 50,
-    height: 50
+    width: 30,
+    height: 30
   },
   amenities: {
     paddingRight: "1%",
-    width: "40%",
+    width: "70%",
     margin: "auto",
-    paddingRight: "5%",
-    listStyleType: "square",
     textAlign: "left"
   },
   bodytext: {
@@ -37,7 +36,30 @@ const styles = theme => ({
   infoname: {
     paddingLeft: "2%",
     width: "80%",
-    fontSize: 30
+    fontSize: 30,
+    fontFamily: theme.typography.fontFamily[1]
+  },
+  amenitiesList: {
+    width: "50%",
+    margin: "auto"
+  },
+  eachAmenities: {
+    listStyleType: "square"
+  },
+  ["@media (min-width: 750px) and (max-width: 1200px)"]: {
+    hotelInfo: {
+      width: "50%",
+      paddingLeft: 0,
+      marginLeft: "5%"
+    },
+    amenitiesList: {
+      width: "30%"
+    },
+    amenities: {
+      paddingRight: 0,
+      height: "100%",
+      width: "100%"
+    }
   }
 });
 
@@ -57,16 +79,26 @@ const HotelInfo = props => {
       </div>
       <div className={classes.bodytext}>
         <div className={classes.hotelInfo}>
-          <h4>{info.address}</h4>
-          <h4>Reservations: {info.reservation_num}</h4>
-          <h4>Front Desk: {info.front_desk_num}</h4>
-          <h4>Distance</h4>
+          <h4 className={classes.eachAmenities}>{info.address}</h4>
+          <h4 className={classes.eachAmenities}>
+            Reservations: {info.reservation_num}
+          </h4>
+          <h4 className={classes.eachAmenities}>
+            Front Desk: {info.front_desk_num}
+          </h4>
+          <h4 className={classes.eachAmenities}>Distance</h4>
         </div>
-        <ul className={classes.amenities}>
-          {info.amenities.map((e, i) => {
-            return <li key={i}>{e}</li>;
-          })}
-        </ul>
+        <div className={classes.amenitiesList}>
+          <ul className={classes.amenities}>
+            {info.amenities.map((e, i) => {
+              return (
+                <li className={classes.eachAmenities} key={i}>
+                  {e}
+                </li>
+              );
+            })}
+          </ul>
+        </div>
       </div>
     </Card>
   );
