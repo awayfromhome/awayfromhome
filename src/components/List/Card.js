@@ -5,6 +5,7 @@ const styles = theme => ({
   root: {
     display: "flex",
     width: "65%",
+    height: "25vh",
     backgroundColor: "#fff",
     overflow: "hidden",
     lineHeight: "3vh",
@@ -12,11 +13,17 @@ const styles = theme => ({
     marginTop: "4vh"
   },
   img: {
-    height: 165
+    height: "25vh",
+    width: "25%"
   },
   info: {
     width: "55%",
-    fontFamily: theme.typography.fontFamily[2]
+    fontFamily: theme.typography.fontFamily[2],
+    display: "flex",
+    justifyContent: "space-between",
+    flexDirection: "column",
+    height: "100%",
+    borderRight: "1px solid black"
   },
   price: {
     width: "23%",
