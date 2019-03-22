@@ -84,11 +84,14 @@ const styles = theme => ({
     root: {
       width: '100%',
       flexDirection: 'column',
-      height: '50vh'
+      height: '65vh'
     },
     img: {
       width: 'auto',
       height: '30vh'
+    },
+    info: {
+      width: '100%'
     }
   }
 });
