@@ -18,281 +18,303 @@ import { getHotelList } from '../../ducks/async';
 import { withRouter } from 'react-router-dom';
 
 const styles = theme => ({
-
   searchContainer: {
-    display: "flex",
-    alignItems: "center",
-    width: "100%",
-    marginBottom: "2%"
+    display: 'flex',
+    alignItems: 'center',
+    width: '100%',
+    marginBottom: '2%'
   },
   textField: {
-    width: "100%",
+    width: '100%',
     MuiOutlinedInput: {
       input: {
-        margin: "5%",
+        margin: '5%',
         padding: 5
       }
     }
   },
   paper: {
-    marginLeft: "1%",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
-    boxShadow: "none",
-    borderBottom: "5px solid #656D79",
+    marginLeft: '1%',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    boxShadow: 'none',
+    borderBottom: '5px solid #656D79',
     paddingBottom: 20,
     paddingTop: 20
   },
   selectors: {
-    display: "flex",
-    alignItems: "center",
-    margin: "0 auto",
-    justifyContent: "center",
-    marginTop: "4%",
-    width: "100%"
+    display: 'flex',
+    alignItems: 'center',
+    margin: '0 auto',
+    justifyContent: 'center',
+    marginTop: '4%',
+    width: '100%'
   },
   rightSearchContainer: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "space-evenly"
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'space-evenly'
   },
   leftSearchContainer: {
-    width: "60%"
+    width: '60%'
   },
   datepicker: {
-    margin: "3%"
+    margin: '3%'
   },
   calendars: {
-    display: "flex",
-    marginLeft: "2%"
+    display: 'flex',
+    marginLeft: '2%'
   },
   outerButtonDiv: {
-    width: "50%",
-    textAlign: "center"
+    width: '50%',
+    textAlign: 'center'
   },
   outercounter: {
-    borderRadius: "25px 25px 25px 25px",
-    border: "1px solid black",
-    width: "80%",
+    borderRadius: '25px 25px 25px 25px',
+    border: '1px solid black',
+    width: '80%',
     height: 50,
-    background: "#4C525A",
-    display: "flex",
-    alignItems: "center",
-    margin: "auto"
+    background: '#4C525A',
+    display: 'flex',
+    alignItems: 'center',
+    margin: 'auto'
   },
   innercounter: {
-    borderRadius: "50%",
-    border: "1px solid black",
+    borderRadius: '50%',
+    border: '1px solid black',
     width: 50,
     height: 50,
-    margin: "auto",
-    background: "#fff",
-    textAlign: "center",
+    margin: 'auto',
+    background: '#fff',
+    textAlign: 'center',
     fontSize: 30
   },
   button: {
-    margin: "auto",
-    color: "#fff",
-    padding: "6%"
+    margin: 'auto',
+    color: '#fff',
+    padding: '6%'
   },
   searchButton: {
-    margin: "3%",
-    marginTop: "10%"
+    margin: '3%',
+    marginTop: '10%'
   },
   count: {
-    marginTop: "25%",
+    marginTop: '25%',
     fontSize: 21
   },
-  [theme.breakpoints.down("749")]: {
+  [theme.breakpoints.down('749')]: {
     searchContainer: {
-      flexDirection: "column"
+      flexDirection: 'column'
     },
     textField: {
-      width: "80%",
-      marginLeft: "10%"
+      width: '80%',
+      marginLeft: '10%'
     },
     leftSearchContainer: {
-      width: "100%"
+      width: '100%'
     },
     rightSearchContainer: {
-      marginTop: "5%",
+      marginTop: '5%',
       marginRight: 0,
-      width: "100%",
-      flexDirection: "column"
+      width: '100%',
+      flexDirection: 'column'
     },
     calendars: {
-      width: "90%"
+      width: '90%'
     },
     button: {
-      margin: "auto"
+      margin: 'auto'
     }
   },
-  ["@media (min-width: 750px) and (max-width: 1200px)"]: {
+  ['@media (min-width: 750px) and (max-width: 1200px)']: {
     searchContainer: {
-      width: "90%"
+      width: '90%'
     },
     outercounter: {
-      width: "auto"
+      width: 'auto'
     },
     outerButtonDiv: {
-      marginRight: "3%"
+      marginRight: '3%'
     },
     count: {
-      marginTop: "30%"
+      marginTop: '30%'
     }
   }
-
 });
 
 const SearchBar = props => {
-   const { classes } = props;
-   const { value: destination, setValue: setDestination, bind: bindDestination, reset: resetDestination } = useInput('Dallas');
-   const { value: occupants, setValue: setOccupants, bind: bindOccupants, reset: resetOccupants } = useInput(0);
-   const { value: rooms, setValue: setRooms, bind: bindRooms, reset: resetRooms } = useInput(0);
-   const { value: checkIn, set: setCheckIn, bind: bindCheckIn, reset: resetCheckIn } = useInput(new Date());
-   const { value: checkOut, set: setCheckOut, bind: bindCheckOut, reset: resetCheckOut } = useInput(addDays(new Date(), 1));
+  const { classes } = props;
+  const {
+    value: destination,
+    setValue: setDestination,
+    bind: bindDestination,
+    reset: resetDestination
+  } = useInput('Dallas');
+  const {
+    value: occupants,
+    setValue: setOccupants,
+    bind: bindOccupants,
+    reset: resetOccupants
+  } = useInput(0);
+  const {
+    value: rooms,
+    setValue: setRooms,
+    bind: bindRooms,
+    reset: resetRooms
+  } = useInput(0);
+  const {
+    value: checkIn,
+    set: setCheckIn,
+    bind: bindCheckIn,
+    reset: resetCheckIn
+  } = useInput(new Date());
+  const {
+    value: checkOut,
+    set: setCheckOut,
+    bind: bindCheckOut,
+    reset: resetCheckOut
+  } = useInput(addDays(new Date(), 1));
 
-   const handleSubtractOccupants = () => {
-      if (occupants <= 0) {
-         setOccupants(0);
-      } else {
-         setOccupants(+occupants - 1);
-      }
-   };
+  const handleSubtractOccupants = () => {
+    if (occupants <= 0) {
+      setOccupants(0);
+    } else {
+      setOccupants(+occupants - 1);
+    }
+  };
 
-   const handleSubtractRooms = () => {
-      if (rooms <= 0) {
-         setRooms(0);
-      } else {
-         setRooms(+rooms - 1);
-      }
-   };
+  const handleSubtractRooms = () => {
+    if (rooms <= 0) {
+      setRooms(0);
+    } else {
+      setRooms(+rooms - 1);
+    }
+  };
 
-   const handleAddOccupants = () => {
-      setOccupants(+occupants + 1);
-   };
+  const handleAddOccupants = () => {
+    setOccupants(+occupants + 1);
+  };
 
-   const handleAddRooms = () => {
-      setRooms(+rooms + 1);
-   };
+  const handleAddRooms = () => {
+    setRooms(+rooms + 1);
+  };
 
-   const handleSubmit = () => {
-      props.getHotelList({ destination, occupants, rooms, checkIn, checkOut });
-      props.history.push('/Hotellist');
-   };
+  const handleSubmit = () => {
+    props.getHotelList({ destination, occupants, rooms, checkIn, checkOut });
+    props.history.push('/Hotellist');
+  };
 
-   return (
-      <div>
-         <Paper className={classes.paper}>
-            <div className={classes.searchContainer}>
-               <div className={classes.leftSearchContainer}>
-                  <TextField
-                     label="Destination"
-                     margin="normal"
-                     variant="outlined"
-                     InputLabelProps={{
-                        shrink: true
-                     }}
-                     className={classes.textField}
-                     {...bindDestination}
-                  />
+  return (
+    <Paper className={classes.paper}>
+      <div className={classes.searchContainer}>
+        <div className={classes.leftSearchContainer}>
+          <TextField
+            label='Destination'
+            margin='normal'
+            variant='outlined'
+            InputLabelProps={{
+              shrink: true
+            }}
+            className={classes.textField}
+            {...bindDestination}
+          />
 
-
-            <div className={classes.selectors}>
-              <div className={classes.outerButtonDiv}>
-                Rooms
-                <div className={classes.outercounter}>
-                  <div
-                    onClick={() => handleSubtractRooms()}
-                    className={classes.button}
-                  >
-                    <Remove />
-                  </div>
-                  <div className={classes.innercounter}>
-                    <div className={classes.count} {...bindRooms}>
-                      {rooms}
-                    </div>
-                  </div>
-                  <div
-                    onClick={() => handleAddRooms()}
-                    className={classes.button}
-                  >
-                    <Add />
+          <div className={classes.selectors}>
+            <div className={classes.outerButtonDiv}>
+              Rooms
+              <div className={classes.outercounter}>
+                <div
+                  onClick={() => handleSubtractRooms()}
+                  className={classes.button}
+                >
+                  <Remove />
+                </div>
+                <div className={classes.innercounter}>
+                  <div className={classes.count} {...bindRooms}>
+                    {rooms}
                   </div>
                 </div>
+                <div
+                  onClick={() => handleAddRooms()}
+                  className={classes.button}
+                >
+                  <Add />
+                </div>
               </div>
+            </div>
 
-              <div className={classes.outerButtonDiv}>
-                Occupants
-                <div className={classes.outercounter}>
-                  <div
-                    onClick={() => handleSubtractOccupants()}
-                    className={classes.button}
-                  >
-                    <Remove />
+            <div className={classes.outerButtonDiv}>
+              Occupants
+              <div className={classes.outercounter}>
+                <div
+                  onClick={() => handleSubtractOccupants()}
+                  className={classes.button}
+                >
+                  <Remove />
+                </div>
+                <div className={classes.innercounter}>
+                  <div className={classes.count} {...bindOccupants}>
+                    {occupants}
                   </div>
-                  <div className={classes.innercounter}>
-                    <div className={classes.count} {...bindOccupants}>
-                      {occupants}
-                    </div>
-                  </div>
-                  <div
-                    onClick={() => handleAddOccupants()}
-                    className={classes.button}
-                  >
-                    <Add />
-                  </div>
+                </div>
+                <div
+                  onClick={() => handleAddOccupants()}
+                  className={classes.button}
+                >
+                  <Add />
                 </div>
               </div>
             </div>
           </div>
+        </div>
 
-          <div className={classes.rightSearchContainer}>
-            <div className={classes.calendars}>
-              <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                <DatePicker
-                  className={classes.datepicker}
-                  margin="normal"
-                  label="Check-In"
-                  {...bindCheckIn}
-                  variant="outlined"
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <DateRange />
-                      </InputAdornment>
-                    )
-                  }}
-                />
-                <DatePicker
-                  className={classes.datepicker}
-                  margin="normal"
-                  label="Check-Out"
-                  {...bindCheckOut}
-                  variant="outlined"
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <DateRange />
-                      </InputAdornment>
-                    )
-                  }}
-                />
-              </MuiPickersUtilsProvider>
-            </div>
-         </Paper>
+        <div className={classes.rightSearchContainer}>
+          <div className={classes.calendars}>
+            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+              <DatePicker
+                className={classes.datepicker}
+                margin='normal'
+                label='Check-In'
+                {...bindCheckIn}
+                variant='outlined'
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position='end'>
+                      <DateRange />
+                    </InputAdornment>
+                  )
+                }}
+              />
+              <DatePicker
+                className={classes.datepicker}
+                margin='normal'
+                label='Check-Out'
+                {...bindCheckOut}
+                variant='outlined'
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position='end'>
+                      <DateRange />
+                    </InputAdornment>
+                  )
+                }}
+              />
+            </MuiPickersUtilsProvider>
+          </div>
+        </div>
       </div>
-   );
+    </Paper>
+  );
 };
 
 const mapStateToProps = state => state;
 
 export default withRouter(
-   connect(
-      mapStateToProps,
-      { getHotelList }
-   )(withStyles(styles)(SearchBar))
+  connect(
+    mapStateToProps,
+    { getHotelList }
+  )(withStyles(styles)(SearchBar))
 );
