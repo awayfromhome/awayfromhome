@@ -9,7 +9,7 @@ const RoomInfo = props => {
 			// img={info.url}
 			onClick={() => props.history.push(`/room/${props.info.room_id}`)}
 			btnName="Select Room">
-			Select Room >
+			Select Room 
 			<h1>{props.info.room_id}</h1>
 			<h1>Only 1 Room Left</h1>
 			<h1>1 King Bed Leisure Nonsmoking</h1>

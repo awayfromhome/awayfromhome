@@ -16,26 +16,31 @@ const styles = theme => ({
 	},
 	rootTabs: {
 		flexGrow: 1,
-		marginTop: '10vh',
-		width: '50vw',
-		fontWeight: '700'
+		marginTop: '5%',
+		width: '40vw',
+		
 	},
 	searchInfo: {
-		marginTop: '17vh'
+		marginTop: '5%'
 	},
 	card: {
-		marginTop: '1.5vh',
+		marginTop: '3%',
 
-		paddingTop: '40px',
 		display: 'flex',
 		flexDirection: 'column',
 		alignItems: 'center',
-		justifyContent: 'space-between',
+		justifyContent: 'center',
 		backgroundColor: '#f4f2ec',
 		height: '500px',
 		width: '85%',
-		borderRadius: '8px'
-	}
+		borderRadius: '8px',
+		border: '1px solid black'
+	},
+	cardHolder: {
+		border: '1px solid black',
+
+		width: '85%'
+	},
 });
 
 const RoomList = props => {
@@ -89,26 +94,28 @@ const RoomList = props => {
 				</Paper>
 			</div>
 			<div className={classes.card}>
-				{roomList.map((e, i) => {
-					console.log('roomlist', e);
-					if (standard) {
-						if (e.name === 'Standard') {
-							return (
-								<div>
-									<RoomInfo key={i} info={e} />;
-								</div>
-							);
+				<div className={classes.cardHolder}>
+					{roomList.map((e, i) => {
+						console.log('roomlist', e);
+						if (standard) {
+							if (e.name === 'Standard') {
+								return (
+									<div className={classes.roomInfo}>
+										<RoomInfo key={i} info={e} />
+									</div>
+								);
+							}
+						} else {
+							if (e.name === 'Deluxe') {
+								return (
+									<div className={classes.roomInfo}>
+										<RoomInfo key={i} info={e} />
+									</div>
+								);
+							}
 						}
-					} else {
-						if (e.name === 'Deluxe') {
-							return (
-								<div>
-									<RoomInfo key={i} info={e} />;
-								</div>
-							);
-						}
-					}
-				})}
+					})}
+				</div>
 			</div>
 		</div>
 	);
