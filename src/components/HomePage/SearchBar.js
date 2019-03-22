@@ -304,6 +304,7 @@ const SearchBar = props => {
               />
             </MuiPickersUtilsProvider>
           </div>
+          <button onClick={() => handleSubmit()}>Search</button>
         </div>
       </div>
     </Paper>

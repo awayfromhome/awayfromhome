@@ -1,33 +1,33 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import SearchInfo from "../Search/SearchInfo";
-import HotelInfo from "../List/HotelInfo";
-import { connect } from "react-redux";
-import { withStyles } from "@material-ui/core/styles";
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import SearchInfo from '../Search/SearchInfo';
+import HotelInfo from '../List/HotelInfo';
+import { connect } from 'react-redux';
+import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
   root: {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center"
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   searchInfo: {
-    marginTop: "5%"
+    marginTop: '5%'
   },
   card: {
-    marginTop: "1%",
-    paddingTop: "3%",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
+    marginTop: '1%',
+    paddingTop: '3%',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
     backgroundColor: theme.palette.primary.second,
-    height: "100%",
-    width: "100%",
+    height: '100%',
+    width: '100%',
     borderRadius: 8
   },
-  ["@media (min-width: 750px) and (max-width: 1200px)"]: {
-    card: { marginLeft: "10%" }
+  ['@media (min-width: 750px) and (max-width: 1200px)']: {
+    card: { marginLeft: '10%' }
   }
 });
 
@@ -37,6 +37,8 @@ const HotelList = props => {
   const [hotelList, setHotelList] = useState([]);
 
   useEffect(() => {
+    console.log('hit');
+
     setHotelList(props.hotelList);
   }, [props.hotelList]);
 
@@ -55,7 +57,7 @@ const HotelList = props => {
 };
 
 const mapStateToProps = state => {
-  console.log("redux", state);
+  console.log('redux', state);
   return {
     hotelList: state.hotelList
   };
