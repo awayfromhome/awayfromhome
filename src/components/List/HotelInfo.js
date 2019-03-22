@@ -67,8 +67,12 @@ const styles = theme => ({
     }
   },
   [theme.breakpoints.down('749')]: {
-    insidePriceDiv: {
-      flexDirection: 'row'
+    amenitiesList: {
+      height: 'auto',
+      marginLeft: '3vw'
+    },
+    hotelname: {
+      margin: '5%'
     }
   }
 });

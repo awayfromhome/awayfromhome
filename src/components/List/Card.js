@@ -92,6 +92,13 @@ const styles = theme => ({
     },
     info: {
       width: '100%'
+    },
+    insidePriceDiv: {
+      flexDirection: 'row',
+      justifyContent: 'space-around'
+    },
+    price: {
+      width: '90%'
     }
   }
 });
