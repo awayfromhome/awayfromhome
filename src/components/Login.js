@@ -3,7 +3,7 @@ import { useInput } from '../hooks/input-hook';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { handleAccountForm } from '../ducks/async';
+import { handleAccountForm, getUser } from '../ducks/async';
 import { updateAccountFormSide } from '../ducks/sync';
 import NumberFormat from 'react-number-format';
 
@@ -35,28 +35,35 @@ const Login = props => {
 
    //Login
    const handleLogin = () => {
-      //  axios
-      //     .post('/auth/login', this.state)
-      //     .then(res => {
-      //        this.props.getUser();
-      //        this.props.history.push('/main/tasks');
-      //        this.props.loginFormToggle(this.props.loginForm);
-      //     })
-      //     .catch(err => console.log(err));
+      axios
+         .post('/auth/login', { username, password, email, number })
+         .then(res => {
+            props.getUser();
+            props.handleAccountForm();
+            reset();
+         })
+         .catch(err => console.log(err));
    };
 
    //Register
    const handleRegister = () => {
-      //  let regexp = /[0-9+]+/g;
-      //  let num = this.state.number.match(regexp).join('');
-      //  axios
-      //     .post('/auth/register', { ...this.state, number: num })
-      //     .then(res => {
-      //        this.props.history.push('/main/tasks');
-      //        this.props.getUser();
-      //        this.props.loginFormToggle(this.props.loginForm);
-      //     })
-      //     .catch(err => console.log(err));
+      let regexp = /[0-9+]+/g;
+      let num = number.match(regexp).join('');
+      axios
+         .post('/auth/register', { username, password, email, number: num })
+         .then(res => {
+            props.getUser();
+            props.handleAccountForm();
+            reset();
+         })
+         .catch(err => console.log(err));
+   };
+
+   const reset = () => {
+      resetUsername();
+      resetEmail();
+      resetNumber();
+      resetPassword();
    };
 
    //This toggle's between the two sides of the form
@@ -109,6 +116,9 @@ const Login = props => {
                   <Button onClick={() => props.updateAccountFormSide('Login')} color="primary">
                      Login
                   </Button>
+                  <Button onClick={() => handleRegister()} color="primary">
+                     Register
+                  </Button>
                   <Button onClick={() => props.updateAccountFormSide('Register')} color="primary">
                      Register User
                   </Button>
@@ -156,7 +166,13 @@ const Login = props => {
    return (
       <div>
          {/* Modal that pops up on click */}
-         <Dialog open={props.accountFormToggle} onClose={() => props.handleAccountForm('')} aria-labelledby="form-dialog-title">
+         <Dialog
+            open={props.accountFormToggle}
+            onClose={() => {
+               props.handleAccountForm();
+               reset();
+            }}
+            aria-labelledby="form-dialog-title">
             <DialogTitle id="form-dialog-title" disableTypography={true}>
                {props.accountFormSide}
             </DialogTitle>
@@ -176,6 +192,6 @@ const mapStateToProps = state => {
 export default withRouter(
    connect(
       mapStateToProps,
-      { handleAccountForm, updateAccountFormSide }
+      { handleAccountForm, updateAccountFormSide, getUser }
    )(withStyles(styles)(Login))
 );
