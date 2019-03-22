@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
-import axios from 'axios';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import Login from './Login';
@@ -120,13 +119,28 @@ const Nav = props => {
                   </a>
                   <a className={classes.hiddenMenutags}>Locations</a>
                   <a className={classes.hiddenMenutags}>Offers </a>
-                  {props.user.username ? <a className={classes.hiddenMenutags}>Profile </a> : null}
-                  {props.user.owner ? <a className={classes.hiddenMenutags}>Owner </a> : null}
+                  {props.user.username ? (
+                     <a className={classes.hiddenMenutags} onClick={() => props.history.push('/Profile')}>
+                        Profile
+                     </a>
+                  ) : null}
+                  {props.user.owner ? (
+                     <a className={classes.hiddenMenutags} onClick={() => props.history.push('/Owner')}>
+                        Owner
+                     </a>
+                  ) : null}
+                  {props.user.username ? (
+                     <a className={classes.hiddenMenutags} onClick={() => props.handleLogout()}>
+                        Logout
+                     </a>
+                  ) : null}
                </div>
             )}
          </div>
          <div className={classes.navContainer}>
-            <div className={classes.logo}>AFM</div>
+            <div className={classes.logo} onClick={() => props.history.push('/')}>
+               AFM
+            </div>
             <div className={classes.navwrapper}>
                {props.user.username ? null : (
                   <a className={classes.tags} onClick={() => props.handleAccountForm('Login')}>
@@ -140,8 +154,16 @@ const Nav = props => {
                )}
                <a className={classes.tags}>Locations</a>
                <a className={classes.tags}>Offers</a>
-               {props.user.username ? <a className={classes.tags}>Profile</a> : null}
-               {props.user.owner ? <a className={classes.tags}>Owner</a> : null}
+               {props.user.username ? (
+                  <a className={classes.tags} onClick={() => props.history.push('/Profile')}>
+                     Profile
+                  </a>
+               ) : null}
+               {props.user.owner ? (
+                  <a className={classes.tags} onClick={() => props.history.push('/Owner')}>
+                     Owner
+                  </a>
+               ) : null}
                {props.user.username ? (
                   <a className={classes.tags} onClick={() => props.handleLogout()}>
                      Logout
