@@ -42,7 +42,8 @@ const styles = theme => ({
     boxShadow: 'none',
     borderBottom: '5px solid #656D79',
     paddingBottom: 20,
-    paddingTop: 20
+    paddingTop: 20,
+    width: '70%'
   },
   selectors: {
     display: 'flex',
@@ -66,7 +67,8 @@ const styles = theme => ({
   },
   calendars: {
     display: 'flex',
-    marginLeft: '2%'
+    marginLeft: '2%',
+    marginBottom: '4%'
   },
   outerButtonDiv: {
     width: '50%',
@@ -75,7 +77,7 @@ const styles = theme => ({
   outercounter: {
     borderRadius: '25px 25px 25px 25px',
     border: '1px solid black',
-    width: '80%',
+    width: '20vh',
     height: 50,
     background: '#4C525A',
     display: 'flex',
@@ -85,27 +87,35 @@ const styles = theme => ({
   innercounter: {
     borderRadius: '50%',
     border: '1px solid black',
-    width: 50,
+    width: '3vw',
     height: 50,
-    margin: 'auto',
     background: '#fff',
     textAlign: 'center',
-    fontSize: 30
+    fontSize: 30,
+    margin: 'auto'
   },
-  button: {
-    margin: 'auto',
+  Rightbutton: {
     color: '#fff',
-    padding: '6%'
+    marginRight: 'auto'
+  },
+  Leftbutton: {
+    marginLeft: 'auto',
+    color: '#fff'
   },
   searchButton: {
-    margin: '3%',
-    marginTop: '10%'
+    margin: '1vh',
+    marginTop: '7%'
   },
   count: {
-    marginTop: '25%',
-    fontSize: 21
+    fontSize: 21,
+    lineHeight: '50px',
+    margin: 'auto',
+    height: '100%'
   },
   [theme.breakpoints.down('749')]: {
+    paper: {
+      width: 'auto'
+    },
     searchContainer: {
       flexDirection: 'column'
     },
@@ -123,24 +133,28 @@ const styles = theme => ({
       flexDirection: 'column'
     },
     calendars: {
-      width: '90%'
+      width: '95%'
     },
-    button: {
-      margin: 'auto'
+    innercounter: {
+      width: '13vw'
     }
   },
   ['@media (min-width: 750px) and (max-width: 1200px)']: {
-    searchContainer: {
+    paper: {
       width: '90%'
+    },
+    searchContainer: {
+      width: '95%'
     },
     outercounter: {
       width: 'auto'
     },
     outerButtonDiv: {
-      marginRight: '3%'
+      marginRight: '3%',
+      width: '15vw'
     },
-    count: {
-      marginTop: '30%'
+    innercounter: {
+      width: '5vw'
     }
   }
 });
@@ -228,7 +242,7 @@ const SearchBar = props => {
               <div className={classes.outercounter}>
                 <div
                   onClick={() => handleSubtractRooms()}
-                  className={classes.button}
+                  className={classes.Leftbutton}
                 >
                   <Remove />
                 </div>
@@ -239,7 +253,7 @@ const SearchBar = props => {
                 </div>
                 <div
                   onClick={() => handleAddRooms()}
-                  className={classes.button}
+                  className={classes.Rightbutton}
                 >
                   <Add />
                 </div>
@@ -251,7 +265,7 @@ const SearchBar = props => {
               <div className={classes.outercounter}>
                 <div
                   onClick={() => handleSubtractOccupants()}
-                  className={classes.button}
+                  className={classes.Leftbutton}
                 >
                   <Remove />
                 </div>
@@ -262,7 +276,7 @@ const SearchBar = props => {
                 </div>
                 <div
                   onClick={() => handleAddOccupants()}
-                  className={classes.button}
+                  className={classes.Rightbutton}
                 >
                   <Add />
                 </div>
@@ -304,7 +318,13 @@ const SearchBar = props => {
               />
             </MuiPickersUtilsProvider>
           </div>
-          <button onClick={() => handleSubmit()}>Search</button>
+
+          <button
+            className={classes.searchButton}
+            onClick={() => handleSubmit()}
+          >
+            Search
+          </button>
         </div>
       </div>
     </Paper>
