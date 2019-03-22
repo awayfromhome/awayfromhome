@@ -1,84 +1,84 @@
-import React, { useState } from "react";
-import { connect } from "react-redux";
-import { withStyles } from "@material-ui/core/styles";
-import SearchBar from "./SearchBar";
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import { withStyles } from '@material-ui/core/styles';
+import SearchBar from './SearchBar';
 
 const styles = theme => ({
   entireContainer: {
-    margin: "auto",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    marginLeft: "7%",
-    width: "93%"
+    margin: 'auto',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    marginLeft: '7%',
+    width: '93%'
   },
   imgContainer: {
-    position: "absolute",
+    position: 'absolute',
     zIndex: 3,
-    background: "rgba(0,0,0,0.60)",
-    top: "0vh",
-    height: "50vh",
-    width: "93%"
+    background: 'rgba(0,0,0,0.60)',
+    top: '0vh',
+    height: '50vh',
+    width: '93%'
   },
   background: {
-    height: "50vh",
-    width: "100%"
+    height: '50vh',
+    width: '100%'
   },
   img: {
-    height: "40%",
-    width: "30%",
-    margin: "auto"
+    height: '40%',
+    width: '30%',
+    margin: 'auto'
   },
   sectionContainer: {
-    marginTop: "5%",
-    width: "70%",
-    margin: "auto"
+    marginTop: '5%',
+    width: '70%',
+    margin: 'auto'
   },
   sections: {
-    display: "flex",
-    alignItems: "center",
-    marginLeft: "4%",
-    margin: "5%"
+    display: 'flex',
+    alignItems: 'center',
+    marginLeft: '4%',
+    margin: '5%'
   },
   paragraph: {
-    width: "60%",
-    margin: "auto"
+    width: '60%',
+    margin: 'auto'
   },
-  ["@media (min-width: 750px) and (max-width: 1200px)"]: {
+  ['@media (min-width: 750px) and (max-width: 1200px)']: {
     entireContainer: {
-      marginLeft: "10%"
+      marginLeft: '10%'
     },
     background: {
-      height: "30vh"
+      height: '30vh'
     },
     imgContainer: {
-      height: "30vh"
+      height: '30vh'
     }
   },
-  [theme.breakpoints.down("749")]: {
+  [theme.breakpoints.down('749')]: {
     entireContainer: {
-      flexDirection: "column",
-      width: "100%",
+      flexDirection: 'column',
+      width: '100%',
       marginLeft: 0
     },
     imgContainer: {
-      width: "100%",
-      height: "40vh",
-      marginTop: "10vh"
+      width: '100%',
+      height: '40vh',
+      marginTop: '10vh'
     },
     sections: {
-      flexDirection: "column"
+      flexDirection: 'column'
     },
     background: {
-      height: "40vh",
-      width: "100%"
+      height: '40vh',
+      width: '100%'
     },
     img: {
-      width: "90%",
-      height: "90%"
+      width: '90%',
+      height: '90%'
     },
     paragraph: {
-      width: "90%"
+      width: '90%'
     }
   }
 });
@@ -90,16 +90,16 @@ const HomePage = props => {
       <div className={classes.imgContainer} />
       <img
         className={classes.background}
-        src="https://images.unsplash.com/photo-1496417263034-38ec4f0b665a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80"
-        alt="main"
+        src='https://images.unsplash.com/photo-1496417263034-38ec4f0b665a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80'
+        alt='main'
       />
       <SearchBar />
       <div className={classes.sectionContainer}>
         <div className={classes.sections}>
           <img
             className={classes.img}
-            src="https://images.unsplash.com/photo-1496417263034-38ec4f0b665a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80"
-            alt="main"
+            src='https://images.unsplash.com/photo-1496417263034-38ec4f0b665a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80'
+            alt='main'
           />
           <p className={classes.paragraph}>
             Lorem ipsum dolor sit amet, et tale consequat reprehendunt quo. Amet
@@ -129,8 +129,8 @@ const HomePage = props => {
           </p>
           <img
             className={classes.img}
-            src="https://images.unsplash.com/photo-1496417263034-38ec4f0b665a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80"
-            alt="main"
+            src='https://images.unsplash.com/photo-1496417263034-38ec4f0b665a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80'
+            alt='main'
           />
         </div>
       </div>
