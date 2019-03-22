@@ -16,36 +16,28 @@ const styles = theme => ({
 	},
 	rootTabs: {
 		flexGrow: 1,
-		marginTop: '5%',
-		width: '40vw',
-		
+		marginTop: '3%',
+		width: '40vw'
 	},
 	searchInfo: {
-		marginTop: '5%'
+		marginTop: '4%'
 	},
 	card: {
-		marginTop: '3%',
-
 		display: 'flex',
 		flexDirection: 'column',
 		alignItems: 'center',
-		justifyContent: 'center',
+		marginTop: '3%',
 		backgroundColor: '#f4f2ec',
-		height: '500px',
-		width: '85%',
+		height: '100%',
+		width: '100%',
 		borderRadius: '8px',
 		border: '1px solid black'
-	},
-	cardHolder: {
-		border: '1px solid black',
-
-		width: '85%'
-	},
+	}
 });
 
 const RoomList = props => {
 	const { classes, info } = props;
-	console.log('info room list', info);
+	// console.log('info room list', info);
 	const [roomList, setRoomList] = useState([]);
 	const [standard, setStandard] = useState(true);
 	const [deluxe, setDeluxe] = useState(false);
@@ -74,48 +66,38 @@ const RoomList = props => {
 			<div className={classes.searchInfo}>
 				<SearchInfo />
 			</div>
-			<div>
-				<Paper className={classes.rootTabs}>
-					<Tabs
-						value={false}
-						indicatorColor="primary"
-						textColor="primary"
-						centered
-						variant="fullWidth">
-						<Tab
-							label="Standard"
-							onClick={() => handleRoomSelect('Standard')}
-						/>
-						<Tab
-							label="Deluxe"
-							onClick={() => handleRoomSelect('Deluxe')}
-						/>
-					</Tabs>
-				</Paper>
-			</div>
+
+			<Paper className={classes.rootTabs}>
+				<Tabs
+					value={false}
+					indicatorColor="primary"
+					textColor="primary"
+					centered
+					variant="fullWidth">
+					<Tab
+						label="Standard"
+						onClick={() => handleRoomSelect('Standard')}
+					/>
+					<Tab
+						label="Deluxe"
+						onClick={() => handleRoomSelect('Deluxe')}
+					/>
+				</Tabs>
+			</Paper>
+
 			<div className={classes.card}>
-				<div className={classes.cardHolder}>
-					{roomList.map((e, i) => {
-						console.log('roomlist', e);
-						if (standard) {
-							if (e.name === 'Standard') {
-								return (
-									<div className={classes.roomInfo}>
-										<RoomInfo key={i} info={e} />
-									</div>
-								);
-							}
-						} else {
-							if (e.name === 'Deluxe') {
-								return (
-									<div className={classes.roomInfo}>
-										<RoomInfo key={i} info={e} />
-									</div>
-								);
-							}
+				{roomList.map((e, i) => {
+					console.log('roomlist', e);
+					if (standard) {
+						if (e.name === 'Standard') {
+							return <RoomInfo key={i} info={e} />;
 						}
-					})}
-				</div>
+					} else {
+						if (e.name === 'Deluxe') {
+							return <RoomInfo key={i} info={e} />;
+						}
+					}
+				})}
 			</div>
 		</div>
 	);

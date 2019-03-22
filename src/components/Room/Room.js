@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import SearchInfo from '../Search/SearchInfo';
 import { withStyles } from '@material-ui/core/styles';
-
+import axios from 'axios';
 
 const styles = theme => ({
 	root: {
@@ -63,18 +63,19 @@ const styles = theme => ({
 
 const Room = props => {
 	const { classes, info } = props;
-	console.log('info for room', info);
+	// console.log('info for room', info);
 
-	// const [roomInfo, setRoomInfo] = useState([]);
+	const [roomInfo, setRoomInfo] = useState([]);
 
-	// useEffect(() => {
-	// 	axios
-	// 		.get('/api/room')
-	// 		.then(res => {
-	// 			setRoomInfo(res.data);
-	// 		})
-	// 		.catch(err => console.log(err));
-	// }, []);
+	useEffect(() => {
+		axios
+			.get(`/api/room/${1}`)
+			.then(res => {
+				setRoomInfo(res.data);
+				console.log('room use effect', res.data);
+			})
+			.catch(err => console.log(err));
+	}, []);
 
 	return (
 		<div className={classes.root}>
