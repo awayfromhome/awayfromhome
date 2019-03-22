@@ -1,18 +1,10 @@
-import axios from 'axios';
-
-import { GET_HOTEL_LIST, TOGGLE_ACCOUNT_FORM, UPDATE_ACCOUNT_FORM_SIDE } from './constants';
+import { TOGGLE_ACCOUNT_FORM, UPDATE_ACCOUNT_FORM_SIDE, GET_USER_FULFILLED, GET_HOTEL_LIST_FULFILLED } from './constants';
 
 let initialState = {
+   user: {},
    hotelList: [],
    accountFormToggle: false,
    accountFormSide: 'Register'
-};
-
-export const getHotelList = value => {
-   return {
-      type: GET_HOTEL_LIST,
-      payload: axios.post('/api/hotel', value)
-   };
 };
 
 export default function reducer(state = initialState, action) {
@@ -21,10 +13,11 @@ export default function reducer(state = initialState, action) {
          return { ...state, accountFormSide: action.payload };
       case TOGGLE_ACCOUNT_FORM:
          return { ...state, accountFormToggle: !state.accountFormToggle };
-      case `${GET_HOTEL_LIST}_PENDING`:
-         return { ...state, pending: true };
-      case `${GET_HOTEL_LIST}_FULFILLED`:
-         return { ...state, hotelList: action.payload.data };
+      case GET_HOTEL_LIST_FULFILLED:
+         return { ...state, hotelList: action.payload };
+      case GET_USER_FULFILLED: {
+         return { ...state, user: action.payload };
+      }
       default:
          return state;
    }
