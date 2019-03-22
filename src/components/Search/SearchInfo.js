@@ -1,48 +1,84 @@
-import React from "react";
-import { connect } from "react-redux";
+import React from 'react';
+import { connect } from 'react-redux';
 // import PropTypes from 'prop-types';
-import { withStyles } from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
+import { withStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
 
 const styles = theme => ({
-  root: {
+  appBar: {
     flexGrow: 1,
-    textAlign: "center",
-    background: theme.palette.accent.main
+    textAlign: 'center',
+    background: theme.palette.tertiary.main,
+    width: '63vw'
   },
   barInfo: {
-    display: "flex",
-    justifyContent: "space-between"
+    display: 'flex',
+    justifyContent: 'space-between'
+  },
+  toolbar: {
+    width: '60vw'
+  },
+  city: {
+    width: '30vw'
   },
   searchInfo: {
     marginLeft: 10
   },
-  MobileappBar: {
-    display: "none"
+  divider: {
+    marginLeft: '1%'
   },
-  [theme.breakpoints.down("749")]: {
-    root: {
-      background: "none"
-    },
+  deatilsInfo: {
+    width: '100%',
+    margin: 'auto'
+  },
+  [theme.breakpoints.down('749')]: {
     appBar: {
-      display: "none"
+      display: 'flex',
+      height: '15vh',
+      width: '100%'
     },
-    MobileappBar: {
-      display: "flex",
-      height: "20vh"
+    toolbar: {
+      width: '100vw',
+      display: 'flex',
+      flexDirection: 'column',
+      marginLeft: 0,
+      margin: 'auto'
     },
-    Mobiletoolbar: {
-      width: "100vw"
+    city: {
+      width: 'auto'
+    },
+    barInfo: {
+      display: 'block',
+      width: '100%'
+    },
+    deatilsInfo: {
+      fontSize: '15px'
+    },
+    divider: {
+      margin: '2%'
     },
     searchInfo: {
-      display: "flex",
-      flexDirection: "column",
       marginLeft: 0
+    }
+  },
+  ['@media (min-width: 750px) and (max-width: 1200px)']: {
+    toolbar: { width: '70vw' },
+    deatilsInfo: {
+      fontSize: '15px',
+      width: '50vw'
     },
-    mobileDateDiv: {
-      width: "100%"
+    city: {
+      fontSize: '17px',
+      width: '100%'
+    },
+    appBar: {
+      margin: 'auto',
+      width: '55vw'
+    },
+    barInfo: {
+      display: 'block'
     }
   }
 });
@@ -50,33 +86,23 @@ const styles = theme => ({
 const SearchInfo = props => {
   const { classes } = props;
   return (
-    <div className={classes.root}>
-      <AppBar position="static" className={classes.appBar}>
-        <Toolbar>
-          <Typography className={classes.barInfo} variant="h6" color="inherit">
-            <div>Dallas, Tx, United States|</div>
-            <div className={classes.searchInfo}>03/18/2019 - 03/19/2019 |</div>
-            <div className={classes.searchInfo}># of Guests |</div>
-            <div className={classes.searchInfo}>1 room |</div>
-            <div className={classes.searchInfo}>SearchInfo</div>
-          </Typography>
-        </Toolbar>
-      </AppBar>
-      <AppBar position="static" className={classes.MobileappBar}>
-        <Toolbar className={classes.Mobiletoolbar}>
-          <Typography className={classes.barInfo} variant="h6" color="inherit">
-            <div className={classes.searchInfo}>
-              <div>Dallas, Tx, United States</div>
-              <div className={classes.mobileDateDiv}>
-                <div>03/18/2019 - 03/19/2019</div>
-                <div># of Guests</div>
-                <div>1 room </div>
-              </div>
-            </div>
-          </Typography>
-        </Toolbar>
-      </AppBar>
-    </div>
+    <AppBar position='static' className={classes.appBar}>
+      <Toolbar className={classes.toolbar}>
+        <Typography className={classes.barInfo} variant='h6' color='inherit'>
+          <div className={classes.city}>Dallas, Tx, United States</div>
+          <div className={classes.deatilsInfo}>
+            <span className={classes.searchInfo}>
+              03/18/2019 - 03/19/2019{' '}
+              <span className={classes.divider}> |</span>
+            </span>
+            <span className={classes.searchInfo}>
+              # of Guests <span className={classes.divider}> |</span>
+            </span>
+            <span className={classes.searchInfo}> 1 room </span>
+          </div>
+        </Typography>
+      </Toolbar>
+    </AppBar>
   );
 };
 
