@@ -48,16 +48,6 @@ const styles = theme => ({
   buttonLabels: {
     width: "65%"
   },
-  button: {
-    height: 30,
-    width: 30,
-    borderRadius: 8,
-    background: theme.palette.accent.main,
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    margin: "3%"
-  },
   selectors: {
     display: "flex",
     alignItems: "center",
@@ -91,6 +81,25 @@ const styles = theme => ({
   searchButton: {
     marginLeft: "5%"
   },
+  outercounter: {
+    borderRadius: "25px 25px 25px 25px",
+    border: "1px solid black",
+    width: 130,
+    height: 50,
+    background: "#4C525A",
+    display: "flex",
+    alignItems: "center"
+  },
+  innercounter: {
+    borderRadius: "50%",
+    border: "1px solid black",
+    width: 50,
+    height: 50,
+    margin: "auto",
+    background: "#fff",
+    textAlign: "center",
+    fontSize: 30
+  },
   [theme.breakpoints.down("749")]: {
     searchContainer: {
       flexDirection: "column"
@@ -102,13 +111,6 @@ const styles = theme => ({
     leftSearchContainer: {
       width: "auto"
     },
-    counter: {
-      width: "100%"
-    },
-    counter: {
-      margin: "1%",
-      width: "100%"
-    },
     rightSearchContainer: {
       marginTop: "5%",
       marginRight: 0,
@@ -117,13 +119,6 @@ const styles = theme => ({
     },
     calendars: {
       width: "90%"
-    },
-    selectors: {
-      width: "80%",
-      marginTop: "5%"
-    },
-    searchButton: {
-      marginTop: "5%"
     }
   },
   ["@media (min-width: 1203px) and (max-width: 1610px)"]: {}
@@ -208,52 +203,38 @@ const SearchBar = props => {
             />
 
             <div className={classes.selectors}>
-              <div className={classNames(classes.occupantDiv, classes.counter)}>
-                <div
-                  className={classes.button}
-                  onClick={() => handleSubtractOccupants()}
-                >
-                  <Remove />
-                </div>
-                <TextField
-                  variant="outlined"
-                  label="Occupants"
-                  InputLabelProps={{
-                    shrink: true
-                  }}
-                  {...bindOccupants}
-                />
-                <div
-                  className={classes.button}
-                  onClick={() => handleAddOccupants()}
-                >
-                  <Add />
+              <div>
+                Rooms
+                <div className={classes.outercounter}>
+                  <div onClick={() => handleSubtractRooms()}>
+                    <Remove className={classes.button} />
+                  </div>
+                  <div className={classes.innercounter} {...bindRooms}>
+                    <div className={classes.count}>{rooms}</div>
+                  </div>
+                  <div onClick={() => handleAddRooms()}>
+                    <Add className={classes.button} />
+                  </div>
                 </div>
               </div>
-              <div className={classNames(classes.RoomDiv, classes.counter)}>
-                <div
-                  className={classes.button}
-                  onClick={() => handleSubtractRooms()}
-                >
-                  <Remove />
-                </div>
-                <TextField
-                  variant="outlined"
-                  label="Rooms"
-                  InputLabelProps={{
-                    shrink: true
-                  }}
-                  {...bindRooms}
-                />
-                <div
-                  className={classes.button}
-                  onClick={() => handleAddRooms()}
-                >
-                  <Add />
+
+              <div>
+                Occupants
+                <div className={classes.outercounter}>
+                  <div onClick={() => handleSubtractOccupants()}>
+                    <Remove className={classes.button} />
+                  </div>
+                  <div className={classes.innercounter} {...bindOccupants}>
+                    <div className={classes.count}>{rooms}</div>
+                  </div>
+                  <div onClick={() => handleAddOccupants()}>
+                    <Add className={classes.button} />
+                  </div>
                 </div>
               </div>
             </div>
           </div>
+
           <div className={classes.rightSearchContainer}>
             <div className={classes.calendars}>
               <MuiPickersUtilsProvider utils={DateFnsUtils}>

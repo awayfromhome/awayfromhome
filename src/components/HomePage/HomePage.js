@@ -17,11 +17,11 @@ const styles = theme => ({
     zIndex: 3,
     background: "rgba(0,0,0,0.60)",
     top: "0vh",
-    height: "60vh",
+    height: "50vh",
     width: "93%"
   },
   background: {
-    height: "60vh",
+    height: "50vh",
     width: "100%"
   },
   img: {
@@ -43,12 +43,15 @@ const styles = theme => ({
     width: "60%",
     margin: "auto"
   },
-  ["@media (min-width: 1000px) and (max-width: 1809px)"]: {
+  ["@media (min-width: 750px) and (max-width: 1200px)"]: {
+    entireContainer: {
+      marginLeft: "10%"
+    },
     background: {
-      height: "60vh"
+      height: "30vh"
     },
     imgContainer: {
-      height: "60vh"
+      height: "30vh"
     }
   },
   [theme.breakpoints.down("749")]: {

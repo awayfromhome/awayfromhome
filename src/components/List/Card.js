@@ -5,7 +5,7 @@ const styles = theme => ({
   root: {
     display: "flex",
     width: "65%",
-    height: "25vh",
+    height: "30vh",
     backgroundColor: "#fff",
     overflow: "hidden",
     lineHeight: "3vh",
@@ -70,8 +70,8 @@ const styles = theme => ({
   },
   ["@media (min-width: 750px) and (max-width: 1200px)"]: {
     root: {
-      width: "80%",
-      height: "17vh"
+      width: "85%",
+      height: "23vh"
     },
     img: {
       width: "35%"
