@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 const massive = require('massive');
+const session = require('express-session');
 const bodyParser = require('body-parser');
 
 const authCon = require('./controllers/authController');
@@ -13,6 +14,17 @@ const miscCon = require('./controllers/miscController');
 app.use(bodyParser.json());
 app.use(bodyParser.text());
 
+app.use(
+   session({
+      secret: process.env.SESSION_SECRET,
+      resave: false,
+      saveUninitialized: true,
+      cookie: {
+         maxAge: 1000 * 60 * 60 * 24 * 7
+      }
+   })
+);
+
 //Database connection
 massive(process.env.CONNECTION_STRING)
    .then(dbInstance => {
@@ -22,8 +34,10 @@ massive(process.env.CONNECTION_STRING)
    .catch(err => console.log(err));
 
 //Auth endpoints
+app.get('/auth/user', authCon.getUser);
 app.post('/auth/register', authCon.register);
 app.post('/auth/login', authCon.login);
+app.get('/auth/logout', authCon.logout);
 
 //Hotel and room endpoints
 //NEED to make the get hotel request into a get with req.query parameters instead of a post

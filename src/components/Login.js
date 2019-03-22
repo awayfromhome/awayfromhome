@@ -46,17 +46,28 @@ const Login = props => {
    };
 
    //Register
-   const handleRegister = () => {
+   const handleRegister = type => {
       let regexp = /[0-9+]+/g;
       let num = number.match(regexp).join('');
-      axios
-         .post('/auth/register', { username, password, email, number: num })
-         .then(res => {
-            props.getUser();
-            props.handleAccountForm();
-            reset();
-         })
-         .catch(err => console.log(err));
+      if (type === 'Owner') {
+         axios
+            .post('/auth/register', { username, password, email, number: num, owner: true })
+            .then(res => {
+               props.getUser();
+               props.handleAccountForm();
+               reset();
+            })
+            .catch(err => console.log(err));
+      } else {
+         axios
+            .post('/auth/register', { username, password, email, number: num, owner: false })
+            .then(res => {
+               props.getUser();
+               props.handleAccountForm();
+               reset();
+            })
+            .catch(err => console.log(err));
+      }
    };
 
    const reset = () => {
@@ -116,7 +127,7 @@ const Login = props => {
                   <Button onClick={() => props.updateAccountFormSide('Login')} color="primary">
                      Login
                   </Button>
-                  <Button onClick={() => handleRegister()} color="primary">
+                  <Button onClick={() => handleRegister('Owner')} color="primary">
                      Register
                   </Button>
                   <Button onClick={() => props.updateAccountFormSide('Register')} color="primary">

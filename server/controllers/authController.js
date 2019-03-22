@@ -1,8 +1,11 @@
 const bcrypt = require('bcryptjs');
 
 module.exports = {
+   getUser: (req, res) => {
+      res.status(200).json(req.session.user);
+   },
    register: async (req, res) => {
-      const { username, password, email, number } = req.body;
+      const { username, password, email, number, owner } = req.body;
       const db = req.app.get('db');
       const result = await db.get_user(username);
       const existingUser = result[0];
@@ -10,9 +13,14 @@ module.exports = {
          return res.status(409).json('There is already an account associated with this username. Please log in.');
       }
       const hash = await bcrypt.hash(password, 12);
-      const registeredUser = await db.register_user(username, hash, email, number);
+      const registeredUser = await db.register_user(username, hash, email, number, owner);
       const user = registeredUser[0];
-      return res.status(200).json(user);
+      req.session.user = {
+         username: user.username,
+         id: user.users_id,
+         owner: user.owner
+      };
+      return res.status(200).json(req.session.user);
    },
    login: async (req, res) => {
       const { username, password } = req.body;
@@ -26,6 +34,15 @@ module.exports = {
       if (!isAuthenticated) {
          return res.status(403).json('Incorrect password');
       }
-      return res.status(200).json(user);
+      req.session.user = {
+         username: user.username,
+         id: user.users_id,
+         owner: user.owner
+      };
+      return res.status(200).json(req.session.user);
+   },
+   logout: async (req, res) => {
+      req.session.destroy();
+      return res.sendStatus(200);
    }
 };

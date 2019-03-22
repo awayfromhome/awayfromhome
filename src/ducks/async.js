@@ -1,4 +1,4 @@
-import { updateAccountFormSide, toggleAccountForm, getUserFulfilled, getHotelListFulfilled } from './sync';
+import { updateAccountFormSide, toggleAccountForm, getUserFulfilled, getHotelListFulfilled, handleLogoutFulfilled } from './sync';
 import axios from 'axios';
 
 export const handleAccountForm = side => {
@@ -23,5 +23,12 @@ export const getHotelList = value => {
    return async dispatch => {
       const response = await axios.post('/api/hotel', value);
       dispatch(getHotelListFulfilled(response));
+   };
+};
+
+export const handleLogout = () => {
+   return async dispatch => {
+      const response = await axios.get('/auth/logout');
+      dispatch(handleLogoutFulfilled(response));
    };
 };
