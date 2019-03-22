@@ -9,7 +9,9 @@ SET timezone = 'America/Chicago';
 CREATE TABLE users (
   users_id SERIAL PRIMARY KEY,
   username VARCHAR(64),
-  hash VARCHAR(75)
+  hash VARCHAR(75),
+  email VARCHAR(100),
+  number VARCHAR(15)
 );
 
 CREATE TABLE hotel (
@@ -63,10 +65,8 @@ VALUES('2019-08-04', 1),
     ('2019-08-06', 1),
     ('2018-03-15', 1),
     ('2018-03-16', 1),
-    ('2018-03-17', 1);
-
-INSERT INTO reservation (date, room_id)
-VALUES('2019-08-04', 2),
+    ('2018-03-17', 1),
+    ('2019-08-04', 2),
     ('2019-08-05', 2),
     ('2019-08-06', 2),
     ('2019-08-05', 2),
@@ -74,7 +74,6 @@ VALUES('2019-08-04', 2),
     ('2019-08-06', 2),
     ('2019-08-07', 2),
     ('2019-08-06', 2);
-
 
 
 
