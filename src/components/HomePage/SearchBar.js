@@ -25,8 +25,7 @@ const styles = theme => ({
     marginBottom: "2%"
   },
   textField: {
-    width: "75%",
-    marginLeft: "13%",
+    width: "100%",
     MuiOutlinedInput: {
       input: {
         margin: "5%",
@@ -45,9 +44,6 @@ const styles = theme => ({
     paddingBottom: 20,
     paddingTop: 20
   },
-  buttonLabels: {
-    width: "65%"
-  },
   selectors: {
     display: "flex",
     alignItems: "center",
@@ -57,17 +53,10 @@ const styles = theme => ({
     width: "100%"
   },
   rightSearchContainer: {
-    width: "60%",
-    marginRight: "10%",
     display: "flex",
+    flexDirection: "column",
     alignItems: "center",
     justifyContent: "space-evenly"
-  },
-  counter: {
-    display: "flex",
-    alignItems: "center",
-    width: "37%",
-    margin: "1%"
   },
   leftSearchContainer: {
     width: "60%"
@@ -76,19 +65,22 @@ const styles = theme => ({
     margin: "3%"
   },
   calendars: {
-    display: "flex"
+    display: "flex",
+    marginLeft: "2%"
   },
-  searchButton: {
-    marginLeft: "5%"
+  outerButtonDiv: {
+    width: "50%",
+    textAlign: "center"
   },
   outercounter: {
     borderRadius: "25px 25px 25px 25px",
     border: "1px solid black",
-    width: 130,
+    width: "80%",
     height: 50,
     background: "#4C525A",
     display: "flex",
-    alignItems: "center"
+    alignItems: "center",
+    margin: "auto"
   },
   innercounter: {
     borderRadius: "50%",
@@ -100,6 +92,19 @@ const styles = theme => ({
     textAlign: "center",
     fontSize: 30
   },
+  button: {
+    margin: "auto",
+    color: "#fff",
+    padding: "6%"
+  },
+  searchButton: {
+    margin: "3%",
+    marginTop: "10%"
+  },
+  count: {
+    marginTop: "25%",
+    fontSize: 21
+  },
   [theme.breakpoints.down("749")]: {
     searchContainer: {
       flexDirection: "column"
@@ -109,7 +114,7 @@ const styles = theme => ({
       marginLeft: "10%"
     },
     leftSearchContainer: {
-      width: "auto"
+      width: "100%"
     },
     rightSearchContainer: {
       marginTop: "5%",
@@ -119,9 +124,25 @@ const styles = theme => ({
     },
     calendars: {
       width: "90%"
+    },
+    button: {
+      margin: "auto"
     }
   },
-  ["@media (min-width: 1203px) and (max-width: 1610px)"]: {}
+  ["@media (min-width: 750px) and (max-width: 1200px)"]: {
+    searchContainer: {
+      width: "90%"
+    },
+    outercounter: {
+      width: "auto"
+    },
+    outerButtonDiv: {
+      marginRight: "3%"
+    },
+    count: {
+      marginTop: "30%"
+    }
+  }
 });
 
 const SearchBar = props => {
@@ -203,32 +224,48 @@ const SearchBar = props => {
             />
 
             <div className={classes.selectors}>
-              <div>
+              <div className={classes.outerButtonDiv}>
                 Rooms
                 <div className={classes.outercounter}>
-                  <div onClick={() => handleSubtractRooms()}>
-                    <Remove className={classes.button} />
+                  <div
+                    onClick={() => handleSubtractRooms()}
+                    className={classes.button}
+                  >
+                    <Remove />
                   </div>
-                  <div className={classes.innercounter} {...bindRooms}>
-                    <div className={classes.count}>{rooms}</div>
+                  <div className={classes.innercounter}>
+                    <div className={classes.count} {...bindRooms}>
+                      {rooms}
+                    </div>
                   </div>
-                  <div onClick={() => handleAddRooms()}>
-                    <Add className={classes.button} />
+                  <div
+                    onClick={() => handleAddRooms()}
+                    className={classes.button}
+                  >
+                    <Add />
                   </div>
                 </div>
               </div>
 
-              <div>
+              <div className={classes.outerButtonDiv}>
                 Occupants
                 <div className={classes.outercounter}>
-                  <div onClick={() => handleSubtractOccupants()}>
-                    <Remove className={classes.button} />
+                  <div
+                    onClick={() => handleSubtractOccupants()}
+                    className={classes.button}
+                  >
+                    <Remove />
                   </div>
-                  <div className={classes.innercounter} {...bindOccupants}>
-                    <div className={classes.count}>{rooms}</div>
+                  <div className={classes.innercounter}>
+                    <div className={classes.count} {...bindOccupants}>
+                      {occupants}
+                    </div>
                   </div>
-                  <div onClick={() => handleAddOccupants()}>
-                    <Add className={classes.button} />
+                  <div
+                    onClick={() => handleAddOccupants()}
+                    className={classes.button}
+                  >
+                    <Add />
                   </div>
                 </div>
               </div>

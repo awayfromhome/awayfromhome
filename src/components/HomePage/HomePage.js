@@ -37,7 +37,8 @@ const styles = theme => ({
   sections: {
     display: "flex",
     alignItems: "center",
-    marginLeft: "4%"
+    marginLeft: "4%",
+    margin: "5%"
   },
   paragraph: {
     width: "60%",
