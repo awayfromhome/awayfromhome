@@ -1,4 +1,4 @@
-import { TOGGLE_ACCOUNT_FORM, UPDATE_ACCOUNT_FORM_SIDE, GET_USER_FULFILLED, GET_HOTEL_LIST_FULFILLED } from './constants';
+import { TOGGLE_ACCOUNT_FORM, UPDATE_ACCOUNT_FORM_SIDE, GET_USER_FULFILLED, GET_HOTEL_LIST_FULFILLED, HANDLE_LOGOUT_FULFILLED } from './constants';
 
 export const toggleAccountForm = () => {
    return {
@@ -24,5 +24,12 @@ export const getHotelListFulfilled = hotelList => {
    return {
       type: GET_HOTEL_LIST_FULFILLED,
       payload: hotelList
+   };
+};
+
+export const handleLogoutFulfilled = user => {
+   return {
+      type: HANDLE_LOGOUT_FULFILLED,
+      payload: user
    };
 };

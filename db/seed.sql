@@ -11,7 +11,8 @@ CREATE TABLE users (
   username VARCHAR(64),
   hash VARCHAR(75),
   email VARCHAR(100),
-  number VARCHAR(15)
+  number VARCHAR(15),
+  owner BOOLEAN
 );
 
 CREATE TABLE hotel (
