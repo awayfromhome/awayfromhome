@@ -67,8 +67,8 @@ const styles = theme => ({
     }
   },
   [theme.breakpoints.down('749')]: {
-    bodytext: {
-      flexDirection: 'column'
+    insidePriceDiv: {
+      flexDirection: 'row'
     }
   }
 });

@@ -13,7 +13,7 @@ import DateRange from '@material-ui/icons/DateRange';
 import Add from '@material-ui/icons/Add';
 import Remove from '@material-ui/icons/Remove';
 import Paper from '@material-ui/core/Paper';
-import classNames from 'classnames';
+import Button from '@material-ui/core/Button';
 import { getHotelList } from '../../ducks/async';
 import { withRouter } from 'react-router-dom';
 
@@ -67,8 +67,7 @@ const styles = theme => ({
   },
   calendars: {
     display: 'flex',
-    marginLeft: '2%',
-    marginBottom: '4%'
+    marginLeft: '2%'
   },
   outerButtonDiv: {
     width: '50%',
@@ -155,6 +154,9 @@ const styles = theme => ({
     },
     innercounter: {
       width: '5vw'
+    },
+    calendars: {
+      marginTop: '0.5vh'
     }
   }
 });
@@ -318,13 +320,15 @@ const SearchBar = props => {
               />
             </MuiPickersUtilsProvider>
           </div>
-
-          <button
+          <Button
             className={classes.searchButton}
+            variant='contained'
+            size='large'
+            color='primary'
             onClick={() => handleSubmit()}
           >
-            Search
-          </button>
+            SEARCH
+          </Button>
         </div>
       </div>
     </Paper>
