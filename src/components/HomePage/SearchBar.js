@@ -18,115 +18,133 @@ import { getHotelList } from '../../ducks/async';
 import { withRouter } from 'react-router-dom';
 
 const styles = theme => ({
-   searchContainer: {
-      display: 'flex',
-      alignItems: 'center',
-      width: '100%',
-      marginBottom: '2%'
-   },
-   textField: {
-      width: '75%',
-      marginLeft: '13%',
-      MuiOutlinedInput: {
-         input: {
-            margin: '5%',
-            padding: 5
-         }
+
+  searchContainer: {
+    display: "flex",
+    alignItems: "center",
+    width: "100%",
+    marginBottom: "2%"
+  },
+  textField: {
+    width: "100%",
+    MuiOutlinedInput: {
+      input: {
+        margin: "5%",
+        padding: 5
       }
-   },
-   paper: {
-      marginLeft: '1%',
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'center',
-      alignItems: 'center',
-      boxShadow: 'none',
-      borderBottom: '5px solid #656D79',
-      paddingBottom: 20,
-      paddingTop: 20
-   },
-   buttonLabels: {
-      width: '65%'
-   },
-   button: {
-      height: 30,
-      width: 30,
-      borderRadius: 8,
-      background: theme.palette.accent.main,
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      margin: '3%'
-   },
-   selectors: {
-      display: 'flex',
-      alignItems: 'center',
-      margin: '0 auto',
-      justifyContent: 'center',
-      marginTop: '4%',
-      width: '100%'
-   },
-   rightSearchContainer: {
-      width: '60%',
-      marginRight: '10%',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'space-evenly'
-   },
-   counter: {
-      display: 'flex',
-      alignItems: 'center',
-      width: '37%',
-      margin: '1%'
-   },
-   leftSearchContainer: {
-      width: '60%'
-   },
-   datepicker: {
-      margin: '3%'
-   },
-   calendars: {
-      display: 'flex'
-   },
-   searchButton: {
-      marginLeft: '5%'
-   },
-   [theme.breakpoints.down('749')]: {
-      searchContainer: {
-         flexDirection: 'column'
-      },
-      textField: {
-         width: '80%',
-         marginLeft: '10%'
-      },
-      leftSearchContainer: {
-         width: 'auto'
-      },
-      counter: {
-         width: '100%'
-      },
-      counter: {
-         margin: '1%',
-         width: '100%'
-      },
-      rightSearchContainer: {
-         marginTop: '5%',
-         marginRight: 0,
-         width: '100%',
-         flexDirection: 'column'
-      },
-      calendars: {
-         width: '90%'
-      },
-      selectors: {
-         width: '80%',
-         marginTop: '5%'
-      },
-      searchButton: {
-         marginTop: '5%'
-      }
-   },
-   ['@media (min-width: 1203px) and (max-width: 1610px)']: {}
+    }
+  },
+  paper: {
+    marginLeft: "1%",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    boxShadow: "none",
+    borderBottom: "5px solid #656D79",
+    paddingBottom: 20,
+    paddingTop: 20
+  },
+  selectors: {
+    display: "flex",
+    alignItems: "center",
+    margin: "0 auto",
+    justifyContent: "center",
+    marginTop: "4%",
+    width: "100%"
+  },
+  rightSearchContainer: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "space-evenly"
+  },
+  leftSearchContainer: {
+    width: "60%"
+  },
+  datepicker: {
+    margin: "3%"
+  },
+  calendars: {
+    display: "flex",
+    marginLeft: "2%"
+  },
+  outerButtonDiv: {
+    width: "50%",
+    textAlign: "center"
+  },
+  outercounter: {
+    borderRadius: "25px 25px 25px 25px",
+    border: "1px solid black",
+    width: "80%",
+    height: 50,
+    background: "#4C525A",
+    display: "flex",
+    alignItems: "center",
+    margin: "auto"
+  },
+  innercounter: {
+    borderRadius: "50%",
+    border: "1px solid black",
+    width: 50,
+    height: 50,
+    margin: "auto",
+    background: "#fff",
+    textAlign: "center",
+    fontSize: 30
+  },
+  button: {
+    margin: "auto",
+    color: "#fff",
+    padding: "6%"
+  },
+  searchButton: {
+    margin: "3%",
+    marginTop: "10%"
+  },
+  count: {
+    marginTop: "25%",
+    fontSize: 21
+  },
+  [theme.breakpoints.down("749")]: {
+    searchContainer: {
+      flexDirection: "column"
+    },
+    textField: {
+      width: "80%",
+      marginLeft: "10%"
+    },
+    leftSearchContainer: {
+      width: "100%"
+    },
+    rightSearchContainer: {
+      marginTop: "5%",
+      marginRight: 0,
+      width: "100%",
+      flexDirection: "column"
+    },
+    calendars: {
+      width: "90%"
+    },
+    button: {
+      margin: "auto"
+    }
+  },
+  ["@media (min-width: 750px) and (max-width: 1200px)"]: {
+    searchContainer: {
+      width: "90%"
+    },
+    outercounter: {
+      width: "auto"
+    },
+    outerButtonDiv: {
+      marginRight: "3%"
+    },
+    count: {
+      marginTop: "30%"
+    }
+  }
+
 });
 
 const SearchBar = props => {
@@ -182,78 +200,88 @@ const SearchBar = props => {
                      {...bindDestination}
                   />
 
-                  <div className={classes.selectors}>
-                     <div className={classNames(classes.occupantDiv, classes.counter)}>
-                        <div className={classes.button} onClick={() => handleSubtractOccupants()}>
-                           <Remove />
-                        </div>
-                        <TextField
-                           variant="outlined"
-                           label="Occupants"
-                           InputLabelProps={{
-                              shrink: true
-                           }}
-                           {...bindOccupants}
-                        />
-                        <div className={classes.button} onClick={() => handleAddOccupants()}>
-                           <Add />
-                        </div>
-                     </div>
-                     <div className={classNames(classes.RoomDiv, classes.counter)}>
-                        <div className={classes.button} onClick={() => handleSubtractRooms()}>
-                           <Remove />
-                        </div>
-                        <TextField
-                           variant="outlined"
-                           label="Rooms"
-                           InputLabelProps={{
-                              shrink: true
-                           }}
-                           {...bindRooms}
-                        />
-                        <div className={classes.button} onClick={() => handleAddRooms()}>
-                           <Add />
-                        </div>
-                     </div>
+
+            <div className={classes.selectors}>
+              <div className={classes.outerButtonDiv}>
+                Rooms
+                <div className={classes.outercounter}>
+                  <div
+                    onClick={() => handleSubtractRooms()}
+                    className={classes.button}
+                  >
+                    <Remove />
                   </div>
-               </div>
-               <div className={classes.rightSearchContainer}>
-                  <div className={classes.calendars}>
-                     <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                        <DatePicker
-                           className={classes.datepicker}
-                           margin="normal"
-                           label="Check-In"
-                           {...bindCheckIn}
-                           variant="outlined"
-                           InputProps={{
-                              endAdornment: (
-                                 <InputAdornment position="end">
-                                    <DateRange />
-                                 </InputAdornment>
-                              )
-                           }}
-                        />
-                        <DatePicker
-                           className={classes.datepicker}
-                           margin="normal"
-                           label="Check-Out"
-                           {...bindCheckOut}
-                           variant="outlined"
-                           InputProps={{
-                              endAdornment: (
-                                 <InputAdornment position="end">
-                                    <DateRange />
-                                 </InputAdornment>
-                              )
-                           }}
-                        />
-                     </MuiPickersUtilsProvider>
+                  <div className={classes.innercounter}>
+                    <div className={classes.count} {...bindRooms}>
+                      {rooms}
+                    </div>
                   </div>
-                  <button className={classes.searchButton} onClick={() => handleSubmit()}>
-                     Search
-                  </button>
-               </div>
+                  <div
+                    onClick={() => handleAddRooms()}
+                    className={classes.button}
+                  >
+                    <Add />
+                  </div>
+                </div>
+              </div>
+
+              <div className={classes.outerButtonDiv}>
+                Occupants
+                <div className={classes.outercounter}>
+                  <div
+                    onClick={() => handleSubtractOccupants()}
+                    className={classes.button}
+                  >
+                    <Remove />
+                  </div>
+                  <div className={classes.innercounter}>
+                    <div className={classes.count} {...bindOccupants}>
+                      {occupants}
+                    </div>
+                  </div>
+                  <div
+                    onClick={() => handleAddOccupants()}
+                    className={classes.button}
+                  >
+                    <Add />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className={classes.rightSearchContainer}>
+            <div className={classes.calendars}>
+              <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                <DatePicker
+                  className={classes.datepicker}
+                  margin="normal"
+                  label="Check-In"
+                  {...bindCheckIn}
+                  variant="outlined"
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <DateRange />
+                      </InputAdornment>
+                    )
+                  }}
+                />
+                <DatePicker
+                  className={classes.datepicker}
+                  margin="normal"
+                  label="Check-Out"
+                  {...bindCheckOut}
+                  variant="outlined"
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <DateRange />
+                      </InputAdornment>
+                    )
+                  }}
+                />
+              </MuiPickersUtilsProvider>
             </div>
          </Paper>
       </div>

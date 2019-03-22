@@ -1,10 +1,9 @@
-import React from 'react';
-import Card from './Card';
-import { withStyles } from '@material-ui/core/styles';
-import { withRouter } from 'react-router-dom';
+import React from "react";
+import Card from "./Card";
+import { withStyles } from "@material-ui/core/styles";
+import { withRouter } from "react-router-dom";
 
 const styles = theme => ({
-
   hotelInfo: {
     width: "50%",
     margin: "auto",
@@ -42,7 +41,8 @@ const styles = theme => ({
   },
   amenitiesList: {
     width: "50%",
-    margin: "auto"
+    margin: "auto",
+    height: "100%"
   },
   eachAmenities: {
     listStyleType: "square"
@@ -59,7 +59,11 @@ const styles = theme => ({
     amenities: {
       paddingRight: 0,
       height: "100%",
-      width: "100%"
+      width: "100%",
+      fontSize: 12,
+      lineHeight: "25px",
+      marginLeft: "10%",
+      marginTop: "30%"
     }
   }
 });
@@ -80,14 +84,10 @@ const HotelInfo = props => {
       </div>
       <div className={classes.bodytext}>
         <div className={classes.hotelInfo}>
-          <h4 className={classes.eachAmenities}>{info.address}</h4>
-          <h4 className={classes.eachAmenities}>
-            Reservations: {info.reservation_num}
-          </h4>
-          <h4 className={classes.eachAmenities}>
-            Front Desk: {info.front_desk_num}
-          </h4>
-          <h4 className={classes.eachAmenities}>Distance</h4>
+          <h4>{info.address}</h4>
+          <h4>Reservations: {info.reservation_num}</h4>
+          <h4>Front Desk: {info.front_desk_num}</h4>
+          <h4>Distance</h4>
         </div>
         <div className={classes.amenitiesList}>
           <ul className={classes.amenities}>
