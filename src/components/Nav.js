@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import Login from './Login';
 import { handleAccountForm, getUser, handleLogout } from '../ducks/async';
+import classNames from 'classnames';
 
 const styles = theme => ({
   navContainer: {
@@ -63,34 +64,33 @@ const styles = theme => ({
       display: 'none'
     },
     entireMobileMenu: {
-      height: '13vh',
+      height: '12vh',
       background: theme.palette.tertiary.main,
-      width: '100%'
+      width: '100%',
+      display: 'flex',
+      alignItems: 'center'
+    },
+    imgContainer: {
+      height: '12vh',
+      display: 'flex',
+      alignItems: 'center',
+      width: '25%'
     },
     hiddenMenus: {
       display: 'flex',
-      zIndex: 4,
-      flexDirection: 'column'
+      alignItems: 'center',
+      width: '100%'
     },
     hamburgerMenu: {
       display: 'flex',
-      zIndex: 10,
-      width: 50,
-      height: 50,
-      paddingTop: '2.5vh',
-      margin: 'auto',
-      marginTop: 'auto'
+      width: '100%',
+      height: '12vh'
     },
     hiddenMenutags: {
-      zIndex: 4,
-      padding: '5%',
-      paddingLeft: '10%',
-      background: '#8A95A5',
-      borderBottom: '1px solid black'
-    },
-    imgContainer: {
-      width: '30vw',
-      height: '100%'
+      height: '12vh',
+      lineHeight: '12vh',
+      width: '25%',
+      textAlign: 'center'
     }
   },
   ['@media (min-width: 750px) and (max-width: 1200px)']: {
@@ -109,57 +109,79 @@ const Nav = props => {
 
   return (
     <div className={classes.entireMobileMenu}>
-      <div className={classes.entireMobileMenu}>
-        <div className={classes.imgContainer}>
+      <div className={classNames(classes.imgContainer)}>
+        {hiddenMenu ? (
           <img
-            src='https://cdn4.iconfinder.com/data/icons/circles-1/32/364-01-512.png'
+            src='https://cdn4.iconfinder.com/data/icons/basic-user-interface-2/512/User_Interface-03-512.png'
             onClick={() => setHiddenMenu(!hiddenMenu)}
-            className={classes.hamburgerMenu}
+            className={
+              hiddenMenu
+                ? classes.hamburgerMenu
+                : classNames(
+                    classes.hamburgerMenu,
+                    'animated fadeInUp slow delay-5s'
+                  )
+            }
           />
-        </div>
-        {hiddenMenu ? null : (
-          <div className={classes.hiddenMenus}>
-            <a
-              className={classes.hiddenMenutags}
-              onClick={() => props.handleAccountForm('Login')}
-            >
-              Sign In
-            </a>
-            <a
-              className={classes.hiddenMenutags}
-              onClick={() => props.handleAccountForm('Register')}
-            >
-              Sign Up
-            </a>
-            <a className={classes.hiddenMenutags}>Locations</a>
-            <a className={classes.hiddenMenutags}>Offers </a>
-            {props.user.username ? (
-              <a
-                className={classes.hiddenMenutags}
-                onClick={() => props.history.push('/Profile')}
-              >
-                Profile
-              </a>
-            ) : null}
-            {props.user.owner ? (
-              <a
-                className={classes.hiddenMenutags}
-                onClick={() => props.history.push('/Owner')}
-              >
-                Owner
-              </a>
-            ) : null}
-            {props.user.username ? (
-              <a
-                className={classes.hiddenMenutags}
-                onClick={() => props.handleLogout()}
-              >
-                Logout
-              </a>
-            ) : null}
-          </div>
+        ) : (
+          <img
+            src='https://cdn0.iconfinder.com/data/icons/online-bank-service/100/025_-_arrow_navigation_menu-512.png'
+            className={classNames(
+              classes.hamburgerMenu,
+              'animated fadeInDown slow'
+            )}
+            onClick={() => setHiddenMenu(!hiddenMenu)}
+          />
         )}
       </div>
+      {hiddenMenu ? null : (
+        <div
+          className={classNames(
+            classes.hiddenMenus,
+            'animated fadeInDown slow'
+          )}
+        >
+          <a
+            className={classes.hiddenMenutags}
+            onClick={() => props.handleAccountForm('Login')}
+          >
+            Sign In
+          </a>
+          <a
+            className={classes.hiddenMenutags}
+            onClick={() => props.handleAccountForm('Register')}
+          >
+            Sign Up
+          </a>
+          <a className={classes.hiddenMenutags}>Locations</a>
+          <a className={classes.hiddenMenutags}>Offers </a>
+          {props.user.username ? (
+            <a
+              className={classes.hiddenMenutags}
+              onClick={() => props.history.push('/Profile')}
+            >
+              Profile
+            </a>
+          ) : null}
+          {props.user.owner ? (
+            <a
+              className={classes.hiddenMenutags}
+              onClick={() => props.history.push('/Owner')}
+            >
+              Owner
+            </a>
+          ) : null}
+          {props.user.username ? (
+            <a
+              className={classes.hiddenMenutags}
+              onClick={() => props.handleLogout()}
+            >
+              Logout
+            </a>
+          ) : null}
+        </div>
+      )}
+
       <div className={classes.navContainer}>
         <div className={classes.logo} onClick={() => props.history.push('/')}>
           AFM

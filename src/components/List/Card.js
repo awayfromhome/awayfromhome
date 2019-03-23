@@ -10,7 +10,8 @@ const styles = theme => ({
     overflow: 'hidden',
     lineHeight: '3vh',
     borderRadius: 8,
-    marginTop: '4vh'
+    marginTop: '4vh',
+    border: '1px solid black'
   },
   img: {
     width: '25%'
@@ -84,7 +85,9 @@ const styles = theme => ({
     root: {
       width: '100%',
       flexDirection: 'column',
-      height: '65vh'
+      height: '65vh',
+      borderTop: '1px solid black',
+      borderBottom: '1px solid black'
     },
     img: {
       width: 'auto',
