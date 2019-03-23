@@ -1,8 +1,8 @@
-DROP TABLE users; 
 DROP TABLE reservation;
 DROP TABLE room_type;
 DROP TABLE hotel; 
 DROP TABLE transactions;
+DROP TABLE users; 
 
 SET timezone = 'America/Chicago';
 
@@ -12,7 +12,12 @@ CREATE TABLE users (
   hash VARCHAR(75),
   email VARCHAR(100),
   number VARCHAR(15),
-  owner BOOLEAN
+  owner BOOLEAN,
+  address VARCHAR(128),
+  city VARCHAR(50),
+  postalcode INTEGER,
+  country VARCHAR(200),
+  name VARCHAR(100)
 );
 
 CREATE TABLE hotel (
@@ -22,7 +27,8 @@ CREATE TABLE hotel (
   url VARCHAR(2048),
   reservation_num VARCHAR(20),
   front_desk_num VARCHAR(20),
-  amenities TEXT []
+  amenities TEXT [],
+  owner_id INTEGER
 );
 
 CREATE TABLE room_type (
@@ -44,11 +50,11 @@ CREATE TABLE transactions (
   reservation_length INTEGER
 );
 
-INSERT INTO hotel (name, address, url, reservation_num, front_desk_num, amenities)
-VALUES ('Holiday Inn', '100 Street Dr', 'https://carepharmaceuticals.com.au/wp-content/uploads/sites/19/2018/02/placeholder-600x400.png', '5127798567', '4577899856', ARRAY ['Wireless Internet', 'Buisness Center', 'Airport Shuttle', 'Area Shuttle']),
-('Hotel 1', '200 Street Dr', 'https://carepharmaceuticals.com.au/wp-content/uploads/sites/19/2018/02/placeholder-600x400.png', '5127798567', '4577899856', ARRAY ['Wireless Internet', 'Buisness Center', 'Health/Fitness Center', 'Free Breakfast']),
-('Hotel 2', '300 Street Dr', 'https://carepharmaceuticals.com.au/wp-content/uploads/sites/19/2018/02/placeholder-600x400.png', '5127798567', '4577899856', ARRAY ['Wireless Internet', 'Kids Eat Free', 'Buisness Center', 'Area Shuttle']),
-('Hotel 3', '400 Street Dr', 'https://carepharmaceuticals.com.au/wp-content/uploads/sites/19/2018/02/placeholder-600x400.png', '5127798567', '4577899856', ARRAY ['Health/Fitness Center', 'Buisness Center', 'Airport Shuttle', 'Area Shuttle']);
+INSERT INTO hotel (owner_id, name, address, url, reservation_num, front_desk_num, amenities)
+VALUES (1, 'Holiday Inn', '100 Street Dr', 'https://carepharmaceuticals.com.au/wp-content/uploads/sites/19/2018/02/placeholder-600x400.png', '5127798567', '4577899856', ARRAY ['Wireless Internet', 'Buisness Center', 'Airport Shuttle', 'Area Shuttle']),
+(1, 'Hotel 1', '200 Street Dr', 'https://carepharmaceuticals.com.au/wp-content/uploads/sites/19/2018/02/placeholder-600x400.png', '5127798567', '4577899856', ARRAY ['Wireless Internet', 'Buisness Center', 'Health/Fitness Center', 'Free Breakfast']),
+(2, 'Hotel 2', '300 Street Dr', 'https://carepharmaceuticals.com.au/wp-content/uploads/sites/19/2018/02/placeholder-600x400.png', '5127798567', '4577899856', ARRAY ['Wireless Internet', 'Kids Eat Free', 'Buisness Center', 'Area Shuttle']),
+(3, 'Hotel 3', '400 Street Dr', 'https://carepharmaceuticals.com.au/wp-content/uploads/sites/19/2018/02/placeholder-600x400.png', '5127798567', '4577899856', ARRAY ['Health/Fitness Center', 'Buisness Center', 'Airport Shuttle', 'Area Shuttle']);
 
 INSERT INTO room_type (number_of_rooms, name, hotel_id)
 VALUES (5, 'Standard', 1),
