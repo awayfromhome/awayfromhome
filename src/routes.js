@@ -6,7 +6,7 @@ import RoomList from './components/List/RoomList';
 import Room from './components/Room/Room';
 import Checkout from './components/Checkout/Checkout';
 import Profile from './components/Profile/Profile';
-import Owner from './components/Profile/Owner';
+import Owner from './components/Profile/Owner/Owner';
 
 export default (
    <Switch>

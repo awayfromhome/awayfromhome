@@ -1,0 +1,1 @@
+SELECT * FROM hotel WHERE owner_id = $1
