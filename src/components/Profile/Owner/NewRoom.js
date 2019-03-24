@@ -16,11 +16,19 @@ const useStyles = makeStyles(theme => ({
 
 const NewRoom = props => {
   const classes = useStyles();
-  const { value: count, setValue: setCount, reset: resetCount, bind: bindCount } = useInput(0);
-  const { value: type, setValue: setType, reset: resetType, bind: bindType } = useInput('');
-  const { value: name, setValue: setName, reset: resetName, bind: bindName } = useInput('');
-  const { value: hotel, setValue: setHotel, reset: resetHotel, bind: bindHotel } = useInput('');
-  const { value: description, setValue: setDesription, reset: resetDescription, bind: bindDescription } = useInput('');
+  const { value: count, reset: resetCount, bind: bindCount } = useInput(0);
+  const { value: type, reset: resetType, bind: bindType } = useInput('');
+  const { value: name, reset: resetName, bind: bindName } = useInput('');
+  const { value: hotel, reset: resetHotel, bind: bindHotel } = useInput('');
+  const { value: description, reset: resetDescription, bind: bindDescription } = useInput('');
+
+  const reset = () => {
+    resetCount();
+    resetType();
+    resetName();
+    resetHotel();
+    resetDescription();
+  };
 
   return (
     <div className={classes.root}>
