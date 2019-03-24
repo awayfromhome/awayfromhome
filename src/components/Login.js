@@ -7,7 +7,7 @@ import { handleAccountForm, getUser } from '../ducks/async';
 import { updateAccountFormSide } from '../ducks/sync';
 import NumberFormat from 'react-number-format';
 
-import { withStyles } from '@material-ui/core';
+import { makeStyles } from '@material-ui/styles';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
@@ -16,7 +16,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   button: {
     color: 'white',
     fontSize: '.8em'
@@ -25,7 +25,7 @@ const styles = theme => ({
     margin: '0',
     padding: '0'
   }
-});
+}));
 
 const Login = props => {
   const { value: username, reset: resetUsername, bind: bindUsername } = useInput('');
@@ -244,5 +244,5 @@ export default withRouter(
   connect(
     mapStateToProps,
     { handleAccountForm, updateAccountFormSide, getUser }
-  )(withStyles(styles)(Login))
+  )(Login)
 );

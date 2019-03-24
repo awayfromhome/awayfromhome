@@ -1,7 +1,7 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     width: '65%',
@@ -104,10 +104,10 @@ const styles = theme => ({
       width: '90%'
     }
   }
-});
+}));
 
 const Card = props => {
-  const { classes } = props;
+  const classes = useStyles();
   return (
     <div className={classes.root}>
       <img src={props.img} alt='hotel' className={classes.img} />
@@ -122,10 +122,7 @@ const Card = props => {
             </div>
           </div>
           <div className={classes.selectBtnDiv}>
-            <button
-              className={classes.selectBtn}
-              onClick={() => props.onClick()}
-            >
+            <button className={classes.selectBtn} onClick={() => props.onClick()}>
               {props.btnName}
             </button>
           </div>
@@ -135,4 +132,4 @@ const Card = props => {
   );
 };
 
-export default withStyles(styles)(Card);
+export default Card;
