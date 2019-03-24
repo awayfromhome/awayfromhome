@@ -1,5 +1,5 @@
 DROP TABLE reservation;
-DROP TABLE room_type;
+DROP TABLE room;
 DROP TABLE hotel; 
 DROP TABLE transactions;
 DROP TABLE users; 
@@ -31,17 +31,19 @@ CREATE TABLE hotel (
   owner_id INTEGER
 );
 
-CREATE TABLE room_type (
+CREATE TABLE room (
 	room_id SERIAL PRIMARY KEY,
 	number_of_rooms INTEGER,
 	name VARCHAR(64),
+  room_type VARCHAR(25),
+  description VARCHAR(512),
 	hotel_id INTEGER REFERENCES hotel(hotel_id)
 );
 
 CREATE TABLE reservation (
 	reservation_id SERIAL PRIMARY KEY,
 	date TIMESTAMPTZ,
-	room_id INTEGER REFERENCES room_type(room_id)
+	room_id INTEGER REFERENCES room(room_id)
 );
 
 CREATE TABLE transactions (
@@ -56,15 +58,15 @@ VALUES (1, 'Holiday Inn', '100 Street Dr', 'https://carepharmaceuticals.com.au/w
 (2, 'Hotel 2', '300 Street Dr', 'https://carepharmaceuticals.com.au/wp-content/uploads/sites/19/2018/02/placeholder-600x400.png', '5127798567', '4577899856', ARRAY ['Wireless Internet', 'Kids Eat Free', 'Buisness Center', 'Area Shuttle']),
 (3, 'Hotel 3', '400 Street Dr', 'https://carepharmaceuticals.com.au/wp-content/uploads/sites/19/2018/02/placeholder-600x400.png', '5127798567', '4577899856', ARRAY ['Health/Fitness Center', 'Buisness Center', 'Airport Shuttle', 'Area Shuttle']);
 
-INSERT INTO room_type (number_of_rooms, name, hotel_id)
-VALUES (5, 'Standard', 1),
-    (5, 'Standard', 2),
-    (5, 'Standard', 3),
-    (5, 'Standard', 4),
-    (5, 'Deluxe', 1),
-    (5, 'Deluxe', 2),
-    (5, 'Deluxe', 3),
-    (5, 'Deluxe', 4);
+INSERT INTO room (number_of_rooms, name, room_type, description, hotel_id)
+VALUES (5, '2 Queen Beds', 'Standard', 'This is an absolutely amazing room, 2 queens stayed in this very room 200 years ago.', 1),
+    (5, '1 King bed', 'Standard', 'What a terrible room, I heard the mad king stayed here and there is wildfire hidden beneath', 2),
+    (5, '2 Queen Beds', 'Standard', 'This is an absolutely amazing room, 2 queens stayed in this very room 200 years ago.', 3),
+    (5, '1 King bed','Standard', 'What a terrible room, I heard the mad king stayed here and there is wildfire hidden beneath', 4),
+    (5, '2 Queen Beds', 'Deluxe', 'This is an absolutely amazing room, 2 queens stayed in this very room 200 years ago.', 1),
+    (5, '1 King bed', 'Deluxe', 'What a terrible room, I heard the mad king stayed here and there is wildfire hidden beneath', 2),
+    (5, '2 Queen Beds', 'Deluxe', 'This is an absolutely amazing room, 2 queens stayed in this very room 200 years ago.', 3),
+    (5, '1 King bed','Deluxe', 'What a terrible room, I heard the mad king stayed here and there is wildfire hidden beneath', 4);
 
 INSERT INTO reservation (date, room_id)
 VALUES('2019-08-04', 1),
