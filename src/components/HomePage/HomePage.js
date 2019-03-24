@@ -64,7 +64,7 @@ const styles = theme => ({
     imgContainer: {
       width: '100%',
       height: '40vh',
-      marginTop: '10vh'
+      marginTop: '12vh'
     },
     sections: {
       flexDirection: 'column'

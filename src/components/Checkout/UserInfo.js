@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
 import TextField from '@material-ui/core/TextField';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Checkbox from '@material-ui/core/Checkbox';
-import CreditInfo from './CreditInfo';
-import { Elements, StripeProvider } from 'react-stripe-elements';
+import { CardElement, injectStripe } from 'react-stripe-elements';
 import { useInput } from '../../hooks/input-hook';
+import axios from 'axios';
+import { setUser } from '../../ducks/sync';
+import { withRouter } from 'react-router-dom';
 
 const styles = theme => ({
    background: {
@@ -26,19 +29,77 @@ const styles = theme => ({
    },
    check: {
       width: '5vw'
+   },
+   input: {
+      padding: '10px',
+      border: '1px solid grey',
+      borderRadius: '5px'
+   },
+   submit: {
+      height: '5vh',
+      marginTop: '1vh',
+      fontSize: '1.5em',
+      background: theme.palette.accent.main,
+      border: 'none',
+      borderRadius: '5px'
+   },
+   title: {
+      fontSize: '1.5em',
+      marginBottom: '1vh'
    }
 });
 
 const UserInfo = props => {
-   const { value: firstName, reset: resetFirstName, bind: bindFirstName } = useInput('');
-   const { value: lastName, reset: resetLastName, bind: bindLastName } = useInput('');
+   const { value: name, reset: resetName, bind: bindName } = useInput('');
    const { value: number, reset: resetNumber, bind: bindNumber } = useInput('');
    const { value: email, reset: resetEmail, bind: bindEmail } = useInput('');
    const { value: address, reset: resetAddress, bind: bindAddress } = useInput('');
    const { value: city, reset: resetCity, bind: bindCity } = useInput('');
    const { value: postalCode, reset: resetPostalCode, bind: bindPostalCode } = useInput('');
    const { value: country, reset: resetCountry, bind: bindCountry } = useInput('');
+   const { value: username, reset: resetUsername, bind: bindUsername } = useInput('');
+   const { value: password, reset: resetPassword, bind: bindPassword } = useInput('');
    const [check, setCheck] = useState(false);
+
+   const reset = () => {
+      resetName();
+      resetNumber();
+      resetEmail();
+      resetAddress();
+      resetCity();
+      resetPostalCode();
+      resetCountry();
+      resetUsername();
+      resetPassword();
+   };
+
+   const submit = async ev => {
+      let { token } = await props.stripe.createToken({ name: name });
+      let response = await fetch('/charge', {
+         method: 'POST',
+         headers: { 'Content-Type': 'text/plain' },
+         body: token.id
+      });
+      if (response.ok) console.log('Purchase Complete!');
+   };
+
+   const register = async () => {
+      await submit();
+      const user = await axios.post('/auth/extendedRegister', {
+         name,
+         number,
+         email,
+         address,
+         city,
+         postalCode,
+         country,
+         username,
+         password,
+         owner: false
+      });
+      setUser(user.data);
+      // props.history.push('/thanks')
+   };
 
    const { classes } = props;
    return (
@@ -49,10 +110,8 @@ const UserInfo = props => {
                Already an IHG Rewards Club member? Sign in to earn your points and save time with automatic form completion.
             </p>
             <p>* Indicates a required input field</p>
-            <div>
-               <TextField label="First Name*" margin="normal" variant="outlined" {...bindFirstName} />
-               <TextField label="Last Name*" margin="normal" variant="outlined" {...bindLastName} />
-            </div>
+
+            <TextField label="Name*" margin="normal" variant="outlined" {...bindName} />
             <TextField label="Phone Number*" margin="normal" variant="outlined" {...bindNumber} />
             <TextField label="Email Address*" margin="normal" variant="outlined" {...bindEmail} />
             <TextField label="Address*" margin="normal" variant="outlined" {...bindAddress} />
@@ -62,15 +121,51 @@ const UserInfo = props => {
             <div>
                <h1>Register a new User?</h1>
                <Checkbox checked={check} onChange={() => setCheck(!check)} color="primary" className={classes.check} />
+               {check ? (
+                  <div>
+                     <TextField label="Username*" margin="normal" variant="outlined" {...bindUsername} />
+                     <TextField label="Password*" margin="normal" variant="outlined" {...bindPassword} />
+                  </div>
+               ) : null}
             </div>
-            <StripeProvider apiKey="pk_test_g0IpuPbZCFN2PaAxLnEfDPng">
-               <Elements>
-                  <CreditInfo />
-               </Elements>
-            </StripeProvider>
+            <p className={classes.title}>Card Information</p>
+
+            <CardElement
+               className={classes.input}
+               style={{
+                  base: {
+                     lineHeight: '45px',
+                     fontWeight: 300,
+                     fontSize: '20px'
+                  }
+               }}
+            />
+
+            {check ? (
+               <button className={classes.submit} onClick={register}>
+                  Checkout
+               </button>
+            ) : (
+               <button className={classes.submit} onClick={submit}>
+                  Checkout as Guest
+               </button>
+            )}
          </div>
       </Paper>
    );
 };
 
-export default withStyles(styles)(UserInfo);
+const mapStateToProps = state => {
+   return {
+      user: state.user
+   };
+};
+
+export default injectStripe(
+   withRouter(
+      connect(
+         mapStateToProps,
+         { setUser }
+      )(withStyles(styles)(UserInfo))
+   )
+);

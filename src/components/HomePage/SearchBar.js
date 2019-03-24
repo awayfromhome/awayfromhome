@@ -1,11 +1,10 @@
 import React from 'react';
-import axios from 'axios';
-import { useInput } from '../../hooks/input-hook';
 import 'date-fns';
+import { useInput } from '../../hooks/input-hook';
 import { addDays } from 'date-fns';
 import { connect } from 'react-redux';
 import TextField from '@material-ui/core/TextField';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import DateFnsUtils from '@date-io/date-fns';
 import { MuiPickersUtilsProvider, DatePicker } from 'material-ui-pickers';
 import InputAdornment from '@material-ui/core/InputAdornment';
@@ -17,7 +16,7 @@ import Button from '@material-ui/core/Button';
 import { getHotelList } from '../../ducks/async';
 import { withRouter } from 'react-router-dom';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   searchContainer: {
     display: 'flex',
     alignItems: 'center',
@@ -138,7 +137,7 @@ const styles = theme => ({
       width: '13vw'
     }
   },
-  ['@media (min-width: 750px) and (max-width: 1200px)']: {
+  '@media (min-width: 750px) and (max-width: 1200px)': {
     paper: {
       width: '90%'
     },
@@ -159,40 +158,23 @@ const styles = theme => ({
       marginTop: '0.5vh'
     }
   }
-});
+}));
 
 const SearchBar = props => {
-  const { classes } = props;
-  const {
-    value: destination,
-    setValue: setDestination,
-    bind: bindDestination,
-    reset: resetDestination
-  } = useInput('Dallas');
-  const {
-    value: occupants,
-    setValue: setOccupants,
-    bind: bindOccupants,
-    reset: resetOccupants
-  } = useInput(0);
-  const {
-    value: rooms,
-    setValue: setRooms,
-    bind: bindRooms,
-    reset: resetRooms
-  } = useInput(0);
-  const {
-    value: checkIn,
-    set: setCheckIn,
-    bind: bindCheckIn,
-    reset: resetCheckIn
-  } = useInput(new Date());
-  const {
-    value: checkOut,
-    set: setCheckOut,
-    bind: bindCheckOut,
-    reset: resetCheckOut
-  } = useInput(addDays(new Date(), 1));
+  const classes = useStyles();
+  const { value: destination, bind: bindDestination, reset: resetDestination } = useInput('Dallas');
+  const { value: occupants, setValue: setOccupants, bind: bindOccupants, reset: resetOccupants } = useInput(0);
+  const { value: rooms, setValue: setRooms, bind: bindRooms, reset: resetRooms } = useInput(0);
+  const { value: checkIn, bind: bindCheckIn, reset: resetCheckIn } = useInput(new Date());
+  const { value: checkOut, bind: bindCheckOut, reset: resetCheckOut } = useInput(addDays(new Date(), 1));
+
+  const reset = () => {
+    resetDestination();
+    resetOccupants();
+    resetCheckIn();
+    resetCheckOut();
+    resetRooms();
+  };
 
   const handleSubtractOccupants = () => {
     if (occupants <= 0) {
@@ -220,6 +202,7 @@ const SearchBar = props => {
 
   const handleSubmit = () => {
     props.getHotelList({ destination, occupants, rooms, checkIn, checkOut });
+    reset();
     props.history.push('/Hotellist');
   };
 
@@ -242,10 +225,7 @@ const SearchBar = props => {
             <div className={classes.outerButtonDiv}>
               Rooms
               <div className={classes.outercounter}>
-                <div
-                  onClick={() => handleSubtractRooms()}
-                  className={classes.Leftbutton}
-                >
+                <div onClick={() => handleSubtractRooms()} className={classes.Leftbutton}>
                   <Remove />
                 </div>
                 <div className={classes.innercounter}>
@@ -253,10 +233,7 @@ const SearchBar = props => {
                     {rooms}
                   </div>
                 </div>
-                <div
-                  onClick={() => handleAddRooms()}
-                  className={classes.Rightbutton}
-                >
+                <div onClick={() => handleAddRooms()} className={classes.Rightbutton}>
                   <Add />
                 </div>
               </div>
@@ -265,10 +242,7 @@ const SearchBar = props => {
             <div className={classes.outerButtonDiv}>
               Occupants
               <div className={classes.outercounter}>
-                <div
-                  onClick={() => handleSubtractOccupants()}
-                  className={classes.Leftbutton}
-                >
+                <div onClick={() => handleSubtractOccupants()} className={classes.Leftbutton}>
                   <Remove />
                 </div>
                 <div className={classes.innercounter}>
@@ -276,10 +250,7 @@ const SearchBar = props => {
                     {occupants}
                   </div>
                 </div>
-                <div
-                  onClick={() => handleAddOccupants()}
-                  className={classes.Rightbutton}
-                >
+                <div onClick={() => handleAddOccupants()} className={classes.Rightbutton}>
                   <Add />
                 </div>
               </div>
@@ -320,13 +291,7 @@ const SearchBar = props => {
               />
             </MuiPickersUtilsProvider>
           </div>
-          <Button
-            className={classes.searchButton}
-            variant='contained'
-            size='large'
-            color='primary'
-            onClick={() => handleSubmit()}
-          >
+          <Button className={classes.searchButton} variant='contained' size='large' color='primary' onClick={() => handleSubmit()}>
             SEARCH
           </Button>
         </div>
@@ -341,5 +306,5 @@ export default withRouter(
   connect(
     mapStateToProps,
     { getHotelList }
-  )(withStyles(styles)(SearchBar))
+  )(SearchBar)
 );
