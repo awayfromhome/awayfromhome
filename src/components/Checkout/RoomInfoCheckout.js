@@ -1,10 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/styles';
-import ExpansionPanel from '@material-ui/core/ExpansionPanel';
-import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-import Typography from '@material-ui/core/Typography';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import CheckoutInfo from './CheckoutInfo';
 
 const useStyles = makeStyles(theme => ({
@@ -14,13 +9,16 @@ const useStyles = makeStyles(theme => ({
     background: '#f4f2ed',
     width: '61vw',
     height: '18vh',
-    margin: 'auto',
-    fontFamily: theme.typography.fontFamily[1]
+    fontFamily: theme.typography.fontFamily[1],
+    margin: '2%'
   },
   roomInfoCheckout: {
     padding: '20px 40px 30px 30px',
     width: '30vw',
-    fontSize: '18px'
+    fontSize: '18px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between'
   },
   priceInfoCheckout: {
     borderTop: '1px solid black',
@@ -47,9 +45,27 @@ const useStyles = makeStyles(theme => ({
     fontWeight: 600,
     display: 'flex'
   },
+  openArrow: {
+    display: 'none'
+  },
+  closeArrow: {
+    display: 'none'
+  },
+  ['@media (min-width: 750px) and (max-width: 1200px)']: {
+    container: {
+      height: 'auto'
+    },
+    totalPrice: {
+      width: '50vw'
+    },
+    roomInfoCheckout: {
+      width: '50vw'
+    }
+  },
   [theme.breakpoints.down('749')]: {
     container: {
-      width: '100%'
+      width: '100%',
+      height: '100%'
     },
     roomInfoCheckout: {
       width: 'auto'
@@ -61,21 +77,50 @@ const useStyles = makeStyles(theme => ({
     },
     priceInfoCheckout: {
       width: '100%',
-      paddingLeft: '30px'
+      padding: '30px'
     },
     price: {
       width: '40%'
+    },
+    closeArrow: {
+      display: 'block',
+      width: '70px',
+      transform: 'rotate(270deg)'
+    },
+    openArrow: {
+      transform: 'rotate(90deg)',
+      display: 'block',
+      width: '70px'
     }
   }
 }));
 
 const RoomInfoCheckout = props => {
+  const [toggle, setToggle] = useState('true');
   const classes = useStyles();
   const { info } = props;
   return (
     <div className={classes.container}>
       {/* // INSERT ROOM INFO  */}
-      <div className={classes.roomInfoCheckout}>ONE QUEEN BED NONSMOKING</div>
+      <div className={classes.roomInfoCheckout}>
+        <span> ONE QUEEN BED NONSMOKING </span>
+        <span>
+          {toggle ? (
+            <img
+              src='https://cdn0.iconfinder.com/data/icons/online-bank-service/100/025_-_arrow_navigation_menu-512.png'
+              className={classes.closeArrow}
+              onClick={() => setToggle(!toggle)}
+            />
+          ) : (
+            <img
+              src='https://cdn0.iconfinder.com/data/icons/online-bank-service/100/025_-_arrow_navigation_menu-512.png'
+              className={classes.openArrow}
+              onClick={() => setToggle(!toggle)}
+            />
+          )}
+        </span>
+      </div>
+      <div>{toggle ? null : <CheckoutInfo />}</div>
       <div className={classes.totalPrice}>
         <div className={classes.priceInfoCheckout}>
           {/* INSERT PRICE OF ROOM */}
