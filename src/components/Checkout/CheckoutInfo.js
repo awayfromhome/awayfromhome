@@ -1,19 +1,23 @@
-import React from "react";
-import { withStyles } from "@material-ui/core";
-import Paper from "@material-ui/core/Paper";
+import React from 'react';
+import { withStyles } from '@material-ui/core';
+import Paper from '@material-ui/core/Paper';
 
 const styles = theme => ({
   background: {
-    width: "25vw",
-    background: theme.palette.primary.main,
-    marginLeft: "1vw"
+    width: '25vw',
+    marginLeft: '1vw'
   },
   root: {
-    margin: "1vw"
+    margin: '1vw'
   },
   header: {
-    fontSize: "1.3em"
-  }
+    fontSize: '1.3em',
+    marginBottom: '5%'
+  },
+  paragraph: {
+    marginBottom: '5%'
+  },
+  [theme.breakpoints.down('749')]: {}
 });
 
 const CheckoutInfo = props => {
@@ -23,59 +27,63 @@ const CheckoutInfo = props => {
       <div className={classes.root}>
         {/* Get based on rate type */}
         <h1 className={classes.header}>Rate Description</h1>
-        <p>
-          Some set of information. Some set of information. Some set of
-          information. Some set of information.
+        <p className={classes.paragraph}>
+          Start and end your business day with something inspiring. Package
+          includes locally-inspired breakfast to kick start your day, signature
+          drink at our bar and bistro to help you unwind at night. Plus we add
+          1,000 IHG® Rewards Club bonus points to your stay. At Hotel Indigo,
+          you'll find everything you need for your next trip - complimentary
+          high-speed internet access, plush bedding, spa-inspired showers,
+          24-hour business centers and fitness centers and boardroom-style
+          meeting spaces. Our bar and bistro serves delicious locally sourced
+          and seasonal menu selections, from local coffee and craft beer to
+          fresh made bread and artisan cheeses
         </p>
         {/* Get based on room */}
         <h1 className={classes.header}>Rate Information per Stay for 1 Room</h1>
-        <p>
+        <p className={classes.paragraph}>
           Some set of information. Some set of information. Some set of
           information. Some set of information.
         </p>
         {/* Get based on Hotel */}
         <h1 className={classes.header}>Taxes and Additional Charges</h1>
-        <p>
-          Some set of information. Some set of information. Some set of
-          information. Some set of information.
+        <p className={classes.paragraph}>
+          15% per night not included in rate effective 23 March, 2019 thru 24
+          March, 2019 TAX IS CHARGED PER NIGHT. 2 Percent Dallas Tourism Public
+          Improvement District Reimbursement Fee
         </p>
         {/* Get based on Hotel */}
         <h1 className={classes.header}>Other Charges</h1>
-        <p>
-          Some set of information. Some set of information. Some set of
-          information. Some set of information.
+        <p className={classes.paragraph}>
+          The following fees will be added to your bill only if they apply to
+          your stay
         </p>
         {/* Get based on room */}
         <h1 className={classes.header}>Nightly Rate</h1>
-        <p>
-          Some set of information. Some set of information. Some set of
-          information. Some set of information.
-        </p>
+        <p className={classes.paragraph}>164.00 USD per room, per night.</p>
         {/* Get based on room */}
         <h1 className={classes.header}>
           Maximum # of Persons per Room Allowed
         </h1>
-        <p>
-          Some set of information. Some set of information. Some set of
-          information. Some set of information.
-        </p>
+        <p className={classes.paragraph}>2 persons max</p>
         {/* Get based on Hotel */}
         <h1 className={classes.header}>Rate Rules</h1>
-        <p>
-          Some set of information. Some set of information. Some set of
-          information. Some set of information.
+        <p className={classes.paragraph}>
+          Check-in-time: 3:00 PM Check-out-time: 12:00 PM
         </p>
         {/* Get based on Hotel */}
         <h1 className={classes.header}>Parking</h1>
-        <p>
-          Some set of information. Some set of information. Some set of
-          information. Some set of information.
+        <p className={classes.paragraph}>
+          Valet parking is provided on southbound Harwood St., between Elm and
+          Main St. The overnight rate is $29.00 per overnight stay, with
+          unlimited in and out privileges. Visitor day parking is $14.00, with
+          no in and out privileges.
         </p>
         {/* Get based on Hotel */}
         <h1 className={classes.header}>Pet Policy</h1>
-        <p>
-          Some set of information. Some set of information. Some set of
-          information. Some set of information.
+        <p className={classes.paragraph}>
+          A one time, nonrefundable fee of 75 dollars will be charged upon
+          checkin. Pet Limit of two and or 75 lbs Maximum.
         </p>
       </div>
     </Paper>

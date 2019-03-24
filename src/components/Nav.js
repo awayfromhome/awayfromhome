@@ -74,7 +74,7 @@ const styles = theme => ({
       height: '12vh',
       display: 'flex',
       alignItems: 'center',
-      width: '25%'
+      width: '21%'
     },
     hiddenMenus: {
       display: 'flex',
@@ -89,7 +89,7 @@ const styles = theme => ({
     hiddenMenutags: {
       height: '12vh',
       lineHeight: '12vh',
-      width: '25%',
+      width: '22%',
       textAlign: 'center'
     }
   },
@@ -141,18 +141,22 @@ const Nav = props => {
             'animated fadeInDown slow'
           )}
         >
-          <a
-            className={classes.hiddenMenutags}
-            onClick={() => props.handleAccountForm('Login')}
-          >
-            Sign In
-          </a>
-          <a
-            className={classes.hiddenMenutags}
-            onClick={() => props.handleAccountForm('Register')}
-          >
-            Sign Up
-          </a>
+          {props.user.username || props.user.owner ? null : (
+            <a
+              className={classes.hiddenMenutags}
+              onClick={() => props.handleAccountForm('Login')}
+            >
+              Sign In
+            </a>
+          )}
+          {props.user.username || props.user.owner ? null : (
+            <a
+              className={classes.hiddenMenutags}
+              onClick={() => props.handleAccountForm('Register')}
+            >
+              Sign Up
+            </a>
+          )}
           <a className={classes.hiddenMenutags}>Locations</a>
           <a className={classes.hiddenMenutags}>Offers </a>
           {props.user.username ? (
