@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import SearchInfo from '../Search/SearchInfo';
 import HotelInfo from '../List/HotelInfo';
 import { connect } from 'react-redux';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
@@ -29,16 +28,14 @@ const styles = theme => ({
   ['@media (min-width: 750px) and (max-width: 1200px)']: {
     card: { marginLeft: '10%' }
   }
-});
+}));
 
 const HotelList = props => {
-  const { classes } = props;
+  const classes = useStyles();
 
   const [hotelList, setHotelList] = useState([]);
 
   useEffect(() => {
-    console.log('hit');
-
     setHotelList(props.hotelList);
   }, [props.hotelList]);
 
@@ -57,10 +54,9 @@ const HotelList = props => {
 };
 
 const mapStateToProps = state => {
-  console.log('redux', state);
   return {
     hotelList: state.hotelList
   };
 };
 
-export default connect(mapStateToProps)(withStyles(styles)(HotelList));
+export default connect(mapStateToProps)(HotelList);

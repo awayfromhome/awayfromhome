@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import SearchInfo from '../Search/SearchInfo';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import RoomInfo from '../List/RoomInfo';
 import axios from 'axios';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
@@ -38,11 +38,11 @@ const styles = theme => ({
       width: '100%'
     }
   }
-});
+}));
 
 const RoomList = props => {
-  const { classes, info } = props;
-  // console.log('info room list', info);
+  const { info } = props;
+  const classes = useStyles();
   const [roomList, setRoomList] = useState([]);
   const [standard, setStandard] = useState(true);
   const [deluxe, setDeluxe] = useState(false);
@@ -73,13 +73,7 @@ const RoomList = props => {
       </div>
 
       <Paper className={classes.rootTabs}>
-        <Tabs
-          value={false}
-          indicatorColor='primary'
-          textColor='primary'
-          centered
-          variant='fullWidth'
-        >
+        <Tabs value={false} indicatorColor='primary' textColor='primary' centered variant='fullWidth'>
           <Tab label='Standard' onClick={() => handleRoomSelect('Standard')} />
           <Tab label='Deluxe' onClick={() => handleRoomSelect('Deluxe')} />
         </Tabs>
@@ -103,4 +97,4 @@ const RoomList = props => {
   );
 };
 
-export default withStyles(styles)(RoomList);
+export default RoomList;

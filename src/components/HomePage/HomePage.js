@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import SearchBar from './SearchBar';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   entireContainer: {
     margin: 'auto',
     display: 'flex',
@@ -81,10 +81,10 @@ const styles = theme => ({
       width: '90%'
     }
   }
-});
+}));
 
 const HomePage = props => {
-  const { classes } = props;
+  const classes = useStyles();
   return (
     <div className={classes.entireContainer}>
       <div className={classes.imgContainer} />
@@ -102,30 +102,20 @@ const HomePage = props => {
             alt='main'
           />
           <p className={classes.paragraph}>
-            Lorem ipsum dolor sit amet, et tale consequat reprehendunt quo. Amet
-            dicunt nostrud ei duo, eu numquam referrentur qui. Liber perpetua in
-            qui, mutat brute laudem et mea. Te forensibus adolescens nec. Nam at
-            cetero epicuri, et dolores interesset est. Te vim assum aliquid
-            delicatissimi. Nibh gubergren at sit, ius utinam suavitate an, cu
-            ius illum propriae voluptua. Vix ea virtute quaeque tibique,
-            efficiantur delicatissimi mei an, ignota mentitum suavitate his eu.
-            Denique patrioque mediocritatem quo et, at vim quaeque percipit
-            forensibus. At unum summo nec, cu regione signiferumque sit, eum
-            aperiam appellantur ut.
+            Lorem ipsum dolor sit amet, et tale consequat reprehendunt quo. Amet dicunt nostrud ei duo, eu numquam referrentur qui. Liber perpetua in
+            qui, mutat brute laudem et mea. Te forensibus adolescens nec. Nam at cetero epicuri, et dolores interesset est. Te vim assum aliquid
+            delicatissimi. Nibh gubergren at sit, ius utinam suavitate an, cu ius illum propriae voluptua. Vix ea virtute quaeque tibique, efficiantur
+            delicatissimi mei an, ignota mentitum suavitate his eu. Denique patrioque mediocritatem quo et, at vim quaeque percipit forensibus. At
+            unum summo nec, cu regione signiferumque sit, eum aperiam appellantur ut.
           </p>
         </div>
         <div className={classes.sections}>
           <p className={classes.paragraph}>
-            Lorem ipsum dolor sit amet, et tale consequat reprehendunt quo. Amet
-            dicunt nostrud ei duo, eu numquam referrentur qui. Liber perpetua in
-            qui, mutat brute laudem et mea. Te forensibus adolescens nec. Nam at
-            cetero epicuri, et dolores interesset est. Te vim assum aliquid
-            delicatissimi. Nibh gubergren at sit, ius utinam suavitate an, cu
-            ius illum propriae voluptua. Vix ea virtute quaeque tibique,
-            efficiantur delicatissimi mei an, ignota mentitum suavitate his eu.
-            Denique patrioque mediocritatem quo et, at vim quaeque percipit
-            forensibus. At unum summo nec, cu regione signiferumque sit, eum
-            aperiam appellantur ut.
+            Lorem ipsum dolor sit amet, et tale consequat reprehendunt quo. Amet dicunt nostrud ei duo, eu numquam referrentur qui. Liber perpetua in
+            qui, mutat brute laudem et mea. Te forensibus adolescens nec. Nam at cetero epicuri, et dolores interesset est. Te vim assum aliquid
+            delicatissimi. Nibh gubergren at sit, ius utinam suavitate an, cu ius illum propriae voluptua. Vix ea virtute quaeque tibique, efficiantur
+            delicatissimi mei an, ignota mentitum suavitate his eu. Denique patrioque mediocritatem quo et, at vim quaeque percipit forensibus. At
+            unum summo nec, cu regione signiferumque sit, eum aperiam appellantur ut.
           </p>
           <img
             className={classes.img}
@@ -140,4 +130,4 @@ const HomePage = props => {
 
 const mapStateToProps = state => state;
 
-export default connect(mapStateToProps)(withStyles(styles)(HomePage));
+export default connect(mapStateToProps)(HomePage);
