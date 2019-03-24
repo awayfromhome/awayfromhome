@@ -12,13 +12,38 @@ const useStyles = makeStyles(theme => ({
   },
   header: {
     fontSize: '1.3em',
-    marginBottom: '5%'
+    marginBottom: '5%',
+    fontWeight: 650,
+    fontFamily: theme.typography.fontFamily[1]
   },
   paragraph: {
-    marginBottom: '5%'
+    marginBottom: '5%',
+    fontFamily: theme.typography.fontFamily[2]
   },
-  [theme.breakpoints.down('749')]: {}
-}));
+  priceDetails: {
+    marginBottom: '5%',
+    fontFamily: theme.typography.fontFamily[2],
+    background: theme.palette.secondary.main
+  },
+  priceDetailsText: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    padding: '5%'
+  },
+  [theme.breakpoints.down('749')]: {
+    background: {
+      width: 'auto',
+      height: '100%'
+    },
+    header: {
+      padding: '2%'
+    },
+    paragraph: {
+      marginBottom: '7%',
+      padding: '2%'
+    }
+  }
+});
 
 const CheckoutInfo = props => {
   const classes = useStyles();
@@ -36,7 +61,36 @@ const CheckoutInfo = props => {
         </p>
         {/* Get based on room */}
         <h1 className={classes.header}>Rate Information per Stay for 1 Room</h1>
-        <p className={classes.paragraph}>Some set of information. Some set of information. Some set of information. Some set of information.</p>
+        <div className={classes.priceDetails}>
+          <div className={classes.priceDetailsText}>
+            March 23,2019 - March 25, 2019
+            <div>
+              164.00
+              <span> USD</span>
+            </div>
+          </div>
+          <div className={classes.priceDetailsText}>
+            Price for One Room
+            <div>
+              164.00
+              <span> USD</span>
+            </div>
+          </div>
+          <div className={classes.priceDetailsText}>
+            Taxes
+            <div>
+              25.00
+              <span> USD</span>
+            </div>
+          </div>
+          <div className={classes.priceDetailsText}>
+            Total
+            <div>
+              189.00
+              <span> USD</span>
+            </div>
+          </div>
+        </div>
         {/* Get based on Hotel */}
         <h1 className={classes.header}>Taxes and Additional Charges</h1>
         <p className={classes.paragraph}>

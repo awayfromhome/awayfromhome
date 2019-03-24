@@ -10,7 +10,7 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
     textAlign: 'center',
     background: theme.palette.tertiary.main,
-    width: '63vw'
+    width: '61vw'
   },
   barInfo: {
     display: 'flex',
@@ -63,7 +63,9 @@ const useStyles = makeStyles(theme => ({
     }
   },
   ['@media (min-width: 750px) and (max-width: 1200px)']: {
-    toolbar: { width: '70vw' },
+    toolbar: {
+      width: 'auto'
+    },
     deatilsInfo: {
       fontSize: '15px',
       width: '50vw'
@@ -74,10 +76,11 @@ const useStyles = makeStyles(theme => ({
     },
     appBar: {
       margin: 'auto',
-      width: '55vw'
+      width: '61vw'
     },
     barInfo: {
-      display: 'block'
+      display: 'block',
+      margin: 'auto'
     }
   }
 }));
