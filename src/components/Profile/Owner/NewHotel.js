@@ -9,7 +9,11 @@ import axios from 'axios';
 import { getHotelListById } from '../../../ducks/async';
 
 const useStyles = makeStyles(theme => ({
+  background: {
+    margin: '1vw'
+  },
   root: {
+    margin: '1vw',
     display: 'flex',
     flexDirection: 'column'
   }
@@ -52,8 +56,8 @@ const NewHotel = props => {
   };
 
   return (
-    <div>
-      <Paper className={classes.root}>
+    <Paper className={classes.background}>
+      <div className={classes.root}>
         <TextField label='Hotel Name' margin='normal' {...bindName} />
         <TextField label='Address' margin='normal' {...bindAddress} />
         <TextField label='Hotel Image' margin='normal' {...bindUrl} />
@@ -66,8 +70,8 @@ const NewHotel = props => {
         })}
         <Button onClick={() => handleAddAmenity()}>Add Amenity</Button>
         <Button onClick={() => handleSubmit()}>Create Hotel</Button>
-      </Paper>
-    </div>
+      </div>
+    </Paper>
   );
 };
 
