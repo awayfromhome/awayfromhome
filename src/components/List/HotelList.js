@@ -25,7 +25,7 @@ const useStyles = makeStyles(theme => ({
     width: '100%',
     borderRadius: 8
   },
-  ['@media (min-width: 750px) and (max-width: 1200px)']: {
+  '@media (min-width: 750px) and (max-width: 1200px)': {
     card: { marginLeft: '10%' }
   }
 }));

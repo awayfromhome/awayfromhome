@@ -59,13 +59,13 @@ const Room = props => {
 
   const [roomInfo, setRoomInfo] = useState([]);
 
-  useEffect(async () => {
-    try {
-      const response = axios.get(`/api/room/${1}`);
-      setRoomInfo(response.data);
-    } catch (err) {
-      console.log(err);
-    }
+  useEffect(() => {
+    axios
+      .get(`/api/room/${1}`)
+      .then(res => {
+        setRoomInfo(res.data);
+      })
+      .catch(err => console.log(err));
   }, []);
 
   return (

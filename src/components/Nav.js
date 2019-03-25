@@ -157,7 +157,7 @@ const Nav = props => {
 
       <div className={classes.navContainer}>
         <div className={classes.logo} onClick={() => props.history.push('/')}>
-          AFM
+          AFH
         </div>
         <div className={classes.navwrapper}>
           {props.user.username ? null : (

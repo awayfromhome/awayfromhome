@@ -1,3 +1,3 @@
 SELECT room_id, name
-FROM room_type
+FROM room
 WHERE room_id = $1
