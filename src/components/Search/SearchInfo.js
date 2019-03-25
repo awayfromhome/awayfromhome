@@ -6,6 +6,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles(theme => ({
+
 	appBar: {
 		flexGrow: 1,
 		textAlign: 'center',
@@ -123,6 +124,29 @@ const SearchInfo = props => {
 			</Toolbar>
 		</AppBar>
 	);
+
+const SearchInfo = props => {
+  const classes = useStyles();
+  return (
+    <AppBar position='static' className={classes.appBar}>
+      <Toolbar className={classes.toolbar}>
+        <Typography className={classes.barInfo} variant='h6' color='inherit'>
+          <div className={classes.city}>Dallas, TX, United States</div>
+          <div className={classes.deatilsInfo}>
+            <span className={classes.searchInfo}>
+              03/18/2019 - 03/19/2019{' '}
+              <span className={classes.divider}> |</span>
+            </span>
+            <span className={classes.searchInfo}>
+              # of Guests <span className={classes.divider}> |</span>
+            </span>
+            <span className={classes.searchInfo}> 1 room </span>
+          </div>
+        </Typography>
+      </Toolbar>
+    </AppBar>
+  );
+
 };
 
 const mapStatetoProps = state => state;

@@ -18,6 +18,7 @@ import { setSearchInfo } from '../../ducks/sync';
 import { withRouter } from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
+
 	searchContainer: {
 		display: 'flex',
 		alignItems: 'center',
@@ -257,6 +258,7 @@ const SearchBar = props => {
 						{...bindDestination}
 					/>
 
+
 					<div className={classes.selectors}>
 						<div className={classes.outerButtonDiv}>
 							Rooms
@@ -351,6 +353,7 @@ const SearchBar = props => {
 			</div>
 		</Paper>
 	);
+
 };
 
 const mapStateToProps = state => state;
