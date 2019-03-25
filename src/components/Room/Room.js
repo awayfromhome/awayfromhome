@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import SearchInfo from '../Search/SearchInfo';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import Card from '../List/Card';
 import axios from 'axios';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
@@ -51,11 +51,11 @@ const styles = theme => ({
   roomButtonSize: {
     width: '60%'
   }
-});
+}));
 
 const Room = props => {
-  const { classes, info } = props;
-  // console.log('info for room', info);
+  const { info } = props;
+  const classes = useStyles();
 
   const [roomInfo, setRoomInfo] = useState([]);
 
@@ -64,7 +64,6 @@ const Room = props => {
       .get(`/api/room/${1}`)
       .then(res => {
         setRoomInfo(res.data);
-        console.log('room use effect', res.data);
       })
       .catch(err => console.log(err));
   }, []);
@@ -92,4 +91,4 @@ const Room = props => {
     </div>
   );
 };
-export default withStyles(styles)(Room);
+export default Room;

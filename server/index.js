@@ -42,6 +42,7 @@ app.get('/auth/logout', authCon.logout);
 
 //Hotel and room endpoints
 //NEED to make the get hotel request into a get with req.query parameters instead of a post
+//Combine the two get hotellist calls into one usinging if statements in the controller
 app.get('/api/admin/hotel', hotelCon.getHotelListById);
 app.post('/api/hotel', hotelCon.getHotelList);
 app.post('/api/createhotel', hotelCon.createHotel);

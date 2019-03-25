@@ -1,9 +1,9 @@
 import React from 'react';
 import Card from './Card';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import { withRouter } from 'react-router-dom';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   hotelInfo: {
     width: '50%',
     margin: 'auto',
@@ -75,18 +75,13 @@ const styles = theme => ({
       margin: '5%'
     }
   }
-});
+}));
 
 const HotelInfo = props => {
-  const { classes, info } = props;
-  console.log(info);
+  const { info } = props;
+  const classes = useStyles();
   return (
-    <Card
-      price='100'
-      img={info.url}
-      btnName='Select Hotel'
-      onClick={() => props.history.push(`/roomlist/${info.hotel_id}`)}
-    >
+    <Card price='100' img={info.url} btnName='Select Hotel' onClick={() => props.history.push(`/roomlist/${info.hotel_id}`)}>
       <div className={classes.hotelname}>
         <div className={classes.hotelavatar} />
         <h1 className={classes.infoname}>{info.name}</h1>
@@ -114,4 +109,4 @@ const HotelInfo = props => {
   );
 };
 
-export default withRouter(withStyles(styles)(HotelInfo));
+export default withRouter(HotelInfo);

@@ -1,17 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
-// import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   appBar: {
     flexGrow: 1,
     textAlign: 'center',
     background: theme.palette.tertiary.main,
-    width: '63vw'
+    width: '61vw'
   },
   barInfo: {
     display: 'flex',
@@ -64,7 +63,9 @@ const styles = theme => ({
     }
   },
   ['@media (min-width: 750px) and (max-width: 1200px)']: {
-    toolbar: { width: '70vw' },
+    toolbar: {
+      width: 'auto'
+    },
     deatilsInfo: {
       fontSize: '15px',
       width: '50vw'
@@ -75,16 +76,17 @@ const styles = theme => ({
     },
     appBar: {
       margin: 'auto',
-      width: '55vw'
+      width: '61vw'
     },
     barInfo: {
-      display: 'block'
+      display: 'block',
+      margin: 'auto'
     }
   }
-});
+}));
 
 const SearchInfo = props => {
-  const { classes } = props;
+  const classes = useStyles();
   return (
     <AppBar position='static' className={classes.appBar}>
       <Toolbar className={classes.toolbar}>
@@ -92,8 +94,7 @@ const SearchInfo = props => {
           <div className={classes.city}>Dallas, Tx, United States</div>
           <div className={classes.deatilsInfo}>
             <span className={classes.searchInfo}>
-              03/18/2019 - 03/19/2019{' '}
-              <span className={classes.divider}> |</span>
+              03/18/2019 - 03/19/2019 <span className={classes.divider}> |</span>
             </span>
             <span className={classes.searchInfo}>
               # of Guests <span className={classes.divider}> |</span>
@@ -108,4 +109,4 @@ const SearchInfo = props => {
 
 const mapStatetoProps = state => state;
 
-export default connect(mapStatetoProps)(withStyles(styles)(SearchInfo));
+export default connect(mapStatetoProps)(SearchInfo);

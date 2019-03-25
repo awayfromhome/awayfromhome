@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import Login from './Login';
 import { handleAccountForm, getUser, handleLogout } from '../ducks/async';
 import classNames from 'classnames';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   navContainer: {
     position: 'fixed',
     top: 0,
@@ -46,10 +46,10 @@ const styles = theme => ({
     fontFamily: 'Baloo',
     lineHeight: 7.5,
     background: `linear-gradient(to right,
-      #26292D,
-      #26292D 50%,
-      transparent 50%,
-      transparent)`,
+    #26292D,
+    #26292D 50%,
+    transparent 50%,
+    transparent)`,
     backgroundPosition: '100% 0',
     backgroundSize: '200% 100%',
     transition: 'all .3s ease-in',
@@ -96,12 +96,11 @@ const styles = theme => ({
   ['@media (min-width: 750px) and (max-width: 1200px)']: {
     navContainer: { width: '10%' }
   }
-});
+}));
 
 const Nav = props => {
   const [hiddenMenu, setHiddenMenu] = useState('true');
-
-  const { classes } = props;
+  const classes = useStyles();
 
   useEffect(() => {
     props.getUser();
@@ -114,72 +113,42 @@ const Nav = props => {
           <img
             src='https://cdn4.iconfinder.com/data/icons/basic-user-interface-2/512/User_Interface-03-512.png'
             onClick={() => setHiddenMenu(!hiddenMenu)}
-            className={
-              hiddenMenu
-                ? classes.hamburgerMenu
-                : classNames(
-                    classes.hamburgerMenu,
-                    'animated fadeInUp slow delay-5s'
-                  )
-            }
+            className={hiddenMenu ? classes.hamburgerMenu : classNames(classes.hamburgerMenu, 'animated fadeInUp slow delay-5s')}
           />
         ) : (
           <img
             src='https://cdn0.iconfinder.com/data/icons/online-bank-service/100/025_-_arrow_navigation_menu-512.png'
-            className={classNames(
-              classes.hamburgerMenu,
-              'animated fadeInDown slow'
-            )}
+            className={classNames(classes.hamburgerMenu, 'animated fadeInDown slow')}
             onClick={() => setHiddenMenu(!hiddenMenu)}
           />
         )}
       </div>
       {hiddenMenu ? null : (
-        <div
-          className={classNames(
-            classes.hiddenMenus,
-            'animated fadeInDown slow'
-          )}
-        >
+        <div className={classNames(classes.hiddenMenus, 'animated fadeInDown slow')}>
           {props.user.username || props.user.owner ? null : (
-            <a
-              className={classes.hiddenMenutags}
-              onClick={() => props.handleAccountForm('Login')}
-            >
+            <a className={classes.hiddenMenutags} onClick={() => props.handleAccountForm('Login')}>
               Sign In
             </a>
           )}
           {props.user.username || props.user.owner ? null : (
-            <a
-              className={classes.hiddenMenutags}
-              onClick={() => props.handleAccountForm('Register')}
-            >
+            <a className={classes.hiddenMenutags} onClick={() => props.handleAccountForm('Register')}>
               Sign Up
             </a>
           )}
           <a className={classes.hiddenMenutags}>Locations</a>
           <a className={classes.hiddenMenutags}>Offers </a>
           {props.user.username ? (
-            <a
-              className={classes.hiddenMenutags}
-              onClick={() => props.history.push('/Profile')}
-            >
+            <a className={classes.hiddenMenutags} onClick={() => props.history.push('/Profile')}>
               Profile
             </a>
           ) : null}
           {props.user.owner ? (
-            <a
-              className={classes.hiddenMenutags}
-              onClick={() => props.history.push('/Owner')}
-            >
+            <a className={classes.hiddenMenutags} onClick={() => props.history.push('/Owner')}>
               Owner
             </a>
           ) : null}
           {props.user.username ? (
-            <a
-              className={classes.hiddenMenutags}
-              onClick={() => props.handleLogout()}
-            >
+            <a className={classes.hiddenMenutags} onClick={() => props.handleLogout()}>
               Logout
             </a>
           ) : null}
@@ -188,40 +157,28 @@ const Nav = props => {
 
       <div className={classes.navContainer}>
         <div className={classes.logo} onClick={() => props.history.push('/')}>
-          AFM
+          AFH
         </div>
         <div className={classes.navwrapper}>
           {props.user.username ? null : (
-            <a
-              className={classes.tags}
-              onClick={() => props.handleAccountForm('Login')}
-            >
+            <a className={classes.tags} onClick={() => props.handleAccountForm('Login')}>
               Sign In
             </a>
           )}
           {props.user.username ? null : (
-            <a
-              className={classes.tags}
-              onClick={() => props.handleAccountForm('Register')}
-            >
+            <a className={classes.tags} onClick={() => props.handleAccountForm('Register')}>
               Sign Up
             </a>
           )}
           <a className={classes.tags}>Locations</a>
           <a className={classes.tags}>Offers</a>
           {props.user.username ? (
-            <a
-              className={classes.tags}
-              onClick={() => props.history.push('/Profile')}
-            >
+            <a className={classes.tags} onClick={() => props.history.push('/Profile')}>
               Profile
             </a>
           ) : null}
           {props.user.owner ? (
-            <a
-              className={classes.tags}
-              onClick={() => props.history.push('/Owner')}
-            >
+            <a className={classes.tags} onClick={() => props.history.push('/Owner')}>
               Owner
             </a>
           ) : null}
@@ -247,5 +204,5 @@ export default withRouter(
   connect(
     mapStateToProps,
     { handleAccountForm, getUser, handleLogout }
-  )(withStyles(styles)(Nav))
+  )(Nav)
 );

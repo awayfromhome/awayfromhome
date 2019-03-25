@@ -8,8 +8,9 @@ import Divider from '@material-ui/core/Divider';
 import OwnerProfile from './OwnerProfile';
 import NewHotel from './NewHotel';
 import NewRoom from './NewRoom';
-import HotelInfo from '../../List/HotelInfo';
 import { getHotelListById } from '../../../ducks/async';
+import OwnerHotelList from './OwnerHotelList';
+import OwnerRoomList from './OwnerRoomList';
 
 const useStyles = makeStyles({
   root: {
@@ -74,11 +75,9 @@ const Owner = props => {
     if (outerTabs === 0 && innerTabs === 1) {
       return <NewHotel />;
     } else if (outerTabs === 0 && innerTabs === 0) {
-      const arr = props.hotelList.map((e, i) => {
-        //Update with a better looking UI on monday
-        return <HotelInfo key={i} info={e} />;
-      });
-      return arr;
+      return <OwnerHotelList />;
+    } else if (outerTabs === 1 && innerTabs === 0) {
+      return <OwnerRoomList />;
     } else if (outerTabs === 1 && innerTabs === 1) {
       return <NewRoom />;
     } else {
