@@ -25,6 +25,7 @@ const NewRoom = props => {
   const { value: name, reset: resetName, bind: bindName } = useInput('');
   const { value: hotel, reset: resetHotel, bind: bindHotel } = useInput('');
   const { value: description, reset: resetDescription, bind: bindDescription } = useInput('');
+  const { value: price, reset: resetPrice, bind: bindPrice } = useInput(0);
 
   const reset = () => {
     resetCount();
@@ -32,11 +33,12 @@ const NewRoom = props => {
     resetName();
     resetHotel();
     resetDescription();
+    resetPrice();
   };
 
   const handleSubmit = async () => {
     try {
-      await axios.post('/api/room', { count, type, name, hotel, description });
+      await axios.post('/api/room', { count, type, name, hotel, description, price });
       reset();
     } catch (err) {
       console.log(err);
@@ -68,6 +70,7 @@ const NewRoom = props => {
       <TextField label='Name' {...bindName} />
       <TextField label='Description' {...bindDescription} />
       <TextField label='Number of Rooms' {...bindCount} />
+      <TextField label='Price' {...bindPrice} />
       <Button onClick={handleSubmit}>Submit</Button>
     </div>
   );

@@ -54,7 +54,6 @@ const HotelTableHead = props => {
   return (
     <TableHead>
       <TableRow>
-        <TableCell padding='default'>Select</TableCell>
         {rows.map(
           row => (
             <TableCell key={row.id} align='left' padding='none' sortDirection={orderBy === row.id ? order : false}>
@@ -171,23 +170,6 @@ const OwnerHotelInfo = props => {
     setOrderBy(property);
   }
 
-  function handleClick(event, id) {
-    const selectedIndex = selected.indexOf(id);
-    let newSelected = [];
-
-    if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, id);
-    } else if (selectedIndex === 0) {
-      newSelected = newSelected.concat(selected.slice(1));
-    } else if (selectedIndex === selected.length - 1) {
-      newSelected = newSelected.concat(selected.slice(0, -1));
-    } else if (selectedIndex > 0) {
-      newSelected = newSelected.concat(selected.slice(0, selectedIndex), selected.slice(selectedIndex + 1));
-    }
-
-    setSelected(newSelected);
-  }
-
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -196,7 +178,6 @@ const OwnerHotelInfo = props => {
     setRowsPerPage(event.target.value);
   };
 
-  const isSelected = id => selected.indexOf(id) !== -1;
   const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
   return (
@@ -209,19 +190,8 @@ const OwnerHotelInfo = props => {
             {stableSort(data, getSorting(order, orderBy))
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map(n => {
-                const isItemSelected = isSelected(n.id);
                 return (
-                  <TableRow
-                    hover
-                    onClick={event => handleClick(event, n.id)}
-                    role='checkbox'
-                    aria-checked={isItemSelected}
-                    tabIndex={-1}
-                    key={n.id}
-                    selected={isItemSelected}>
-                    <TableCell padding='checkbox'>
-                      <Checkbox checked={isItemSelected} />
-                    </TableCell>
+                  <TableRow tabIndex={-1} key={n.id}>
                     <TableCell component='th' scope='row' padding='none'>
                       {n.name}
                     </TableCell>

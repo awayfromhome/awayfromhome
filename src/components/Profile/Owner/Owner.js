@@ -72,10 +72,12 @@ const Owner = props => {
   };
 
   const displayInnerInfo = () => {
-    if (outerTabs === 0 && innerTabs === 1) {
-      return <NewHotel />;
-    } else if (outerTabs === 0 && innerTabs === 0) {
+    if (outerTabs === 0 && innerTabs === 0) {
       return <OwnerHotelList />;
+    } else if (outerTabs === 0 && innerTabs === 1) {
+      return <NewHotel />;
+    } else if (outerTabs === 0 && innerTabs === 2) {
+      return <h1>This is for the update</h1>;
     } else if (outerTabs === 1 && innerTabs === 0) {
       return <OwnerRoomList />;
     } else if (outerTabs === 1 && innerTabs === 1) {

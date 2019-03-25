@@ -23,6 +23,22 @@ module.exports = {
       res.sendStatus(500);
     }
   },
-  updateHotel: (req, res) => {},
-  deleteHotel: (req, res) => {}
+  updateHotel: async (req, res) => {
+    const db = req.app.get('db');
+    const { name, address, url, reservationNum, frontDeskNum, amenityList } = req.body;
+    try {
+      await db.update_hotel(name, address, url, reservationNum, frontDeskNum, amenityList);
+      res.sendStatus(200);
+    } catch (err) {
+      res.sendStatus(500);
+    }
+  },
+  deleteHotel: async (req, res) => {
+    const db = req.app.get('db');
+    try {
+      await db.delete_hotel(req.params.id);
+    } catch (err) {
+      res.sendStatus(500);
+    }
+  }
 };
