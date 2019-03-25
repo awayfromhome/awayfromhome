@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
     background: '#4C525A',
     zIndex: 4
   },
-  hamburgerMenu: {
+  navicons: {
     display: 'none'
   },
   hiddenMenus: {
@@ -76,10 +76,13 @@ const useStyles = makeStyles(theme => ({
       background: '#8A95A5',
       height: '100vh'
     },
-    hamburgerMenu: {
+    navicons: {
       display: 'flex',
       width: '13vh',
       margin: 'auto'
+    },
+    hamburgerMenu: {
+      paddingRight: '15%'
     },
     hiddenMenutags: {
       zIndex: 4,
@@ -89,8 +92,10 @@ const useStyles = makeStyles(theme => ({
       textAlign: 'center'
     },
     imgContainer: {
-      width: '30vw',
-      height: '100%'
+      height: '100%',
+      display: 'flex',
+      flexDirection: 'row-reverse',
+      justifyContent: 'space-between'
     }
   },
   '@media (min-width: 750px) and (max-width: 1200px)': {
@@ -109,34 +114,46 @@ const Nav = props => {
   return (
     <div className={classes.entireMobileMenu}>
       <div className={classNames(classes.imgContainer)}>
+        <img
+          src='https://s3.us-east-2.amazonaws.com/awayfromhome/Screen+Shot+2019-03-22+at+12.23.16+PM.png'
+          alt='logo'
+          className={classes.navicons}
+          onClick={() => props.history.push('/')}
+        />
         {hiddenMenu ? (
           <img
             src='https://cdn4.iconfinder.com/data/icons/basic-user-interface-2/512/User_Interface-03-512.png'
             onClick={() => setHiddenMenu(!hiddenMenu)}
-            className={classes.hamburgerMenu}
+            className={classNames(classes.hamburgerMenu, classes.navicons)}
           />
         ) : (
           <img
             src='https://cdn0.iconfinder.com/data/icons/online-bank-service/100/025_-_arrow_navigation_menu-512.png'
-            className={classes.hamburgerMenu}
+            className={classNames(classes.hamburgerMenu, classes.navicons)}
             onClick={() => setHiddenMenu(!hiddenMenu)}
           />
         )}
       </div>
+
       {hiddenMenu ? null : (
         <div className={classNames(classes.hiddenMenus, 'animated fadeInLeft')}>
-          <a
-            className={classes.hiddenMenutags}
-            onClick={() => props.handleAccountForm('Login')}
-          >
-            Sign In
-          </a>
-          <a
-            className={classes.hiddenMenutags}
-            onClick={() => props.handleAccountForm('Register')}
-          >
-            Sign Up
-          </a>
+          {props.user.username || props.user.owner ? null : (
+            <a
+              className={classes.hiddenMenutags}
+              onClick={() => props.handleAccountForm('Login')}
+            >
+              Sign In
+            </a>
+          )}
+          {props.user.username || props.user.owner ? null : (
+            <a
+              className={classes.hiddenMenutags}
+              onClick={() => props.handleAccountForm('Register')}
+            >
+              Sign Up
+            </a>
+          )}
+
           <a className={classes.hiddenMenutags}>Locations</a>
           <a className={classes.hiddenMenutags}>Offers </a>
           {props.user.username ? (
