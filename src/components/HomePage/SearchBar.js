@@ -85,7 +85,7 @@ const useStyles = makeStyles(theme => ({
   innercounter: {
     borderRadius: '50%',
     border: '1px solid black',
-    width: '3vw',
+    width: '2.3vw',
     height: 50,
     background: '#fff',
     textAlign: 'center',
@@ -150,7 +150,7 @@ const useStyles = makeStyles(theme => ({
     },
     outerButtonDiv: {
       marginRight: '3%',
-      width: '15vw'
+      width: '19vw'
     },
     innercounter: {
       width: '5vw'

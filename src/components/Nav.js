@@ -78,8 +78,7 @@ const useStyles = makeStyles(theme => ({
     },
     navicons: {
       display: 'flex',
-      width: '13vh',
-      margin: 'auto'
+      width: '18vh'
     },
     hamburgerMenu: {
       paddingRight: '15%'
@@ -115,7 +114,7 @@ const Nav = props => {
     <div className={classes.entireMobileMenu}>
       <div className={classNames(classes.imgContainer)}>
         <img
-          src='https://s3.us-east-2.amazonaws.com/awayfromhome/Screen+Shot+2019-03-22+at+12.23.16+PM.png'
+          src='https://s3.us-east-2.amazonaws.com/awayfromhome/AFHlogo.png'
           alt='logo'
           className={classes.navicons}
           onClick={() => props.history.push('/')}
@@ -136,7 +135,13 @@ const Nav = props => {
       </div>
 
       {hiddenMenu ? null : (
-        <div className={classNames(classes.hiddenMenus, 'animated fadeInLeft')}>
+        <div
+          className={
+            hiddenMenu
+              ? classNames(classes.hiddenMenus, 'animated fadeOutLeft')
+              : classNames(classes.hiddenMenus, 'animated fadeInLeft')
+          }
+        >
           {props.user.username || props.user.owner ? null : (
             <a
               className={classes.hiddenMenutags}

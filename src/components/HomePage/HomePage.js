@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/styles';
 import SearchBar from './SearchBar';
+import classNames from 'classnames';
 
 const useStyles = makeStyles(theme => ({
   entireContainer: {
@@ -68,7 +69,8 @@ const useStyles = makeStyles(theme => ({
       zIndex: -1
     },
     sections: {
-      flexDirection: 'column'
+      flexDirection: 'column',
+      margin: 'auto'
     },
     background: {
       height: '40vh',
@@ -77,10 +79,16 @@ const useStyles = makeStyles(theme => ({
     },
     img: {
       width: '90%',
-      height: '90%'
+      height: '90%',
+      marginTop: '15%'
     },
     paragraph: {
-      width: '90%'
+      width: '90%',
+      margin: '10%'
+    },
+    secondparagraph: {
+      display: 'flex',
+      flexDirection: 'column-reverse'
     }
   }
 }));
@@ -116,7 +124,7 @@ const HomePage = props => {
             aperiam appellantur ut.
           </p>
         </div>
-        <div className={classes.sections}>
+        <div className={classNames(classes.sections, classes.secondparagraph)}>
           <p className={classes.paragraph}>
             Lorem ipsum dolor sit amet, et tale consequat reprehendunt quo. Amet
             dicunt nostrud ei duo, eu numquam referrentur qui. Liber perpetua in

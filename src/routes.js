@@ -3,21 +3,19 @@ import { Switch, Route } from 'react-router-dom';
 import HomePage from './components/HomePage/HomePage';
 import HotelList from './components/List/HotelList';
 import RoomList from './components/List/RoomList';
-import Room from './components/Room/Room';
 import Checkout from './components/Checkout/Checkout';
 import Profile from './components/Profile/Profile';
 import Owner from './components/Profile/Owner/Owner';
 
 export default (
-   <Switch>
-      <Route path="/Profile" component={Profile} />
-      <Route path="/Owner" component={Owner} />
-      <Route path="/Checkout" component={Checkout} />
-      <Route path="/Room/:id" component={Room} />
-      <Route path="/Roomlist/:id" component={RoomList} />
-      <Route path="/Hotellist" component={HotelList} />
-      <Route exact path="/" component={HomePage} />
-   </Switch>
+  <Switch>
+    <Route path='/Profile' component={Profile} />
+    <Route path='/Owner' component={Owner} />
+    <Route path='/Checkout' component={Checkout} />
+    <Route path='/Roomlist/:id' component={RoomList} />
+    <Route path='/Hotellist' component={HotelList} />
+    <Route exact path='/' component={HomePage} />
+  </Switch>
 );
 
 // Line 11 - Checkout Page Page with other CreditInfo and UserInfo components rendered in there

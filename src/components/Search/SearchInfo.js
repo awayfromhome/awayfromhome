@@ -93,7 +93,7 @@ const SearchInfo = props => {
     <AppBar position='static' className={classes.appBar}>
       <Toolbar className={classes.toolbar}>
         <Typography className={classes.barInfo} variant='h6' color='inherit'>
-          <div className={classes.city}>Dallas, Tx, United States</div>
+          <div className={classes.city}>Dallas, TX, United States</div>
           <div className={classes.deatilsInfo}>
             <span className={classes.searchInfo}>
               03/18/2019 - 03/19/2019{' '}
