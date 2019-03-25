@@ -33,7 +33,8 @@ const useStyles = makeStyles(theme => ({
   [theme.breakpoints.down('749')]: {
     background: {
       width: 'auto',
-      height: '100%'
+      height: '100%',
+      marginBottom: '5%'
     },
     header: {
       padding: '2%'

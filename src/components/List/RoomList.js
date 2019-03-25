@@ -19,9 +19,6 @@ const useStyles = makeStyles(theme => ({
     marginTop: '3%',
     width: '40vw'
   },
-  searchInfo: {
-    marginTop: '4%'
-  },
   card: {
     display: 'flex',
     flexDirection: 'column',
@@ -69,12 +66,15 @@ const RoomList = props => {
 
   return (
     <div className={classes.root}>
-      <div className={classes.searchInfo}>
-        <SearchInfo />
-      </div>
-
+      <SearchInfo />
       <Paper className={classes.rootTabs}>
-        <Tabs value={false} indicatorColor='primary' textColor='primary' centered variant='fullWidth'>
+        <Tabs
+          value={false}
+          indicatorColor='primary'
+          textColor='primary'
+          centered
+          variant='fullWidth'
+        >
           <Tab label='Standard' onClick={() => handleRoomSelect('Standard')} />
           <Tab label='Deluxe' onClick={() => handleRoomSelect('Deluxe')} />
         </Tabs>

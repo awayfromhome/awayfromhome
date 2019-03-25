@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/styles';
 import SearchBar from './SearchBar';
+import classNames from 'classnames';
 
 const useStyles = makeStyles(theme => ({
   entireContainer: {
@@ -44,7 +45,7 @@ const useStyles = makeStyles(theme => ({
     width: '60%',
     margin: 'auto'
   },
-  ['@media (min-width: 750px) and (max-width: 1200px)']: {
+  '@media (min-width: 750px) and (max-width: 1200px)': {
     entireContainer: {
       marginLeft: '10%'
     },
@@ -63,22 +64,31 @@ const useStyles = makeStyles(theme => ({
     },
     imgContainer: {
       width: '100%',
-      height: '40vh',
-      marginTop: '12vh'
+      height: '27vh',
+      marginTop: '13vh',
+      zIndex: -1
     },
     sections: {
-      flexDirection: 'column'
+      flexDirection: 'column',
+      margin: 'auto'
     },
     background: {
       height: '40vh',
-      width: '100%'
+      width: '100%',
+      zIndex: -2
     },
     img: {
       width: '90%',
-      height: '90%'
+      height: '90%',
+      marginTop: '15%'
     },
     paragraph: {
-      width: '90%'
+      width: '90%',
+      margin: '10%'
+    },
+    secondparagraph: {
+      display: 'flex',
+      flexDirection: 'column-reverse'
     }
   }
 }));
@@ -102,20 +112,30 @@ const HomePage = props => {
             alt='main'
           />
           <p className={classes.paragraph}>
-            Lorem ipsum dolor sit amet, et tale consequat reprehendunt quo. Amet dicunt nostrud ei duo, eu numquam referrentur qui. Liber perpetua in
-            qui, mutat brute laudem et mea. Te forensibus adolescens nec. Nam at cetero epicuri, et dolores interesset est. Te vim assum aliquid
-            delicatissimi. Nibh gubergren at sit, ius utinam suavitate an, cu ius illum propriae voluptua. Vix ea virtute quaeque tibique, efficiantur
-            delicatissimi mei an, ignota mentitum suavitate his eu. Denique patrioque mediocritatem quo et, at vim quaeque percipit forensibus. At
-            unum summo nec, cu regione signiferumque sit, eum aperiam appellantur ut.
+            Lorem ipsum dolor sit amet, et tale consequat reprehendunt quo. Amet
+            dicunt nostrud ei duo, eu numquam referrentur qui. Liber perpetua in
+            qui, mutat brute laudem et mea. Te forensibus adolescens nec. Nam at
+            cetero epicuri, et dolores interesset est. Te vim assum aliquid
+            delicatissimi. Nibh gubergren at sit, ius utinam suavitate an, cu
+            ius illum propriae voluptua. Vix ea virtute quaeque tibique,
+            efficiantur delicatissimi mei an, ignota mentitum suavitate his eu.
+            Denique patrioque mediocritatem quo et, at vim quaeque percipit
+            forensibus. At unum summo nec, cu regione signiferumque sit, eum
+            aperiam appellantur ut.
           </p>
         </div>
-        <div className={classes.sections}>
+        <div className={classNames(classes.sections, classes.secondparagraph)}>
           <p className={classes.paragraph}>
-            Lorem ipsum dolor sit amet, et tale consequat reprehendunt quo. Amet dicunt nostrud ei duo, eu numquam referrentur qui. Liber perpetua in
-            qui, mutat brute laudem et mea. Te forensibus adolescens nec. Nam at cetero epicuri, et dolores interesset est. Te vim assum aliquid
-            delicatissimi. Nibh gubergren at sit, ius utinam suavitate an, cu ius illum propriae voluptua. Vix ea virtute quaeque tibique, efficiantur
-            delicatissimi mei an, ignota mentitum suavitate his eu. Denique patrioque mediocritatem quo et, at vim quaeque percipit forensibus. At
-            unum summo nec, cu regione signiferumque sit, eum aperiam appellantur ut.
+            Lorem ipsum dolor sit amet, et tale consequat reprehendunt quo. Amet
+            dicunt nostrud ei duo, eu numquam referrentur qui. Liber perpetua in
+            qui, mutat brute laudem et mea. Te forensibus adolescens nec. Nam at
+            cetero epicuri, et dolores interesset est. Te vim assum aliquid
+            delicatissimi. Nibh gubergren at sit, ius utinam suavitate an, cu
+            ius illum propriae voluptua. Vix ea virtute quaeque tibique,
+            efficiantur delicatissimi mei an, ignota mentitum suavitate his eu.
+            Denique patrioque mediocritatem quo et, at vim quaeque percipit
+            forensibus. At unum summo nec, cu regione signiferumque sit, eum
+            aperiam appellantur ut.
           </p>
           <img
             className={classes.img}

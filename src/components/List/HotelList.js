@@ -41,9 +41,7 @@ const HotelList = props => {
 
   return (
     <div className={classes.root}>
-      <div className={classes.searchInfo}>
-        <SearchInfo />
-      </div>
+      <SearchInfo />
       <div className={classes.card}>
         {hotelList.map((e, i) => {
           return <HotelInfo key={i} info={e} />;

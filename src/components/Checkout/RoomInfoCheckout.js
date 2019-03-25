@@ -51,7 +51,7 @@ const useStyles = makeStyles(theme => ({
   closeArrow: {
     display: 'none'
   },
-  ['@media (min-width: 750px) and (max-width: 1200px)']: {
+  '@media (min-width: 750px) and (max-width: 1200px)': {
     container: {
       height: 'auto'
     },
@@ -98,29 +98,36 @@ const useStyles = makeStyles(theme => ({
 const RoomInfoCheckout = props => {
   const [toggle, setToggle] = useState('true');
   const classes = useStyles();
-  const { info } = props;
+  // const { info } = props;
   return (
     <div className={classes.container}>
       {/* // INSERT ROOM INFO  */}
       <div className={classes.roomInfoCheckout}>
         <span> ONE QUEEN BED NONSMOKING </span>
+
+        {/* {arrow up or down depending on toggle} */}
         <span>
           {toggle ? (
             <img
               src='https://cdn0.iconfinder.com/data/icons/online-bank-service/100/025_-_arrow_navigation_menu-512.png'
+              alt='drop-down'
               className={classes.closeArrow}
               onClick={() => setToggle(!toggle)}
             />
           ) : (
             <img
               src='https://cdn0.iconfinder.com/data/icons/online-bank-service/100/025_-_arrow_navigation_menu-512.png'
+              alt='drop-down'
               className={classes.openArrow}
               onClick={() => setToggle(!toggle)}
             />
           )}
         </span>
       </div>
+
+      {/* {Drops down the rates and details in mobile view} */}
       <div>{toggle ? null : <CheckoutInfo />}</div>
+
       <div className={classes.totalPrice}>
         <div className={classes.priceInfoCheckout}>
           {/* INSERT PRICE OF ROOM */}

@@ -33,14 +33,21 @@ const RoomInfo = props => {
   const { info } = props;
   const classes = useStyles();
   return (
-    <Card price='$97' img={info.url} onClick={() => props.history.push(`/room/${props.info.room_id}`)} btnName='Select Room'>
+    <Card
+      price='$97'
+      img={info.url}
+      onClick={() => props.history.push(`/Checkout`)}
+      btnName='Select Room'
+    >
       {/* <h1>{props.info.room_id}</h1> */}
       <div className={classes.roomInfo}>
         <h1 className={classes.numberOfRooms}>Only 1 Room Left</h1>
         <h1 className={classes.roomTitle}>1 King Bed Leisure Nonsmoking</h1>
         <p className={classes.roomDescription}>
-          Understand the true meaning of contentment in this rm. Stay productive at the well lit desk. Relax in the ergonomic chair with free high
-          speed internet or let indulgence rain all over you from the a pulsating showerhead.
+          Understand the true meaning of contentment in this rm. Stay productive
+          at the well lit desk. Relax in the ergonomic chair with free high
+          speed internet or let indulgence rain all over you from the a
+          pulsating showerhead.
         </p>
       </div>
     </Card>

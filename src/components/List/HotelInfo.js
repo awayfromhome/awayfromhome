@@ -47,7 +47,7 @@ const useStyles = makeStyles(theme => ({
   eachAmenities: {
     listStyleType: 'square'
   },
-  ['@media (min-width: 750px) and (max-width: 1200px)']: {
+  '@media (min-width: 750px) and (max-width: 1200px)': {
     hotelInfo: {
       width: '50%',
       paddingLeft: 0,
@@ -81,7 +81,12 @@ const HotelInfo = props => {
   const { info } = props;
   const classes = useStyles();
   return (
-    <Card price='100' img={info.url} btnName='Select Hotel' onClick={() => props.history.push(`/roomlist/${info.hotel_id}`)}>
+    <Card
+      price='100'
+      img={info.url}
+      btnName='Select Hotel'
+      onClick={() => props.history.push(`/roomlist/${info.hotel_id}`)}
+    >
       <div className={classes.hotelname}>
         <div className={classes.hotelavatar} />
         <h1 className={classes.infoname}>{info.name}</h1>

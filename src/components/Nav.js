@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
     background: '#4C525A',
     zIndex: 4
   },
-  hamburgerMenu: {
+  navicons: {
     display: 'none'
   },
   hiddenMenus: {
@@ -64,36 +64,40 @@ const useStyles = makeStyles(theme => ({
       display: 'none'
     },
     entireMobileMenu: {
-      height: '12vh',
+      height: '13vh',
       background: theme.palette.tertiary.main,
       width: '100%',
-      display: 'flex',
-      alignItems: 'center'
-    },
-    imgContainer: {
-      height: '12vh',
-      display: 'flex',
-      alignItems: 'center',
-      width: '21%'
+      position: 'fixed'
     },
     hiddenMenus: {
       display: 'flex',
-      alignItems: 'center',
-      width: '100%'
+      zIndex: 4,
+      flexDirection: 'column',
+      background: '#8A95A5',
+      height: '100vh'
+    },
+    navicons: {
+      display: 'flex',
+      width: '18vh'
     },
     hamburgerMenu: {
-      display: 'flex',
-      width: '100%',
-      height: '12vh'
+      paddingRight: '15%'
     },
     hiddenMenutags: {
-      height: '12vh',
-      lineHeight: '12vh',
-      width: '22%',
+      zIndex: 4,
+      padding: '10%',
+      background: '#8A95A5',
+      borderBottom: '1px solid black',
       textAlign: 'center'
+    },
+    imgContainer: {
+      height: '100%',
+      display: 'flex',
+      flexDirection: 'row-reverse',
+      justifyContent: 'space-between'
     }
   },
-  ['@media (min-width: 750px) and (max-width: 1200px)']: {
+  '@media (min-width: 750px) and (max-width: 1200px)': {
     navContainer: { width: '10%' }
   }
 }));
@@ -109,76 +113,116 @@ const Nav = props => {
   return (
     <div className={classes.entireMobileMenu}>
       <div className={classNames(classes.imgContainer)}>
+        <img
+          src='https://s3.us-east-2.amazonaws.com/awayfromhome/AFHlogo.png'
+          alt='logo'
+          className={classes.navicons}
+          onClick={() => props.history.push('/')}
+        />
         {hiddenMenu ? (
           <img
             src='https://cdn4.iconfinder.com/data/icons/basic-user-interface-2/512/User_Interface-03-512.png'
             onClick={() => setHiddenMenu(!hiddenMenu)}
-            className={hiddenMenu ? classes.hamburgerMenu : classNames(classes.hamburgerMenu, 'animated fadeInUp slow delay-5s')}
+            className={classNames(classes.hamburgerMenu, classes.navicons)}
           />
         ) : (
           <img
             src='https://cdn0.iconfinder.com/data/icons/online-bank-service/100/025_-_arrow_navigation_menu-512.png'
-            className={classNames(classes.hamburgerMenu, 'animated fadeInDown slow')}
+            className={classNames(classes.hamburgerMenu, classes.navicons)}
             onClick={() => setHiddenMenu(!hiddenMenu)}
           />
         )}
       </div>
+
       {hiddenMenu ? null : (
-        <div className={classNames(classes.hiddenMenus, 'animated fadeInDown slow')}>
+        <div
+          className={
+            hiddenMenu
+              ? classNames(classes.hiddenMenus, 'animated fadeOutLeft')
+              : classNames(classes.hiddenMenus, 'animated fadeInLeft')
+          }
+        >
           {props.user.username || props.user.owner ? null : (
-            <a className={classes.hiddenMenutags} onClick={() => props.handleAccountForm('Login')}>
+            <a
+              className={classes.hiddenMenutags}
+              onClick={() => props.handleAccountForm('Login')}
+            >
               Sign In
             </a>
           )}
           {props.user.username || props.user.owner ? null : (
-            <a className={classes.hiddenMenutags} onClick={() => props.handleAccountForm('Register')}>
+            <a
+              className={classes.hiddenMenutags}
+              onClick={() => props.handleAccountForm('Register')}
+            >
               Sign Up
             </a>
           )}
+
           <a className={classes.hiddenMenutags}>Locations</a>
           <a className={classes.hiddenMenutags}>Offers </a>
           {props.user.username ? (
-            <a className={classes.hiddenMenutags} onClick={() => props.history.push('/Profile')}>
+            <a
+              className={classes.hiddenMenutags}
+              onClick={() => props.history.push('/Profile')}
+            >
               Profile
             </a>
           ) : null}
           {props.user.owner ? (
-            <a className={classes.hiddenMenutags} onClick={() => props.history.push('/Owner')}>
+            <a
+              className={classes.hiddenMenutags}
+              onClick={() => props.history.push('/Owner')}
+            >
               Owner
             </a>
           ) : null}
           {props.user.username ? (
-            <a className={classes.hiddenMenutags} onClick={() => props.handleLogout()}>
+            <a
+              className={classes.hiddenMenutags}
+              onClick={() => props.handleLogout()}
+            >
               Logout
             </a>
           ) : null}
         </div>
       )}
-
       <div className={classes.navContainer}>
         <div className={classes.logo} onClick={() => props.history.push('/')}>
           AFH
         </div>
         <div className={classes.navwrapper}>
           {props.user.username ? null : (
-            <a className={classes.tags} onClick={() => props.handleAccountForm('Login')}>
+            <a
+              className={classes.tags}
+              onClick={() => props.handleAccountForm('Login')}
+            >
               Sign In
             </a>
           )}
           {props.user.username ? null : (
-            <a className={classes.tags} onClick={() => props.handleAccountForm('Register')}>
+            <a
+              className={classes.tags}
+              onClick={() => props.handleAccountForm('Register')}
+            >
               Sign Up
             </a>
           )}
           <a className={classes.tags}>Locations</a>
           <a className={classes.tags}>Offers</a>
           {props.user.username ? (
-            <a className={classes.tags} onClick={() => props.history.push('/Profile')}>
+            <a
+              className={classes.tags}
+              onClick={() => props.history.push('/Profile')}
+            >
               Profile
             </a>
           ) : null}
           {props.user.owner ? (
-            <a className={classes.tags} onClick={() => props.history.push('/Owner')}>
+            <a
+              className={classes.tags}
+              onClick={() => props.history.push('/Owner')}
+            >
               Owner
             </a>
           ) : null}

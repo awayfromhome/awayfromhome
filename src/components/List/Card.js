@@ -69,7 +69,7 @@ const useStyles = makeStyles(theme => ({
     height: '100%',
     marginBottom: 'auto'
   },
-  ['@media (min-width: 750px) and (max-width: 1200px)']: {
+  '@media (min-width: 750px) and (max-width: 1200px)': {
     root: {
       width: '85%',
       height: '23vh'
@@ -122,7 +122,10 @@ const Card = props => {
             </div>
           </div>
           <div className={classes.selectBtnDiv}>
-            <button className={classes.selectBtn} onClick={() => props.onClick()}>
+            <button
+              className={classes.selectBtn}
+              onClick={() => props.onClick()}
+            >
               {props.btnName}
             </button>
           </div>

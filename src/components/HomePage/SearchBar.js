@@ -85,7 +85,7 @@ const useStyles = makeStyles(theme => ({
   innercounter: {
     borderRadius: '50%',
     border: '1px solid black',
-    width: '3vw',
+    width: '2.3vw',
     height: 50,
     background: '#fff',
     textAlign: 'center',
@@ -112,7 +112,8 @@ const useStyles = makeStyles(theme => ({
   },
   [theme.breakpoints.down('749')]: {
     paper: {
-      width: 'auto'
+      width: 'auto',
+      zIndex: -1
     },
     searchContainer: {
       flexDirection: 'column'
@@ -149,7 +150,7 @@ const useStyles = makeStyles(theme => ({
     },
     outerButtonDiv: {
       marginRight: '3%',
-      width: '15vw'
+      width: '19vw'
     },
     innercounter: {
       width: '5vw'
@@ -162,11 +163,31 @@ const useStyles = makeStyles(theme => ({
 
 const SearchBar = props => {
   const classes = useStyles();
-  const { value: destination, bind: bindDestination, reset: resetDestination } = useInput('Dallas');
-  const { value: occupants, setValue: setOccupants, bind: bindOccupants, reset: resetOccupants } = useInput(0);
-  const { value: rooms, setValue: setRooms, bind: bindRooms, reset: resetRooms } = useInput(0);
-  const { value: checkIn, bind: bindCheckIn, reset: resetCheckIn } = useInput(new Date());
-  const { value: checkOut, bind: bindCheckOut, reset: resetCheckOut } = useInput(addDays(new Date(), 1));
+  const {
+    value: destination,
+    bind: bindDestination,
+    reset: resetDestination
+  } = useInput('Dallas');
+  const {
+    value: occupants,
+    setValue: setOccupants,
+    bind: bindOccupants,
+    reset: resetOccupants
+  } = useInput(0);
+  const {
+    value: rooms,
+    setValue: setRooms,
+    bind: bindRooms,
+    reset: resetRooms
+  } = useInput(0);
+  const { value: checkIn, bind: bindCheckIn, reset: resetCheckIn } = useInput(
+    new Date()
+  );
+  const {
+    value: checkOut,
+    bind: bindCheckOut,
+    reset: resetCheckOut
+  } = useInput(addDays(new Date(), 1));
 
   const reset = () => {
     resetDestination();
@@ -225,7 +246,10 @@ const SearchBar = props => {
             <div className={classes.outerButtonDiv}>
               Rooms
               <div className={classes.outercounter}>
-                <div onClick={() => handleSubtractRooms()} className={classes.Leftbutton}>
+                <div
+                  onClick={() => handleSubtractRooms()}
+                  className={classes.Leftbutton}
+                >
                   <Remove />
                 </div>
                 <div className={classes.innercounter}>
@@ -233,7 +257,10 @@ const SearchBar = props => {
                     {rooms}
                   </div>
                 </div>
-                <div onClick={() => handleAddRooms()} className={classes.Rightbutton}>
+                <div
+                  onClick={() => handleAddRooms()}
+                  className={classes.Rightbutton}
+                >
                   <Add />
                 </div>
               </div>
@@ -242,7 +269,10 @@ const SearchBar = props => {
             <div className={classes.outerButtonDiv}>
               Occupants
               <div className={classes.outercounter}>
-                <div onClick={() => handleSubtractOccupants()} className={classes.Leftbutton}>
+                <div
+                  onClick={() => handleSubtractOccupants()}
+                  className={classes.Leftbutton}
+                >
                   <Remove />
                 </div>
                 <div className={classes.innercounter}>
@@ -250,7 +280,10 @@ const SearchBar = props => {
                     {occupants}
                   </div>
                 </div>
-                <div onClick={() => handleAddOccupants()} className={classes.Rightbutton}>
+                <div
+                  onClick={() => handleAddOccupants()}
+                  className={classes.Rightbutton}
+                >
                   <Add />
                 </div>
               </div>
@@ -291,7 +324,13 @@ const SearchBar = props => {
               />
             </MuiPickersUtilsProvider>
           </div>
-          <Button className={classes.searchButton} variant='contained' size='large' color='primary' onClick={() => handleSubmit()}>
+          <Button
+            className={classes.searchButton}
+            variant='contained'
+            size='large'
+            color='primary'
+            onClick={() => handleSubmit()}
+          >
             SEARCH
           </Button>
         </div>
