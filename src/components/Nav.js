@@ -66,7 +66,7 @@ const useStyles = makeStyles(theme => ({
     entireMobileMenu: {
       height: '13vh',
       background: theme.palette.tertiary.main,
-      width: '100%',
+      width: '100vw',
       position: 'fixed'
     },
     hiddenMenus: {

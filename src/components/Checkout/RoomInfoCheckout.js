@@ -65,7 +65,8 @@ const useStyles = makeStyles(theme => ({
   [theme.breakpoints.down('749')]: {
     container: {
       width: '100%',
-      height: '100%'
+      height: '100%',
+      marginBottom: '3%'
     },
     roomInfoCheckout: {
       width: 'auto'
@@ -76,11 +77,11 @@ const useStyles = makeStyles(theme => ({
       fontSize: '18px'
     },
     priceInfoCheckout: {
-      width: '100%',
+      width: 'auto',
       padding: '30px'
     },
     price: {
-      width: '40%'
+      width: '25%'
     },
     closeArrow: {
       display: 'block',
