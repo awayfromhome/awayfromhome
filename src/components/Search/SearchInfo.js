@@ -39,7 +39,7 @@ const useStyles = makeStyles(theme => ({
       width: '100%'
     },
     toolbar: {
-      width: '100vw',
+      width: '90vw',
       display: 'flex',
       flexDirection: 'column',
       marginLeft: 0,
@@ -62,7 +62,7 @@ const useStyles = makeStyles(theme => ({
       marginLeft: 0
     }
   },
-  ['@media (min-width: 750px) and (max-width: 1200px)']: {
+  '@media (min-width: 750px) and (max-width: 1200px)': {
     toolbar: {
       width: 'auto'
     },
@@ -94,7 +94,8 @@ const SearchInfo = props => {
           <div className={classes.city}>Dallas, Tx, United States</div>
           <div className={classes.deatilsInfo}>
             <span className={classes.searchInfo}>
-              03/18/2019 - 03/19/2019 <span className={classes.divider}> |</span>
+              03/18/2019 - 03/19/2019{' '}
+              <span className={classes.divider}> |</span>
             </span>
             <span className={classes.searchInfo}>
               # of Guests <span className={classes.divider}> |</span>
