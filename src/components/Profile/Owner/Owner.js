@@ -34,6 +34,7 @@ const Owner = props => {
 
   const handleOuterChange = (event, newValue) => {
     setOuterTabs(newValue);
+    setInnerTabs(0);
   };
 
   const handleInnerChange = (event, newValue) => {
@@ -95,7 +96,6 @@ const Owner = props => {
           <Tab label='Hotels' />
           <Tab label='Rooms' />
           <Tab label='Reservations' />
-          <Tab label='Reports' />
         </Tabs>
         <Divider />
         {displayInnerTabs()}

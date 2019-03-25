@@ -51,7 +51,6 @@ app.delete('/api/hotel', hotelCon.deleteHotel);
 
 //Room endpoint
 app.get('/api/roomlist/:id', roomCon.getRoomList);
-app.get('/api/room/:id', roomCon.getRoom);
 app.post('/api/room', roomCon.createRoom);
 app.put('/api/room', roomCon.updateRoom);
 app.delete('/api/room', roomCon.deleteRoom);

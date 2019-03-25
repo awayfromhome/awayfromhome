@@ -12,7 +12,6 @@ import TableSortLabel from '@material-ui/core/TableSortLabel';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
-import Checkbox from '@material-ui/core/Checkbox';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -56,7 +55,7 @@ const HotelTableHead = props => {
       <TableRow>
         {rows.map(
           row => (
-            <TableCell key={row.id} align='left' padding='none' sortDirection={orderBy === row.id ? order : false}>
+            <TableCell key={row.id} align='left' padding='default' sortDirection={orderBy === row.id ? order : false}>
               <TableSortLabel active={orderBy === row.id} direction={order} onClick={e => onRequestSort(e, row.id)}>
                 {row.label}
               </TableSortLabel>
@@ -192,16 +191,16 @@ const OwnerHotelInfo = props => {
               .map(n => {
                 return (
                   <TableRow tabIndex={-1} key={n.id}>
-                    <TableCell component='th' scope='row' padding='none'>
+                    <TableCell component='th' scope='row' padding='default'>
                       {n.name}
                     </TableCell>
-                    <TableCell align='left' padding='none'>
+                    <TableCell align='left' padding='default'>
                       {n.address}
                     </TableCell>
-                    <TableCell align='left' padding='none'>
+                    <TableCell align='left' padding='default'>
                       {n.frontDeskNum}
                     </TableCell>
-                    <TableCell align='left' padding='none'>
+                    <TableCell align='left' padding='default'>
                       {n.reservationNum}
                     </TableCell>
                   </TableRow>

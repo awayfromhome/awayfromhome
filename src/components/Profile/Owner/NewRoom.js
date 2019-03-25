@@ -10,9 +10,14 @@ import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
+import Paper from '@material-ui/core/Paper';
 
 const useStyles = makeStyles(theme => ({
+  background: {
+    margin: '1vw'
+  },
   root: {
+    margin: '1vw',
     display: 'flex',
     flexDirection: 'column'
   }
@@ -46,33 +51,35 @@ const NewRoom = props => {
   };
 
   return (
-    <div className={classes.root}>
-      <FormControl className={classes.formControl}>
-        <InputLabel>Associated Hotel</InputLabel>
-        <Select {...bindHotel}>
-          {props.hotelList.map((el, i) => {
-            return (
-              <MenuItem key={i} value={el.hotel_id}>
-                {el.name}
-              </MenuItem>
-            );
-          })}
-        </Select>
-      </FormControl>
-      <FormControl className={classes.formControl}>
-        <InputLabel>Room Type</InputLabel>
-        <Select {...bindType}>
-          <MenuItem value={'Standard'}>Standard</MenuItem>
-          <MenuItem value={'Deluxe'}>Deluxe</MenuItem>
-          <MenuItem value={'Suite'}>Suite</MenuItem>
-        </Select>
-      </FormControl>
-      <TextField label='Name' {...bindName} />
-      <TextField label='Description' {...bindDescription} />
-      <TextField label='Number of Rooms' {...bindCount} />
-      <TextField label='Price' {...bindPrice} />
-      <Button onClick={handleSubmit}>Submit</Button>
-    </div>
+    <Paper className={classes.background}>
+      <div className={classes.root}>
+        <FormControl className={classes.formControl} margin='dense'>
+          <InputLabel>Associated Hotel</InputLabel>
+          <Select {...bindHotel}>
+            {props.hotelList.map((el, i) => {
+              return (
+                <MenuItem key={i} value={el.hotel_id}>
+                  {el.name}
+                </MenuItem>
+              );
+            })}
+          </Select>
+        </FormControl>
+        <FormControl className={classes.formControl} margin='dense'>
+          <InputLabel>Room Type</InputLabel>
+          <Select {...bindType}>
+            <MenuItem value={'Standard'}>Standard</MenuItem>
+            <MenuItem value={'Deluxe'}>Deluxe</MenuItem>
+            <MenuItem value={'Suite'}>Suite</MenuItem>
+          </Select>
+        </FormControl>
+        <TextField label='Name' margin='normal' {...bindName} />
+        <TextField label='Description' margin='normal' {...bindDescription} />
+        <TextField label='Number of Rooms' margin='normal' {...bindCount} />
+        <TextField label='Price' margin='normal' {...bindPrice} />
+        <Button onClick={handleSubmit}>Submit</Button>
+      </div>
+    </Paper>
   );
 };
 

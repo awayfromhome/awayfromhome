@@ -8,15 +8,6 @@ module.exports = {
       res.sendStatus(500);
     }
   },
-  getRoom: async (req, res) => {
-    const db = req.app.get('db');
-    try {
-      const room = await db.get_room(req.params.id);
-      res.status(200).json(room);
-    } catch (err) {
-      res.sendStatus(500);
-    }
-  },
   createRoom: async (req, res) => {
     const db = req.app.get('db');
     const { count, type, name, description, hotel, price } = req.body;
