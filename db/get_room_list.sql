@@ -1,2 +1,2 @@
-SELECT * FROM room_type 
+SELECT * FROM room
 WHERE hotel_id =$1

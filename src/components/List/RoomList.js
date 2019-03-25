@@ -48,6 +48,7 @@ const RoomList = props => {
   const [deluxe, setDeluxe] = useState(false);
 
   useEffect(() => {
+    console.log('hit');
     axios
       .get(`/api/roomlist/${1}`)
       .then(res => {
@@ -81,13 +82,12 @@ const RoomList = props => {
 
       <div className={classes.card}>
         {roomList.map((e, i) => {
-          console.log('roomlist', e);
           if (standard) {
-            if (e.name === 'Standard') {
+            if (e.room_type === 'Standard') {
               return <RoomInfo key={i} info={e} />;
             }
           } else {
-            if (e.name === 'Deluxe') {
+            if (e.room_type === 'Deluxe') {
               return <RoomInfo key={i} info={e} />;
             }
           }
