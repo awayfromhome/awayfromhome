@@ -128,7 +128,7 @@ const Nav = props => {
           />
         ) : (
           <img
-            src='https://cdn0.iconfinder.com/data/icons/online-bank-service/100/025_-_arrow_navigation_menu-512.png'
+            src='https://cdn.iconscout.com/icon/free/png-256/down-arrow-16-460295.png'
             className={classNames(classes.hamburgerMenu, classes.navicons)}
             alt='chevron menu'
             onClick={() => setHiddenMenu(!hiddenMenu)}
@@ -138,31 +138,51 @@ const Nav = props => {
 
       {hiddenMenu ? null : (
         <div
-          className={hiddenMenu ? classNames(classes.hiddenMenus, 'animated fadeOutLeft') : classNames(classes.hiddenMenus, 'animated fadeInLeft')}>
+          className={
+            hiddenMenu
+              ? classNames(classes.hiddenMenus, 'animated fadeOutLeft')
+              : classNames(classes.hiddenMenus, 'animated fadeInLeft')
+          }
+        >
           {props.user.username ? null : (
-            <div className={classes.hiddenMenutags} onClick={() => props.handleAccountForm('Login')}>
+            <div
+              className={classes.hiddenMenutags}
+              onClick={() => props.handleAccountForm('Login')}
+            >
               Sign In
             </div>
           )}
           {props.user.username ? null : (
-            <div className={classes.hiddenMenutags} onClick={() => props.handleAccountForm('Register')}>
+            <div
+              className={classes.hiddenMenutags}
+              onClick={() => props.handleAccountForm('Register')}
+            >
               Sign Up
             </div>
           )}
           <div className={classes.hiddenMenutags}>Locations</div>
           <div className={classes.hiddenMenutags}>Offers </div>
           {props.user.username && props.user.role != 'admin' ? (
-            <div className={classes.hiddenMenutags} onClick={() => props.history.push('/Profile')}>
+            <div
+              className={classes.hiddenMenutags}
+              onClick={() => props.history.push('/Profile')}
+            >
               Profile
             </div>
           ) : null}
           {props.user.role === 'admin' ? (
-            <div className={classes.hiddenMenutags} onClick={() => props.history.push('/Owner')}>
+            <div
+              className={classes.hiddenMenutags}
+              onClick={() => props.history.push('/Owner')}
+            >
               Owner
             </div>
           ) : null}
           {props.user.username ? (
-            <div className={classes.hiddenMenutags} onClick={() => props.handleLogout()}>
+            <div
+              className={classes.hiddenMenutags}
+              onClick={() => props.handleLogout()}
+            >
               Logout
             </div>
           ) : null}
@@ -174,24 +194,36 @@ const Nav = props => {
         </div>
         <div className={classes.navwrapper}>
           {props.user.username ? null : (
-            <div className={classes.tags} onClick={() => props.handleAccountForm('Login')}>
+            <div
+              className={classes.tags}
+              onClick={() => props.handleAccountForm('Login')}
+            >
               Sign In
             </div>
           )}
           {props.user.username ? null : (
-            <div className={classes.tags} onClick={() => props.handleAccountForm('Register')}>
+            <div
+              className={classes.tags}
+              onClick={() => props.handleAccountForm('Register')}
+            >
               Sign Up
             </div>
           )}
           <div className={classes.tags}>Locations</div>
           <div className={classes.tags}>Offers</div>
           {props.user.username && props.user.role != 'admin' ? (
-            <div className={classes.tags} onClick={() => props.history.push('/Profile')}>
+            <div
+              className={classes.tags}
+              onClick={() => props.history.push('/Profile')}
+            >
               Profile
             </div>
           ) : null}
           {props.user.role === 'admin' ? (
-            <div className={classes.tags} onClick={() => props.history.push('/Owner')}>
+            <div
+              className={classes.tags}
+              onClick={() => props.history.push('/Owner')}
+            >
               Owner
             </div>
           ) : null}

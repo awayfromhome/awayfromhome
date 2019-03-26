@@ -86,10 +86,10 @@ const useStyles = makeStyles(theme => ({
     closeArrow: {
       display: 'block',
       width: '70px',
-      transform: 'rotate(270deg)'
+      paddingBottom: 8
     },
     openArrow: {
-      transform: 'rotate(90deg)',
+      transform: 'rotate(180deg)',
       display: 'block',
       width: '70px'
     }
@@ -110,14 +110,14 @@ const RoomInfoCheckout = props => {
         <span>
           {toggle ? (
             <img
-              src='https://cdn0.iconfinder.com/data/icons/online-bank-service/100/025_-_arrow_navigation_menu-512.png'
+              src='https://cdn.iconscout.com/icon/free/png-256/down-arrow-16-460295.png'
               alt='drop-down'
               className={classes.closeArrow}
               onClick={() => setToggle(!toggle)}
             />
           ) : (
             <img
-              src='https://cdn0.iconfinder.com/data/icons/online-bank-service/100/025_-_arrow_navigation_menu-512.png'
+              src='https://cdn.iconscout.com/icon/free/png-256/down-arrow-16-460295.png'
               alt='drop-down'
               className={classes.openArrow}
               onClick={() => setToggle(!toggle)}

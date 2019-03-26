@@ -32,6 +32,10 @@ const useStyles = makeStyles(theme => ({
     width: '42vw',
     marginLeft: '5%'
   },
+  root2Container: {
+    width: '60vw'
+  },
+
   redeemPointsContainer: {
     display: 'flex',
     flexDirection: 'column',
@@ -60,7 +64,7 @@ const useStyles = makeStyles(theme => ({
     width: '100%',
     display: 'flex'
   },
-  memeberDivBox1: {
+  memberDivBox1: {
     width: '25vw'
   },
   memeberDivBox2: {
@@ -79,12 +83,48 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center',
     '&:after': {
       content: '""',
-      position: 'fixed',
+      position: 'absolute',
       width: '19vw',
       right: '60%',
       height: '20px',
       marginTop: 77,
-      background: '#fff'
+      background: '#fff',
+      zIndex: 0
+    }
+  },
+  [theme.breakpoints.down('749')]: {
+    profileContainer: {
+      width: 'auto',
+      marginLeft: 0
+    },
+    innerProfileContainer: {
+      flexDirection: 'column',
+      paddingTop: '15vh',
+      width: 'auto'
+    },
+    root: {
+      width: '100vw'
+    },
+    memberBoxes: {
+      width: '50vw'
+    },
+    circle: {
+      marginBottom: '5vh',
+      '&:after': {
+        background: '#fff',
+        width: '100vw',
+        right: 0
+      }
+    },
+    memberDivBox1: {
+      width: 'auto'
+    },
+    root2Container: {
+      width: 'auto'
+    },
+    root2: {
+      width: 'auto',
+      marginLeft: 0
     }
   }
 }));
@@ -103,7 +143,7 @@ const Profile = props => {
             <button> Redeem</button>
           </div>
           <div className={classes.memberBoxesContainer}>
-            <div className={classes.memeberDivBox1}>
+            <div className={classes.memberDivBox1}>
               <div
                 className={classes.memberBoxes}
                 onClick={() => setSide('Account Activity')}
@@ -117,7 +157,7 @@ const Profile = props => {
                 Personal Information
               </div>
             </div>
-            <div>
+            <div className={classes.memberDivBox2}>
               <div
                 className={classes.memberBoxes}
                 onClick={() => setSide('Member')}
@@ -142,7 +182,7 @@ const Profile = props => {
             </div>
           </div>
         </Paper>
-        <div>
+        <div className={classes.root2Container}>
           <Paper className={classes.root2}>
             {side === 'Account Activity' ? <AccountActivity /> : null}
             {side === 'PersonalInfo' ? <PersonalInfo /> : null}
