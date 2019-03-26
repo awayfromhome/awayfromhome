@@ -1,7 +1,7 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { getUser } from './ducks/async';
+import { getUser } from './ducks/auth/authAsync';
 
 const Authorization = allowedRoles => {
   return WrappedComponent => {
@@ -19,7 +19,7 @@ const Authorization = allowedRoles => {
 
     const mapStateToProps = state => {
       return {
-        user: state.user
+        user: state.authReducer.user
       };
     };
     return connect(

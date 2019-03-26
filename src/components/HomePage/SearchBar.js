@@ -13,7 +13,8 @@ import Remove from '@material-ui/icons/Remove';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import { getHotelList } from '../../ducks/async';
-import { setSearchInfo, setRole } from '../../ducks/sync';
+import { setSearchInfo } from '../../ducks/sync';
+import { setUser } from '../../ducks/auth/authSync';
 import { withRouter } from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
@@ -218,7 +219,7 @@ const SearchBar = props => {
     } else {
       let firstDate = format(checkIn, 'MM/dd/yy');
       let secondDate = format(checkOut, 'MM/dd/yy');
-      props.setRole('guest');
+      props.setUser({ role: 'guest' });
       props.setSearchInfo({
         destination,
         occupants,
@@ -338,6 +339,6 @@ const mapStateToProps = state => state;
 export default withRouter(
   connect(
     mapStateToProps,
-    { getHotelList, setSearchInfo, setRole }
+    { getHotelList, setSearchInfo, setUser }
   )(SearchBar)
 );

@@ -3,8 +3,8 @@ import { useInput } from '../hooks/input-hook';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { handleAccountForm, getUser } from '../ducks/async';
-import { updateAccountFormSide } from '../ducks/sync';
+import { handleAccountForm, getUser } from '../ducks/auth/authAsync';
+import { updateAccountFormSide } from '../ducks/auth/authSync';
 import NumberFormat from 'react-number-format';
 
 import { makeStyles } from '@material-ui/styles';
@@ -235,8 +235,8 @@ const Login = props => {
 
 const mapStateToProps = state => {
   return {
-    accountFormToggle: state.accountFormToggle,
-    accountFormSide: state.accountFormSide
+    accountFormToggle: state.authReducer.accountFormToggle,
+    accountFormSide: state.authReducer.accountFormSide
   };
 };
 
