@@ -1,40 +1,42 @@
-import { createMuiTheme } from "@material-ui/core/styles";
+import { createMuiTheme } from '@material-ui/core/styles';
 
 const theme = createMuiTheme({
-
   overrides: {
     MuiInputBase: {
       input: {
-        textAlign: "left"
+        textAlign: 'left'
       }
     },
     MuiOutlinedInput: {
       input: {
-        margin: 10
+        margin: '1%',
+        padding: '15px 30px'
+      },
+      inputAdornedEnd: {
+        margin: '4%'
       }
     }
   },
   palette: {
     primary: {
-      main: "#474056",
-      second: "#F2E3BC"
+      main: '#474056',
+      second: '#F2E3BC'
     },
     secondary: {
-      main: "#96BBBB"
+      main: '#96BBBB'
     },
     tertiary: {
-      main: "#656D79"
+      main: '#656D79'
     },
     accent: {
-      main: "#9BA2FF"
+      main: '#9BA2FF'
     }
   },
 
   typography: {
     useNextVariants: true,
-    fontFamily: ["Questrial", "Mukta", "Cairo", "sans-serif"]
+    fontFamily: ['Questrial', 'Mukta', 'Cairo', 'sans-serif']
   }
-
 });
 
 export default theme;
