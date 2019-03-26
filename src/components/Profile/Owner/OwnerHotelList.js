@@ -140,7 +140,6 @@ const OwnerHotelInfo = props => {
   const classes = useStyles();
   const [order, setOrder] = useState('asc');
   const [orderBy, setOrderBy] = useState('name');
-  const [selected, setSelected] = useState([]);
   const [data, setData] = useState([]);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -181,10 +180,10 @@ const OwnerHotelInfo = props => {
 
   return (
     <Paper className={classes.root}>
-      <HotelTableToolbar numSelected={selected.length} />
+      <HotelTableToolbar />
       <div className={classes.tableWrapper}>
         <Table className={classes.table} aria-labelledby='tableTitle'>
-          <HotelTableHead numSelected={selected.length} order={order} orderBy={orderBy} onRequestSort={handleRequestSort} rowCount={data.length} />
+          <HotelTableHead order={order} orderBy={orderBy} onRequestSort={handleRequestSort} rowCount={data.length} />
           <TableBody>
             {stableSort(data, getSorting(order, orderBy))
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)

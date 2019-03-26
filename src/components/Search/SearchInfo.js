@@ -67,7 +67,7 @@ const useStyles = makeStyles(theme => ({
       marginLeft: 0
     }
   },
-  ['@media (min-width: 750px) and (max-width: 1200px)']: {
+  '@media (min-width: 750px) and (max-width: 1200px)': {
     toolbar: {
       width: 'auto'
     },

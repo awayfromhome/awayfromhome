@@ -38,7 +38,6 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const RoomList = props => {
-  const { info } = props;
   const classes = useStyles();
   const [roomList, setRoomList] = useState([]);
   const [standard, setStandard] = useState(true);
@@ -68,13 +67,7 @@ const RoomList = props => {
     <div className={classes.root}>
       <SearchInfo />
       <Paper className={classes.rootTabs}>
-        <Tabs
-          value={false}
-          indicatorColor='primary'
-          textColor='primary'
-          centered
-          variant='fullWidth'
-        >
+        <Tabs value={false} indicatorColor='primary' textColor='primary' centered variant='fullWidth'>
           <Tab label='Standard' onClick={() => handleRoomSelect('Standard')} />
           <Tab label='Deluxe' onClick={() => handleRoomSelect('Deluxe')} />
         </Tabs>
@@ -86,11 +79,12 @@ const RoomList = props => {
             if (e.room_type === 'Standard') {
               return <RoomInfo key={i} info={e} />;
             }
-          } else {
+          } else if (deluxe) {
             if (e.room_type === 'Deluxe') {
               return <RoomInfo key={i} info={e} />;
             }
           }
+          return null;
         })}
       </div>
     </div>

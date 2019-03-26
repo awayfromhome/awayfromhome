@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import SearchInfo from '../Search/SearchInfo';
 import HotelInfo from '../List/HotelInfo';
 import { connect } from 'react-redux';
