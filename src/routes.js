@@ -4,7 +4,7 @@ import HomePage from './components/HomePage/HomePage';
 import HotelList from './components/List/HotelList';
 import RoomList from './components/List/RoomList';
 import Checkout from './components/Checkout/Checkout';
-import Profile from './components/Profile/Profile';
+import Profile from './components/Profile/UserProfile/Profile';
 import Owner from './components/Profile/Owner/Owner';
 import Authorization from './Authorization';
 

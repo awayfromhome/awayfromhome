@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/styles';
 import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
+import Members from './Members';
+import MembersBenefits from './MembersBenefits';
+import PersonalInfo from './PersonalInfo';
+import AccountActivity from './AccountActivity';
 
 const useStyles = makeStyles(theme => ({
   profileContainer: {
@@ -14,7 +17,7 @@ const useStyles = makeStyles(theme => ({
   innerProfileContainer: {
     paddingTop: '10vh',
     height: '90%',
-    width: '60vw',
+    width: '65vw',
     margin: 'auto',
     display: 'flex'
   },
@@ -26,8 +29,8 @@ const useStyles = makeStyles(theme => ({
   },
   root2: {
     height: '70vh',
-    width: '40vw',
-    marginLeft: '7%'
+    width: '42vw',
+    marginLeft: '5%'
   },
   redeemPointsContainer: {
     display: 'flex',
@@ -78,7 +81,7 @@ const useStyles = makeStyles(theme => ({
       content: '""',
       position: 'fixed',
       width: '19vw',
-      right: '57%',
+      right: '60%',
       height: '20px',
       marginTop: 77,
       background: '#fff'
@@ -86,11 +89,9 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Profile = () => {
+const Profile = props => {
+  const [side, setSide] = useState('Account Activity');
   const classes = useStyles();
-  //   const [side, setSide]
-
-  const someFunction = () => {};
 
   return (
     <div className={classes.profileContainer}>
@@ -105,15 +106,30 @@ const Profile = () => {
             <div className={classes.memeberDivBox1}>
               <div
                 className={classes.memberBoxes}
-                onClick={() => someFunction('account')}
+                onClick={() => setSide('Account Activity')}
               >
                 Account Activity
               </div>
-              <div className={classes.memberBoxes}>Personal Information</div>
+              <div
+                className={classes.memberBoxes}
+                onClick={() => setSide('PersonalInfo')}
+              >
+                Personal Information
+              </div>
             </div>
             <div>
-              <div className={classes.memberBoxes}>Member</div>
-              <div className={classes.memberBoxes}>Member Benefits</div>
+              <div
+                className={classes.memberBoxes}
+                onClick={() => setSide('Member')}
+              >
+                Member
+              </div>
+              <div
+                className={classes.memberBoxes}
+                onClick={() => setSide('MemberBenefits')}
+              >
+                Member Benefits
+              </div>
             </div>
           </div>
           <div className={classes.entirecirclecontainer}>
@@ -128,7 +144,10 @@ const Profile = () => {
         </Paper>
         <div>
           <Paper className={classes.root2}>
-            <div> Hello </div>
+            {side === 'Account Activity' ? <AccountActivity /> : null}
+            {side === 'PersonalInfo' ? <PersonalInfo /> : null}
+            {side === 'Member' ? <Members /> : null}
+            {side === 'MemberBenefits' ? <MembersBenefits /> : null}
           </Paper>
         </div>
       </div>
