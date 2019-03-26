@@ -67,7 +67,7 @@ const useStyles = makeStyles(theme => ({
       marginLeft: 0
     }
   },
-  ['@media (min-width: 750px) and (max-width: 1200px)']: {
+  '@media (min-width: 750px) and (max-width: 1200px)': {
     toolbar: {
       width: 'auto'
     },
@@ -92,13 +92,7 @@ const useStyles = makeStyles(theme => ({
 
 const SearchInfo = props => {
   console.log('search info', props.setSearchInfo);
-  const {
-    destination,
-    occupants,
-    rooms,
-    firstDate,
-    secondDate
-  } = props.setSearchInfo;
+  const { destination, occupants, rooms, firstDate, secondDate } = props.setSearchInfo;
   const classes = useStyles();
   return (
     <AppBar position='static' className={classes.appBar}>
@@ -121,6 +115,10 @@ const SearchInfo = props => {
     </AppBar>
   );
 };
-const mapStatetoProps = state => state;
+const mapStatetoProps = state => {
+  return {
+    setSearchInfo: state.listReducer.setSearchInfo
+  };
+};
 
 export default connect(mapStatetoProps)(SearchInfo);

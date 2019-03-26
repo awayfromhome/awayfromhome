@@ -8,7 +8,7 @@ const useStyles = makeStyles(theme => ({
 const OwnerProfile = () => {
   const classes = useStyles;
   return (
-    <div>
+    <div className={classes.root}>
       <h1>Avatar</h1>
       <h1>Name</h1>
       <h1>Email</h1>

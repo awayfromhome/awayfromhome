@@ -3,11 +3,10 @@ import { useInput } from '../hooks/input-hook';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { handleAccountForm, getUser } from '../ducks/async';
-import { updateAccountFormSide } from '../ducks/sync';
+import { handleAccountForm, getUser } from '../ducks/auth/authAsync';
+import { updateAccountFormSide } from '../ducks/auth/authSync';
 import NumberFormat from 'react-number-format';
 
-import { makeStyles } from '@material-ui/styles';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
@@ -15,17 +14,6 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-
-const useStyles = makeStyles(theme => ({
-  button: {
-    color: 'white',
-    fontSize: '.8em'
-  },
-  linkbtn: {
-    margin: '0',
-    padding: '0'
-  }
-}));
 
 const Login = props => {
   const { value: username, reset: resetUsername, bind: bindUsername } = useInput('');
@@ -235,8 +223,8 @@ const Login = props => {
 
 const mapStateToProps = state => {
   return {
-    accountFormToggle: state.accountFormToggle,
-    accountFormSide: state.accountFormSide
+    accountFormToggle: state.authReducer.accountFormToggle,
+    accountFormSide: state.authReducer.accountFormSide
   };
 };
 

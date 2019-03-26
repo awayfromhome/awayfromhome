@@ -1,7 +1,16 @@
-import { createStore, applyMiddleware } from 'redux';
-import promiseMiddleware from 'redux-promise-middleware';
-import logger from 'redux-logger';
+import { createStore, applyMiddleware, combineReducers } from 'redux';
+import { createLogger } from 'redux-logger';
 import thunk from 'redux-thunk';
-import reducer from './reducer';
+import authReducer from './auth/authReducer';
+import listReducer from './lists/listReducer';
 
-export default createStore(reducer, applyMiddleware(promiseMiddleware, thunk, logger));
+const logger = createLogger({
+  duration: true,
+  timestamp: true,
+  diff: true
+});
+
+const rootReducer = combineReducers({ authReducer, listReducer });
+const middlewares = applyMiddleware(thunk, logger);
+
+export default createStore(rootReducer, middlewares);
