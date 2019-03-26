@@ -4,34 +4,36 @@ const app = express();
 const massive = require('massive');
 const session = require('express-session');
 const bodyParser = require('body-parser');
+const multer = require('multer');
 
 const authCon = require('./controllers/authController');
 const hotelCon = require('./controllers/hotelController');
 const roomCon = require('./controllers/roomController');
 const reservationCon = require('./controllers/reservationController');
 const miscCon = require('./controllers/miscController');
+const uploadCon = require('./controllers/uploadController');
 
+const upload = multer();
 app.use(bodyParser.json());
 app.use(bodyParser.text());
-
 app.use(
-  session({
-    secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: true,
-    cookie: {
-      maxAge: 1000 * 60 * 60 * 24 * 7
-    }
-  })
+	session({
+		secret: process.env.SESSION_SECRET,
+		resave: false,
+		saveUninitialized: true,
+		cookie: {
+			maxAge: 1000 * 60 * 60 * 24 * 7
+		}
+	})
 );
 
 //Database connection
 massive(process.env.CONNECTION_STRING)
-  .then(dbInstance => {
-    app.set('db', dbInstance);
-    console.log('db connected');
-  })
-  .catch(err => console.log(err));
+	.then(dbInstance => {
+		app.set('db', dbInstance);
+		console.log('db connected');
+	})
+	.catch(err => console.log(err));
 
 //Auth endpoints
 app.get('/auth/user', authCon.getUser);
@@ -66,6 +68,9 @@ app.delete('/api/reservation', reservationCon.deleteReservation);
 app.post('/charge', miscCon.newCharge);
 app.post('/api/transaction', miscCon.newTransaction);
 
+//Upload endpoint
+app.post('/api/uploadPic', upload.single('pic'), uploadCon.uploadPic);
+
 app.listen(process.env.EXPRESS_PORT, () => {
-  console.log(`Server - Listening on ${process.env.EXPRESS_PORT}`);
+	console.log(`Server - Listening on ${process.env.EXPRESS_PORT}`);
 });
