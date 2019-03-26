@@ -72,7 +72,9 @@ const useStyles = makeStyles(theme => ({
     },
     date: {
       width: '29%'
-    }
+    },
+    description: { width: '33%' },
+    text: { width: '33%' }
   }
 }));
 
