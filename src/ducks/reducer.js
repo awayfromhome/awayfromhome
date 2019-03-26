@@ -31,7 +31,7 @@ export default function reducer(state = initialState, action) {
     case GET_HOTEL_LIST_FULFILLED:
       return { ...state, hotelList: action.payload.data };
     case GET_USER_FULFILLED:
-      return { ...state, user: action.payload.data };
+      return { ...state, user: { ...state.user, ...action.payload.data } };
     case HANDLE_LOGOUT_FULFILLED:
       return { ...state, user: action.payload.data };
     case SET_SEARCH_INFO:

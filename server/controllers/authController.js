@@ -2,6 +2,11 @@ const bcrypt = require('bcryptjs');
 
 module.exports = {
   getUser: (req, res) => {
+    if (!req.session.user) {
+      req.session.user = {
+        id: -1
+      };
+    }
     res.status(200).json(req.session.user);
   },
   register: async (req, res) => {
