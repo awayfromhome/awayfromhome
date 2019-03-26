@@ -161,7 +161,7 @@ const Nav = props => {
 
           <a className={classes.hiddenMenutags}>Locations</a>
           <a className={classes.hiddenMenutags}>Offers </a>
-          {props.user.username ? (
+          {props.user.username && !props.user.owner ? (
             <a
               className={classes.hiddenMenutags}
               onClick={() => props.history.push('/Profile')}
@@ -210,7 +210,7 @@ const Nav = props => {
           )}
           <a className={classes.tags}>Locations</a>
           <a className={classes.tags}>Offers</a>
-          {props.user.username ? (
+          {props.user.username && !props.user.owner ? (
             <a
               className={classes.tags}
               onClick={() => props.history.push('/Profile')}
@@ -226,6 +226,7 @@ const Nav = props => {
               Owner
             </a>
           ) : null}
+
           {props.user.username ? (
             <a className={classes.tags} onClick={() => props.handleLogout()}>
               Logout

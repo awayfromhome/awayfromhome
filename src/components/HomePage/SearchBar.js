@@ -71,7 +71,7 @@ const useStyles = makeStyles(theme => ({
   outercounter: {
     borderRadius: '25px 25px 25px 25px',
     border: '1px solid black',
-    width: '20vh',
+    width: '22vh',
     height: 50,
     background: '#4C525A',
     display: 'flex',
@@ -108,7 +108,8 @@ const useStyles = makeStyles(theme => ({
   },
   [theme.breakpoints.down('749')]: {
     paper: {
-      width: 'auto'
+      width: 'auto',
+      zIndex: -1
     },
     searchContainer: {
       flexDirection: 'column'
