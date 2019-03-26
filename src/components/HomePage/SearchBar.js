@@ -25,13 +25,8 @@ const useStyles = makeStyles(theme => ({
     marginBottom: '2%'
   },
   textField: {
-    width: '100%',
-    MuiOutlinedInput: {
-      input: {
-        margin: '5%',
-        padding: 5
-      }
-    }
+    width: '90%',
+    marginLeft: '5%'
   },
   paper: {
     marginLeft: '1%',
@@ -76,7 +71,7 @@ const useStyles = makeStyles(theme => ({
   outercounter: {
     borderRadius: '25px 25px 25px 25px',
     border: '1px solid black',
-    width: '20vh',
+    width: '22vh',
     height: 50,
     background: '#4C525A',
     display: 'flex',
@@ -113,7 +108,8 @@ const useStyles = makeStyles(theme => ({
   },
   [theme.breakpoints.down('749')]: {
     paper: {
-      width: 'auto'
+      width: 'auto',
+      zIndex: -1
     },
     searchContainer: {
       flexDirection: 'column'
@@ -258,7 +254,10 @@ const SearchBar = props => {
             <div className={classes.outerButtonDiv}>
               Rooms
               <div className={classes.outercounter}>
-                <div onClick={() => handleSubtractRooms()} className={classes.Leftbutton}>
+                <div
+                  onClick={() => handleSubtractRooms()}
+                  className={classes.Leftbutton}
+                >
                   <Remove />
                 </div>
                 <div className={classes.innercounter}>
@@ -266,7 +265,10 @@ const SearchBar = props => {
                     {rooms}
                   </div>
                 </div>
-                <div onClick={() => handleAddRooms()} className={classes.Rightbutton}>
+                <div
+                  onClick={() => handleAddRooms()}
+                  className={classes.Rightbutton}
+                >
                   <Add />
                 </div>
               </div>
@@ -275,7 +277,10 @@ const SearchBar = props => {
             <div className={classes.outerButtonDiv}>
               Occupants
               <div className={classes.outercounter}>
-                <div onClick={() => handleSubtractOccupants()} className={classes.Leftbutton}>
+                <div
+                  onClick={() => handleSubtractOccupants()}
+                  className={classes.Leftbutton}
+                >
                   <Remove />
                 </div>
                 <div className={classes.innercounter}>
@@ -283,7 +288,10 @@ const SearchBar = props => {
                     {occupants}
                   </div>
                 </div>
-                <div onClick={() => handleAddOccupants()} className={classes.Rightbutton}>
+                <div
+                  onClick={() => handleAddOccupants()}
+                  className={classes.Rightbutton}
+                >
                   <Add />
                 </div>
               </div>
@@ -325,7 +333,13 @@ const SearchBar = props => {
               />
             </MuiPickersUtilsProvider>
           </div>
-          <Button className={classes.searchButton} variant='contained' size='large' color='primary' onClick={() => handleSubmit()}>
+          <Button
+            className={classes.searchButton}
+            variant='contained'
+            size='large'
+            color='primary'
+            onClick={() => handleSubmit()}
+          >
             SEARCH
           </Button>
         </div>

@@ -23,9 +23,6 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     marginTop: '2vh'
   },
-  searchInfoHolder: {
-    marginTop: '3%'
-  },
   CheckoutInfo: {
     display: 'flex'
   },
@@ -41,9 +38,8 @@ const Checkout = props => {
   const { info } = props;
   return (
     <div className={classes.root}>
-      <div className={classes.searchInfoHolder}>
-        <SearchInfo />
-      </div>
+      <SearchInfo />
+
       <div className={classes.upper}>
         <RoomInfoCheckout />
         <div className={classes.second}>
