@@ -8,17 +8,22 @@ import Profile from './components/Profile/UserProfile/Profile';
 import Owner from './components/Profile/Owner/Owner';
 import Authorization from './Authorization';
 
-const guest = Authorization(['guest', 'user', 'admin']);
-const owner = Authorization(['admin']);
-const user = Authorization(['user']);
+// const guest = Authorization(['guest', 'user', 'admin']);
+// const owner = Authorization(['admin']);
+// const user = Authorization(['user']);
 
 export default (
   <Switch>
-    <Route path='/Profile' component={user(Profile)} />
-    <Route path='/Owner' component={owner(Owner)} />
-    <Route path='/Checkout' component={guest(Checkout)} />
-    <Route path='/Roomlist/:id' component={guest(RoomList)} />
-    <Route path='/Hotellist' component={guest(HotelList)} />
+    {/* user(Profile) */}
+    <Route path='/Profile' component={Profile} />
+    {/* owner(Owner) */}
+    <Route path='/Owner' component={Owner} />
+    {/* guest(Checkout) */}
+    <Route path='/Checkout' component={Checkout} />
+    {/* guest(RoomList) */}
+    <Route path='/Roomlist/:id' component={RoomList} />
+    {/* guest(HotelList) */}
+    <Route path='/Hotellist' component={HotelList} />
     <Route exact path='/' component={HomePage} />
   </Switch>
 );
