@@ -53,10 +53,11 @@ const useStyles = makeStyles(theme => ({
   },
   img: {
     transform: 'rotateX(180deg)',
-    width: '4vw'
+    width: '3vw',
+    paddingLeft: '80px'
   },
   closeimg: {
-    width: '4vw',
+    width: '3vw',
     paddingBottom: '15px'
   },
   [theme.breakpoints.down('749')]: {
@@ -73,8 +74,12 @@ const useStyles = makeStyles(theme => ({
     date: {
       width: '29%'
     },
+    descriptionactivity: { width: '75vw', justifyContent: 'space-between' },
     description: { width: '33%' },
-    text: { width: '33%' }
+    text: { width: '33%', fontSize: '17px' },
+    description3: { width: '37vw', paddingLeft: '110px' },
+    img: { paddingLeft: 0, width: '10vw' },
+    closeimg: { width: '10vw' }
   }
 }));
 
@@ -111,17 +116,19 @@ const AccountActivity = () => {
           </span>
           <span className={classNames(classes.activity, classes.text)}>
             4,000 Points
+            <span>
+              <img
+                src='https://cdn.iconscout.com/icon/free/png-256/down-arrow-16-460295.png'
+                onClick={() => setToggle(!toggle)}
+                className={
+                  toggle
+                    ? classNames(classes.img)
+                    : classNames(classes.closeimg)
+                }
+              />
+            </span>
           </span>
         </div>
-        <span>
-          <img
-            src='https://cdn.iconscout.com/icon/free/png-256/down-arrow-16-460295.png'
-            onClick={() => setToggle(!toggle)}
-            className={
-              toggle ? classNames(classes.img) : classNames(classes.closeimg)
-            }
-          />
-        </span>
       </div>
       <div>{toggle ? null : 'Hello'}</div>
     </div>
