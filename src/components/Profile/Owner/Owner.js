@@ -8,7 +8,7 @@ import Divider from '@material-ui/core/Divider';
 import OwnerProfile from './OwnerProfile';
 import NewHotel from './NewHotel';
 import NewRoom from './NewRoom';
-import { getHotelListById } from '../../../ducks/async';
+import { getHotelListById, getUser } from '../../../ducks/async';
 import OwnerHotelList from './OwnerHotelList';
 import OwnerRoomList from './OwnerRoomList';
 
@@ -107,11 +107,12 @@ const Owner = props => {
 
 const mapStateToProps = state => {
   return {
-    hotelList: state.hotelList
+    hotelList: state.hotelList,
+    user: state.user
   };
 };
 
 export default connect(
   mapStateToProps,
-  { getHotelListById }
+  { getHotelListById, getUser }
 )(Owner);
