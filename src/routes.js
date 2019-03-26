@@ -6,7 +6,7 @@ import RoomList from './components/List/RoomList';
 import Checkout from './components/Checkout/Checkout';
 import Profile from './components/Profile/UserProfile/Profile';
 import Owner from './components/Profile/Owner/Owner';
-import Authorization from './Authorization';
+// import Authorization from './Authorization';
 
 // const guest = Authorization(['guest', 'user', 'admin']);
 // const owner = Authorization(['admin']);

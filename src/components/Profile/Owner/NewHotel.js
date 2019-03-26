@@ -6,7 +6,7 @@ import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/styles';
 import Button from '@material-ui/core/Button';
 import axios from 'axios';
-import { getHotelListById } from '../../../ducks/async';
+import { getHotelListById } from '../../../ducks/lists/listAsync';
 
 const useStyles = makeStyles(theme => ({
   background: {

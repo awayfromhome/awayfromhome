@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/styles';
 import Login from './Login';
-import { handleAccountForm, getUser, handleLogout } from '../ducks/async';
+import { getUser, handleAccountForm, handleLogout } from '../ducks/auth/authAsync';
 import classNames from 'classnames';
 
 const useStyles = makeStyles(theme => ({
@@ -242,7 +242,7 @@ const Nav = props => {
 
 const mapStateToProps = state => {
   return {
-    user: state.user
+    user: state.authReducer.user
   };
 };
 

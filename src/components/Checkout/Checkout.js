@@ -35,7 +35,6 @@ const useStyles = makeStyles(theme => ({
 
 const Checkout = props => {
   const classes = useStyles();
-  const { info } = props;
   return (
     <div className={classes.root}>
       <SearchInfo />
