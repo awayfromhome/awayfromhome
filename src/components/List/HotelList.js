@@ -33,17 +33,11 @@ const useStyles = makeStyles(theme => ({
 const HotelList = props => {
   const classes = useStyles();
 
-  const [hotelList, setHotelList] = useState([]);
-
-  useEffect(() => {
-    setHotelList(props.hotelList);
-  }, [props.hotelList]);
-
   return (
     <div className={classes.root}>
       <SearchInfo />
       <div className={classes.card}>
-        {hotelList.map((e, i) => {
+        {props.hotelList.map((e, i) => {
           return <HotelInfo key={i} info={e} />;
         })}
       </div>

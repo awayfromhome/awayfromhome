@@ -59,7 +59,7 @@ const Login = props => {
       let num = number.match(regexp).join('');
       if (type === 'Owner') {
         try {
-          await axios.post('/auth/register', { username, password, email, number: num, owner: true });
+          await axios.post('/auth/register', { username, password, email, number: num, role: 'admin' });
           props.getUser();
           props.handleAccountForm();
           reset();
@@ -68,7 +68,7 @@ const Login = props => {
         }
       } else {
         try {
-          await axios.post('/auth/register', { username, password, email, number: num, owner: false });
+          await axios.post('/auth/register', { username, password, email, number: num, role: 'user' });
           props.getUser();
           props.handleAccountForm();
           reset();

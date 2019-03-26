@@ -12,7 +12,7 @@ CREATE TABLE users (
   hash VARCHAR(75),
   email VARCHAR(100),
   number VARCHAR(15),
-  owner BOOLEAN,
+  role VARCHAR (30),
   address VARCHAR(128),
   city VARCHAR(50),
   postalcode INTEGER,
