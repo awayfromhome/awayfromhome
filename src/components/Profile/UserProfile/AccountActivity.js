@@ -54,11 +54,13 @@ const useStyles = makeStyles(theme => ({
   img: {
     transform: 'rotateX(180deg)',
     width: '3vw',
+    paddingBottom: '15px',
     paddingLeft: '80px'
   },
   closeimg: {
     width: '3vw',
-    paddingBottom: '15px'
+    paddingBottom: '15px',
+    paddingLeft: '80px'
   },
   [theme.breakpoints.down('749')]: {
     container: {

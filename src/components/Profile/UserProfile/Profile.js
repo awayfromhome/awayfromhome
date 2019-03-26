@@ -14,12 +14,23 @@ const useStyles = makeStyles(theme => ({
     textAlign: 'center',
     height: '100vh'
   },
+
   innerProfileContainer: {
     paddingTop: '10vh',
     height: '90%',
-    width: '65vw',
+    width: '68vw',
     margin: 'auto',
+    display: 'flex',
+    flexDirection: 'column'
+  },
+  entireMainContainer: {
     display: 'flex'
+  },
+  name: {
+    textAlign: 'left',
+    marginBottom: '3%',
+    fontSize: 50,
+    fontFamily: theme.typography.fontFamily[0]
   },
   root: {
     height: '70vh',
@@ -85,7 +96,7 @@ const useStyles = makeStyles(theme => ({
       content: '""',
       position: 'absolute',
       width: '19vw',
-      right: '60%',
+      right: '58%',
       height: '20px',
       marginTop: 77,
       background: '#fff',
@@ -93,6 +104,12 @@ const useStyles = makeStyles(theme => ({
     }
   },
   [theme.breakpoints.down('749')]: {
+    entireMainContainer: {
+      flexDirection: 'column'
+    },
+    name: {
+      textAlign: 'center'
+    },
     profileContainer: {
       width: 'auto',
       marginLeft: 0
@@ -103,7 +120,8 @@ const useStyles = makeStyles(theme => ({
       width: 'auto'
     },
     root: {
-      width: '100vw'
+      width: '100vw',
+      marginTop: '5%'
     },
     memberBoxes: {
       width: '50vw'
@@ -124,7 +142,8 @@ const useStyles = makeStyles(theme => ({
     },
     root2: {
       width: 'auto',
-      marginLeft: 0
+      marginLeft: 0,
+      marginTop: '10%'
     }
   }
 }));
@@ -136,59 +155,62 @@ const Profile = props => {
   return (
     <div className={classes.profileContainer}>
       <div className={classes.innerProfileContainer}>
-        <Paper className={classes.root}>
-          <div className={classes.redeemPointsContainer}>
-            Available Points to Redeem
-            <span className={classes.redeemTitle}>Points will go here</span>
-            <button> Redeem</button>
-          </div>
-          <div className={classes.memberBoxesContainer}>
-            <div className={classes.memberDivBox1}>
-              <div
-                className={classes.memberBoxes}
-                onClick={() => setSide('Account Activity')}
-              >
-                Account Activity
+        <div className={classes.name}>Hello, Name</div>
+        <div className={classes.entireMainContainer}>
+          <Paper className={classes.root}>
+            <div className={classes.redeemPointsContainer}>
+              Available Points to Redeem
+              <span className={classes.redeemTitle}>Points will go here</span>
+              <button> Redeem</button>
+            </div>
+            <div className={classes.memberBoxesContainer}>
+              <div className={classes.memberDivBox1}>
+                <div
+                  className={classes.memberBoxes}
+                  onClick={() => setSide('Account Activity')}
+                >
+                  Account Activity
+                </div>
+                <div
+                  className={classes.memberBoxes}
+                  onClick={() => setSide('PersonalInfo')}
+                >
+                  Personal Information
+                </div>
               </div>
-              <div
-                className={classes.memberBoxes}
-                onClick={() => setSide('PersonalInfo')}
-              >
-                Personal Information
+              <div className={classes.memberDivBox2}>
+                <div
+                  className={classes.memberBoxes}
+                  onClick={() => setSide('Member')}
+                >
+                  Member
+                </div>
+                <div
+                  className={classes.memberBoxes}
+                  onClick={() => setSide('MemberBenefits')}
+                >
+                  Member Benefits
+                </div>
               </div>
             </div>
-            <div className={classes.memberDivBox2}>
-              <div
-                className={classes.memberBoxes}
-                onClick={() => setSide('Member')}
-              >
-                Member
+            <div className={classes.entirecirclecontainer}>
+              <div className={classes.circle}>
+                0 <br /> Points
               </div>
-              <div
-                className={classes.memberBoxes}
-                onClick={() => setSide('MemberBenefits')}
-              >
-                Member Benefits
+              <div className={classes.circle}>
+                0 <br />
+                Nights
               </div>
             </div>
-          </div>
-          <div className={classes.entirecirclecontainer}>
-            <div className={classes.circle}>
-              0 <br /> Points
-            </div>
-            <div className={classes.circle}>
-              0 <br />
-              Nights
-            </div>
-          </div>
-        </Paper>
-        <div className={classes.root2Container}>
-          <Paper className={classes.root2}>
-            {side === 'Account Activity' ? <AccountActivity /> : null}
-            {side === 'PersonalInfo' ? <PersonalInfo /> : null}
-            {side === 'Member' ? <Members /> : null}
-            {side === 'MemberBenefits' ? <MembersBenefits /> : null}
           </Paper>
+          <div className={classes.root2Container}>
+            <Paper className={classes.root2}>
+              {side === 'Account Activity' ? <AccountActivity /> : null}
+              {side === 'PersonalInfo' ? <PersonalInfo /> : null}
+              {side === 'Member' ? <Members /> : null}
+              {side === 'MemberBenefits' ? <MembersBenefits /> : null}
+            </Paper>
+          </div>
         </div>
       </div>
     </div>
