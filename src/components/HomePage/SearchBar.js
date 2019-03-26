@@ -12,8 +12,8 @@ import Add from '@material-ui/icons/Add';
 import Remove from '@material-ui/icons/Remove';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
-import { getHotelList } from '../../ducks/async';
-import { setSearchInfo } from '../../ducks/sync';
+import { getHotelList } from '../../ducks/lists/listAsync';
+import { setSearchInfo } from '../../ducks/lists/listSync';
 import { setUser } from '../../ducks/auth/authSync';
 import { withRouter } from 'react-router-dom';
 

@@ -236,7 +236,7 @@ const OwnerHotelInfo = props => {
 
 const mapStateToProps = state => {
   return {
-    hotelList: state.reducer.hotelList
+    hotelList: state.listReducer.hotelList
   };
 };
 

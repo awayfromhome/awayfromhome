@@ -9,7 +9,7 @@ import OwnerProfile from './OwnerProfile';
 import NewHotel from './NewHotel';
 import NewRoom from './NewRoom';
 import { getUser } from '../../../ducks/auth/authAsync';
-import { getHotelListById } from '../../../ducks/async';
+import { getHotelListById } from '../../../ducks/lists/listAsync';
 import OwnerHotelList from './OwnerHotelList';
 import OwnerRoomList from './OwnerRoomList';
 
@@ -109,7 +109,7 @@ const Owner = props => {
 const mapStateToProps = state => {
   console.log(state);
   return {
-    hotelList: state.reducer.hotelList,
+    hotelList: state.listReducer.hotelList,
     user: state.authReducer.user
   };
 };

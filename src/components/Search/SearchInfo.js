@@ -117,7 +117,7 @@ const SearchInfo = props => {
 };
 const mapStatetoProps = state => {
   return {
-    setSearchInfo: state.reducer.setSearchInfo
+    setSearchInfo: state.listReducer.setSearchInfo
   };
 };
 

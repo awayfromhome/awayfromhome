@@ -1,4 +1,4 @@
-import { getHotelListFulfilled, getHotelListByIdFulfilled } from './sync';
+import { getHotelListFulfilled, getHotelListByIdFulfilled } from './listSync';
 import axios from 'axios';
 
 export const getHotelList = value => {

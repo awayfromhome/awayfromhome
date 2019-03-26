@@ -1,4 +1,4 @@
-import { GET_HOTEL_LIST_FULFILLED, GET_HOTEL_LIST_BY_ID_FULFILLED, SET_SEARCH_INFO } from './constants';
+import { GET_HOTEL_LIST_FULFILLED, GET_HOTEL_LIST_BY_ID_FULFILLED, SET_SEARCH_INFO } from '../constants';
 
 export const getHotelListFulfilled = hotelList => {
   return {
