@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { format } from 'date-fns';
 import { useInput } from '../../hooks/input-hook';
 import { addDays } from 'date-fns';
@@ -166,13 +166,14 @@ const SearchBar = props => {
   const { value: destination, bind: bindDestination, reset: resetDestination } = useInput('Dallas');
   const { value: occupants, setValue: setOccupants, bind: bindOccupants, reset: resetOccupants } = useInput(0);
   const { value: rooms, setValue: setRooms, bind: bindRooms, reset: resetRooms } = useInput(0);
-  const { value: checkIn, bind: bindCheckIn, reset: resetCheckIn } = useInput(new Date());
-  const { value: checkOut, bind: bindCheckOut, reset: resetCheckOut } = useInput(addDays(new Date(), 1));
+  const { value: checkOut, setValue: setCheckOut, bind: bindCheckOut, reset: resetCheckOut } = useInput(addDays(new Date(), 1));
+  const [checkIn, setCheckIn] = useState(new Date());
+  const [error, setError] = useState('');
 
   const reset = () => {
     resetDestination();
     resetOccupants();
-    resetCheckIn();
+    setCheckIn(new Date());
     resetCheckOut();
     resetRooms();
   };
@@ -182,6 +183,9 @@ const SearchBar = props => {
       setOccupants(0);
     } else {
       setOccupants(+occupants - 1);
+    }
+    if ((+occupants / 4) % 1 === 0) {
+      setRooms(+rooms - 1);
     }
   };
 
@@ -194,6 +198,9 @@ const SearchBar = props => {
   };
 
   const handleAddOccupants = () => {
+    if ((+occupants / 4) % 1 === 0) {
+      setRooms(+rooms + 1);
+    }
     setOccupants(+occupants + 1);
   };
 
@@ -201,26 +208,35 @@ const SearchBar = props => {
     setRooms(+rooms + 1);
   };
 
+  const handleCheckInChange = e => {
+    setCheckIn(e);
+    setCheckOut(addDays(e, 1));
+  };
+
   const handleSubmit = () => {
-    let firstDate = format(checkIn, 'MM/dd/yy');
-    let secondDate = format(checkOut, 'MM/dd/yy');
-    props.setSearchInfo({
-      destination,
-      occupants,
-      rooms,
-      firstDate,
-      secondDate
-    });
-    props.getHotelList({
-      destination,
-      occupants,
-      rooms,
-      firstDate,
-      secondDate
-    });
-    reset();
-    props.setRole('guest');
-    props.history.push('/Hotellist');
+    if (rooms === 0 || occupants === 0 || destination === '') {
+      setError('You are missing an input field.');
+    } else {
+      let firstDate = format(checkIn, 'MM/dd/yy');
+      let secondDate = format(checkOut, 'MM/dd/yy');
+      props.setSearchInfo({
+        destination,
+        occupants,
+        rooms,
+        firstDate,
+        secondDate
+      });
+      props.getHotelList({
+        destination,
+        occupants,
+        rooms,
+        firstDate,
+        secondDate
+      });
+      reset();
+      props.setRole('guest');
+      props.history.push('/Hotellist');
+    }
   };
 
   return (
@@ -282,7 +298,8 @@ const SearchBar = props => {
                 className={classes.datepicker}
                 margin='normal'
                 label='Check-In'
-                {...bindCheckIn}
+                value={checkIn}
+                onChange={e => handleCheckInChange(e)}
                 variant='outlined'
                 InputProps={{
                   endAdornment: (
