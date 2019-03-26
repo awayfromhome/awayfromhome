@@ -96,7 +96,7 @@ const useStyles = makeStyles(theme => ({
       content: '""',
       position: 'absolute',
       width: '19vw',
-      right: '58%',
+      right: '61%',
       height: '20px',
       marginTop: 77,
       background: '#fff',
@@ -108,7 +108,8 @@ const useStyles = makeStyles(theme => ({
       flexDirection: 'column'
     },
     name: {
-      textAlign: 'center'
+      textAlign: 'left',
+      marginLeft: 53
     },
     profileContainer: {
       width: 'auto',
@@ -124,10 +125,12 @@ const useStyles = makeStyles(theme => ({
       marginTop: '5%'
     },
     memberBoxes: {
-      width: '50vw'
+      width: '49.5vw',
+      height: '8vh'
     },
     circle: {
       marginBottom: '5vh',
+      marginTop: '10%',
       '&:after': {
         background: '#fff',
         width: '100vw',

@@ -19,9 +19,21 @@ const useStyles = makeStyles(theme => ({
     fontSize: '25px',
     textAlign: 'left'
   },
+
   membershipdetails: {
     fontSize: '18px',
     textAlign: 'left'
+  },
+  [theme.breakpoints.down('749')]: {
+    CardContent: {
+      width: 'auto'
+    },
+    img: {
+      width: '180px'
+    },
+    card: {
+      marginTop: '5%'
+    }
   }
 }));
 

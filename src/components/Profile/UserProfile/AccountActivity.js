@@ -81,7 +81,7 @@ const useStyles = makeStyles(theme => ({
     text: { width: '33%', fontSize: '17px' },
     description3: { width: '37vw', paddingLeft: '110px' },
     img: { paddingLeft: 0, width: '10vw' },
-    closeimg: { width: '10vw' }
+    closeimg: { width: '10vw', paddingLeft: 0, paddingTop: 20 }
   }
 }));
 
