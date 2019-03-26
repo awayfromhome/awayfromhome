@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { format } from 'date-fns';
 import { useInput } from '../../hooks/input-hook';
-import { addDays } from 'date-fns';
+import { addDays, format } from 'date-fns';
 import { connect } from 'react-redux';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/styles';
@@ -179,9 +178,12 @@ const SearchBar = props => {
       setOccupants(0);
     } else {
       setOccupants(+occupants - 1);
-    }
-    if ((+occupants / 4) % 1 === 0) {
-      setRooms(+rooms - 1);
+      let rule = +occupants / 4;
+      rule -= 0.25;
+      if (rule % 1 === 0) {
+        console.log(rule);
+        setRooms(rule);
+      }
     }
   };
 
@@ -194,8 +196,9 @@ const SearchBar = props => {
   };
 
   const handleAddOccupants = () => {
-    if ((+occupants / 4) % 1 === 0) {
-      setRooms(+rooms + 1);
+    const rule = +occupants / 4;
+    if (rule % 1 === 0) {
+      setRooms(rule + 1);
     }
     setOccupants(+occupants + 1);
   };
@@ -215,6 +218,7 @@ const SearchBar = props => {
     } else {
       let firstDate = format(checkIn, 'MM/dd/yy');
       let secondDate = format(checkOut, 'MM/dd/yy');
+      props.setRole('guest');
       props.setSearchInfo({
         destination,
         occupants,
@@ -230,7 +234,6 @@ const SearchBar = props => {
         secondDate
       });
       reset();
-      props.setRole('guest');
       props.history.push('/Hotellist');
     }
   };
@@ -254,10 +257,7 @@ const SearchBar = props => {
             <div className={classes.outerButtonDiv}>
               Rooms
               <div className={classes.outercounter}>
-                <div
-                  onClick={() => handleSubtractRooms()}
-                  className={classes.Leftbutton}
-                >
+                <div onClick={() => handleSubtractRooms()} className={classes.Leftbutton}>
                   <Remove />
                 </div>
                 <div className={classes.innercounter}>
@@ -265,10 +265,7 @@ const SearchBar = props => {
                     {rooms}
                   </div>
                 </div>
-                <div
-                  onClick={() => handleAddRooms()}
-                  className={classes.Rightbutton}
-                >
+                <div onClick={() => handleAddRooms()} className={classes.Rightbutton}>
                   <Add />
                 </div>
               </div>
@@ -277,10 +274,7 @@ const SearchBar = props => {
             <div className={classes.outerButtonDiv}>
               Occupants
               <div className={classes.outercounter}>
-                <div
-                  onClick={() => handleSubtractOccupants()}
-                  className={classes.Leftbutton}
-                >
+                <div onClick={() => handleSubtractOccupants()} className={classes.Leftbutton}>
                   <Remove />
                 </div>
                 <div className={classes.innercounter}>
@@ -288,10 +282,7 @@ const SearchBar = props => {
                     {occupants}
                   </div>
                 </div>
-                <div
-                  onClick={() => handleAddOccupants()}
-                  className={classes.Rightbutton}
-                >
+                <div onClick={() => handleAddOccupants()} className={classes.Rightbutton}>
                   <Add />
                 </div>
               </div>
@@ -333,13 +324,7 @@ const SearchBar = props => {
               />
             </MuiPickersUtilsProvider>
           </div>
-          <Button
-            className={classes.searchButton}
-            variant='contained'
-            size='large'
-            color='primary'
-            onClick={() => handleSubmit()}
-          >
+          <Button className={classes.searchButton} variant='contained' size='large' color='primary' onClick={() => handleSubmit()}>
             SEARCH
           </Button>
         </div>

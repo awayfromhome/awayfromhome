@@ -136,52 +136,32 @@ const Nav = props => {
 
       {hiddenMenu ? null : (
         <div
-          className={
-            hiddenMenu
-              ? classNames(classes.hiddenMenus, 'animated fadeOutLeft')
-              : classNames(classes.hiddenMenus, 'animated fadeInLeft')
-          }
-        >
-          {props.user.username || props.user.owner ? null : (
-            <a
-              className={classes.hiddenMenutags}
-              onClick={() => props.handleAccountForm('Login')}
-            >
+          className={hiddenMenu ? classNames(classes.hiddenMenus, 'animated fadeOutLeft') : classNames(classes.hiddenMenus, 'animated fadeInLeft')}>
+          {props.user.username || props.user.role ? null : (
+            <a className={classes.hiddenMenutags} onClick={() => props.handleAccountForm('Login')}>
               Sign In
             </a>
           )}
-          {props.user.username || props.user.owner ? null : (
-            <a
-              className={classes.hiddenMenutags}
-              onClick={() => props.handleAccountForm('Register')}
-            >
+          {props.user.username || props.user.role ? null : (
+            <a className={classes.hiddenMenutags} onClick={() => props.handleAccountForm('Register')}>
               Sign Up
             </a>
           )}
 
           <a className={classes.hiddenMenutags}>Locations</a>
           <a className={classes.hiddenMenutags}>Offers </a>
-          {props.user.username && !props.user.owner ? (
-            <a
-              className={classes.hiddenMenutags}
-              onClick={() => props.history.push('/Profile')}
-            >
+          {props.user.username && !props.user.role ? (
+            <a className={classes.hiddenMenutags} onClick={() => props.history.push('/Profile')}>
               Profile
             </a>
           ) : null}
-          {props.user.owner ? (
-            <a
-              className={classes.hiddenMenutags}
-              onClick={() => props.history.push('/Owner')}
-            >
+          {props.user.role ? (
+            <a className={classes.hiddenMenutags} onClick={() => props.history.push('/Owner')}>
               Owner
             </a>
           ) : null}
           {props.user.username ? (
-            <a
-              className={classes.hiddenMenutags}
-              onClick={() => props.handleLogout()}
-            >
+            <a className={classes.hiddenMenutags} onClick={() => props.handleLogout()}>
               Logout
             </a>
           ) : null}
@@ -193,36 +173,24 @@ const Nav = props => {
         </div>
         <div className={classes.navwrapper}>
           {props.user.username ? null : (
-            <a
-              className={classes.tags}
-              onClick={() => props.handleAccountForm('Login')}
-            >
+            <a className={classes.tags} onClick={() => props.handleAccountForm('Login')}>
               Sign In
             </a>
           )}
           {props.user.username ? null : (
-            <a
-              className={classes.tags}
-              onClick={() => props.handleAccountForm('Register')}
-            >
+            <a className={classes.tags} onClick={() => props.handleAccountForm('Register')}>
               Sign Up
             </a>
           )}
           <a className={classes.tags}>Locations</a>
           <a className={classes.tags}>Offers</a>
-          {props.user.username && !props.user.owner ? (
-            <a
-              className={classes.tags}
-              onClick={() => props.history.push('/Profile')}
-            >
+          {props.user.username && props.user.role != 'admin' ? (
+            <a className={classes.tags} onClick={() => props.history.push('/Profile')}>
               Profile
             </a>
           ) : null}
-          {props.user.owner ? (
-            <a
-              className={classes.tags}
-              onClick={() => props.history.push('/Owner')}
-            >
+          {props.user.role === 'admin' ? (
+            <a className={classes.tags} onClick={() => props.history.push('/Owner')}>
               Owner
             </a>
           ) : null}
