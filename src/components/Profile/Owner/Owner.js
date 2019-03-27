@@ -22,7 +22,8 @@ const useStyles = makeStyles({
     width: '93%'
   },
   tabs: {
-    marginTop: '10%'
+    marginTop: '1%',
+    
   }
 });
 
