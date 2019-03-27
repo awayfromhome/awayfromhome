@@ -140,11 +140,11 @@ const AccountActivity = () => {
                     )}
                   >
                     <div className={classes.description3}>Qualifying Stay </div>
-                    <div className={classes.description3}>{e.name}</div>
                     <div className={classes.description3}>{e.hotel_name}</div>
+                    <div className={classes.description3}>Dallas, TX</div>
                   </span>
                   <span className={classNames(classes.activity, classes.text)}>
-                    {e.points}
+                    {e.points} points
                     <span onClick={() => setInfo(i)}>
                       <img
                         src='https://cdn.iconscout.com/icon/free/png-256/down-arrow-16-460295.png'
