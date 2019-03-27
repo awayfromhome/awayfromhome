@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import classNames from 'classnames';
+import axios from 'axios';
 import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/styles';
 import Table from '@material-ui/core/Table';
@@ -9,13 +9,12 @@ import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import IconButton from '@material-ui/core/IconButton';
-import Tooltip from '@material-ui/core/Tooltip';
 import DeleteIcon from '@material-ui/icons/Delete';
-import { lighten } from '@material-ui/core/styles/colorManipulator';
+import EditIcon from '@material-ui/icons/Edit';
+import { getHotelListById } from '../../../ducks/lists/listAsync';
+import { setInnerTabs, setHotelInfo } from '../../../ducks/lists/listSync';
 
 const desc = (a, b, orderBy) => {
   if (b[orderBy] < a[orderBy]) {
@@ -47,7 +46,8 @@ const HotelTableHead = props => {
     { id: 'name', label: 'Hotel Name' },
     { id: 'address', label: 'Hotel Address' },
     { id: 'frontDeskNum', label: 'Front Desk #' },
-    { id: 'reservationNum', label: 'Reservation #' }
+    { id: 'reservationNum', label: 'Reservation #' },
+    { id: 'actions', label: 'Table Actions' }
   ];
 
   return (
@@ -66,61 +66,6 @@ const HotelTableHead = props => {
       </TableRow>
     </TableHead>
   );
-};
-
-const useToolbarStyles = makeStyles(theme => ({
-  root: {
-    paddingRight: theme.spacing.unit
-  },
-  highlight:
-    theme.palette.type === 'light'
-      ? {
-          color: theme.palette.secondary.main,
-          backgroundColor: lighten(theme.palette.secondary.light, 0.85)
-        }
-      : {
-          color: theme.palette.text.primary,
-          backgroundColor: theme.palette.secondary.dark
-        },
-  spacer: {
-    flex: '1 1 100%'
-  },
-  actions: {
-    color: theme.palette.text.secondary
-  },
-  title: {
-    flex: '0 0 auto'
-  }
-}));
-
-const HotelTableToolbar = props => {
-  const classes = useToolbarStyles();
-  const { numSelected } = props;
-
-  if (numSelected > 0) {
-    return (
-      <Toolbar
-        className={classNames(classes.root, {
-          [classes.highlight]: numSelected > 0
-        })}>
-        <div className={classes.title}>
-          <Typography color='inherit' variant='subtitle1'>
-            {numSelected} selected
-          </Typography>
-        </div>
-        <div className={classes.spacer} />
-        <div className={classes.actions}>
-          <Tooltip title='Delete'>
-            <IconButton aria-label='Delete'>
-              <DeleteIcon />
-            </IconButton>
-          </Tooltip>
-        </div>
-      </Toolbar>
-    );
-  } else {
-    return null;
-  }
 };
 
 const useStyles = makeStyles(theme => ({
@@ -178,9 +123,22 @@ const OwnerHotelInfo = props => {
 
   const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
+  const handleDelete = async id => {
+    await axios.delete(`/api/hotel/${id}`);
+    props.getHotelListById();
+  };
+
+  const handleUpdate = id => {
+    props.hotelList.map((e, i) => {
+      if (e.hotel_id === id) {
+        props.setHotelInfo(e);
+        props.setInnerTabs(2);
+      }
+    });
+  };
+
   return (
     <Paper className={classes.root}>
-      <HotelTableToolbar />
       <div className={classes.tableWrapper}>
         <Table className={classes.table} aria-labelledby='tableTitle'>
           <HotelTableHead order={order} orderBy={orderBy} onRequestSort={handleRequestSort} rowCount={data.length} />
@@ -201,6 +159,14 @@ const OwnerHotelInfo = props => {
                     </TableCell>
                     <TableCell align='left' padding='default'>
                       {n.reservationNum}
+                    </TableCell>
+                    <TableCell align='left' padding='default'>
+                      <IconButton onClick={() => handleDelete(n.id)}>
+                        <DeleteIcon />
+                      </IconButton>
+                      <IconButton onClick={() => handleUpdate(n.id)}>
+                        <EditIcon />
+                      </IconButton>
                     </TableCell>
                   </TableRow>
                 );
@@ -238,4 +204,7 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(OwnerHotelInfo);
+export default connect(
+  mapStateToProps,
+  { getHotelListById, setInnerTabs, setHotelInfo }
+)(OwnerHotelInfo);
