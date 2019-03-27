@@ -9,7 +9,7 @@ const useStyles = makeStyles(theme => ({
     height: '14vh'
   },
   cardOpen: {
-    height: '40vh'
+    height: '50vh'
   },
   CardContent: {
     width: '25vw'

@@ -69,7 +69,8 @@ const useStyles = makeStyles(theme => ({
     border: '1px solid black',
     justifyContent: 'space-around',
     background: '#4C525A',
-    color: '#fff'
+    color: '#fff',
+    cursor: 'pointer'
   },
   entirecirclecontainer: {
     width: '100%',
@@ -202,7 +203,7 @@ const Profile = props => {
               </div>
               <div className={classes.circle}>
                 0 <br />
-                Nights
+                Stays
               </div>
             </div>
           </Paper>

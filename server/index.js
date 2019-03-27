@@ -12,28 +12,28 @@ const roomCon = require('./controllers/roomController');
 const reservationCon = require('./controllers/reservationController');
 const miscCon = require('./controllers/miscController');
 const uploadCon = require('./controllers/uploadController');
-
+const profileCon = require('./controllers/profileController');
 const upload = multer();
 app.use(bodyParser.json());
 app.use(bodyParser.text());
 app.use(
-	session({
-		secret: process.env.SESSION_SECRET,
-		resave: false,
-		saveUninitialized: true,
-		cookie: {
-			maxAge: 1000 * 60 * 60 * 24 * 7
-		}
-	})
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+      maxAge: 1000 * 60 * 60 * 24 * 7
+    }
+  })
 );
 
 //Database connection
 massive(process.env.CONNECTION_STRING)
-	.then(dbInstance => {
-		app.set('db', dbInstance);
-		console.log('db connected');
-	})
-	.catch(err => console.log(err));
+  .then(dbInstance => {
+    app.set('db', dbInstance);
+    console.log('db connected');
+  })
+  .catch(err => console.log(err));
 
 //Auth endpoints
 app.get('/auth/user', authCon.getUser);
@@ -71,6 +71,10 @@ app.post('/api/transaction', miscCon.newTransaction);
 //Upload endpoint
 app.post('/api/uploadPic', upload.single('pic'), uploadCon.uploadPic);
 
+// User Profile EndPoint
+
+app.get('/api/accountActivity/:id', profileCon.accountActivity);
+
 app.listen(process.env.EXPRESS_PORT, () => {
-	console.log(`Server - Listening on ${process.env.EXPRESS_PORT}`);
+  console.log(`Server - Listening on ${process.env.EXPRESS_PORT}`);
 });
