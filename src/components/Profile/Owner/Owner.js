@@ -10,8 +10,11 @@ import NewHotel from './NewHotel';
 import NewRoom from './NewRoom';
 import { getUser } from '../../../ducks/auth/authAsync';
 import { getHotelListById } from '../../../ducks/lists/listAsync';
+import { setOuterTabs, setInnerTabs } from '../../../ducks/lists/listSync';
 import OwnerHotelList from './OwnerHotelList';
 import OwnerRoomList from './OwnerRoomList';
+import UpdateHotel from './UpdateHotel';
+import UpdateRoom from './UpdateRoom';
 
 const useStyles = makeStyles({
   root: {
@@ -25,21 +28,19 @@ const useStyles = makeStyles({
 
 const Owner = props => {
   const classes = useStyles();
-
-  const [outerTabs, setOuterTabs] = useState(0);
-  const [innerTabs, setInnerTabs] = useState(0);
+  const { outerTabs, innerTabs } = props;
 
   useEffect(() => {
     props.getHotelListById();
   }, []);
 
   const handleOuterChange = (event, newValue) => {
-    setOuterTabs(newValue);
-    setInnerTabs(0);
+    props.setOuterTabs(newValue);
+    props.setInnerTabs(0);
   };
 
   const handleInnerChange = (event, newValue) => {
-    setInnerTabs(newValue);
+    props.setInnerTabs(newValue);
   };
 
   const displayInnerTabs = () => {
@@ -48,7 +49,7 @@ const Owner = props => {
         <Tabs value={innerTabs} onChange={handleInnerChange} indicatorColor='primary'>
           <Tab label='Room List' />
           <Tab label='New Room' />
-          <Tab label='Update Room' />
+          <Tab label='Update Room' disabled />
         </Tabs>
       );
     }
@@ -67,7 +68,7 @@ const Owner = props => {
         <Tabs value={innerTabs} onChange={handleInnerChange} indicatorColor='primary'>
           <Tab label='Hotel List' />
           <Tab label='New Hotel' />
-          <Tab label='Update Hotel' />
+          <Tab label='Update Hotel' disabled />
         </Tabs>
       );
     }
@@ -79,11 +80,13 @@ const Owner = props => {
     } else if (outerTabs === 0 && innerTabs === 1) {
       return <NewHotel />;
     } else if (outerTabs === 0 && innerTabs === 2) {
-      return <h1>This is for the update</h1>;
+      return <UpdateHotel />;
     } else if (outerTabs === 1 && innerTabs === 0) {
       return <OwnerRoomList />;
     } else if (outerTabs === 1 && innerTabs === 1) {
       return <NewRoom />;
+    } else if (outerTabs === 1 && innerTabs === 2) {
+      return <UpdateRoom />;
     } else {
       return null;
     }
@@ -107,14 +110,15 @@ const Owner = props => {
 };
 
 const mapStateToProps = state => {
-  console.log(state);
   return {
     hotelList: state.listReducer.hotelList,
-    user: state.authReducer.user
+    user: state.authReducer.user,
+    outerTabs: state.listReducer.outerTabs,
+    innerTabs: state.listReducer.innerTabs
   };
 };
 
 export default connect(
   mapStateToProps,
-  { getHotelListById, getUser }
+  { getHotelListById, getUser, setInnerTabs, setOuterTabs }
 )(Owner);
