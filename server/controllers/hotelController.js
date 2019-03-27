@@ -15,9 +15,9 @@ module.exports = {
   },
   createHotel: async (req, res) => {
     const db = req.app.get('db');
-    const { name, address, url, reservationNum, frontDeskNum, amenityList } = req.body;
+    const { name, address, reservationNum, frontDeskNum, amenityList, location } = req.body;
     try {
-      await db.create_hotel(name, address, url, reservationNum, frontDeskNum, amenityList, req.session.user.id);
+      await db.create_hotel(name, address, location, reservationNum, frontDeskNum, amenityList, req.session.user.id);
       res.sendStatus(200);
     } catch (err) {
       res.sendStatus(500);
