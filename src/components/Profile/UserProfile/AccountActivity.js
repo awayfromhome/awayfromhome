@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/styles';
 import classNames from 'classnames';
+import axios from 'axios';
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -13,6 +14,19 @@ const useStyles = makeStyles(theme => ({
     height: '7vh',
     display: 'flex',
     alignItems: 'center',
+    width: '42vw'
+  },
+  hiddenInfo: {
+    display: 'flex'
+  },
+  innerContentContainer: {
+    overflowY: 'scroll',
+    height: '63vh'
+  },
+  innerContent: {
+    display: 'flex',
+    borderBottom: '1px solid black',
+    paddingBottom: '5%',
     width: '42vw'
   },
   text: {
@@ -32,6 +46,7 @@ const useStyles = makeStyles(theme => ({
   },
   content: {
     display: 'flex',
+    flexDirection: 'column',
     width: '42vw',
     alignItems: 'center'
   },
@@ -46,12 +61,10 @@ const useStyles = makeStyles(theme => ({
     textAlign: 'left'
   },
   content: {
-    display: 'flex',
     alignItems: 'center',
-    padding: '17px 10px 25px 2px',
-    borderBottom: '1px solid black'
+    padding: '17px 10px 25px 2px'
   },
-  img: {
+  openimg: {
     transform: 'rotateX(180deg)',
     width: '3vw',
     paddingBottom: '15px',
@@ -60,7 +73,8 @@ const useStyles = makeStyles(theme => ({
   closeimg: {
     width: '3vw',
     paddingBottom: '15px',
-    paddingLeft: '80px'
+    paddingLeft: '80px',
+    paddingTop: '20px'
   },
   [theme.breakpoints.down('749')]: {
     container: {
@@ -80,14 +94,23 @@ const useStyles = makeStyles(theme => ({
     description: { width: '33%' },
     text: { width: '33%', fontSize: '17px' },
     description3: { width: '37vw', paddingLeft: '110px' },
-    img: { paddingLeft: 0, width: '10vw' },
+    openimg: { paddingLeft: 0, width: '10vw' },
     closeimg: { width: '10vw', paddingLeft: 0, paddingTop: 20 }
   }
 }));
 
 const AccountActivity = () => {
   const [toggle, setToggle] = useState('true');
+  const [activity, setActivity] = useState([]);
+  const [info, setInfo] = useState(-1);
   const classes = useStyles();
+
+  useEffect(() => {
+    axios.get(`/api/accountActivity/${2}`).then(response => {
+      console.log(response.data);
+      setActivity(response.data);
+    });
+  }, []);
 
   return (
     <div className={classes.container}>
@@ -100,39 +123,54 @@ const AccountActivity = () => {
           Activity
         </div>
       </div>
-      <div className={classes.content}>
-        <div className={classNames(classes.date, classes.text)}>03/01/2018</div>
-        <div className={classes.descriptionactivity}>
-          <span
-            className={classNames(
-              classes.description,
-              classes.text,
-              classes.description2
-            )}
-          >
-            <div className={classes.description3}>Qualifying Stay </div>
-            <div className={classes.description3}>
-              Holiday Inn Express & Suites{' '}
+      <div className={classes.innerContentContainer}>
+        {activity.map((e, i) => {
+          return (
+            <div className={classes.content} key={i}>
+              <div className={classes.innerContent}>
+                <div className={classNames(classes.date, classes.text)}>
+                  {e.date}
+                </div>
+                <div className={classes.descriptionactivity}>
+                  <span
+                    className={classNames(
+                      classes.description,
+                      classes.text,
+                      classes.description2
+                    )}
+                  >
+                    <div className={classes.description3}>Qualifying Stay </div>
+                    <div className={classes.description3}>{e.name}</div>
+                    <div className={classes.description3}>{e.hotel_name}</div>
+                  </span>
+                  <span className={classNames(classes.activity, classes.text)}>
+                    {e.points}
+                    <span onClick={() => setInfo(i)}>
+                      <img
+                        src='https://cdn.iconscout.com/icon/free/png-256/down-arrow-16-460295.png'
+                        onClick={() => setToggle(!toggle)}
+                        className={
+                          !toggle && i === info
+                            ? classNames(classes.closeimg)
+                            : classNames(classes.openimg)
+                        }
+                      />
+                    </span>
+                  </span>
+                </div>
+              </div>
+              <div className={classes.hiddenInfo}>
+                {info === i && !toggle ? (
+                  <div className={classes.hiddenInfoDetails}>
+                    Number of Nights: {e.count}
+                    <div> </div>
+                  </div>
+                ) : null}
+              </div>
             </div>
-            <div className={classes.description3}>San Jose-Morgan Hill </div>
-          </span>
-          <span className={classNames(classes.activity, classes.text)}>
-            4,000 Points
-            <span>
-              <img
-                src='https://cdn.iconscout.com/icon/free/png-256/down-arrow-16-460295.png'
-                onClick={() => setToggle(!toggle)}
-                className={
-                  toggle
-                    ? classNames(classes.img)
-                    : classNames(classes.closeimg)
-                }
-              />
-            </span>
-          </span>
-        </div>
+          );
+        })}
       </div>
-      <div>{toggle ? null : 'Hello'}</div>
     </div>
   );
 };
