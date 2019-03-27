@@ -4,7 +4,9 @@ import {
   SET_SEARCH_INFO,
   SET_HOTEL_INFO,
   SET_OUTER_TABS,
-  SET_INNER_TABS
+  SET_INNER_TABS,
+  SET_STAY_COUNT,
+  SET_POINTS
 } from '../constants';
 
 export const getHotelListFulfilled = hotelList => {
@@ -45,6 +47,20 @@ export const setOuterTabs = val => {
 export const setInnerTabs = val => {
   return {
     type: SET_INNER_TABS,
+    payload: val
+  };
+};
+
+export const updateStay = val => {
+  return {
+    type: SET_STAY_COUNT,
+    payload: val
+  };
+};
+
+export const updatePoints = val => {
+  return {
+    type: SET_POINTS,
     payload: val
   };
 };

@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles, getThemeProps } from '@material-ui/styles';
+import { connect } from 'react-redux';
 import classNames from 'classnames';
 import axios from 'axios';
+import { updateStay, updatePoints } from '../../../ducks/lists/listSync';
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -58,7 +60,8 @@ const useStyles = makeStyles(theme => ({
   },
   description3: {
     width: '13vw',
-    textAlign: 'left'
+    textAlign: 'left',
+    padding: '5px'
   },
   content: {
     alignItems: 'center',
@@ -84,12 +87,12 @@ const useStyles = makeStyles(theme => ({
       width: 'auto',
       justifyContent: 'space-evenly'
     },
-    content: {
-      height: '10vh'
-    },
+
     date: {
-      width: '29%'
+      width: '27%'
     },
+    content: { width: '100vw' },
+    innerContent: { width: 'auto' },
     descriptionactivity: { width: '75vw', justifyContent: 'space-between' },
     description: { width: '33%' },
     text: { width: '33%', fontSize: '17px' },
@@ -99,19 +102,22 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const AccountActivity = () => {
+const AccountActivity = props => {
   const [toggle, setToggle] = useState('true');
   const [activity, setActivity] = useState([]);
   const [info, setInfo] = useState(-1);
   const classes = useStyles();
 
   useEffect(() => {
+    // add {props.id}
     axios.get(`/api/accountActivity/${2}`).then(response => {
       console.log(response.data);
       setActivity(response.data);
     });
   }, []);
 
+  let count = 0;
+  let points = 0;
   return (
     <div className={classes.container}>
       <div className={classes.Header_AccountInfo}>
@@ -125,6 +131,11 @@ const AccountActivity = () => {
       </div>
       <div className={classes.innerContentContainer}>
         {activity.map((e, i) => {
+          count += +e.count;
+          points += e.points;
+          props.updateStay(count);
+
+          props.updatePoints(points);
           return (
             <div className={classes.content} key={i}>
               <div className={classes.innerContent}>
@@ -162,8 +173,8 @@ const AccountActivity = () => {
               <div className={classes.hiddenInfo}>
                 {info === i && !toggle ? (
                   <div className={classes.hiddenInfoDetails}>
-                    Number of Nights: {e.count}
-                    <div> </div>
+                    <div>Number of Nights: {e.count}</div>
+                    <div>Number of Nights: {e.count}</div>
                   </div>
                 ) : null}
               </div>
@@ -175,4 +186,13 @@ const AccountActivity = () => {
   );
 };
 
-export default AccountActivity;
+const mapStateToProps = state => {
+  return {
+    count: state.listReducer.count,
+    id: state.authReducer.user.id
+  };
+};
+export default connect(
+  mapStateToProps,
+  { updateStay, updatePoints }
+)(AccountActivity);

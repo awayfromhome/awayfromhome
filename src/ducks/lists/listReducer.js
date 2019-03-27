@@ -4,7 +4,9 @@ import {
   SET_SEARCH_INFO,
   SET_HOTEL_INFO,
   SET_OUTER_TABS,
-  SET_INNER_TABS
+  SET_INNER_TABS,
+  SET_STAY_COUNT,
+  SET_POINTS
 } from '../constants';
 
 let initialState = {
@@ -12,7 +14,9 @@ let initialState = {
   setSearchInfo: {},
   hotelInfo: {},
   outerTabs: 0,
-  innerTabs: 0
+  innerTabs: 0,
+  count: 0,
+  points: 0
 };
 
 export default function reducer(state = initialState, action) {
@@ -29,6 +33,10 @@ export default function reducer(state = initialState, action) {
       return { ...state, outerTabs: action.payload };
     case SET_INNER_TABS:
       return { ...state, innerTabs: action.payload };
+    case SET_STAY_COUNT:
+      return { ...state, count: action.payload };
+    case SET_POINTS:
+      return { ...state, points: action.payload };
     default:
       return state;
   }

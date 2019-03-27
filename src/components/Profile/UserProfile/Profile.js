@@ -5,6 +5,7 @@ import Members from './Members';
 import MembersBenefits from './MembersBenefits';
 import PersonalInfo from './PersonalInfo';
 import AccountActivity from './AccountActivity';
+import { connect } from 'react-redux';
 
 const useStyles = makeStyles(theme => ({
   profileContainer: {
@@ -12,7 +13,8 @@ const useStyles = makeStyles(theme => ({
     width: '93%',
     marginLeft: '7%',
     textAlign: 'center',
-    height: '100vh'
+    height: '100vh',
+    fontFamily: theme.typography.fontFamily[2]
   },
 
   innerProfileContainer: {
@@ -159,7 +161,7 @@ const Profile = props => {
   return (
     <div className={classes.profileContainer}>
       <div className={classes.innerProfileContainer}>
-        <div className={classes.name}>Hello, Name</div>
+        <div className={classes.name}>Hello, {props.username}</div>
         <div className={classes.entireMainContainer}>
           <Paper className={classes.root}>
             <div className={classes.redeemPointsContainer}>
@@ -199,10 +201,10 @@ const Profile = props => {
             </div>
             <div className={classes.entirecirclecontainer}>
               <div className={classes.circle}>
-                0 <br /> Points
+                {props.points} <br /> Points
               </div>
               <div className={classes.circle}>
-                0 <br />
+                {props.count} <br />
                 Stays
               </div>
             </div>
@@ -221,4 +223,14 @@ const Profile = props => {
   );
 };
 
-export default Profile;
+const mapStateToProps = state => {
+  console.log(state);
+
+  return {
+    username: state.authReducer.user.username,
+    count: state.listReducer.count,
+    points: state.listReducer.points
+  };
+};
+
+export default connect(mapStateToProps)(Profile);
