@@ -78,12 +78,12 @@ const useStyles = makeStyles(theme => ({
       zIndex: -2
     },
     img: {
-      width: '90%',
+      width: '100%',
       height: '90%',
       marginTop: '15%'
     },
     paragraph: {
-      width: '90%',
+      width: '100%',
       margin: '10%'
     },
     secondparagraph: {

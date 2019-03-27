@@ -27,3 +27,8 @@ export const GET_HOTEL_LIST_REJECTED = 'GET_HOTEL_LIST_REJECTED';
 
 //Get Room List
 export const GET_ROOM_LIST_BY_ID_FULFILLED = 'GET_ROOM_LIST_BY_ID_FULFILLED';
+
+// Account Activity
+
+export const SET_STAY_COUNT = 'SET_STAY_COUNT';
+export const SET_POINTS = 'SET_POINTS';
