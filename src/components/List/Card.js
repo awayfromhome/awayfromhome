@@ -5,16 +5,15 @@ const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     width: '65%',
-    height: '30vh',
+    height: '275px',
     backgroundColor: '#fff',
     overflow: 'hidden',
     lineHeight: '3vh',
     borderRadius: 8,
-    marginTop: '4vh',
-    border: '1px solid black'
+    marginTop: '4vh'
   },
   img: {
-    width: '25%'
+    width: '400px'
   },
   info: {
     width: '55%',
@@ -122,10 +121,7 @@ const Card = props => {
             </div>
           </div>
           <div className={classes.selectBtnDiv}>
-            <button
-              className={classes.selectBtn}
-              onClick={() => props.onClick()}
-            >
+            <button className={classes.selectBtn} onClick={() => props.onClick()}>
               {props.btnName}
             </button>
           </div>

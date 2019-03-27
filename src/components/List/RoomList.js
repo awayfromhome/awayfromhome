@@ -6,6 +6,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import RoomInfo from '../List/RoomInfo';
 import axios from 'axios';
+import { connect } from 'react-redux';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -40,11 +41,10 @@ const useStyles = makeStyles(theme => ({
 const RoomList = props => {
   const classes = useStyles();
   const [roomList, setRoomList] = useState([]);
-  const [standard, setStandard] = useState(true);
-  const [deluxe, setDeluxe] = useState(false);
+  const [takenRooms, setTakenRooms] = useState({});
+  const [tab, setTab] = useState(0);
 
   useEffect(() => {
-    console.log('hit');
     axios
       .get(`/api/roomlist/${1}`)
       .then(res => {
@@ -53,13 +53,21 @@ const RoomList = props => {
       .catch(err => console.log(err));
   }, []);
 
+  useEffect(() => {
+    const ids = roomList.map((e, i) => {
+      return e.room_id;
+    });
+    console.log(ids);
+    axios
+      .post('/api/wrong/reservation', { room_id: ids, start_date: props.searchInfo.firstDate, end_date: props.searchInfo.secondDate })
+      .then(res => console.log(res.data));
+  }, [roomList]);
+
   const handleRoomSelect = name => {
     if (name === 'Standard') {
-      setStandard(true);
-      setDeluxe(false);
+      setTab(0);
     } else if (name === 'Deluxe') {
-      setDeluxe(true);
-      setStandard(false);
+      setTab(1);
     }
   };
 
@@ -67,7 +75,7 @@ const RoomList = props => {
     <div className={classes.root}>
       <SearchInfo />
       <Paper className={classes.rootTabs}>
-        <Tabs value={false} indicatorColor='primary' textColor='primary' centered variant='fullWidth'>
+        <Tabs value={tab} indicatorColor='primary' textColor='primary' centered variant='fullWidth'>
           <Tab label='Standard' onClick={() => handleRoomSelect('Standard')} />
           <Tab label='Deluxe' onClick={() => handleRoomSelect('Deluxe')} />
         </Tabs>
@@ -75,11 +83,11 @@ const RoomList = props => {
 
       <div className={classes.card}>
         {roomList.map((e, i) => {
-          if (standard) {
+          if (tab === 0) {
             if (e.room_type === 'Standard') {
               return <RoomInfo key={i} info={e} />;
             }
-          } else if (deluxe) {
+          } else if (tab === 1) {
             if (e.room_type === 'Deluxe') {
               return <RoomInfo key={i} info={e} />;
             }
@@ -91,4 +99,10 @@ const RoomList = props => {
   );
 };
 
-export default RoomList;
+const mapStateToProps = state => {
+  return {
+    searchInfo: state.listReducer.setSearchInfo
+  };
+};
+
+export default connect(mapStateToProps)(RoomList);

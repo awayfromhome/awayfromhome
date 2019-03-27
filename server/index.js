@@ -58,7 +58,7 @@ app.put('/api/room', roomCon.updateRoom);
 app.delete('/api/room', roomCon.deleteRoom);
 
 //Reservation endpoints
-app.get('/api/reservation', reservationCon.getReservationList);
+app.post('/api/wrong/reservation', reservationCon.getReservationList);
 app.post('/api/reservation', reservationCon.createReservation);
 app.put('/api/reservation', reservationCon.updateReservation);
 app.delete('/api/reservation', reservationCon.deleteReservation);
@@ -66,13 +66,9 @@ app.delete('/api/reservation', reservationCon.deleteReservation);
 //Misc. endpoints
 //POST handles stripe payment and nodemailer info to client
 app.post('/charge', miscCon.newCharge);
-app.post('/api/transaction', miscCon.newTransaction);
-
-//Upload endpoint
 app.post('/api/uploadPic', upload.single('pic'), uploadCon.uploadPic);
 
 // User Profile EndPoint
-
 app.get('/api/accountActivity/:id', profileCon.accountActivity);
 
 app.listen(process.env.EXPRESS_PORT, () => {

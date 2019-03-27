@@ -4,30 +4,36 @@ module.exports = {
   getReservationList: async (req, res) => {
     const db = req.app.get('db');
     const { room_id, start_date, end_date } = req.body;
-    const promisedFinal = await db.get_reservation(room_id, start_date, end_date);
-    //Formats the database response in a usable way for front-end
-    let final = room_id.map((e, i) => {
-      let obj = { room_id: e };
-      let innerObj = {};
-      let min = Number.MIN_VALUE;
-      promisedFinal.map((el, ind) => {
-        if (el.room_id === e) {
-          if (!innerObj[el.date]) {
-            innerObj[el.date] = 1;
-          } else {
-            innerObj[el.date]++;
+    console.log(room_id, start_date, end_date);
+    try {
+      const promisedFinal = await db.get_reservation([room_id, start_date, end_date]);
+      //Formats the database response in a usable way for front-end
+      let final = room_id.map((e, i) => {
+        let obj = { room_id: e };
+        let innerObj = {};
+        let min = Number.MIN_VALUE;
+        promisedFinal.map((el, ind) => {
+          if (el.room_id === e) {
+            if (!innerObj[el.date]) {
+              innerObj[el.date] = 1;
+            } else {
+              innerObj[el.date]++;
+            }
+          }
+        });
+        for (key in innerObj) {
+          if (innerObj[key] > min) {
+            min = innerObj[key];
           }
         }
+        obj.reservations = min;
+        return obj;
       });
-      for (key in innerObj) {
-        if (innerObj[key] > min) {
-          min = innerObj[key];
-        }
-      }
-      obj.reservations = min;
-      return obj;
-    });
-    res.status(200).json(final);
+      res.status(200).json(final);
+    } catch (err) {
+      console.log(err);
+      res.sendStatus(500);
+    }
   },
   createReservation: async (req, res) => {
     const db = req.app.get('db');
