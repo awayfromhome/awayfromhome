@@ -39,6 +39,8 @@ const NewHotel = props => {
 		bind: bindFrontDeskNum
 	} = useInput('');
 
+	const [location, setLocation] = useState('');
+
 	const handleChange = e => {
 		let amenities = [...amenityList];
 		amenities[+e.target.id].body = e.target.value;
@@ -56,6 +58,17 @@ const NewHotel = props => {
 		resetReservationNum();
 		resetfrontDeskNum();
 	};
+	const upload = e => {
+		let data = new FormData();
+		data.append('pic', e.target.files[0]);
+		console.log(data);
+		axios
+			.post('/api/uploadPic', data)
+			.then(data => {
+				setLocation(data.data.Location);
+			})
+			.catch(err => console.log(err));
+	};
 
 	const handleSubmit = async () => {
 		let arr = amenityList.map((e, i) => {
@@ -67,22 +80,11 @@ const NewHotel = props => {
 			url,
 			frontDeskNum,
 			reservationNum,
-			amenityList: arr
+			amenityList: arr,
+			location
 		});
 		reset();
 		props.getHotelListById();
-	};
-
-	const upload = e => {
-		let data = new FormData();
-		data.append('pic', e.target.files[0]);
-		// console.log(data);
-		axios
-			.post('/api/uploadPic', data)
-			.then(data => {
-				this.setState({ profilePic: data.data.Location });
-			})
-			.catch(err => console.log(err));
 	};
 
 	return (
