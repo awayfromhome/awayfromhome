@@ -66,7 +66,8 @@ const useStyles = makeStyles(theme => ({
   },
   outerButtonDiv: {
     width: '50%',
-    textAlign: 'center'
+    textAlign: 'center',
+    fontFamily: theme.typography.fontFamily[0],
   },
   outercounter: {
     borderRadius: '25px 25px 25px 25px',

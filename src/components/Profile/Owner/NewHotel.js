@@ -17,6 +17,9 @@ const useStyles = makeStyles(theme => ({
 		margin: '1vw',
 		display: 'flex',
 		flexDirection: 'column'
+	},
+	uploadButton: {
+		width: '40%'
 	}
 }));
 
@@ -90,15 +93,8 @@ const NewHotel = props => {
 	return (
 		<Paper className={classes.background}>
 			<div className={classes.root}>
-				<TextField label="Hotel Name" margin="normal" {...bindName} />
-				<TextField label="Address" margin="normal" {...bindAddress} />
-				{/* <TextField label="Hotel Image" margin="normal" {...bindUrl} /> */}
-				<Button
-					id="hello"
-					variant="contained"
-					color="primary"
-					className={classes.uploadButton}>
-					Upload
+				<Button variant="contained" className={classes.uploadButton}>
+					Hotel image upload
 					<TextField
 						type="file"
 						onChange={upload}
@@ -106,6 +102,9 @@ const NewHotel = props => {
 					/>
 					<CloudUploadIcon className={classes.cloudIcon} />
 				</Button>
+				<TextField label="Hotel Name" margin="normal" {...bindName} />
+				<TextField label="Address" margin="normal" {...bindAddress} />
+				{/* <TextField label="Hotel Image" margin="normal" {...bindUrl} /> */}
 				<TextField
 					label="Reservation Number"
 					margin="normal"
