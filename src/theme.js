@@ -10,10 +10,10 @@ const theme = createMuiTheme({
     MuiOutlinedInput: {
       input: {
         margin: '1%',
-        padding: '15px 30px'
+        padding: '14px 30px'
       },
       inputAdornedEnd: {
-        margin: '4%'
+        padding: '17px 30px'
       }
     }
   },

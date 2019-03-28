@@ -27,7 +27,7 @@ const useStyles = makeStyles(theme => ({
   },
   img: {
     height: '40%',
-    width: '30%',
+    width: '60%',
     margin: 'auto'
   },
   sectionContainer: {
@@ -44,6 +44,11 @@ const useStyles = makeStyles(theme => ({
   paragraph: {
     width: '60%',
     margin: 'auto'
+  },
+  list: {
+    listStyleType: 'square',
+    margin: '10%',
+    marginLeft: '30%'
   },
   '@media (min-width: 750px) and (max-width: 1200px)': {
     entireContainer: {
@@ -83,7 +88,7 @@ const useStyles = makeStyles(theme => ({
       marginTop: '15%'
     },
     paragraph: {
-      width: '100%',
+      width: '80%',
       margin: '10%'
     },
     secondparagraph: {
@@ -112,30 +117,26 @@ const HomePage = props => {
             alt='main'
           />
           <p className={classes.paragraph}>
-            Lorem ipsum dolor sit amet, et tale consequat reprehendunt quo. Amet
-            dicunt nostrud ei duo, eu numquam referrentur qui. Liber perpetua in
-            qui, mutat brute laudem et mea. Te forensibus adolescens nec. Nam at
-            cetero epicuri, et dolores interesset est. Te vim assum aliquid
-            delicatissimi. Nibh gubergren at sit, ius utinam suavitate an, cu
-            ius illum propriae voluptua. Vix ea virtute quaeque tibique,
-            efficiantur delicatissimi mei an, ignota mentitum suavitate his eu.
-            Denique patrioque mediocritatem quo et, at vim quaeque percipit
-            forensibus. At unum summo nec, cu regione signiferumque sit, eum
-            aperiam appellantur ut.
+            <ul>
+              <li className={classes.list}>
+                Stay in Luxrious Hotels with Comfort & Safety
+              </li>
+              <li className={classes.list}>
+                Local Resturants and Shopping Areas
+              </li>
+              <li className={classes.list}>Easy Transportation Hubs</li>
+              <li className={classes.list}>Year-Round Enteratinment</li>
+            </ul>
           </p>
         </div>
         <div className={classNames(classes.sections, classes.secondparagraph)}>
           <p className={classes.paragraph}>
-            Lorem ipsum dolor sit amet, et tale consequat reprehendunt quo. Amet
-            dicunt nostrud ei duo, eu numquam referrentur qui. Liber perpetua in
-            qui, mutat brute laudem et mea. Te forensibus adolescens nec. Nam at
-            cetero epicuri, et dolores interesset est. Te vim assum aliquid
-            delicatissimi. Nibh gubergren at sit, ius utinam suavitate an, cu
-            ius illum propriae voluptua. Vix ea virtute quaeque tibique,
-            efficiantur delicatissimi mei an, ignota mentitum suavitate his eu.
-            Denique patrioque mediocritatem quo et, at vim quaeque percipit
-            forensibus. At unum summo nec, cu regione signiferumque sit, eum
-            aperiam appellantur ut.
+            <ul>
+              <li className={classes.list}>Find Deals Everyday with Us!</li>
+              <li className={classes.list}>Discounted Programs and Packages</li>
+              <li className={classes.list}>Bussiness Friendly Rooms </li>
+              <li className={classes.list}>Earn Points and Save!</li>
+            </ul>
           </p>
           <img
             className={classes.img}
