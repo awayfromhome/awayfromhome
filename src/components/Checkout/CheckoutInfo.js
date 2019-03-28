@@ -2,6 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/styles';
 import Paper from '@material-ui/core/Paper';
 import { connect } from 'react-redux';
+import { getRoomList } from '../../ducks/lists/listAsync';
 
 const useStyles = makeStyles(theme => ({
 	background: {
@@ -50,7 +51,11 @@ const useStyles = makeStyles(theme => ({
 
 const CheckoutInfo = props => {
 	const classes = useStyles();
-	console.log('checkoutinfo search info', props.setSearchInfo);
+	const price = props.roomList[0].price;
+	const taxes = price * 0.0825;
+	console.log(taxes);
+	// console.log('checkoutinfo search info', props.setSearchInfo);
+	console.log('checkoutinfo', props.roomList);
 	return (
 		<Paper className={classes.background}>
 			<div className={classes.root}>
@@ -75,28 +80,29 @@ const CheckoutInfo = props => {
 						{props.setSearchInfo.firstDate} -{' '}
 						{props.setSearchInfo.secondDate}
 						<div>
-							164.00
+							{price.toFixed(2)}
 							<span> USD</span>
 						</div>
 					</div>
 					<div className={classes.priceDetailsText}>
 						Price for One Room
 						<div>
-							164.00
+							{props.roomList[0].price - taxes.toFixed(2)}
 							<span> USD</span>
 						</div>
 					</div>
 					<div className={classes.priceDetailsText}>
 						Taxes
 						<div>
-							25.00
-							<span> USD</span>
+							<span>
+								{taxes.toFixed(2)} USD
+							</span>
 						</div>
 					</div>
 					<div className={classes.priceDetailsText}>
 						Total
 						<div>
-							189.00
+							{price.toFixed(2)}
 							<span> USD</span>
 						</div>
 					</div>
@@ -150,7 +156,8 @@ const CheckoutInfo = props => {
 
 const mapStateToProps = state => {
 	return {
-		setSearchInfo: state.listReducer.setSearchInfo
+		setSearchInfo: state.listReducer.setSearchInfo,
+		roomList: state.listReducer.roomList
 	};
 };
-export default connect(mapStateToProps)(CheckoutInfo);
+export default connect(mapStateToProps, { getRoomList })(CheckoutInfo);
