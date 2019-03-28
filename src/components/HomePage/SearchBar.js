@@ -76,7 +76,7 @@ const useStyles = makeStyles(theme => ({
     border: '1px solid black',
     width: '22vh',
     height: 50,
-    background: '#4C525A',
+    background: theme.palette.primary.dark,
     display: 'flex',
     alignItems: 'center',
     margin: '5px auto'
@@ -106,6 +106,7 @@ const useStyles = makeStyles(theme => ({
   },
   searchButton: {
     fontFamily: theme.typography.fontFamily[0],
+    background: theme.palette.accent.main,
     marginTop: '5%',
     padding: '12px 80px',
     borderRadius: 50

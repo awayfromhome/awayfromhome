@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
   priceDetails: {
     marginBottom: '5%',
     fontFamily: theme.typography.fontFamily[2],
-    background: theme.palette.secondary.main
+    background: theme.palette.tertiary.main
   },
   priceDetailsText: {
     display: 'flex',

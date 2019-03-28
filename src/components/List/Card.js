@@ -37,6 +37,11 @@ const useStyles = makeStyles(theme => ({
   selectBtn: {
     background: theme.palette.accent.main,
     fontFamily: theme.typography.fontFamily[1],
+    borderRadius: 50,
+    padding: '12px 60px',
+    color: 'white',
+    border: 'none',
+    fontSize: 17,
     textTransform: 'uppercase'
   },
   rate_fromtext: {
@@ -121,7 +126,10 @@ const Card = props => {
             </div>
           </div>
           <div className={classes.selectBtnDiv}>
-            <button className={classes.selectBtn} onClick={() => props.onClick()}>
+            <button
+              className={classes.selectBtn}
+              onClick={() => props.onClick()}
+            >
               {props.btnName}
             </button>
           </div>

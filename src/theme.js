@@ -20,16 +20,16 @@ const theme = createMuiTheme({
   palette: {
     primary: {
       main: '#474056',
-      second: '#F2E3BC'
+      dark: '#18191B'
     },
     secondary: {
-      main: '#96BBBB'
+      main: '#015B98'
     },
     tertiary: {
-      main: '#656D79'
+      main: '#EFF2F4'
     },
     accent: {
-      main: '#9BA2FF'
+      main: '#243ff2'
     }
   },
 

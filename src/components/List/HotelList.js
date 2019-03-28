@@ -10,7 +10,8 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor: theme.palette.tertiary.main
   },
   searchInfo: {
     marginTop: '5%'
@@ -21,7 +22,7 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    backgroundColor: theme.palette.primary.second,
+    backgroundColor: theme.palette.tertiary.main,
     height: '100%',
     width: '100%',
     borderRadius: 8

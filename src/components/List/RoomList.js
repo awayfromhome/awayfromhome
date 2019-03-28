@@ -14,7 +14,8 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor: theme.palette.tertiary.main
   },
   rootTabs: {
     flexGrow: 1,
@@ -26,7 +27,7 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'column',
     alignItems: 'center',
     marginTop: '3%',
-    backgroundColor: '#f4f2ec',
+    backgroundColor: theme.palette.tertiary.main,
     height: '70vh',
     overflow: 'hidden',
     width: '100%',
@@ -54,7 +55,11 @@ const RoomList = props => {
       return e.room_id;
     });
     axios
-      .post('/api/wrong/reservation', { room_id: ids, start_date: props.searchInfo.firstDate, end_date: props.searchInfo.secondDate })
+      .post('/api/wrong/reservation', {
+        room_id: ids,
+        start_date: props.searchInfo.firstDate,
+        end_date: props.searchInfo.secondDate
+      })
       .then(res => setTakenRooms(res.data));
   }, [props.roomList]);
 
@@ -70,7 +75,13 @@ const RoomList = props => {
     <div className={classes.root}>
       <SearchInfo />
       <Paper className={classes.rootTabs}>
-        <Tabs value={tab} indicatorColor='primary' textColor='primary' centered variant='fullWidth'>
+        <Tabs
+          value={tab}
+          indicatorColor='primary'
+          textColor='primary'
+          centered
+          variant='fullWidth'
+        >
           <Tab label='Standard' onClick={() => handleRoomSelect('standard')} />
           <Tab label='Deluxe' onClick={() => handleRoomSelect('deluxe')} />
         </Tabs>

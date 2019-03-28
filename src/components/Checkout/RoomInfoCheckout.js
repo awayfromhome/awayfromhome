@@ -4,9 +4,7 @@ import CheckoutInfo from './CheckoutInfo';
 
 const useStyles = makeStyles(theme => ({
   container: {
-    // display: 'flex',
-    // flexDirection: 'column'
-    background: '#f4f2ed',
+    background: theme.palette.tertiary.main,
     width: '61vw',
     height: '18vh',
     fontFamily: theme.typography.fontFamily[1],

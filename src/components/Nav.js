@@ -16,8 +16,8 @@ const useStyles = makeStyles(theme => ({
     top: 0,
     left: 0,
     height: '100%',
-    width: '7%',
-    background: '#4C525A',
+    width: '10%',
+    background: theme.palette.primary.dark,
     zIndex: 4
   },
   navicons: {
@@ -29,7 +29,6 @@ const useStyles = makeStyles(theme => ({
   logo: {
     textAlign: 'center',
     height: '12vh',
-    borderBottom: '1px solid #96BBBB',
     color: '#fff',
     lineHeight: '12vh',
     background: theme.palette.secondary.main
@@ -41,7 +40,7 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'column'
   },
   tags: {
-    borderBottom: '1px solid #96BBBB',
+    borderBottom: `1px solid ${theme.palette.accent.main}`,
     textAlign: 'center',
     textDecoration: 'none',
     textTransform: 'uppercase',
