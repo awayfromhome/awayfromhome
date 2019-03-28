@@ -10,7 +10,7 @@ import {
   HANDLE_LOGOUT_REJECTED
 } from '../constants';
 
-let initialState = {
+export const initialState = {
   user: {},
   accountFormToggle: false,
   accountFormSide: 'Register',
@@ -37,7 +37,7 @@ export default function reducer(state = initialState, action) {
     case HANDLE_LOGOUT_PENDING:
       return { ...state, pending: action.pending };
     case HANDLE_LOGOUT_FULFILLED:
-      return { ...state, pending: action.pending, user: action.payload.data };
+      return { ...state, pending: action.pending, user: action.payload };
     case HANDLE_LOGOUT_REJECTED:
       return { ...state, pending: action.pending, error: action.error };
     default:
