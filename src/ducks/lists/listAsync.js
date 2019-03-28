@@ -1,16 +1,43 @@
-import { getHotelListFulfilled, getHotelListByIdFulfilled } from './listSync';
+import {
+  getHotelListFulfilled,
+  getHotelListPending,
+  getHotelListRejected,
+  getRoomListPending,
+  getRoomListRejected,
+  getRoomeListFulfilled
+} from './listSync';
 import axios from 'axios';
 
-export const getHotelList = value => {
+export const getHotelList = (value, bool) => {
   return async dispatch => {
-    const response = await axios.post('/api/hotel', value);
-    dispatch(getHotelListFulfilled(response));
+    await dispatch(getHotelListPending());
+    try {
+      let response;
+      if (bool) {
+        response = await axios.post('/api/hotel?byId=true', value);
+      } else {
+        response = await axios.post('/api/hotel', value);
+      }
+      dispatch(getHotelListFulfilled(response));
+    } catch {
+      dispatch(getHotelListRejected());
+    }
   };
 };
 
-export const getHotelListById = () => {
+export const getRoomList = (id, bool) => {
   return async dispatch => {
-    const response = await axios.get('/api/admin/hotel');
-    dispatch(getHotelListByIdFulfilled(response));
+    await dispatch(getRoomListPending());
+    try {
+      let response;
+      if (bool) {
+        response = await axios.get(`/api/room?byId=true`);
+      } else {
+        response = await axios.get(`/api/room/${id}`);
+      }
+      dispatch(getRoomeListFulfilled(response));
+    } catch {
+      dispatch(getRoomListRejected());
+    }
   };
 };

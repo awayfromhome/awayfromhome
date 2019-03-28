@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import SearchInfo from '../Search/SearchInfo';
 import HotelInfo from '../List/HotelInfo';
 import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/styles';
+import { getHotelList } from '../../ducks/lists/listAsync';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -33,6 +34,10 @@ const useStyles = makeStyles(theme => ({
 const HotelList = props => {
   const classes = useStyles();
 
+  useEffect(() => {
+    props.getHotelList();
+  }, []);
+
   return (
     <div className={classes.root}>
       <SearchInfo />
@@ -51,4 +56,7 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(HotelList);
+export default connect(
+  mapStateToProps,
+  { getHotelList }
+)(HotelList);

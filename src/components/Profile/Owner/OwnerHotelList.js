@@ -13,7 +13,7 @@ import Paper from '@material-ui/core/Paper';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
-import { getHotelListById } from '../../../ducks/lists/listAsync';
+import { getHotelList } from '../../../ducks/lists/listAsync';
 import { setInnerTabs, setHotelInfo } from '../../../ducks/lists/listSync';
 
 const desc = (a, b, orderBy) => {
@@ -81,7 +81,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const OwnerHotelInfo = props => {
+const OwnerHotelList = props => {
   const classes = useStyles();
   const [order, setOrder] = useState('asc');
   const [orderBy, setOrderBy] = useState('name');
@@ -93,7 +93,7 @@ const OwnerHotelInfo = props => {
     let arr = props.hotelList.map((e, i) => {
       return {
         id: e.hotel_id,
-        name: e.name,
+        name: e.hotel_name,
         address: e.address,
         frontDeskNum: e.front_desk_num,
         reservationNum: e.reservation_num
@@ -125,7 +125,7 @@ const OwnerHotelInfo = props => {
 
   const handleDelete = async id => {
     await axios.delete(`/api/hotel/${id}`);
-    props.getHotelListById();
+    props.getHotelList({}, true);
   };
 
   const handleUpdate = id => {
@@ -134,6 +134,7 @@ const OwnerHotelInfo = props => {
         props.setHotelInfo(e);
         props.setInnerTabs(2);
       }
+      return null;
     });
   };
 
@@ -206,5 +207,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { getHotelListById, setInnerTabs, setHotelInfo }
-)(OwnerHotelInfo);
+  { getHotelList, setInnerTabs, setHotelInfo }
+)(OwnerHotelList);

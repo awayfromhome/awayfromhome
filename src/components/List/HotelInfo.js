@@ -81,12 +81,7 @@ const HotelInfo = props => {
   const { info } = props;
   const classes = useStyles();
   return (
-    <Card
-      price='100'
-      img={info.url}
-      btnName='Select Hotel'
-      onClick={() => props.history.push(`/roomlist/${info.hotel_id}`)}
-    >
+    <Card price='100' img={info.url} btnName='Select Hotel' onClick={() => props.history.push(`/roomlist/${info.hotel_id}`)}>
       <div className={classes.hotelname}>
         <div className={classes.hotelavatar} />
         <h1 className={classes.infoname}>{info.name}</h1>

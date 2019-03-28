@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { useInput } from '../../../hooks/input-hook';
@@ -11,6 +11,7 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
+import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 
 const useStyles = makeStyles(theme => ({
   background: {
@@ -31,6 +32,7 @@ const NewRoom = props => {
   const { value: hotel, reset: resetHotel, bind: bindHotel } = useInput('');
   const { value: description, reset: resetDescription, bind: bindDescription } = useInput('');
   const { value: price, reset: resetPrice, bind: bindPrice } = useInput(0);
+  const [location, setLocation] = useState('');
 
   const reset = () => {
     resetCount();
@@ -39,6 +41,17 @@ const NewRoom = props => {
     resetHotel();
     resetDescription();
     resetPrice();
+  };
+
+  const upload = async e => {
+    try {
+      let data = new FormData();
+      data.append('pic', e.target.files[0]);
+      const dataLocation = axios.post('/api/uploadPic', data);
+      setLocation(dataLocation.data.Location);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const handleSubmit = async () => {
@@ -53,6 +66,11 @@ const NewRoom = props => {
   return (
     <Paper className={classes.background}>
       <div className={classes.root}>
+        <Button id='hello' variant='contained' color='primary' className={classes.uploadButton}>
+          Upload
+          <TextField type='file' onChange={upload} className={classes.inputFile} />
+          <CloudUploadIcon className={classes.cloudIcon} />
+        </Button>
         <FormControl className={classes.formControl} margin='dense'>
           <InputLabel>Associated Hotel</InputLabel>
           <Select {...bindHotel}>

@@ -7,7 +7,7 @@ import { makeStyles } from '@material-ui/styles';
 import Button from '@material-ui/core/Button';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import axios from 'axios';
-import { getHotelListById } from '../../../ducks/lists/listAsync';
+import { getHotelList } from '../../../ducks/lists/listAsync';
 
 const useStyles = makeStyles(theme => ({
   background: {
@@ -25,9 +25,9 @@ const UpdateHotel = props => {
   const [amenityList, setAmenityList] = useState([{ body: '' }]);
   const { value: name, reset: resetName, bind: bindName } = useInput('');
   const { value: address, reset: resetAddress, bind: bindAddress } = useInput('');
-  const { value: url, reset: resetUrl, bind: bindUrl } = useInput('');
   const { value: reservationNum, reset: resetReservationNum, bind: bindReservationNum } = useInput('');
   const { value: frontDeskNum, reset: resetfrontDeskNum, bind: bindFrontDeskNum } = useInput('');
+  const [location, setLocation] = useState('');
 
   const handleChange = e => {
     let amenities = [...amenityList];
@@ -42,9 +42,18 @@ const UpdateHotel = props => {
   const reset = () => {
     resetName();
     resetAddress();
-    resetUrl();
     resetReservationNum();
     resetfrontDeskNum();
+  };
+  const upload = async e => {
+    try {
+      let data = new FormData();
+      data.append('pic', e.target.files[0]);
+      const dataLocation = axios.post('/api/uploadPic', data);
+      setLocation(dataLocation.data.Location);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const handleSubmit = async () => {
@@ -54,38 +63,25 @@ const UpdateHotel = props => {
     await axios.post('/api/createhotel', {
       name,
       address,
-      url,
       frontDeskNum,
       reservationNum,
-      amenityList: arr
+      amenityList: arr,
+      location
     });
     reset();
     props.getHotelListById();
   };
 
-  const upload = e => {
-    let data = new FormData();
-    data.append('pic', e.target.files[0]);
-    // console.log(data);
-    axios
-      .post('/api/uploadPic', data)
-      .then(data => {
-        this.setState({ profilePic: data.data.Location });
-      })
-      .catch(err => console.log(err));
-  };
-
   return (
     <Paper className={classes.background}>
       <div className={classes.root}>
-        <TextField label='Hotel Name' margin='normal' {...bindName} />
-        <TextField label='Address' margin='normal' {...bindAddress} />
-        {/* <TextField label="Hotel Image" margin="normal" {...bindUrl} /> */}
         <Button id='hello' variant='contained' color='primary' className={classes.uploadButton}>
           Upload
           <TextField type='file' onChange={upload} className={classes.inputFile} />
           <CloudUploadIcon className={classes.cloudIcon} />
         </Button>
+        <TextField label='Hotel Name' margin='normal' {...bindName} />
+        <TextField label='Address' margin='normal' {...bindAddress} />
         <TextField label='Reservation Number' margin='normal' {...bindReservationNum} />
         <TextField label='Front Desk Number' margin='normal' {...bindFrontDeskNum} />
         <h1>List of Amenities</h1>
@@ -108,5 +104,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { getHotelListById }
+  { getHotelList }
 )(UpdateHotel);
