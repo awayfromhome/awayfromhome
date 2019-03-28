@@ -1,17 +1,17 @@
 module.exports = {
-  getHotelListById: async (req, res) => {
-    const db = req.app.get('db');
-    try {
-      const hotelList = await db.get_hotel_by_id(req.session.user.id);
-      res.status(200).json(hotelList);
-    } catch {
-      res.sendStatus(500);
-    }
-  },
   getHotelList: async (req, res) => {
     const db = req.app.get('db');
-    const hotelList = await db.get_hotel();
-    res.status(200).json(hotelList);
+    let hotelList;
+    try {
+      if (req.query.byId) {
+        hotelList = await db.get_hotel_by_id(req.session.user.id);
+      } else {
+        hotelList = await db.get_hotel();
+      }
+      res.status(200).json(hotelList);
+    } catch (err) {
+      res.sendStatus(500);
+    }
   },
   createHotel: async (req, res) => {
     const db = req.app.get('db');

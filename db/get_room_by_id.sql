@@ -1,0 +1,1 @@
+SELECT * FROM room WHERE owner_id = $1 

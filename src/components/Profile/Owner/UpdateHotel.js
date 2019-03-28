@@ -7,7 +7,7 @@ import { makeStyles } from '@material-ui/styles';
 import Button from '@material-ui/core/Button';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import axios from 'axios';
-import { getHotelListById } from '../../../ducks/lists/listAsync';
+import { getHotelList } from '../../../ducks/lists/listAsync';
 
 const useStyles = makeStyles(theme => ({
   background: {
@@ -108,5 +108,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { getHotelListById }
+  { getHotelList }
 )(UpdateHotel);

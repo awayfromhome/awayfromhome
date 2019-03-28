@@ -45,14 +45,13 @@ app.get('/auth/logout', authCon.logout);
 //Hotel and room endpoints
 //NEED to make the get hotel request into a get with req.query parameters instead of a post
 //Combine the two get hotellist calls into one usinging if statements in the controller
-app.get('/api/admin/hotel', hotelCon.getHotelListById);
 app.post('/api/hotel', hotelCon.getHotelList);
 app.post('/api/createhotel', hotelCon.createHotel);
 app.put('/api/hotel', hotelCon.updateHotel);
 app.delete('/api/hotel', hotelCon.deleteHotel);
 
 //Room endpoint
-app.get('/api/roomlist/:id', roomCon.getRoomList);
+app.get('/api/room/:id', roomCon.getRoomList);
 app.post('/api/room', roomCon.createRoom);
 app.put('/api/room', roomCon.updateRoom);
 app.delete('/api/room', roomCon.deleteRoom);

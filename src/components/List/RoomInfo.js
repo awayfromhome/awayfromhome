@@ -30,7 +30,7 @@ const useStyles = makeStyles(theme => ({
 
 const RoomInfo = props => {
   const { info } = props;
-  console.log(info);
+  // console.log(info);
   const classes = useStyles();
   return (
     <Card price={info.price} img={info.url} onClick={() => props.history.push(`/Checkout`)} btnName='Select Room'>

@@ -4,7 +4,6 @@ module.exports = {
   getReservationList: async (req, res) => {
     const db = req.app.get('db');
     const { room_id, start_date, end_date } = req.body;
-    console.log(room_id, start_date, end_date);
     try {
       const promisedFinal = await db.get_reservation([room_id, start_date, end_date]);
       //Formats the database response in a usable way for front-end

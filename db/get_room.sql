@@ -1,3 +1,2 @@
-SELECT room_id, name
-FROM room
-WHERE room_id = $1
+SELECT * FROM room
+WHERE hotel_id = $1

@@ -9,7 +9,7 @@ import OwnerProfile from './OwnerProfile';
 import NewHotel from './NewHotel';
 import NewRoom from './NewRoom';
 import { getUser } from '../../../ducks/auth/authAsync';
-import { getHotelListById } from '../../../ducks/lists/listAsync';
+import { getHotelList } from '../../../ducks/lists/listAsync';
 import { setOuterTabs, setInnerTabs } from '../../../ducks/lists/listSync';
 import OwnerHotelList from './OwnerHotelList';
 import OwnerRoomList from './OwnerRoomList';
@@ -22,8 +22,7 @@ const useStyles = makeStyles({
     width: '93%'
   },
   tabs: {
-    marginTop: '1%',
-    
+    marginTop: '1%'
   }
 });
 
@@ -32,7 +31,7 @@ const Owner = props => {
   const { outerTabs, innerTabs } = props;
 
   useEffect(() => {
-    props.getHotelListById();
+    props.getHotelList({}, true);
   }, []);
 
   const handleOuterChange = (event, newValue) => {
@@ -121,5 +120,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { getHotelListById, getUser, setInnerTabs, setOuterTabs }
+  { getHotelList, getUser, setInnerTabs, setOuterTabs }
 )(Owner);
