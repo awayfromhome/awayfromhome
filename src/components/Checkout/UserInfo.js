@@ -12,7 +12,7 @@ import { withRouter } from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
   background: {
-    background: theme.palette.tertiary.main,
+    background: 'fff',
     width: '35vw'
   },
   root: {
