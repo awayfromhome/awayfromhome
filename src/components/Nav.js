@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
     left: 0,
     height: '100%',
     width: '10%',
-    background: theme.palette.primary.dark,
+    background: theme.palette.primary.main,
     zIndex: 4
   },
   navicons: {
@@ -68,7 +68,7 @@ const useStyles = makeStyles(theme => ({
     },
     entireMobileMenu: {
       height: '13vh',
-      background: theme.palette.tertiary.main,
+      background: theme.palette.secondary.main,
       width: '100vw',
       position: 'fixed',
       zIndex: 4
@@ -82,7 +82,11 @@ const useStyles = makeStyles(theme => ({
     },
     navicons: {
       display: 'flex',
-      width: '18vh'
+      width: '8vh',
+      height: '8vh'
+    },
+    AFHlogo: {
+      width: '15vh'
     },
     hamburgerMenu: {
       paddingRight: '15%'
@@ -120,7 +124,7 @@ const Nav = props => {
         <img
           src='https://s3.us-east-2.amazonaws.com/awayfromhome/AFHlogo.png'
           alt='logo'
-          className={classes.navicons}
+          className={classNames(classes.navicons, classes.AFHlogo)}
           onClick={() => props.history.push('/')}
         />
         {hiddenMenu ? (

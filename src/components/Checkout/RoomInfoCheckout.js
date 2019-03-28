@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/styles';
 import CheckoutInfo from './CheckoutInfo';
+import { connect } from 'react-redux';
+import { getRoomList } from '../../ducks/lists/listAsync';
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -97,12 +99,13 @@ const useStyles = makeStyles(theme => ({
 const RoomInfoCheckout = props => {
   const [toggle, setToggle] = useState('true');
   const classes = useStyles();
+  console.log('roominfo checkout', props.roomList);
   // const { info } = props;
   return (
     <div className={classes.container}>
       {/* // INSERT ROOM INFO  */}
       <div className={classes.roomInfoCheckout}>
-        <span> ONE QUEEN BED NONSMOKING </span>
+        <span> {props.roomList[0].room_name}</span>
 
         {/* {arrow up or down depending on toggle} */}
         <span>
@@ -132,7 +135,7 @@ const RoomInfoCheckout = props => {
           {/* INSERT PRICE OF ROOM */}
           <div className={classes.totalpriceofstay}> TOTAL PRICE OF STAY: </div>
           <div className={classes.price}>
-            198.85
+            ${props.roomList[0].price}
             <div className={classes.currency}> USD</div>
           </div>
         </div>
@@ -141,4 +144,14 @@ const RoomInfoCheckout = props => {
   );
 };
 
-export default RoomInfoCheckout;
+const mapStateToProps = state => {
+  return {
+    searchInfo: state.listReducer.setSearchInfo,
+    roomList: state.listReducer.roomList
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { getRoomList }
+)(RoomInfoCheckout);

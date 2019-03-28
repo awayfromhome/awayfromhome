@@ -40,7 +40,7 @@ const useStyles = makeStyles(theme => ({
       width: '100%',
       marginTop: '30%',
       marginBottom: '5%',
-      zIndex: -1
+      zIndex: 1
     },
     toolbar: {
       width: '100vw',

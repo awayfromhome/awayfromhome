@@ -56,17 +56,16 @@ const CheckoutInfo = props => {
         <p className={classes.paragraph}>
           Start and end your business day with something inspiring. Package
           includes locally-inspired breakfast to kick start your day, signature
-          drink at our bar and bistro to help you unwind at night. Plus we add
-          1,000 IHG® Rewards Club bonus points to your stay. At Hotel Indigo,
-          you'll find everything you need for your next trip - complimentary
-          high-speed internet access, plush bedding, spa-inspired showers,
-          24-hour business centers and fitness centers and boardroom-style
-          meeting spaces. Our bar and bistro serves delicious locally sourced
-          and seasonal menu selections, from local coffee and craft beer to
-          fresh made bread and artisan cheeses
+          drink at our bar and bistro to help you unwind at night. You'll find
+          everything you need for your next trip - complimentary high-speed
+          internet access, plush bedding, spa-inspired showers, 24-hour business
+          centers and fitness centers and boardroom-style meeting spaces. Our
+          bar and bistro serves delicious locally sourced and seasonal menu
+          selections, from local coffee and craft beer to fresh made bread and
+          artisan cheeses
         </p>
         {/* Get based on room */}
-        <h1 className={classes.header}>Rate Information per Stay for 1 Room</h1>
+        <h1 className={classes.header}>Rate Information for stay</h1>
         <div className={classes.priceDetails}>
           <div className={classes.priceDetailsText}>
             March 23,2019 - March 25, 2019
