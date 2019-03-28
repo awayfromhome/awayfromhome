@@ -18,7 +18,7 @@ export const getHotelList = (value, bool) => {
       } else {
         response = await axios.post('/api/hotel', value);
       }
-      dispatch(getHotelListFulfilled(response));
+      dispatch(getHotelListFulfilled(response.data));
     } catch {
       dispatch(getHotelListRejected());
     }
@@ -35,7 +35,7 @@ export const getRoomList = (id, bool) => {
       } else {
         response = await axios.get(`/api/room/${id}`);
       }
-      dispatch(getRoomeListFulfilled(response));
+      dispatch(getRoomeListFulfilled(response.data));
     } catch {
       dispatch(getRoomListRejected());
     }

@@ -13,7 +13,7 @@ import {
   GET_ROOM_LIST_REJECTED
 } from '../constants';
 
-let initialState = {
+export const initialState = {
   hotelList: [],
   roomList: [],
   setSearchInfo: {},
@@ -32,14 +32,14 @@ export default function reducer(state = initialState, action) {
     case GET_HOTEL_LIST_PENDING:
       return { ...state, pending: action.pending };
     case GET_HOTEL_LIST_FULFILLED:
-      return { ...state, pending: action.pending, hotelList: action.payload.data };
+      return { ...state, pending: action.pending, hotelList: action.payload };
     case GET_HOTEL_LIST_REJECTED:
       return { ...state, pending: action.pending, error: action.error };
     //Get Room List
     case GET_ROOM_LIST_PENDING:
       return { ...state, pending: action.pending };
     case GET_ROOM_LIST_FULFILLED:
-      return { ...state, pending: action.pending, roomList: action.payload.data };
+      return { ...state, pending: action.pending, roomList: action.payload };
     case GET_ROOM_LIST_REJECTED:
       return { ...state, pending: action.pending, error: action.error };
     //Info for searchbar
