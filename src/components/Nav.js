@@ -16,8 +16,8 @@ const useStyles = makeStyles(theme => ({
     top: 0,
     left: 0,
     height: '100%',
-    width: '7%',
-    background: '#4C525A',
+    width: '10%',
+    background: theme.palette.primary.main,
     zIndex: 4
   },
   navicons: {
@@ -29,7 +29,6 @@ const useStyles = makeStyles(theme => ({
   logo: {
     textAlign: 'center',
     height: '12vh',
-    borderBottom: '1px solid #96BBBB',
     color: '#fff',
     lineHeight: '12vh',
     background: theme.palette.secondary.main
@@ -41,7 +40,7 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'column'
   },
   tags: {
-    borderBottom: '1px solid #96BBBB',
+    borderBottom: `1px solid ${theme.palette.accent.main}`,
     textAlign: 'center',
     textDecoration: 'none',
     textTransform: 'uppercase',
@@ -69,7 +68,7 @@ const useStyles = makeStyles(theme => ({
     },
     entireMobileMenu: {
       height: '13vh',
-      background: theme.palette.tertiary.main,
+      background: theme.palette.secondary.main,
       width: '100vw',
       position: 'fixed',
       zIndex: 4
@@ -83,7 +82,11 @@ const useStyles = makeStyles(theme => ({
     },
     navicons: {
       display: 'flex',
-      width: '18vh'
+      width: '8vh',
+      height: '8vh'
+    },
+    AFHlogo: {
+      width: '15vh'
     },
     hamburgerMenu: {
       paddingRight: '15%'
@@ -121,7 +124,7 @@ const Nav = props => {
         <img
           src='https://s3.us-east-2.amazonaws.com/awayfromhome/AFHlogo.png'
           alt='logo'
-          className={classes.navicons}
+          className={classNames(classes.navicons, classes.AFHlogo)}
           onClick={() => props.history.push('/')}
         />
         {hiddenMenu ? (

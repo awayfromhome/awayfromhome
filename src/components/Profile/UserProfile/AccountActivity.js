@@ -21,9 +21,19 @@ const useStyles = makeStyles(theme => ({
   hiddenInfo: {
     display: 'flex'
   },
+  hiddenInfoDetails: {
+    height: '5vh',
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    width: '110vw',
+    borderBottom: '1px solid black',
+    background: '#F2E3BC'
+  },
   innerContentContainer: {
     overflowY: 'scroll',
-    height: '63vh'
+    height: '63vh',
+    color: 'black'
   },
   innerContent: {
     display: 'flex',
@@ -110,7 +120,7 @@ const AccountActivity = props => {
 
   useEffect(() => {
     // add {props.id}
-    axios.get(`/api/accountActivity/${2}`).then(response => {
+    axios.get(`/api/accountActivity/${props.id}`).then(response => {
       console.log(response.data);
       setActivity(response.data);
     });
@@ -130,7 +140,9 @@ const AccountActivity = props => {
         </div>
       </div>
       <div className={classes.innerContentContainer}>
+        {activity.length >= 1 ? null : 'NO ROOMS BOOKED'}
         {activity.map((e, i) => {
+          console.log(e);
           count += +e.count;
           points += e.points;
           props.updateStay(count);
@@ -173,8 +185,8 @@ const AccountActivity = props => {
               <div className={classes.hiddenInfo}>
                 {info === i && !toggle ? (
                   <div className={classes.hiddenInfoDetails}>
-                    <div>Number of Nights: {e.count}</div>
-                    <div>Number of Nights: {e.count}</div>
+                    <span> Number of Nights: {e.count} </span>
+                    <span>${e.price}</span>
                   </div>
                 ) : null}
               </div>

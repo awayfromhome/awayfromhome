@@ -9,7 +9,7 @@ const useStyles = makeStyles(theme => ({
   appBar: {
     flexGrow: 1,
     textAlign: 'center',
-    background: theme.palette.tertiary.main,
+    background: theme.palette.secondary.main,
     width: '63vw',
     marginTop: '7%'
   },
@@ -40,7 +40,7 @@ const useStyles = makeStyles(theme => ({
       width: '100%',
       marginTop: '30%',
       marginBottom: '5%',
-      zIndex: -1
+      zIndex: 1
     },
     toolbar: {
       width: '100vw',
@@ -92,7 +92,13 @@ const useStyles = makeStyles(theme => ({
 
 const SearchInfo = props => {
   console.log('search info', props.setSearchInfo);
-  const { destination, occupants, rooms, firstDate, secondDate } = props.setSearchInfo;
+  const {
+    destination,
+    occupants,
+    rooms,
+    firstDate,
+    secondDate
+  } = props.setSearchInfo;
   const classes = useStyles();
   return (
     <AppBar position='static' className={classes.appBar}>
