@@ -6,11 +6,14 @@ import { getRoomList } from '../../ducks/lists/listAsync';
 
 const useStyles = makeStyles(theme => ({
   container: {
-    background: theme.palette.tertiary.main,
+    background: '#fff',
     width: '61vw',
     height: '18vh',
     fontFamily: theme.typography.fontFamily[1],
-    margin: '2%'
+    margin: '2%',
+    boxShadow:
+      '0px 1px 5px 0px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 3px 1px -2px rgba(0,0,0,0.12)',
+    borderRadius: 4
   },
   roomInfoCheckout: {
     padding: '20px 40px 30px 30px',

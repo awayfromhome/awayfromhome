@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
     top: 0,
     left: 0,
     height: '100%',
-    width: '10%',
+    width: '7%',
     background: theme.palette.primary.main,
     zIndex: 4
   },
@@ -68,7 +68,7 @@ const useStyles = makeStyles(theme => ({
     },
     entireMobileMenu: {
       height: '13vh',
-      background: theme.palette.secondary.main,
+      background: theme.palette.primary.main,
       width: '100vw',
       position: 'fixed',
       zIndex: 4
@@ -82,14 +82,21 @@ const useStyles = makeStyles(theme => ({
     },
     navicons: {
       display: 'flex',
-      width: '8vh',
-      height: '8vh'
+      width: '6vh'
+    },
+    arrow: {
+      transform: 'rotate(270deg)',
+      width: '4vh',
+      height: '4vh',
+      padding: '15%'
     },
     AFHlogo: {
-      width: '15vh'
+      width: '18vh',
+      height: '13vh'
     },
     hamburgerMenu: {
-      paddingRight: '15%'
+      paddingLeft: '15%',
+      color: 'white'
     },
     hiddenMenutags: {
       zIndex: 4,
@@ -102,7 +109,8 @@ const useStyles = makeStyles(theme => ({
       height: '100%',
       display: 'flex',
       flexDirection: 'row-reverse',
-      justifyContent: 'space-between'
+      justifyContent: 'space-between',
+      alignItems: 'center'
     }
   },
   '@media (min-width: 750px) and (max-width: 1200px)': {
@@ -129,15 +137,19 @@ const Nav = props => {
         />
         {hiddenMenu ? (
           <img
-            src='https://cdn4.iconfinder.com/data/icons/basic-user-interface-2/512/User_Interface-03-512.png'
+            src='https://img.icons8.com/cotton/2x/menu.png'
             onClick={() => setHiddenMenu(!hiddenMenu)}
             alt='hamburger menu'
             className={classNames(classes.hamburgerMenu, classes.navicons)}
           />
         ) : (
           <img
-            src='https://cdn.iconscout.com/icon/free/png-256/down-arrow-16-460295.png'
-            className={classNames(classes.hamburgerMenu, classes.navicons)}
+            src='https://www.freeiconspng.com/uploads/white-arrow-transparent-png-22.png'
+            className={classNames(
+              classes.hamburgerMenu,
+              classes.navicons,
+              classes.arrow
+            )}
             alt='chevron menu'
             onClick={() => setHiddenMenu(!hiddenMenu)}
           />
