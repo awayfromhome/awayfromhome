@@ -59,9 +59,9 @@ const RoomList = props => {
   }, [props.roomList]);
 
   const handleRoomSelect = name => {
-    if (name === 'Standard') {
+    if (name === 'standard') {
       setTab(0);
-    } else if (name === 'Deluxe') {
+    } else if (name === 'deluxe') {
       setTab(1);
     }
   };
@@ -71,19 +71,19 @@ const RoomList = props => {
       <SearchInfo />
       <Paper className={classes.rootTabs}>
         <Tabs value={tab} indicatorColor='primary' textColor='primary' centered variant='fullWidth'>
-          <Tab label='Standard' onClick={() => handleRoomSelect('Standard')} />
-          <Tab label='Deluxe' onClick={() => handleRoomSelect('Deluxe')} />
+          <Tab label='Standard' onClick={() => handleRoomSelect('standard')} />
+          <Tab label='Deluxe' onClick={() => handleRoomSelect('deluxe')} />
         </Tabs>
       </Paper>
 
       <div className={classes.card}>
         {props.roomList.map((e, i) => {
           if (tab === 0) {
-            if (e.room_type === 'Standard') {
+            if (e.room_type === 'standard') {
               return <RoomInfo key={i} info={e} />;
             }
           } else if (tab === 1) {
-            if (e.room_type === 'Deluxe') {
+            if (e.room_type === 'deluxe') {
               return <RoomInfo key={i} info={e} />;
             }
           }

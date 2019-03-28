@@ -80,6 +80,15 @@ const useStyles = makeStyles(theme => ({
 const HotelInfo = props => {
   const { info } = props;
   const classes = useStyles();
+
+  const amenities = obj => {
+    let arr = [];
+    for (let key in obj) {
+      arr.push(<li className={classes.eachAmenities}>{obj[key]}</li>);
+    }
+    return arr;
+  };
+
   return (
     <Card price='100' img={info.url} btnName='Select Hotel' onClick={() => props.history.push(`/roomlist/${info.hotel_id}`)}>
       <div className={classes.hotelname}>
@@ -94,15 +103,7 @@ const HotelInfo = props => {
           <h4>Distance</h4>
         </div>
         <div className={classes.amenitiesList}>
-          <ul className={classes.amenities}>
-            {info.amenities.map((e, i) => {
-              return (
-                <li className={classes.eachAmenities} key={i}>
-                  {e}
-                </li>
-              );
-            })}
-          </ul>
+          <ul className={classes.amenities}>{amenities(JSON.parse(info.amenities)[0])}</ul>
         </div>
       </div>
     </Card>
