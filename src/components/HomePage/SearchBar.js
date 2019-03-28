@@ -68,6 +68,8 @@ const useStyles = makeStyles(theme => ({
     width: '50%',
     textAlign: 'center',
     fontFamily: theme.typography.fontFamily[0],
+    fontSize: 17,
+    fontWeight: 600
   },
   outercounter: {
     borderRadius: '25px 25px 25px 25px',
@@ -77,7 +79,7 @@ const useStyles = makeStyles(theme => ({
     background: '#4C525A',
     display: 'flex',
     alignItems: 'center',
-    margin: 'auto'
+    margin: '5px auto'
   },
   innercounter: {
     borderRadius: '50%',
@@ -97,20 +99,27 @@ const useStyles = makeStyles(theme => ({
     marginLeft: 'auto',
     color: '#fff'
   },
+  searchButtonContainer: {
+    width: '100%',
+    textAlign: 'center',
+    marginTop: '4%'
+  },
   searchButton: {
-    margin: '1vh',
-    marginTop: '7%'
+    fontFamily: theme.typography.fontFamily[0],
+    marginTop: '5%',
+    padding: '12px 80px',
+    borderRadius: 50
   },
   count: {
     fontSize: 21,
     lineHeight: '50px',
     margin: 'auto',
-    height: '100%'
+    height: '100%',
+    fontWeight: 400
   },
   [theme.breakpoints.down('749')]: {
     paper: {
-      width: 'auto',
-      zIndex: -1
+      width: 'auto'
     },
     searchContainer: {
       flexDirection: 'column'
@@ -121,6 +130,9 @@ const useStyles = makeStyles(theme => ({
     },
     leftSearchContainer: {
       width: '100%'
+    },
+    searchButton: {
+      marginTop: 0
     },
     rightSearchContainer: {
       marginTop: '5%',
@@ -160,10 +172,29 @@ const useStyles = makeStyles(theme => ({
 
 const SearchBar = props => {
   const classes = useStyles();
-  const { value: destination, bind: bindDestination, reset: resetDestination } = useInput('Dallas');
-  const { value: occupants, setValue: setOccupants, bind: bindOccupants, reset: resetOccupants } = useInput(0);
-  const { value: rooms, setValue: setRooms, bind: bindRooms, reset: resetRooms } = useInput(0);
-  const { value: checkOut, setValue: setCheckOut, bind: bindCheckOut, reset: resetCheckOut } = useInput(addDays(new Date(), 1));
+  const {
+    value: destination,
+    bind: bindDestination,
+    reset: resetDestination
+  } = useInput('Dallas');
+  const {
+    value: occupants,
+    setValue: setOccupants,
+    bind: bindOccupants,
+    reset: resetOccupants
+  } = useInput(0);
+  const {
+    value: rooms,
+    setValue: setRooms,
+    bind: bindRooms,
+    reset: resetRooms
+  } = useInput(0);
+  const {
+    value: checkOut,
+    setValue: setCheckOut,
+    bind: bindCheckOut,
+    reset: resetCheckOut
+  } = useInput(addDays(new Date(), 1));
   const [checkIn, setCheckIn] = useState(new Date());
   const [error, setError] = useState('');
 
@@ -183,7 +214,6 @@ const SearchBar = props => {
       let rule = +occupants / 4;
       rule -= 0.25;
       if (rule % 1 === 0) {
-        console.log(rule);
         setRooms(rule);
       }
     }
@@ -259,7 +289,10 @@ const SearchBar = props => {
             <div className={classes.outerButtonDiv}>
               Rooms
               <div className={classes.outercounter}>
-                <div onClick={() => handleSubtractRooms()} className={classes.Leftbutton}>
+                <div
+                  onClick={() => handleSubtractRooms()}
+                  className={classes.Leftbutton}
+                >
                   <Remove />
                 </div>
                 <div className={classes.innercounter}>
@@ -267,7 +300,10 @@ const SearchBar = props => {
                     {rooms}
                   </div>
                 </div>
-                <div onClick={() => handleAddRooms()} className={classes.Rightbutton}>
+                <div
+                  onClick={() => handleAddRooms()}
+                  className={classes.Rightbutton}
+                >
                   <Add />
                 </div>
               </div>
@@ -276,7 +312,10 @@ const SearchBar = props => {
             <div className={classes.outerButtonDiv}>
               Occupants
               <div className={classes.outercounter}>
-                <div onClick={() => handleSubtractOccupants()} className={classes.Leftbutton}>
+                <div
+                  onClick={() => handleSubtractOccupants()}
+                  className={classes.Leftbutton}
+                >
                   <Remove />
                 </div>
                 <div className={classes.innercounter}>
@@ -284,7 +323,10 @@ const SearchBar = props => {
                     {occupants}
                   </div>
                 </div>
-                <div onClick={() => handleAddOccupants()} className={classes.Rightbutton}>
+                <div
+                  onClick={() => handleAddOccupants()}
+                  className={classes.Rightbutton}
+                >
                   <Add />
                 </div>
               </div>
@@ -326,9 +368,17 @@ const SearchBar = props => {
               />
             </MuiPickersUtilsProvider>
           </div>
-          <Button className={classes.searchButton} variant='contained' size='large' color='primary' onClick={() => handleSubmit()}>
-            SEARCH
-          </Button>
+          <div className={classes.searchButtonContainer}>
+            <Button
+              className={classes.searchButton}
+              variant='contained'
+              size='large'
+              color='primary'
+              onClick={() => handleSubmit()}
+            >
+              SEARCH
+            </Button>
+          </div>
         </div>
       </div>
     </Paper>
