@@ -20,6 +20,7 @@ module.exports = {
       await db.create_hotel(name, address, location, reservationNum, frontDeskNum, amenityList, req.session.user.id);
       res.sendStatus(200);
     } catch (err) {
+      console.log(err);
       res.sendStatus(500);
     }
   },

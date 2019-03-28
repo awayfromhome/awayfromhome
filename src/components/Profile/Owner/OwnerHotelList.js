@@ -81,7 +81,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const OwnerHotelInfo = props => {
+const OwnerHotelList = props => {
   const classes = useStyles();
   const [order, setOrder] = useState('asc');
   const [orderBy, setOrderBy] = useState('name');
@@ -93,7 +93,7 @@ const OwnerHotelInfo = props => {
     let arr = props.hotelList.map((e, i) => {
       return {
         id: e.hotel_id,
-        name: e.name,
+        name: e.hotel_name,
         address: e.address,
         frontDeskNum: e.front_desk_num,
         reservationNum: e.reservation_num
@@ -134,6 +134,7 @@ const OwnerHotelInfo = props => {
         props.setHotelInfo(e);
         props.setInnerTabs(2);
       }
+      return null;
     });
   };
 
@@ -207,4 +208,4 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   { getHotelList, setInnerTabs, setHotelInfo }
-)(OwnerHotelInfo);
+)(OwnerHotelList);

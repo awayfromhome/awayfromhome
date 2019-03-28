@@ -28,10 +28,8 @@ const NewHotel = props => {
   const [amenityList, setAmenityList] = useState([{ body: '' }]);
   const { value: name, reset: resetName, bind: bindName } = useInput('');
   const { value: address, reset: resetAddress, bind: bindAddress } = useInput('');
-  const { value: url, reset: resetUrl, bind: bindUrl } = useInput('');
   const { value: reservationNum, reset: resetReservationNum, bind: bindReservationNum } = useInput('');
   const { value: frontDeskNum, reset: resetfrontDeskNum, bind: bindFrontDeskNum } = useInput('');
-
   const [location, setLocation] = useState('');
 
   const handleChange = e => {
@@ -47,20 +45,19 @@ const NewHotel = props => {
   const reset = () => {
     resetName();
     resetAddress();
-    resetUrl();
     resetReservationNum();
     resetfrontDeskNum();
   };
-  const upload = e => {
-    let data = new FormData();
-    data.append('pic', e.target.files[0]);
-    console.log(data);
-    axios
-      .post('/api/uploadPic', data)
-      .then(data => {
-        setLocation(data.data.Location);
-      })
-      .catch(err => console.log(err));
+
+  const upload = async e => {
+    try {
+      let data = new FormData();
+      data.append('pic', e.target.files[0]);
+      const dataLocation = axios.post('/api/uploadPic', data);
+      setLocation(dataLocation.data.Location);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const handleSubmit = async () => {
@@ -70,7 +67,6 @@ const NewHotel = props => {
     await axios.post('/api/createhotel', {
       name,
       address,
-      url,
       frontDeskNum,
       reservationNum,
       amenityList: arr,

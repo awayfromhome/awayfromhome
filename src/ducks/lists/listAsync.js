@@ -33,7 +33,6 @@ export const getRoomList = (id, bool) => {
       if (bool) {
         response = await axios.get(`/api/room?byId=true`);
       } else {
-        console.log('hit');
         response = await axios.get(`/api/room/${id}`);
       }
       dispatch(getRoomeListFulfilled(response));
