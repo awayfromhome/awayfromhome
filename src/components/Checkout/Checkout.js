@@ -39,7 +39,6 @@ const Checkout = props => {
   return (
     <div className={classes.root}>
       <SearchInfo />
-
       <div className={classes.upper}>
         <RoomInfoCheckout />
         <div className={classes.second}>

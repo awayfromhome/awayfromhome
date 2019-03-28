@@ -88,13 +88,13 @@ const useStyles = makeStyles(theme => ({
     },
     closeArrow: {
       display: 'block',
-      width: '70px',
+      width: '50px',
       paddingBottom: 8
     },
     openArrow: {
       transform: 'rotate(180deg)',
       display: 'block',
-      width: '70px'
+      width: '50px'
     }
   }
 }));

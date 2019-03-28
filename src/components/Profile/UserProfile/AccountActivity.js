@@ -19,16 +19,17 @@ const useStyles = makeStyles(theme => ({
     width: '42vw'
   },
   hiddenInfo: {
-    display: 'flex'
+    display: 'flex',
+    width: '44vw',
+    background: '#F2E3BC'
   },
   hiddenInfoDetails: {
-    height: '5vh',
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    width: '110vw',
-    borderBottom: '1px solid black',
-    background: '#F2E3BC'
+    width: '42vw',
+    height: '5vh',
+    borderTop: '1px solid black'
   },
   innerContentContainer: {
     overflowY: 'scroll',
@@ -37,9 +38,8 @@ const useStyles = makeStyles(theme => ({
   },
   innerContent: {
     display: 'flex',
-    borderBottom: '1px solid black',
-    paddingBottom: '5%',
-    width: '42vw'
+    paddingBottom: '3%',
+    width: '40vw'
   },
   text: {
     display: 'flex',
@@ -59,8 +59,9 @@ const useStyles = makeStyles(theme => ({
   content: {
     display: 'flex',
     flexDirection: 'column',
-    width: '42vw',
-    alignItems: 'center'
+    width: '43vw',
+    alignItems: 'center',
+    borderBottom: '1px solid black'
   },
   descriptionactivity: {
     display: 'flex'
@@ -72,10 +73,6 @@ const useStyles = makeStyles(theme => ({
     width: '13vw',
     textAlign: 'left',
     padding: '5px'
-  },
-  content: {
-    alignItems: 'center',
-    padding: '17px 10px 25px 2px'
   },
   openimg: {
     transform: 'rotateX(180deg)',
@@ -89,7 +86,17 @@ const useStyles = makeStyles(theme => ({
     paddingLeft: '80px',
     paddingTop: '20px'
   },
+  spanHidden: {
+    paddingLeft: '7%',
+    width: '12vw'
+  },
+  spanHidden2: {
+    width: '12vw'
+  },
   [theme.breakpoints.down('749')]: {
+    hiddenInfo: {
+      borderBottom: 'none'
+    },
     container: {
       width: 'auto'
     },
@@ -97,18 +104,25 @@ const useStyles = makeStyles(theme => ({
       width: 'auto',
       justifyContent: 'space-evenly'
     },
-
+    hiddenInfoDetails: {
+      width: '100vw',
+      height: '15vw'
+    },
+    hiddenInfo: {
+      width: '100vw'
+    },
     date: {
       width: '27%'
     },
+    spanHidden: { width: 'auto', paddingLeft: 0 },
     content: { width: '100vw' },
     innerContent: { width: 'auto' },
     descriptionactivity: { width: '75vw', justifyContent: 'space-between' },
     description: { width: '33%' },
-    text: { width: '33%', fontSize: '17px' },
-    description3: { width: '37vw', paddingLeft: '110px' },
-    openimg: { paddingLeft: 0, width: '10vw' },
-    closeimg: { width: '10vw', paddingLeft: 0, paddingTop: 20 }
+    text: { width: '33%', fontSize: '17px', paddingLeft: 0, margin: 'auto' },
+    description3: { width: '37vw' },
+    openimg: { paddingLeft: 15, width: '10vw' },
+    closeimg: { width: '10vw', paddingLeft: 15, paddingTop: 20 }
   }
 }));
 
@@ -185,8 +199,12 @@ const AccountActivity = props => {
               <div className={classes.hiddenInfo}>
                 {info === i && !toggle ? (
                   <div className={classes.hiddenInfoDetails}>
-                    <span> Number of Nights: {e.count} </span>
-                    <span>${e.price}</span>
+                    <span className={classes.spanHidden}>
+                      Number of Nights: {e.count}
+                    </span>
+                    <span className={classes.spanHidden2}>
+                      ${e.price * e.count}
+                    </span>
                   </div>
                 ) : null}
               </div>

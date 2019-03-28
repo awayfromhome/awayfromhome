@@ -94,6 +94,10 @@ const useStyles = makeStyles(theme => ({
     secondparagraph: {
       display: 'flex',
       flexDirection: 'column-reverse'
+    },
+    list: {
+      width: '100%',
+      marginLeft: '10%'
     }
   }
 }));

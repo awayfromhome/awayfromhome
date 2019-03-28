@@ -10,15 +10,12 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
     textAlign: 'center',
     background: theme.palette.secondary.main,
-    width: '63vw',
+    width: '61vw',
     marginTop: '7%'
   },
   barInfo: {
     display: 'flex',
     justifyContent: 'space-around'
-  },
-  toolbar: {
-    width: '60vw'
   },
   city: {
     width: '20vw'
@@ -43,7 +40,7 @@ const useStyles = makeStyles(theme => ({
       zIndex: 1
     },
     toolbar: {
-      width: '100vw',
+      width: '93vw',
       display: 'flex',
       flexDirection: 'column',
       marginLeft: 0,
@@ -54,7 +51,8 @@ const useStyles = makeStyles(theme => ({
     },
     barInfo: {
       display: 'block',
-      width: '100%'
+      width: '100%',
+      fontSize: '23px'
     },
     detailsInfo: {
       width: '100%',
