@@ -3,7 +3,11 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/styles';
 import Login from './Login';
-import { getUser, handleAccountForm, handleLogout } from '../ducks/auth/authAsync';
+import {
+  getUser,
+  handleAccountForm,
+  handleLogout
+} from '../ducks/auth/authAsync';
 import classNames from 'classnames';
 
 const useStyles = makeStyles(theme => ({
@@ -67,7 +71,8 @@ const useStyles = makeStyles(theme => ({
       height: '13vh',
       background: theme.palette.tertiary.main,
       width: '100vw',
-      position: 'fixed'
+      position: 'fixed',
+      zIndex: 4
     },
     hiddenMenus: {
       display: 'flex',
