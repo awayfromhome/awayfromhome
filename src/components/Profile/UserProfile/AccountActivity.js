@@ -20,8 +20,8 @@ const useStyles = makeStyles(theme => ({
   },
   hiddenInfo: {
     display: 'flex',
-    width: '44vw',
-    background: '#F2E3BC'
+    width: '41vw',
+    background: theme.palette.tertiary.main
   },
   hiddenInfoDetails: {
     display: 'flex',
@@ -38,8 +38,9 @@ const useStyles = makeStyles(theme => ({
   },
   innerContent: {
     display: 'flex',
-    paddingBottom: '3%',
-    width: '40vw'
+    width: '40vw',
+    padding: '3%',
+    paddingLeft: 0
   },
   text: {
     display: 'flex',
@@ -59,9 +60,12 @@ const useStyles = makeStyles(theme => ({
   content: {
     display: 'flex',
     flexDirection: 'column',
-    width: '43vw',
+    width: '41vw',
     alignItems: 'center',
-    borderBottom: '1px solid black'
+    borderBottom: '1px solid black',
+    padding: '2%',
+    paddingBottom: 0,
+    paddingLeft: 0
   },
   descriptionactivity: {
     display: 'flex'
@@ -87,7 +91,7 @@ const useStyles = makeStyles(theme => ({
     paddingTop: '20px'
   },
   spanHidden: {
-    paddingLeft: '7%',
+    paddingLeft: '3%',
     width: '12vw'
   },
   spanHidden2: {
@@ -114,15 +118,16 @@ const useStyles = makeStyles(theme => ({
     date: {
       width: '27%'
     },
-    spanHidden: { width: 'auto', paddingLeft: 0 },
-    content: { width: '100vw' },
-    innerContent: { width: 'auto' },
+    spanHidden: { width: 'auto', paddingLeft: 13 },
+    spanHidden2: { width: '26vw' },
+    content: { width: '100vw', paddingLeft: 0 },
+    innerContent: { width: 'auto', paddingLeft: 25 },
     descriptionactivity: { width: '75vw', justifyContent: 'space-between' },
     description: { width: '33%' },
-    text: { width: '33%', fontSize: '17px', paddingLeft: 0, margin: 'auto' },
+    text: { width: '29%', fontSize: '17px', paddingLeft: 0, margin: 'auto' },
     description3: { width: '37vw' },
-    openimg: { paddingLeft: 15, width: '10vw' },
-    closeimg: { width: '10vw', paddingLeft: 15, paddingTop: 20 }
+    openimg: { paddingLeft: 1, width: '10vw' },
+    closeimg: { width: '10vw', paddingLeft: 1, paddingTop: 20 }
   }
 }));
 

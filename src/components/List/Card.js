@@ -38,7 +38,7 @@ const useStyles = makeStyles(theme => ({
     background: theme.palette.accent.main,
     fontFamily: theme.typography.fontFamily[1],
     borderRadius: 50,
-    padding: '12px 60px',
+    padding: '6px 20px',
     color: 'white',
     border: 'none',
     fontSize: 17,
@@ -87,11 +87,12 @@ const useStyles = makeStyles(theme => ({
   },
   [theme.breakpoints.down('749')]: {
     root: {
-      width: '100%',
+      width: '95%',
       flexDirection: 'column',
       height: '65vh',
       borderTop: '1px solid black',
-      borderBottom: '1px solid black'
+      borderBottom: '1px solid black',
+      marginTop: '2vh'
     },
     img: {
       width: 'auto',

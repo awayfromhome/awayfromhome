@@ -12,7 +12,6 @@ import { withRouter } from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
   background: {
-    background: 'fff',
     width: '35vw'
   },
   root: {
@@ -22,9 +21,6 @@ const useStyles = makeStyles(theme => ({
   },
   header: {
     fontSize: '1.5em',
-    marginBottom: '2vh'
-  },
-  firstP: {
     marginBottom: '2vh'
   },
   check: {
@@ -37,15 +33,19 @@ const useStyles = makeStyles(theme => ({
   },
   submit: {
     height: '5vh',
-    marginTop: '1vh',
+    marginTop: '8%',
     fontSize: '1.5em',
-    background: theme.palette.accent.main,
+    background: theme.palette.secondary.main,
+    padding: '35px 20px',
     border: 'none',
-    borderRadius: '5px'
+    borderRadius: '5px',
+    margin: 'auto',
+    color: '#fff',
+    lineHeight: '0px'
   },
   title: {
     fontSize: '1.5em',
-    marginBottom: '1vh'
+    marginTop: '5%'
   },
   [theme.breakpoints.down('749')]: {
     background: {
