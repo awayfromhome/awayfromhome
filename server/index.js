@@ -70,6 +70,10 @@ app.post('/api/uploadPic', upload.single('pic'), uploadCon.uploadPic);
 // User Profile EndPoint
 app.get('/api/accountActivity/:id', profileCon.accountActivity);
 
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../build/index.html'));
+});
+
 app.listen(process.env.EXPRESS_PORT, () => {
   console.log(`Server - Listening on ${process.env.EXPRESS_PORT}`);
 });
