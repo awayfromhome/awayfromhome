@@ -99,7 +99,9 @@ const useStyles = makeStyles(theme => ({
   },
   [theme.breakpoints.down('749')]: {
     hiddenInfo: {
-      borderBottom: 'none'
+      borderBottom: 'none',
+      width: '100vw',
+      marginBottom: '4%'
     },
     container: {
       width: 'auto'
@@ -110,10 +112,8 @@ const useStyles = makeStyles(theme => ({
     },
     hiddenInfoDetails: {
       width: '100vw',
-      height: '15vw'
-    },
-    hiddenInfo: {
-      width: '100vw'
+      height: '15vw',
+      borderBottom: '1px solid #4C525A'
     },
     date: {
       width: '27%'

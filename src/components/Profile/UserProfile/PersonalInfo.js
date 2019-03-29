@@ -49,23 +49,45 @@ const useStyles = makeStyles(theme => ({
     fontStyle: 'italic',
     fontSize: '20px',
     fontWeight: 800
+  },
+  [theme.breakpoints.down('749')]: {
+    addressdetails: {
+      width: '62vw'
+    },
+    phoneContainer: {
+      width: '100vw',
+      paddingLeft: 0
+    },
+    address: {
+      width: '73vw'
+    },
+    cardContainer: {
+      width: '100vw'
+    },
+    phoneNumber: {
+      flexDirection: 'column',
+      width: '60vw'
+    },
+    PNedit: {
+      marginRight: 36
+    },
+    ADedit: {
+      marginRight: 35
+    },
+    phoneNumberField: {
+      marginLeft: 200,
+      width: '73vw'
+    }
   }
 }));
 
 const AcountInfo = () => {
   const [edit, setEdit] = useState('true');
   const [phoneEdit, setPhoneEdit] = useState('true');
-  const { value: name, reset: resetName, bind: bindName } = useInput('');
-  const { value: number, reset: resetNumber, bind: bindNumber } = useInput('');
-  const { value: address, reset: resetAddress, bind: bindAddress } = useInput(
-    ''
-  );
-  const { value: city, reset: resetCity, bind: bindCity } = useInput('');
-  const {
-    value: postalCode,
-    reset: resetPostalCode,
-    bind: bindPostalCode
-  } = useInput('');
+  const { bind: bindNumber } = useInput('');
+  const { bind: bindAddress } = useInput('');
+  const { bind: bindCity } = useInput('');
+  const { bind: bindPostalCode } = useInput('');
   const classes = useStyles();
 
   return (
@@ -125,8 +147,11 @@ const AcountInfo = () => {
               style={{
                 marginBottom: 'auto',
                 textDecoration: 'underline',
-                cursor: 'pointer'
+                cursor: 'pointer',
+                fontWeight: 400,
+                fontSize: '17px'
               }}
+              className={classes.ADedit}
               onClick={() => setEdit(!edit)}
             >
               {edit ? 'Edit' : 'Cancel'}
@@ -139,6 +164,7 @@ const AcountInfo = () => {
           <div className={classes.phoneContainer}>
             <span className={classes.phoneNumber}>
               Phone Number:
+              <br />
               {phoneEdit ? (
                 '+1-800-555-555'
               ) : (
@@ -146,9 +172,7 @@ const AcountInfo = () => {
                   label='Phone Number*'
                   margin='normal'
                   variant='outlined'
-                  style={{
-                    marginLeft: 20
-                  }}
+                  className={classes.phoneNumberField}
                   {...bindNumber}
                 />
               )}
@@ -161,6 +185,7 @@ const AcountInfo = () => {
                 fontWeight: 400,
                 fontSize: '17px'
               }}
+              className={classes.PNedit}
               onClick={() => setPhoneEdit(!phoneEdit)}
             >
               {phoneEdit ? 'Edit' : 'Cancel'}

@@ -53,10 +53,20 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    paddingTop: '15%'
+    paddingTop: '15%',
+    fontSize: 25,
+    fontFamily: theme.typography.fontFamily[2]
   },
   redeemTitle: {
+    paddingTop: 10,
     paddingBottom: 15
+  },
+  redeemButton: {
+    borderRadius: 20,
+    padding: '10px 50px',
+    border: 'none',
+    background: theme.palette.accent.main,
+    color: '#fff'
   },
   memberBoxesContainer: {
     display: 'flex',
@@ -72,7 +82,8 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'space-around',
     background: '#4C525A',
     color: '#fff',
-    cursor: 'pointer'
+    cursor: 'pointer',
+    fontFamily: theme.typography.fontFamily[2]
   },
   entirecirclecontainer: {
     width: '100%',
@@ -166,8 +177,13 @@ const Profile = props => {
           <Paper className={classes.root}>
             <div className={classes.redeemPointsContainer}>
               Available Points to Redeem
-              <span className={classes.redeemTitle}>Points will go here</span>
-              <button> Redeem</button>
+              <span className={classes.redeemTitle}>{props.points}</span>
+              <button
+                className={classes.redeemButton}
+                onClick={() => props.history.push('/')}
+              >
+                REDEEM
+              </button>
             </div>
             <div className={classes.memberBoxesContainer}>
               <div className={classes.memberDivBox1}>
