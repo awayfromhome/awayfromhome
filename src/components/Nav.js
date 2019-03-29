@@ -26,25 +26,35 @@ const useStyles = makeStyles(theme => ({
   hiddenMenus: {
     display: 'none'
   },
-  logoDesktop: {
-    display: 'none',
-    width: 50
-  },
   logo: {
-    textAlign: 'center',
-    height: '12vh',
-    color: '#fff',
-    lineHeight: '12vh',
-    background: theme.palette.secondary.main
-  },
-
-  AFH: {
-    // display: 'flex',
-    width: '100%',
-    height: '100%',
-    '&:hover': {
-      color: 'black'
+    background: theme.palette.secondary.main,
+    '&:hover $logoContainer': {
+      transform: 'translateX(-100%)',
+      transition: 'all 1s linear'
+    },
+    '&:hover $AFH': {
+      display: 'flex',
+      height: '0vh',
+      transform: 'translate(35%, -100%)',
+      transition: 'margin-right 4s ease-in 2s delay 5s'
     }
+  },
+  logoDesktop: {
+    width: '100%',
+    height: '100%'
+  },
+  AFH: {
+    display: 'none',
+    lineHeight: '14vh',
+    textAlign: 'center',
+    color: '#fff',
+    width: '100%'
+  },
+  logoContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    width: '100%',
+    height: '14vh'
   },
   navwrapper: {
     cursor: 'pointer',
@@ -225,11 +235,13 @@ const Nav = props => {
       <div className={classes.navContainer}>
         <div className={classes.logo} onClick={() => props.history.push('/')}>
           <div className={classes.AFH}> AFH </div>
-          <img
-            src='https://s3.us-east-2.amazonaws.com/awayfromhome/AFHlogo.png'
-            alt='logo'
-            className={classes.logoDesktop}
-          />
+          <span className={classes.logoContainer}>
+            <img
+              src='https://s3.us-east-2.amazonaws.com/awayfromhome/AFHlogo.png'
+              alt='logo'
+              className={classes.logoDesktop}
+            />
+          </span>
         </div>
         <div className={classes.navwrapper}>
           {props.user.username ? null : (
