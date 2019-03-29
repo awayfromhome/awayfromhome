@@ -13,6 +13,7 @@ const reservationCon = require('./controllers/reservationController');
 const miscCon = require('./controllers/miscController');
 const uploadCon = require('./controllers/uploadController');
 const profileCon = require('./controllers/profileController');
+app.use(express.static(`${__dirname}/../build`));
 const upload = multer();
 app.use(bodyParser.json());
 app.use(bodyParser.text());
