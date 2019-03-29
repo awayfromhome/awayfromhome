@@ -31,7 +31,7 @@ const useStyles = makeStyles(theme => ({
 		margin: 'auto'
 	},
 	sectionContainer: {
-		marginTop: '5%',
+		marginTop: '1%',
 		width: '70%',
 		margin: 'auto'
 	},
@@ -48,7 +48,9 @@ const useStyles = makeStyles(theme => ({
 	list: {
 		listStyleType: 'square',
 		margin: '10%',
-		marginLeft: '30%'
+		marginLeft: '30%',
+		fontSize: 20,
+		fontFamily: theme.typography.fontFamily[2]
 	},
 	'@media (min-width: 750px) and (max-width: 1200px)': {
 		entireContainer: {
@@ -86,7 +88,7 @@ const useStyles = makeStyles(theme => ({
 		img: {
 			width: '100%',
 			height: '90%',
-			marginTop: '15%'
+			marginTop: '5%'
 		},
 		paragraph: {
 			width: '80%',
@@ -124,7 +126,7 @@ const HomePage = props => {
 					<p className={classes.paragraph}>
 						<ul>
 							<li className={classes.list}>
-								Stay in Luxrious Hotels with Comfort & Safety
+								Stay in Luxurious Hotels with Comfort & Safety
 							</li>
 							<li className={classes.list}>
 								Local Resturants and Shopping Areas
