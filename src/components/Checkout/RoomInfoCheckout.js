@@ -104,7 +104,7 @@ const useStyles = makeStyles(theme => ({
 const RoomInfoCheckout = props => {
   const [toggle, setToggle] = useState('true');
   const classes = useStyles();
-  console.log('roominfo checkout', props.roomList);
+  // console.log('roominfo checkout', props.roomList);
   // const { info } = props;
   return (
     <div className={classes.container}>
