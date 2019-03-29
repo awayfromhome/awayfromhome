@@ -27,35 +27,13 @@ const useStyles = makeStyles(theme => ({
     display: 'none'
   },
   logo: {
-    background: theme.palette.secondary.main,
-    '&:hover $logoContainer': {
-      transform: 'translateX(-100%)',
-      transition: 'all 1s linear'
-    },
-    '&:hover $AFH': {
-      display: 'flex',
-      height: '0vh'
-    }
+    height: '18vh',
+    background: theme.palette.secondary.main
   },
   logoDesktop: {
-    width: '100%',
-    height: '100%'
-  },
-  AFH: {
-    display: 'none',
-    lineHeight: '14vh',
-    textAlign: 'center',
-    color: '#fff',
-    width: '100%',
-    fontFamily: theme.typography.fontFamily[0],
-    transform: 'translate(35%, -100%)',
-    transition: 'all 1s linear'
-  },
-  logoContainer: {
-    display: 'flex',
-    flexDirection: 'row',
-    width: '100%',
-    height: '14vh'
+    height: '110%',
+    left: -50,
+    marginLeft: '-55%'
   },
   navwrapper: {
     cursor: 'pointer',
@@ -104,15 +82,13 @@ const useStyles = makeStyles(theme => ({
       background: theme.palette.primary.light,
       height: '100vh'
     },
-    navicons: {
-      display: 'flex',
-      width: '6vh'
-    },
+
     arrow: {
       transform: 'rotate(270deg)',
       width: '4vh',
-      height: '4vh',
-      padding: '15%'
+      padding: '15%',
+      paddingLeft: '15%',
+      color: 'white'
     },
     AFHlogo: {
       width: '18vh',
@@ -120,7 +96,9 @@ const useStyles = makeStyles(theme => ({
     },
     hamburgerMenu: {
       paddingLeft: '15%',
-      color: 'white'
+      color: 'white',
+      display: 'flex',
+      width: '6vh'
     },
     hiddenMenutags: {
       zIndex: 4,
@@ -158,7 +136,7 @@ const Nav = props => {
         <img
           src='https://s3.us-east-2.amazonaws.com/awayfromhome/AFHlogo.png'
           alt='logo'
-          className={classNames(classes.navicons, classes.AFHlogo)}
+          className={classes.AFHlogo}
           onClick={() => props.history.push('/')}
         />
         {hiddenMenu ? (
@@ -166,16 +144,12 @@ const Nav = props => {
             src='https://img.icons8.com/cotton/2x/menu.png'
             onClick={() => setHiddenMenu(!hiddenMenu)}
             alt='hamburger menu'
-            className={classNames(classes.hamburgerMenu, classes.navicons)}
+            className={classes.hamburgerMenu}
           />
         ) : (
           <img
             src='https://www.freeiconspng.com/uploads/white-arrow-transparent-png-22.png'
-            className={classNames(
-              classes.hamburgerMenu,
-              classes.navicons,
-              classes.arrow
-            )}
+            className={classes.arrow}
             alt='chevron menu'
             onClick={() => setHiddenMenu(!hiddenMenu)}
           />
@@ -236,14 +210,11 @@ const Nav = props => {
       )}
       <div className={classes.navContainer}>
         <div className={classes.logo} onClick={() => props.history.push('/')}>
-          <div className={classes.AFH}> AFH </div>
-          <span className={classes.logoContainer}>
-            <img
-              src='https://s3.us-east-2.amazonaws.com/awayfromhome/AFHlogo.png'
-              alt='logo'
-              className={classes.logoDesktop}
-            />
-          </span>
+          <img
+            src='https://s3.us-east-2.amazonaws.com/awayfromhome/AFHlogo.png'
+            alt='logo'
+            className={classes.logoDesktop}
+          />
         </div>
         <div className={classes.navwrapper}>
           {props.user.username ? null : (

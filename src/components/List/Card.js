@@ -89,7 +89,7 @@ const useStyles = makeStyles(theme => ({
     root: {
       width: '95%',
       flexDirection: 'column',
-      height: '65vh',
+      height: '68vh',
       borderTop: '1px solid black',
       borderBottom: '1px solid black',
       marginTop: '2vh'
