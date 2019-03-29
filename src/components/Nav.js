@@ -34,9 +34,7 @@ const useStyles = makeStyles(theme => ({
     },
     '&:hover $AFH': {
       display: 'flex',
-      height: '0vh',
-      transform: 'translate(35%, -100%)',
-      transition: 'margin-right 4s ease-in 2s delay 5s'
+      height: '0vh'
     }
   },
   logoDesktop: {
@@ -48,7 +46,10 @@ const useStyles = makeStyles(theme => ({
     lineHeight: '14vh',
     textAlign: 'center',
     color: '#fff',
-    width: '100%'
+    width: '100%',
+    fontFamily: theme.typography.fontFamily[0],
+    transform: 'translate(35%, -100%)',
+    transition: 'all 1s linear'
   },
   logoContainer: {
     display: 'flex',
@@ -69,7 +70,8 @@ const useStyles = makeStyles(theme => ({
     textTransform: 'uppercase',
     fontSize: 13,
     color: '#fff',
-    fontFamily: 'Baloo',
+    fontFamily: theme.typography.fontFamily[0],
+    fontWeight: 700,
     lineHeight: 7.5,
     background: `linear-gradient(to right,
     #26292D,
@@ -184,8 +186,8 @@ const Nav = props => {
         <div
           className={
             hiddenMenu
-              ? classNames(classes.hiddenMenus, 'animated fadeOutLeft')
-              : classNames(classes.hiddenMenus, 'animated fadeInLeft')
+              ? classNames(classes.hiddenMenus, 'animated fadeOutLeft 1s')
+              : classNames(classes.hiddenMenus, 'animated fadeInLeft faster')
           }
         >
           {props.user.username ? null : (
