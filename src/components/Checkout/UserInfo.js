@@ -134,8 +134,7 @@ const UserInfo = props => {
       <div className={classes.root}>
         <h1 className={classes.header}>Guest Information</h1>
         <p className={classes.firstP}>
-          Already an IHG Rewards Club member? Sign in to earn your points and
-          save time with automatic form completion.
+          Already an AFH Rewards Club member? Sign in to earn your points!
         </p>
         <p>* Indicates a required input field</p>
 

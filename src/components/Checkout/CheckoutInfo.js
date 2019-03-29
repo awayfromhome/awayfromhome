@@ -53,9 +53,9 @@ const CheckoutInfo = props => {
 	const classes = useStyles();
 	const price = props.roomList[0].price;
 	const taxes = price * 0.0825;
-	console.log(taxes);
+	// console.log(taxes);
 	// console.log('checkoutinfo search info', props.setSearchInfo);
-	console.log('checkoutinfo', props.roomList);
+	// console.log('checkoutinfo', props.roomList);
 	return (
 		<Paper className={classes.background}>
 			<div className={classes.root}>
@@ -80,14 +80,14 @@ const CheckoutInfo = props => {
 						{props.setSearchInfo.firstDate} -{' '}
 						{props.setSearchInfo.secondDate}
 						<div>
-							{price.toFixed(2)}
+							${price.toFixed(2)}
 							<span> USD</span>
 						</div>
 					</div>
 					<div className={classes.priceDetailsText}>
-						Price for One Room
+						Price for {props.setSearchInfo.rooms} Room
 						<div>
-							{props.roomList[0].price - taxes.toFixed(2)}
+							${props.roomList[0].price - taxes.toFixed(2)}
 							<span> USD</span>
 						</div>
 					</div>
@@ -95,14 +95,14 @@ const CheckoutInfo = props => {
 						Taxes
 						<div>
 							<span>
-								{taxes.toFixed(2)} USD
+								${taxes.toFixed(2)} USD
 							</span>
 						</div>
 					</div>
 					<div className={classes.priceDetailsText}>
 						Total
 						<div>
-							{price.toFixed(2)}
+							${price.toFixed(2)}
 							<span> USD</span>
 						</div>
 					</div>
@@ -110,9 +110,10 @@ const CheckoutInfo = props => {
 				{/* Get based on Hotel */}
 				<h1 className={classes.header}>Taxes and Additional Charges</h1>
 				<p className={classes.paragraph}>
-					15% per night not included in rate effective 23 March, 2019
-					thru 24 March, 2019 TAX IS CHARGED PER NIGHT. 2 Percent
-					Dallas Tourism Public Improvement District Reimbursement Fee
+					8.25% per night not included in rate effective{' '}
+					{props.setSearchInfo.firstDate} -{' '}
+					{props.setSearchInfo.secondDate}. Tax is charged on the
+					total stay rate.
 				</p>
 				{/* Get based on Hotel */}
 				<h1 className={classes.header}>Other Charges</h1>
@@ -123,7 +124,7 @@ const CheckoutInfo = props => {
 				{/* Get based on room */}
 				<h1 className={classes.header}>Nightly Rate</h1>
 				<p className={classes.paragraph}>
-					164.00 USD per room, per night.
+					${price.toFixed(2)} USD per room, per night.
 				</p>
 				{/* Get based on room */}
 				<h1 className={classes.header}>
@@ -139,15 +140,15 @@ const CheckoutInfo = props => {
 				<h1 className={classes.header}>Parking</h1>
 				<p className={classes.paragraph}>
 					Valet parking is provided on southbound Harwood St., between
-					Elm and Main St. The overnight rate is $29.00 per overnight
+					Elm and Main St. The overnight rate is $29.00 USD per overnight
 					stay, with unlimited in and out privileges. Visitor day
-					parking is $14.00, with no in and out privileges.
+					parking is $14.00 USD, with no in and out privileges.
 				</p>
 				{/* Get based on Hotel */}
 				<h1 className={classes.header}>Pet Policy</h1>
 				<p className={classes.paragraph}>
-					A one time, nonrefundable fee of 75 dollars will be charged
-					upon checkin. Pet Limit of two and or 75 lbs Maximum.
+					A one time, nonrefundable fee of $75.00 USD will be charged upon
+					checkin. Pet Limit of two and or 75 lbs Maximum.
 				</p>
 			</div>
 		</Paper>
