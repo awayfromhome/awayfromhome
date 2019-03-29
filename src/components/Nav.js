@@ -26,12 +26,25 @@ const useStyles = makeStyles(theme => ({
   hiddenMenus: {
     display: 'none'
   },
+  logoDesktop: {
+    display: 'none',
+    width: 50
+  },
   logo: {
     textAlign: 'center',
     height: '12vh',
     color: '#fff',
     lineHeight: '12vh',
     background: theme.palette.secondary.main
+  },
+
+  AFH: {
+    // display: 'flex',
+    width: '100%',
+    height: '100%',
+    '&:hover': {
+      color: 'black'
+    }
   },
   navwrapper: {
     cursor: 'pointer',
@@ -61,7 +74,6 @@ const useStyles = makeStyles(theme => ({
       backgroundPosition: '0 0'
     }
   },
-
   [theme.breakpoints.down('749')]: {
     navContainer: {
       display: 'none'
@@ -77,7 +89,7 @@ const useStyles = makeStyles(theme => ({
       display: 'flex',
       zIndex: 4,
       flexDirection: 'column',
-      background: '#8A95A5',
+      background: theme.palette.primary.light,
       height: '100vh'
     },
     navicons: {
@@ -101,9 +113,11 @@ const useStyles = makeStyles(theme => ({
     hiddenMenutags: {
       zIndex: 4,
       padding: '10%',
-      background: '#8A95A5',
-      borderBottom: '1px solid black',
-      textAlign: 'center'
+      borderBottom: `2px solid ${theme.palette.primary.main}`,
+      textAlign: 'center',
+      color: '#fff',
+      fontSize: 20,
+      fontWeight: 500
     },
     imgContainer: {
       height: '100%',
@@ -182,7 +196,7 @@ const Nav = props => {
           )}
           <div className={classes.hiddenMenutags}>Locations</div>
           <div className={classes.hiddenMenutags}>Offers </div>
-          {props.user.username && props.user.role != 'admin' ? (
+          {props.user.username && props.user.role !== 'admin' ? (
             <div
               className={classes.hiddenMenutags}
               onClick={() => props.history.push('/Profile')}
@@ -210,7 +224,12 @@ const Nav = props => {
       )}
       <div className={classes.navContainer}>
         <div className={classes.logo} onClick={() => props.history.push('/')}>
-          AFH
+          <div className={classes.AFH}> AFH </div>
+          <img
+            src='https://s3.us-east-2.amazonaws.com/awayfromhome/AFHlogo.png'
+            alt='logo'
+            className={classes.logoDesktop}
+          />
         </div>
         <div className={classes.navwrapper}>
           {props.user.username ? null : (
@@ -231,7 +250,7 @@ const Nav = props => {
           )}
           <div className={classes.tags}>Locations</div>
           <div className={classes.tags}>Offers</div>
-          {props.user.username && props.user.role != 'admin' ? (
+          {props.user.username && props.user.role !== 'admin' ? (
             <div
               className={classes.tags}
               onClick={() => props.history.push('/Profile')}

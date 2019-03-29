@@ -87,7 +87,7 @@ const useStyles = makeStyles(theme => ({
   circle: {
     width: '150px',
     height: '150px',
-    border: '5px solid gray',
+    border: `5px solid ${theme.palette.accent.main}`,
     borderRadius: '50%',
     margin: 'auto',
     marginTop: '20%',
