@@ -38,7 +38,7 @@ const useStyles = makeStyles(theme => ({
     background: theme.palette.accent.main,
     fontFamily: theme.typography.fontFamily[1],
     borderRadius: 50,
-    padding: '12px 60px',
+    padding: '6px 20px',
     color: 'white',
     border: 'none',
     fontSize: 17,

@@ -81,7 +81,9 @@ const useStyles = makeStyles(theme => ({
     },
     priceInfoCheckout: {
       width: 'auto',
-      padding: '30px'
+      padding: '30px',
+      background: theme.palette.secondary.main,
+      color: '#fff'
     },
     price: {
       width: '25%'
