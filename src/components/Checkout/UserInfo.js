@@ -133,6 +133,9 @@ const UserInfo = props => {
     <Paper className={classes.background}>
       <div className={classes.root}>
         <h1 className={classes.header}>Guest Information</h1>
+        <p className={classes.firstP}>
+          Already an AFH Rewards Club member? Sign in to earn your points!
+        </p>
         <p>* Indicates a required input field</p>
 
         <TextField
