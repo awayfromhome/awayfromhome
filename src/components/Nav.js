@@ -27,11 +27,35 @@ const useStyles = makeStyles(theme => ({
     display: 'none'
   },
   logo: {
+    background: theme.palette.secondary.main,
+    '&:hover $logoContainer': {
+      transform: 'translateX(-100%)',
+      transition: 'all 1s linear'
+    },
+    '&:hover $AFH': {
+      display: 'flex',
+      height: '0vh'
+    }
+  },
+  logoDesktop: {
+    width: '100%',
+    height: '100%'
+  },
+  AFH: {
+    display: 'none',
+    lineHeight: '14vh',
     textAlign: 'center',
-    height: '12vh',
     color: '#fff',
-    lineHeight: '12vh',
-    background: theme.palette.secondary.main
+    width: '100%',
+    fontFamily: theme.typography.fontFamily[0],
+    transform: 'translate(35%, -100%)',
+    transition: 'all 1s linear'
+  },
+  logoContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    width: '100%',
+    height: '14vh'
   },
   navwrapper: {
     cursor: 'pointer',
@@ -46,7 +70,8 @@ const useStyles = makeStyles(theme => ({
     textTransform: 'uppercase',
     fontSize: 13,
     color: '#fff',
-    fontFamily: 'Baloo',
+    fontFamily: theme.typography.fontFamily[0],
+    fontWeight: 700,
     lineHeight: 7.5,
     background: `linear-gradient(to right,
     #26292D,
@@ -61,7 +86,6 @@ const useStyles = makeStyles(theme => ({
       backgroundPosition: '0 0'
     }
   },
-
   [theme.breakpoints.down('749')]: {
     navContainer: {
       display: 'none'
@@ -77,7 +101,7 @@ const useStyles = makeStyles(theme => ({
       display: 'flex',
       zIndex: 4,
       flexDirection: 'column',
-      background: '#8A95A5',
+      background: theme.palette.primary.light,
       height: '100vh'
     },
     navicons: {
@@ -101,9 +125,11 @@ const useStyles = makeStyles(theme => ({
     hiddenMenutags: {
       zIndex: 4,
       padding: '10%',
-      background: '#8A95A5',
-      borderBottom: '1px solid black',
-      textAlign: 'center'
+      borderBottom: `2px solid ${theme.palette.primary.main}`,
+      textAlign: 'center',
+      color: '#fff',
+      fontSize: 20,
+      fontWeight: 500
     },
     imgContainer: {
       height: '100%',
@@ -160,8 +186,8 @@ const Nav = props => {
         <div
           className={
             hiddenMenu
-              ? classNames(classes.hiddenMenus, 'animated fadeOutLeft')
-              : classNames(classes.hiddenMenus, 'animated fadeInLeft')
+              ? classNames(classes.hiddenMenus, 'animated fadeOutLeft 1s')
+              : classNames(classes.hiddenMenus, 'animated fadeInLeft faster')
           }
         >
           {props.user.username ? null : (
@@ -182,7 +208,7 @@ const Nav = props => {
           )}
           <div className={classes.hiddenMenutags}>Locations</div>
           <div className={classes.hiddenMenutags}>Offers </div>
-          {props.user.username && props.user.role != 'admin' ? (
+          {props.user.username && props.user.role !== 'admin' ? (
             <div
               className={classes.hiddenMenutags}
               onClick={() => props.history.push('/Profile')}
@@ -210,7 +236,14 @@ const Nav = props => {
       )}
       <div className={classes.navContainer}>
         <div className={classes.logo} onClick={() => props.history.push('/')}>
-          AFH
+          <div className={classes.AFH}> AFH </div>
+          <span className={classes.logoContainer}>
+            <img
+              src='https://s3.us-east-2.amazonaws.com/awayfromhome/AFHlogo.png'
+              alt='logo'
+              className={classes.logoDesktop}
+            />
+          </span>
         </div>
         <div className={classes.navwrapper}>
           {props.user.username ? null : (
@@ -231,7 +264,7 @@ const Nav = props => {
           )}
           <div className={classes.tags}>Locations</div>
           <div className={classes.tags}>Offers</div>
-          {props.user.username && props.user.role != 'admin' ? (
+          {props.user.username && props.user.role !== 'admin' ? (
             <div
               className={classes.tags}
               onClick={() => props.history.push('/Profile')}

@@ -90,7 +90,12 @@ const HotelInfo = props => {
   };
 
   return (
-    <Card price='100' img={info.url} btnName='Select Hotel' onClick={() => props.history.push(`/roomlist/${info.hotel_id}`)}>
+    <Card
+      price='100'
+      img={info.url}
+      btnName='Select Hotel'
+      onClick={() => props.history.push(`/roomlist/${info.hotel_id}`)}
+    >
       <div className={classes.hotelname}>
         <div className={classes.hotelavatar} />
         <h1 className={classes.infoname}>{info.name}</h1>
@@ -103,7 +108,9 @@ const HotelInfo = props => {
           <h4>Distance</h4>
         </div>
         <div className={classes.amenitiesList}>
-          <ul className={classes.amenities}>{amenities(JSON.parse(info.amenities)[0])}</ul>
+          <ul className={classes.amenities}>
+            {amenities(JSON.parse(info.amenities)[0])}
+          </ul>
         </div>
       </div>
     </Card>

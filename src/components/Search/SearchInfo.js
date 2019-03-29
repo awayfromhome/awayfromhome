@@ -35,8 +35,7 @@ const useStyles = makeStyles(theme => ({
       display: 'flex',
       height: '15vh',
       width: '100%',
-      marginTop: '30%',
-      marginBottom: '5%',
+      marginTop: '28%',
       zIndex: 1
     },
     toolbar: {
