@@ -35,6 +35,9 @@ const useStyles = makeStyles(theme => ({
     left: -50,
     marginLeft: '-55%'
   },
+  imgContainer: {
+    display: 'none'
+  },
   navwrapper: {
     cursor: 'pointer',
     display: 'flex',
