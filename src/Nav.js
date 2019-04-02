@@ -9,7 +9,7 @@ import {
 	handleLogout
 } from '../ducks/auth/authAsync';
 import classNames from 'classnames';
-import logo from '../afhlogo1.png';
+// import { logo } from './AFHlogo.png';
 
 const useStyles = makeStyles(theme => ({
 	navContainer: {
@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
 		top: 0,
 		left: 0,
 		height: '100%',
-		width: '8%',
+		width: '7%',
 		background: theme.palette.primary.main,
 		zIndex: 4
 	},
@@ -27,18 +27,7 @@ const useStyles = makeStyles(theme => ({
 	hiddenMenus: {
 		display: 'none'
 	},
-	logo: {
-		display: 'flex',
 
-		overflow: 'hidden',
-		background: theme.palette.secondary.main
-	},
-	logoDesktop: {
-		display: 'flex',
-		height: '120px',
-		width: '171px',
-		overflow: 'hidden'
-	},
 	imgContainer: {
 		display: 'none'
 	},
