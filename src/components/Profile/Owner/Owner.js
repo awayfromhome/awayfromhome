@@ -16,15 +16,21 @@ import OwnerRoomList from './OwnerRoomList';
 import UpdateHotel from './UpdateHotel';
 import UpdateRoom from './UpdateRoom';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   root: {
     marginLeft: '7%',
     width: '93%'
   },
   tabs: {
     marginTop: '1%'
+  },
+  [theme.breakpoints.down('749')]: {
+    root: {
+      marginLeft: 0,
+      width: '100%'
+    }
   }
-});
+}));
 
 const Owner = props => {
   const classes = useStyles();
@@ -47,7 +53,11 @@ const Owner = props => {
   const displayInnerTabs = () => {
     if (outerTabs === 1) {
       return (
-        <Tabs value={innerTabs} onChange={handleInnerChange} indicatorColor='primary'>
+        <Tabs
+          value={innerTabs}
+          onChange={handleInnerChange}
+          indicatorColor='primary'
+        >
           <Tab label='Room List' />
           <Tab label='New Room' />
           <Tab label='Update Room' disabled />
@@ -56,7 +66,11 @@ const Owner = props => {
     }
     if (outerTabs === 2) {
       return (
-        <Tabs value={innerTabs} onChange={handleInnerChange} indicatorColor='primary'>
+        <Tabs
+          value={innerTabs}
+          onChange={handleInnerChange}
+          indicatorColor='primary'
+        >
           <Tab label='All' />
           <Tab label='By Hotel' />
           <Tab label='By Room' />
@@ -66,7 +80,11 @@ const Owner = props => {
       return null;
     } else {
       return (
-        <Tabs value={innerTabs} onChange={handleInnerChange} indicatorColor='primary'>
+        <Tabs
+          value={innerTabs}
+          onChange={handleInnerChange}
+          indicatorColor='primary'
+        >
           <Tab label='Hotel List' />
           <Tab label='New Hotel' />
           <Tab label='Update Hotel' disabled />
@@ -97,7 +115,11 @@ const Owner = props => {
     <div className={classes.root}>
       <OwnerProfile />
       <Paper className={classes.tabs}>
-        <Tabs value={outerTabs} onChange={handleOuterChange} indicatorColor='primary'>
+        <Tabs
+          value={outerTabs}
+          onChange={handleOuterChange}
+          indicatorColor='primary'
+        >
           <Tab label='Hotels' />
           <Tab label='Rooms' />
           <Tab label='Reservations' />
