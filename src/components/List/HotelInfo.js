@@ -12,7 +12,8 @@ const useStyles = makeStyles(theme => ({
   },
   hotelname: {
     marginBottom: 'auto',
-    fontSize: 40,
+    fontSize: 30,
+    fontWeight: 700,
     display: 'flex',
     alignItems: 'center',
     paddingLeft: '4%',

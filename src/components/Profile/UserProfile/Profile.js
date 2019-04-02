@@ -136,11 +136,15 @@ const useStyles = makeStyles(theme => ({
     },
     root: {
       width: '100vw',
-      marginTop: '5%'
+      marginTop: '5%',
+      height: '80vh'
     },
     memberBoxes: {
       width: '49.5vw',
       height: '8vh'
+    },
+    redeemPointsContainer: {
+      paddingTop: '5%'
     },
     circle: {
       marginBottom: '5vh',
