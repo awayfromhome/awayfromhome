@@ -3,11 +3,7 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/styles';
 import Login from './Login';
-import {
-  getUser,
-  handleAccountForm,
-  handleLogout
-} from '../ducks/auth/authAsync';
+import { getUser, handleAccountForm, handleLogout } from '../ducks/auth/authAsync';
 import classNames from 'classnames';
 
 const useStyles = makeStyles(theme => ({
@@ -171,11 +167,7 @@ const Nav = props => {
         ) : (
           <img
             src='https://www.freeiconspng.com/uploads/white-arrow-transparent-png-22.png'
-            className={classNames(
-              classes.hamburgerMenu,
-              classes.navicons,
-              classes.arrow
-            )}
+            className={classNames(classes.hamburgerMenu, classes.navicons, classes.arrow)}
             alt='chevron menu'
             onClick={() => setHiddenMenu(!hiddenMenu)}
           />
@@ -185,50 +177,37 @@ const Nav = props => {
       {hiddenMenu ? null : (
         <div
           className={
-            hiddenMenu
-              ? classNames(classes.hiddenMenus, 'animated fadeOutLeft 1s')
-              : classNames(classes.hiddenMenus, 'animated fadeInLeft faster')
-          }
-        >
+            hiddenMenu ? classNames(classes.hiddenMenus, 'animated fadeOutLeft 1s') : classNames(classes.hiddenMenus, 'animated fadeInLeft faster')
+          }>
           {props.user.username ? null : (
-            <div
-              className={classes.hiddenMenutags}
-              onClick={() => props.handleAccountForm('Login')}
-            >
+            <div className={classes.hiddenMenutags} onClick={() => props.handleAccountForm('Login')}>
               Sign In
             </div>
           )}
           {props.user.username ? null : (
-            <div
-              className={classes.hiddenMenutags}
-              onClick={() => props.handleAccountForm('Register')}
-            >
+            <div className={classes.hiddenMenutags} onClick={() => props.handleAccountForm('Register')}>
               Sign Up
             </div>
           )}
           <div className={classes.hiddenMenutags}>Locations</div>
           <div className={classes.hiddenMenutags}>Offers </div>
           {props.user.username && props.user.role !== 'admin' ? (
-            <div
-              className={classes.hiddenMenutags}
-              onClick={() => props.history.push('/Profile')}
-            >
+            <div className={classes.hiddenMenutags} onClick={() => props.history.push('/Profile')}>
               Profile
             </div>
           ) : null}
           {props.user.role === 'admin' ? (
-            <div
-              className={classes.hiddenMenutags}
-              onClick={() => props.history.push('/Owner')}
-            >
+            <div className={classes.hiddenMenutags} onClick={() => props.history.push('/Owner')}>
               Owner
             </div>
           ) : null}
           {props.user.username ? (
             <div
               className={classes.hiddenMenutags}
-              onClick={() => props.handleLogout()}
-            >
+              onClick={() => {
+                props.handleLogout();
+                props.history.push('/');
+              }}>
               Logout
             </div>
           ) : null}
@@ -238,45 +217,29 @@ const Nav = props => {
         <div className={classes.logo} onClick={() => props.history.push('/')}>
           <div className={classes.AFH}> AFH </div>
           <span className={classes.logoContainer}>
-            <img
-              src='https://s3.us-east-2.amazonaws.com/awayfromhome/AFHlogo.png'
-              alt='logo'
-              className={classes.logoDesktop}
-            />
+            <img src='https://s3.us-east-2.amazonaws.com/awayfromhome/AFHlogo.png' alt='logo' className={classes.logoDesktop} />
           </span>
         </div>
         <div className={classes.navwrapper}>
           {props.user.username ? null : (
-            <div
-              className={classes.tags}
-              onClick={() => props.handleAccountForm('Login')}
-            >
+            <div className={classes.tags} onClick={() => props.handleAccountForm('Login')}>
               Sign In
             </div>
           )}
           {props.user.username ? null : (
-            <div
-              className={classes.tags}
-              onClick={() => props.handleAccountForm('Register')}
-            >
+            <div className={classes.tags} onClick={() => props.handleAccountForm('Register')}>
               Sign Up
             </div>
           )}
           <div className={classes.tags}>Locations</div>
           <div className={classes.tags}>Offers</div>
           {props.user.username && props.user.role !== 'admin' ? (
-            <div
-              className={classes.tags}
-              onClick={() => props.history.push('/Profile')}
-            >
+            <div className={classes.tags} onClick={() => props.history.push('/Profile')}>
               Profile
             </div>
           ) : null}
           {props.user.role === 'admin' ? (
-            <div
-              className={classes.tags}
-              onClick={() => props.history.push('/Owner')}
-            >
+            <div className={classes.tags} onClick={() => props.history.push('/Owner')}>
               Owner
             </div>
           ) : null}
