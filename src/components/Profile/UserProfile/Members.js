@@ -33,6 +33,9 @@ const useStyles = makeStyles(theme => ({
     },
     card: {
       marginTop: '5%'
+    },
+    container: {
+      padding: '5%'
     }
   }
 }));
@@ -49,7 +52,7 @@ const Members = () => {
             alt='club-memeber-card'
             className={classes.img}
           />
-          <div>
+          <div className={classes.container}>
             <h1 className={classes.membershipName1}>Club</h1>
             <h4 className={classes.membershipdetails}>
               0-9 Qualified Nights or
@@ -65,7 +68,7 @@ const Members = () => {
             alt='gold-elite'
             className={classes.img}
           />
-          <div>
+          <div className={classes.container}>
             <h1 className={classes.membershipName1}>Gold Elite</h1>
             <h4 className={classes.membershipdetails}>
               10 Qualified Nights or
@@ -81,7 +84,7 @@ const Members = () => {
             alt='gold-elite'
             className={classes.img}
           />
-          <div>
+          <div className={classes.container}>
             <h1 className={classes.membershipName1}>Platinum Elite</h1>
             <h4 className={classes.membershipdetails}>
               40 Qualified Nights or
